@@ -27,6 +27,16 @@ This is the concept people most often get wrong, so be precise about it:
 
 Never describe confidence as "accuracy" or "certainty". Confidence is a statement about our evidence, not about the person and not about whether we got it right.
 
+### How it is shown
+
+| Confidence | Colour | Reading |
+| --- | --- | --- |
+| 50% and above | Green | Reliable |
+| 30–49% | Amber | Moderate |
+| Below 30% | Red | Low |
+
+The Deck has a **reliable only** toggle that hides anything below 30%, treating it like an unscored Skill. That threshold is the same one that gates Track unlocking, which is why the Manager Coaching Playbook has managers check "Skills with confidence over 30%".
+
 ## What moves confidence
 
 Four factors combine.
@@ -70,9 +80,17 @@ The Manager Coaching Playbook has managers work with this number directly: in th
 
 A person's level in a Skill is not the average of their evaluations.
 
-**Time-based exponential decay** is the active algorithm (`time_based_exponential_decay`). Each evaluation is weighted by its actual date, so recent behavior dominates and older behavior fades. This is what makes the profile a picture of who someone is *now* rather than a running total of everything they have ever done.
+**Time-based exponential decay** is the active algorithm (`time_based_exponential_decay`). Each evaluation is weighted by its actual date on a 180-day half-life, so recent behavior dominates and older behavior fades. This is what makes the profile a picture of who someone is *now* rather than a running total of everything they have ever done.
 
 Two older algorithms exist in the code — a simple average and a batch-based exponential decay — but they are legacy. Do not describe them as options.
+
+<Note>
+  **Scores are decimals; levels are integers.** A person's score is a weighted mean carried to one decimal place, so someone can sit at 12.3 — between the level 12 and level 13 behaviors. The 21 written level descriptors are the integer rungs; the score is a position on the ladder, not a rung.
+
+  Track Goals are always whole numbers, and never below level 5.
+</Note>
+
+Category scores are a weighted average of the Skills in that category, and **only Skills that have been scored are included**. A category is never dragged down by Skills the product has not observed.
 
 ### Top Performance Average
 

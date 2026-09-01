@@ -48,13 +48,36 @@ Team-level permissions, and there are only two.
 
 The manager role carries the product's most sensitive capability, because it is the one that grants any view of another person's development. See [The manager role](/product/manager-role).
 
-## Joining an organization
+## Joining
 
-People are added by invitation from an Owner or Admin.
+Two separate invitation systems exist, and they are easy to confuse.
 
-The application also supports an invitation-only mode at the application level (`INVITATION_ONLY`), which restricts registration entirely to people holding a valid invitation code. It exists for controlled launches and pilots.
+<AccordionGroup>
+  <Accordion title="Platform registration" icon="user-plus">
+    How someone gets a Skill Deck account at all. Email and password, or Google or LinkedIn sign-in, then email verification and a short profile step.
 
-{/* TODO: Confirm whether invitation-only mode is currently enabled in production, and document the exact self-serve signup path if one exists. */}
+    An application-level **invitation-only mode** (`INVITATION_ONLY`) can restrict registration to people holding an 8-character invite code. It exists for controlled launches. The configuration default is **off**, so registration is open unless deliberately gated.
+
+    When it is on, every user gets a small quota of invites to hand out — 3 by default.
+  </Accordion>
+  <Accordion title="Organization membership" icon="building-2">
+    How an existing or new user joins a customer account. An Owner or Admin invites by email; the membership sits as `invited` until accepted, and can pre-assign a team.
+
+    Invitees who do not yet have an account are matched on the invited email when they register. Members can keep a personal login email and attach a verified work email for organization display.
+  </Accordion>
+</AccordionGroup>
+
+Seats behave differently by subscription type: a Stripe subscription can exceed its included seats and bill the extra, while granted or manual subscriptions enforce a hard limit.
+
+<Note>
+  The in-app onboarding checklist was **switched off in April 2026**. The code is preserved but no progress tracking or prompts run. Do not describe a guided onboarding flow — the real first-run experience is: create an account, complete your profile, connect a calendar.
+</Note>
+
+## Data portability
+
+A person's Skills, scores, score history, evidence, and evaluations belong to **the user**, and follow them if they change organizations. Benchmarks, membership history, and organization configuration stay with the organization.
+
+Worth raising unprompted in a sales conversation — it reframes the product as something you give someone rather than something you do to them.
 
 ## How this maps to selling
 

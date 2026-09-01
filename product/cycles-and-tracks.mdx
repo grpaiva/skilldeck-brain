@@ -53,11 +53,17 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
 | Rule | Value | Why it exists |
 | --- | --- | --- |
 | Minimum duration | **~2 weeks** (14 days) | A Track cannot complete before this, no matter how fast the score moves. Behavior change needs more than one good meeting. |
-| Goal checks | **Fridays** | A Track started on a Friday can complete on its second Friday at the earliest, and only if the Goal is met. |
+| Goal checks | **Fridays only** | A Track started on a Friday can complete on its second Friday at the earliest. A score update mid-week never completes a Track. |
 | Stale expiry | **90 days** without score movement | Prevents a disengaged user from being stuck against a Goal they will never reach. |
 | Inactivity pause | **7 days** without any evaluation | Track communications and recurring jobs are skipped until the person is back. |
 
 That last rule matters for the product's tone. Someone on holiday or in a heads-down month does not come back to two weeks of accumulated nagging.
+
+### Goals
+
+A Goal is a whole number on the 0–20 scale, normally the next integer above the current score, and **never below level 5**. When the product sets it automatically the formula is `min(max(floor(score) + 1, 5), 20)`.
+
+A setting controls what happens when the two weeks are up but the Goal is not met. With **require goal on**, the Track keeps running. With it off, the Track time-boxes: it switches on the Friday after the minimum duration regardless, and the Wrap-Up is written as a retrospective.
 
 ## Do not churn Skills
 
@@ -105,7 +111,7 @@ The confidence target is the interesting one for a new user or a new team. Early
 
 ## Resource cards
 
-When a Track starts, the user draws a **hand of resource cards**: the Goal-level behavior plus the levels above it, each one a named, concrete behavior with a description and an example of what it looks like. They are told to play whichever card the situation calls for.
+When a Track starts, the user draws a **hand of up to four resource cards**: the Goal-level behavior plus the three levels above it, each one a named, concrete behavior with a description and an example. They are told to play whichever card the situation calls for, and stronger cards move the score faster.
 
 Cards are the product's central metaphor made literal, and the reasoning behind them is good demo material. A person given one target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment actually calls for.
 

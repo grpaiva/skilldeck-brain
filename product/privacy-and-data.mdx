@@ -65,26 +65,40 @@ Related: a **single-participant meeting is marked processed without transcriptio
   The distinction that matters: a manager sees **the analysis**, not **the recording**.
 </Note>
 
-Be accurate about this rather than reassuring. A manager's access is real, and the honest version is more credible than a vague one.
+Be accurate about this rather than reassuring. A manager's access is real but deliberately bounded, and the boundaries are drawn in code rather than by convention.
 
-**A manager does see**, on their team member's page:
+### A manager does see
 
-- Progress against Goal, time on the current Track, and Track history — completed, active, switched, rolled, expired.
-- The member's **Journal**: their stored dispatches, including the weekly Prep, the weekly Review, Kickoffs, and Wrap-Ups.
-- The member's **Deck**: current scores and confidence across their Skills.
-- **Track analyses** — the per-meeting analysis, used for a deep-dive in a coaching conversation. These contain the moment excerpts.
+On their team member's page, in the order the Manager Coaching Playbook has them read it:
 
-The Manager Coaching Playbook has managers read exactly these, in the order Overview → Journal → Deck, before every coaching meeting. The coaching conversation is built on them.
+- **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
+- **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full.
+- **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
+- **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts.
 
-**A manager does not get:**
+Opening a member's Journal post does not mark it read for the member.
 
-- Meeting video or audio. It is never captured.
-- Meeting transcripts. Raw content is never written to the database, and it is gone from cache after 7 days.
-- Evidence about anyone other than the member themselves.
+### A manager does not see
+
+This list is enforced, not aspirational:
+
+| Hidden from the manager | How |
+| --- | --- |
+| Meeting video and audio | Never captured |
+| Meeting transcripts | Never in the database; gone from cache after 7 days |
+| **Evidence Evaluated dispatches** | Explicitly excluded from the manager-visible dispatch list. The post-meeting analysis a member receives is private to them. |
+| Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. |
+| Click-through from a Track analysis to the underlying evidence | The expand link is disabled for managers |
+| The full list of individual evaluations | Not exposed in any manager view |
+| The body of a member's development report | The manager sees that a report exists, with no link to open it |
+| Benchmarks the member favorited | Private, so a member can hold aspirations their manager does not see |
+| Anything through the MCP server | MCP is first-person only. There is no manager, recruiter, or org-level access path. |
 
 <Tip>
-  The clean way to say this: a manager can see what Skill Deck concluded and the short excerpts it based those conclusions on, up to 500 characters each. They cannot see the meeting.
+  The clean way to say this: **a manager sees the conclusions and the short excerpts behind them, never the meeting and never the raw analysis.** The member gets more detail about themselves than their manager does.
 </Tip>
+
+That last point is the strongest thing to say in a privacy conversation, and it happens to be true.
 
 ## Model providers
 
@@ -113,7 +127,7 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
   </Step>
   <Step title="The manager gets the analysis, not the meeting">
-    Scores, Track progress, and short excerpts the analysis was based on. Not a record of the meeting.
+    Scores, Track progress, and short excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and the post-meeting analysis a member receives is private to them.
   </Step>
 </Steps>
 
