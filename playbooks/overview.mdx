@@ -1,0 +1,71 @@
+---
+title: "Playbooks"
+description: "Repeatable procedures we want executed the same way every time, by a person or by an agent."
+icon: "book-open-check"
+updated: "2026-09-01"
+status: "verified"
+---
+
+The Company and Product sections describe what is true. Playbooks describe what to do.
+
+A playbook belongs here when all three are true:
+
+1. We do it more than once.
+2. Doing it inconsistently costs us something.
+3. Someone new — or an agent — could execute it from the page alone.
+
+Anything that fails those tests is a note, not a playbook. Keep it out.
+
+## Current playbooks
+
+<Columns cols={2}>
+  <Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
+    How managers use Skill Deck: three cadences, agendas, coaching prompts, and interventions. Customer-facing, and the source of truth for anything manager-related.
+  </Card>
+  <Card title="Messaging and claims" icon="megaphone" href="/playbooks/messaging-and-claims">
+    How to write and talk about Skill Deck. Pitches by audience, objection handling, and the claims we are not allowed to make.
+  </Card>
+  <Card title="Running a pilot month" icon="calendar-check" href="/playbooks/pilot-month">
+    Taking a team through the free trial month and converting it. Draft.
+  </Card>
+</Columns>
+
+<Note>
+  The Manager Coaching Playbook is a **synced** playbook: it exists as a designed PDF that goes to customers, and these pages mirror it. Correct the PDF first, then re-sync. The others are written and maintained here.
+</Note>
+
+## Playbook format
+
+Keep every playbook to the same shape so they stay executable:
+
+```mdx
+## When to use this
+One or two sentences on the trigger.
+
+## Prerequisites
+What must already be true or in hand.
+
+## Steps
+Numbered, in order, each one an action rather than a description.
+
+## Definition of done
+The observable state that means it worked.
+
+## Failure modes
+What usually goes wrong, and what to do instead.
+```
+
+## Wanted
+
+Gaps we know about. Write one when you have run the thing enough times to know how it should go.
+
+- Onboarding a new customer team after they sign
+- Handling an inbound privacy or data-protection question
+- Qualifying an inbound lead against the [ICP](/company/icp-and-market)
+- Responding to a churn signal from a paying team
+- Preparing an investor update
+- Introducing a manager to the coaching playbook — who delivers it, and when in the customer lifecycle
+
+<Tip>
+  Do not write a playbook for something you have not done. A speculative playbook gets followed by someone who assumes it was tested.
+</Tip>

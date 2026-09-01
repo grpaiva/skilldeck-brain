@@ -1,0 +1,120 @@
+---
+title: "How to use this brain"
+description: "Conventions for reading, writing, and correcting pages in the Skill Deck brain."
+icon: "compass"
+updated: "2026-09-01"
+status: "verified"
+---
+
+## Who this is for
+
+<Columns cols={3}>
+  <Card title="Teammates" icon="users">
+    Onboard yourself, or check a fact before a call, without pinging a founder.
+  </Card>
+  <Card title="AI agents" icon="bot">
+    Load context before writing copy, answering a prospect, or building a feature.
+  </Card>
+  <Card title="Partners and advisors" icon="handshake">
+    Understand the company quickly enough to be useful to us.
+  </Card>
+</Columns>
+
+## The three-layer model
+
+Read only as deep as you need.
+
+<Steps>
+  <Step title="Layer 1 — AGENTS.md">
+    The routing file at the repository root. It tells an agent what this repo is, the rules it must follow, and which page answers which question. An agent should load this first, always.
+  </Step>
+  <Step title="Layer 2 — Overview">
+    [Canonical facts](/overview/canonical-facts) and the [glossary](/overview/glossary). Enough to hold a conversation and to avoid saying something wrong.
+  </Step>
+  <Step title="Layer 3 — Company, Product, and Playbooks">
+    The detail. Read on demand, when a specific question needs a specific answer.
+  </Step>
+</Steps>
+
+## Where content comes from
+
+Some pages are synced from a document that is itself the source of truth. The [Manager Coaching Playbook](/playbooks/manager-coaching/overview) is the first of these: it exists as a designed PDF, and those pages are a faithful sync of it.
+
+For synced content, the rule is one-directional. Correct the source document, then re-sync the pages. Do not fix a synced page in place and let the two drift.
+
+## Page conventions
+
+Every page carries this frontmatter:
+
+```yaml
+---
+title: "Sentence case title"
+description: "One sentence. Shows in search results and in the sidebar."
+icon: "lucide-icon-name"
+updated: "YYYY-MM-DD"
+status: "verified"
+---
+```
+
+`updated` and `status` are the honesty mechanism. They are not decoration.
+
+| `status` | Meaning | How to treat it |
+| --- | --- | --- |
+| `verified` | A founder confirmed this, or it was read directly from the product. | Safe to state externally. |
+| `draft` | Written but not confirmed. Probably right. | Use internally. Do not put it in customer-facing copy. |
+| `stale` | Was true, may no longer be. | Verify before using. Fix it or flag it. |
+
+<Tip>
+  When you cannot verify something, write it anyway and mark the page `draft`. A marked guess is far more useful than a gap, because the next person knows exactly what to check.
+</Tip>
+
+## Rules for writing here
+
+- **English only.** Every page, every heading, every example. Source material in Portuguese gets translated, not pasted.
+- **Say what is shipped.** When something is planned rather than live, label it inline. The clearest phrasing is "Planned — not shipped as of *date*".
+- **One idea per sentence.** Second person. Active voice.
+- **No marketing adjectives.** "Powerful", "seamless", "robust", "cutting-edge" do not appear here, even on the company pages. State the mechanism instead; it is more persuasive anyway.
+- **Numbers live in one place.** Prices, Skill counts, seat targets, and raise amounts belong on [Canonical facts](/overview/canonical-facts). Link to it rather than restating a number, so there is exactly one place to correct.
+- **Product vocabulary is fixed.** Use the terms in the [glossary](/overview/glossary) exactly as written. The product says **Skill**, never "competency". Capitalize the product nouns: Skill, Track, Goal, Cycle, Deck.
+- **Escape dollar signs before a digit:** write `\$9.90`. Two unescaped `$` on one line get parsed as inline LaTeX and the prices render as italic maths.
+
+## How to make a change
+
+<Tabs>
+  <Tab title="Non-technical">
+    Edit the page in the Mintlify dashboard. Mintlify commits to this repository for you. Update the `updated` date in the frontmatter while you are there.
+  </Tab>
+  <Tab title="In an IDE">
+    Clone `grpaiva/skilldeck-brain`, run `mint dev` for a local preview at `http://localhost:3000`, edit the MDX, then open a pull request.
+
+    ```bash
+    npm i -g mint
+    mint dev
+    ```
+  </Tab>
+  <Tab title="With an agent">
+    Point the agent at this repository through the GitHub MCP server or the Mintlify MCP server. Tell it to read `AGENTS.md` first. Ask for a pull request, not a direct push to `main`.
+  </Tab>
+</Tabs>
+
+Before merging, run the two checks Mintlify ships:
+
+```bash
+mint broken-links
+mint validate
+```
+
+## Adding a new page
+
+1. Create the `.mdx` file in the section folder that fits: `company/`, `product/`, or `playbooks/`.
+2. Add the full frontmatter block, including `updated` and `status`.
+3. Register the page in the `navigation` block of `docs.json`. A page that is not registered is hidden from the sidebar.
+4. If the page introduces a new term, add that term to the [glossary](/overview/glossary) in the same change.
+5. If the page introduces a new number or claim, add it to [Canonical facts](/overview/canonical-facts) instead of burying it in prose.
+
+## Keeping it honest
+
+This only works if it stays true. Two habits carry most of the weight:
+
+- When a page turns out to be wrong during a call or a demo, fix it the same day. The cost of fixing is minutes; the cost of leaving it is that someone repeats the error to a customer.
+- Review `status: draft` pages whenever the underlying feature ships, and promote them to `verified`.

@@ -1,0 +1,93 @@
+---
+title: "How Skill Deck works"
+description: "The full loop, from a calendar invite to a level change and a development Track."
+icon: "workflow"
+updated: "2026-09-01"
+status: "verified"
+---
+
+Skill Deck runs one loop, continuously. Understanding the loop is enough to answer most questions about the product.
+
+<Steps>
+  <Step title="A user connects their calendar" icon="calendar">
+    This is the only setup step. Google Calendar or Microsoft Calendar. The product then knows which meetings are coming.
+
+    Everything after this happens without the user doing anything.
+  </Step>
+  <Step title="A bot joins the meeting and produces a transcript" icon="video">
+    Calendar integrations automatically schedule **transcript-only** meeting bots. The bot attends, and what comes out is text.
+
+    See [Evidence and evaluation](/product/evidence-and-evaluation) for the bot lifecycle and what happens to the transcript.
+  </Step>
+  <Step title="The meeting becomes evidence" icon="file-text">
+    A transcript is triaged and processed into a piece of **evidence**. Meetings are the live source we sell and onboard on. Slack conversations can also be evaluated, but we do not ask new customers or test teams to connect Slack at the start.
+
+    Email, documents, files, and calls were in an early PRD and were never implemented. See [Evidence and evaluation](/product/evidence-and-evaluation).
+  </Step>
+  <Step title="Evaluation agents score the evidence" icon="bot">
+    Agents read the evidence and score the behavior they observe against the Skill model — 58 Skills in 8 categories, each graded from 0 to 20.
+
+    A single meeting typically produces evaluations for several Skills, not all of them. Skill Deck only scores what it actually saw.
+  </Step>
+  <Step title="Scores and confidence update" icon="trending-up">
+    Each new evaluation moves the person's score for that Skill, weighted so recent evidence counts more than old evidence. Confidence for that Skill rises as evidence accumulates.
+
+    See [Confidence and scoring](/product/confidence-and-scoring).
+  </Step>
+  <Step title="A Skill unlocks for development" icon="unlock">
+    Once confidence in a Skill passes a threshold, that Skill can become a **Track**. Below the threshold there is not enough evidence to say where the person is starting from, so there is nothing meaningful to develop toward.
+  </Step>
+  <Step title="A Track runs" icon="flag">
+    One Skill, about two weeks minimum, with a Goal. While it is active, every newly evaluated meeting also gets a Track analysis and moments for that Skill.
+
+    See [Cycles and Tracks](/product/cycles-and-tracks).
+  </Step>
+  <Step title="Dispatches arrive by email" icon="mail">
+    A Kickoff, a Weekly Prep on Mondays, an analysis after each meeting, a Weekly Review on Fridays, and a Wrap-Up at the end.
+
+    See [Track dispatches](/product/track-dispatches).
+  </Step>
+  <Step title="The manager coaches" icon="users">
+    Throughout, the manager has a view of the team and of each individual. They run a Weekly, Monthly, or Quarterly coaching cadence on top of the loop.
+
+    See [The manager role](/product/manager-role) and the [Manager Coaching Playbook](/playbooks/manager-coaching/overview).
+  </Step>
+</Steps>
+
+## The two claims this loop supports
+
+**"Based on what they do, not what they say."** Every score traces back to observed behavior in real work. Nothing in the loop asks the user or a colleague for an opinion.
+
+**"Low friction."** The user's only action is connecting a calendar. Everything else is delivered to their inbox.
+
+## What it looks like from each side
+
+<Tabs>
+  <Tab title="Individual contributor">
+    Connect your calendar once. Work normally. Receive an analysis after each meeting, and weekly email during a Track telling you where you are, what to practice, and which upcoming conversations are the openings for it.
+  </Tab>
+  <Tab title="Manager">
+    See your team's Cycle stats and Track timeline, and each person's Overview, Journal, and Deck. Whitelist the Skills that matter most for each person. Run a Weekly, Monthly, or Quarterly coaching cadence, and intervene when a member goes quiet or churns Skills.
+  </Tab>
+  <Tab title="HR / admin">
+    Set up the organization, invite people, assemble teams, and manage the subscription. Then get out of the way — the value is delivered manager to individual, not through an HR process.
+  </Tab>
+</Tabs>
+
+## Two loops, not one
+
+This is the clearest way to explain the product to someone who has to decide whether it will stick.
+
+**The autopilot loop runs weekly, by itself.** Evidence in, evaluations out, Monday Prep, Friday Review, analysis after every meeting. It needs nothing from the manager.
+
+**The coaching loop runs at whatever cadence the manager picks** — weekly, monthly, or quarterly. It turns the autopilot's signals into practice and holds the person accountable.
+
+The product deliberately does not require the second loop to run for the first one to work. But the playbook is direct that the second is where behavior actually changes.
+
+## The pace of it
+
+Skill Deck is slow on purpose, and this needs saying up front to anyone evaluating it.
+
+A Skill has to be observed several times before its score means anything. A Track runs about two weeks minimum, and can only complete from its second Friday onward. Confidence keeps climbing for weeks. A person who logs in on day three sees a nearly empty profile and concludes the wrong thing.
+
+Set the expectation before someone starts: the first week looks thin, and the picture becomes useful in weeks two and three. This is why the [trial is a month](/company/business-model) rather than a week.

@@ -1,0 +1,96 @@
+---
+title: "Business model"
+description: "SaaS plans, per-seat economics, the free trial month, and the growth target."
+icon: "credit-card"
+updated: "2026-09-01"
+status: "verified"
+---
+
+Skill Deck is a per-seat SaaS product sold in seat bundles. A team buys a plan, gets a fixed number of licenses, and pays monthly.
+
+<Info>
+  These are the live prices, confirmed by a founder on 2026-09-01. Plan and pricing records in the application's seeder files are **outdated** — ignore them.
+</Info>
+
+## Plans
+
+| Plan | Licenses | Price / month | Effective per seat |
+| --- | --- | --- | --- |
+| Small Teams | 5 | \$74.99 | \$15.00 |
+| Growth | 15 | \$199.00 | \$13.27 |
+| Scale Up | 40 | \$499.00 | \$12.48 |
+| Enterprise | 100 | \$999.00 | \$9.99 |
+
+Headline range: **\$9.90 to \$15.00 per user per month**, depending on plan.
+
+<Note>
+  The published range starts at \$9.90 but the Enterprise plan computes to \$9.99 per seat. That is an inconsistency in the source material, not a second price point. Quote the range as written; do not derive a \$9.90 tier from it.
+</Note>
+
+Larger bundles get cheaper per seat, so pricing pulls buyers upward. The steepest step down is between Scale Up and Enterprise, which makes 40 seats the number to push past in a negotiation.
+
+## Free tier and quotas
+
+Alongside the [one-month trial](/company/icp-and-market), the product bounds what a free account can do. Useful to know before promising anything on a call.
+
+| Free allowance | Limit | Resets |
+| --- | --- | --- |
+| Meeting bots | 4 | Monthly |
+| Slack channels | 1 | Never. Quota exists; do not ask new customers to connect Slack at the start. |
+| Advisor Picks episodes | 1 | Weekly |
+| Development reports | 1 | Monthly |
+| Activity sessions | Unused | Leftover from a [legacy feature](/product/cycles-and-tracks) |
+
+Calendar integration is free; the bound is on how many meetings get a bot. Paid plans lift all of these.
+
+{/* TODO: Confirm these quota allowances are current. They were read from application configuration, and the seeded plan data alongside them turned out to be stale. */}
+
+## Skill Deck Pro
+
+An individual plan exists: **Skill Deck Pro**, at **\$19.90 / month** or **\$199.00 / year**. One plan, two billing intervals.
+
+It is **not the commercial focus**. We sell to teams. We do not expect individuals to buy Skill Deck as it stands. A future recruitment feature set may change that — planned, not live. Keep Skill Deck Pro out of the default pitch.
+
+## The trial
+
+The one-month free trial in the [go-to-market plan](/company/icp-and-market) is a sales motion, not a product feature. A team uses the product on its real work and measures results on its own people before paying anything.
+
+It runs on the team's actual meetings, which is the only way the product can show anything worth paying for.
+
+## The target
+
+**10,000 paid seats within the first 18 months**, in the first wave.
+
+That is the number the [fundraise](/company/stage-and-fundraising) is sized against, and the number that determines whether the land-grab hypothesis held.
+
+## Reading the economics
+
+<Columns cols={2}>
+  <Card title="Expansion is structural" icon="trending-up">
+    Skill Deck is bought per seat by teams that grow. Expansion comes from adding people and from spreading to adjacent teams, not from upselling features.
+  </Card>
+  <Card title="Cost scales with meetings" icon="gauge">
+    Every seat generates evidence that has to be transcribed and evaluated by models. Unlike most SaaS, our variable cost tracks how much a customer actually uses the product.
+  </Card>
+</Columns>
+
+That second point is worth understanding before quoting discounts. A heavy user costs materially more to serve than a light one, which is why the product meters usage internally.
+
+<Card title="Quotas and metering" icon="gauge" href="/product/how-it-works">
+  How usage is bounded inside the product.
+</Card>
+
+{/* TODO: Add unit economics once we have real numbers — CAC, blended gross margin per seat, and average model cost per active user per month. */}
+
+## What needs resolving
+
+- **Annual team pricing** and any annual discount. Neither exists yet. Skill Deck Pro already has an annual interval; team plans do not.
+- **A discount policy.** Discounts are founder decisions, case by case.
+
+<Warning>
+  Do not quote a price outside the team table or the Skill Deck Pro figures on this page, and do not offer a discount, a custom tier, or an extended trial without a founder approving it.
+</Warning>
+
+<Tip>
+  A lesson worth keeping: the application's seeder files held plan prices roughly half these, and were mistaken for live data. Seeders are development fixtures, not a record of what we charge. Prices come from this page, and this page comes from a founder.
+</Tip>

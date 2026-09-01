@@ -1,0 +1,185 @@
+---
+title: "Skills and levels"
+description: "The 58 Skills, the 8 categories they sit in, and what a level actually says."
+icon: "layers"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  The taxonomy and level rubric on this page are **synced from live production** through the Skill Deck MCP server, last run on 2026-09-01. Terminology follows the Manager Coaching Playbook. See [Syncing from production](/overview/syncing-from-production).
+</Info>
+
+The Skill model is the product's core asset. It is what turns a transcript into something a person can act on, and it is the hardest part to copy.
+
+<Note>
+  **Skill** is the product term, in every language. `Attribute` is the internal database name for the same object and appears only in code and engineering docs.
+</Note>
+
+## Structure
+
+```text
+Category          8 of them
+└── Skill         one behavior, e.g. Storytelling — can belong to several categories
+    └── Level     0 to 20, each a named behavior with a worked example
+```
+
+<Warning>
+  **A Skill can sit in more than one category.** This is the detail most people get wrong, including our own earlier documentation.
+
+  Active Listening belongs to Communication, Interpersonal Relations, *and* Leadership. Conflict Management belongs to Emotional Intelligence, Interpersonal Relations, and Leadership. Thirteen Skills are shared this way, so the per-category counts below add up to more than 58.
+
+  When you count Skills, count unique Skills. The number is **58**.
+</Warning>
+
+## The categories
+
+{/* BEGIN GENERATED: skill-taxonomy */}
+
+{/* Generated from live production by scripts/sync-skills.mjs. Do not edit by hand. */}
+
+**58 Skills** across **8 categories**, read from production on 2026-09-01.
+
+<Columns cols={2}>
+  <Card title="Communication" icon="message-circle">
+    **10 Skills.** Ability to convey information effectively and efficiently.
+
+    Written Communication · Active Listening · Nonverbal Communication · Presentation Skills · Storytelling · Persuasion · Message Adaptation to Audience · Feedback · Synthesis · Objectivity
+  </Card>
+  <Card title="Creativity" icon="lightbulb">
+    **8 Skills.** Ability to generate innovative solutions and original ideas.
+
+    Divergent Thinking · Idea Generation · Experimentation · Courage · Curiosity · Improvisation · Originality · Prototyping
+  </Card>
+  <Card title="Critical Thinking" icon="brain">
+    **9 Skills.** Ability to analyze information objectively, draw logical connections, and make reasoned judgments.
+
+    Problem Solving · Logical Reasoning · Curiosity · Data Analysis · Decision Making · Critical Sense · Risk Assessment · Hypothesis Formulation · Objectivity
+  </Card>
+  <Card title="Emotional Intelligence" icon="heart">
+    **9 Skills.** Ability to understand, use, and manage emotions positively.
+
+    Self-Awareness · Empathy · Self-Motivation · Recognizing Emotions in Others · Stress Management · Emotional Balance · Self-Confidence · Conflict Management · Resilience
+  </Card>
+  <Card title="Flexibility" icon="shield">
+    **8 Skills.** Ability to adapt to challenges, maintain optimism, and recover from setbacks.
+
+    Tolerance of Ambiguity · Learning Ability · Growth Mindset · Resilience · Adaptability · Change Management · Stress Management · Emotional Balance
+  </Card>
+  <Card title="Interpersonal Relations" icon="users">
+    **10 Skills.** Ability to interact effectively with others and build productive relationships.
+
+    Empathy · Active Listening · Networking · Collaboration · Conflict Management · Negotiation · Trust · Influence · Feedback · Respect
+  </Card>
+  <Card title="Leadership" icon="compass">
+    **11 Skills.** Ability to guide, influence, and develop individuals and teams toward achieving goals.
+
+    Decision Making · Strategy · Team Motivation · Conflict Management · Delegation · People Development · Accountability · Change Management · Problem Solving · Influence · Active Listening
+  </Card>
+  <Card title="Productivity" icon="zap">
+    **8 Skills.** Ability to efficiently manage time, resources, and tasks to achieve desired outcomes.
+
+    Time Management · Task Prioritization · Focus and Concentration · Organization · Efficiency · Discipline and Consistency · Personal Energy Management · Project Completion
+  </Card>
+</Columns>
+
+{/* END GENERATED: skill-taxonomy */}
+
+<Note>
+  Two Skills exist in the codebase but are **disabled** through the Filament admin panel, so they are not in the live model and never appear above: **Body Language Reading** and **Emotional Resilience**. The application seeds level data for 60 Skills; 58 are active.
+</Note>
+
+## Keeping this current
+
+The block above is generated. Do not edit it by hand — a Skill can be enabled or disabled in the Filament panel at any time, and hand edits will be overwritten.
+
+```bash
+export SKILLDECK_MCP_TOKEN="<token from Settings → API tokens>"
+npm run sync:skills
+```
+
+The script reads the live taxonomy from the Skill Deck MCP server, rewrites the block, writes `data/skill-taxonomy.json`, and reports anything that changed since the last sync. Run `npm run sync:skills -- --check` to verify without writing.
+
+<Card title="How the sync works" icon="refresh-cw" href="/overview/syncing-from-production">
+  The MCP connection, what it can read, and when to re-run the sync.
+</Card>
+
+## Levels
+
+Each Skill is scored on a **0 to 20 scale**, and every point on that scale is a named, observable behavior with a worked example. This granularity is what the whole pitch rests on.
+
+Each level has three parts:
+
+| Part | Example, at Storytelling level 9 |
+| --- | --- |
+| **A name** | Narrative Pacing |
+| **A behavior** | Consciously alternates between tension and relief, using pauses to let important narrative moments sink in |
+| **An example** | The Rhythm-Keeper — "We pushed the code. We waited. (Long pause). And then, for the first time in three years... the system held." |
+
+Those names are the [resource cards](/product/cycles-and-tracks) a member holds during a Track. The name is what they see; the number stays behind it.
+
+<Note>
+  Always say **21 levels** or **0 to 20**. Never "20 levels", and never "out of 20 levels".
+</Note>
+
+The bottom of the scale is not "not very good". It describes actively harmful behavior — level 0 of Storytelling is *Narrative Sabotage*, level 1 is *Toxic Framing*. The scale then climbs through disorganized, to competent, to behavior that changes an organization.
+
+### What a level looks like
+
+{/* BEGIN GENERATED: example-scale */}
+
+{/* Generated from live production by scripts/sync-skills.mjs. Do not edit by hand. */}
+
+Selected levels from the **Storytelling** scale, read from production on 2026-09-01.
+
+<AccordionGroup>
+  <Accordion title="0/20 — Narrative Sabotage">
+    Intentionally fabricates or distorts a sequence of events to scapegoat others or hide critical systemic failures. Example: The Revisionist — "The project failed because the Marketing team ignored the brief from day one. I warned them, but they chose to fail." (The subject uses a false 'villain' narrative to hide their own lack of oversight).
+  </Accordion>
+  <Accordion title="8/20 — Descriptive Vibrancy">
+    Uses "Mental Images" and specific details to make a story more concrete and less abstract. Example: The Painter — "The client wasn't just 'unhappy.' They were sitting in a silent office with ten broken monitors, staring at a blank screen. That is the urgency we are dealing with."
+  </Accordion>
+  <Accordion title="9/20 — Narrative Pacing">
+    Consciously alternates between tension and relief, using pauses to let important narrative moments "sink in." Example: The Rhythm-Keeper — "We pushed the code. We waited. (Long pause). And then, for the first time in three years... the system held."
+  </Accordion>
+  <Accordion title="15/20 — The Strategic Pivot Story">
+    Translates a dry strategic plan into a compelling "Future Vision" narrative that makes change feel desirable. Example: The Vision Caster — "We aren't just 'cutting costs.' We are clearing the overgrown forest so we can finally see the path to the mountain. This is the beginning of our new chapter."
+  </Accordion>
+  <Accordion title="20/20 — The Cultural Mythos (Legacy)">
+    Defines the organization's enduring purpose through a master narrative that survives the leader's presence and dictates behavior for decades. Example: The Identity Architect — The subject's story about "Why we exist" becomes the foundational "Founding Myth" that guides every strategic decision, M&A, and hire for the next generation of the company.
+  </Accordion>
+</AccordionGroup>
+
+{/* END GENERATED: example-scale */}
+
+Every level is an observable behavior with a concrete example, not an adjective. That is what makes a score checkable against a transcript, and what makes the next level actionable.
+
+<Check>
+  **Our pitch example is accurate.** The fundraising one-pager's Storytelling example — "you are able to use specific details to make a story more concrete", and level 9 adding "narrative pacing, alternating between tension and relief, using pauses" — matches the live level 8 and level 9 descriptors almost word for word. Use it with confidence.
+</Check>
+
+<Warning>
+  The level text in `database/seeders/AttributeLevels/**` in the application repository is **stale**. It differs substantially from what production serves. Always read level text from the live scale, never from the seeders.
+</Warning>
+
+## How levels reach the user
+
+Level numbers matter. They are the basis for a Track **Goal**, and managers read progress against them on the Overview and the Deck.
+
+When those same levels are presented as **resource cards**, the number is hidden. The person should use the named behavior when the opening comes, not reach for a card because it is a higher score.
+
+Pitch and demo copy may quote a numeric level — "You scored 8/20 in Storytelling" is accurate and approved. Member-facing cards and dispatch copy refer to cards by name.
+
+## What is scored, and what is not
+
+Skills carry `do_not_evaluate_on` rules that exclude them from evidence types where they cannot fairly be judged. A Skill that only makes sense in writing is not scored from a meeting transcript. Email evaluation was never implemented, so those Skills wait for a source we actually have.
+
+Triage then narrows further: for each piece of evidence, it decides which Skills that evidence can meaningfully speak to. One meeting touches a handful, never all 58. See [Evidence and evaluation](/product/evidence-and-evaluation).
+
+## Why the model is the moat
+
+Worth understanding before you pitch it.
+
+The models that read the transcripts are commodity. The integration that puts a bot in a meeting is buildable. What is not quickly reproducible is 58 Skills × 21 levels of written, observable behavioral descriptors, tuned so a language model can consistently place a person on the scale from evidence.
+
+That is the asset. Lead with the granularity it produces, not with the AI.

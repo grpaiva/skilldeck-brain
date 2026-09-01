@@ -1,0 +1,88 @@
+---
+title: "Organizations and teams"
+description: "How customer accounts, teams, and roles are structured."
+icon: "building-2"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Roles on this page were read from the `OrganizationRole` and `TeamRole` enums in the application repository on 2026-09-01.
+</Info>
+
+## The hierarchy
+
+```text
+Organization          the customer account — holds the subscription and the members
+└── Team              a group of people, with a manager
+    └── Member        a person, with their own deck, evidence, and tracks
+```
+
+An organization is the unit that pays. A team is the unit where development actually happens, because a team has a manager and the manager is the person the product is trying to equip.
+
+## Organization roles
+
+Account-level permissions.
+
+| Role | What it can do |
+| --- | --- |
+| **Owner** | Full control of the organization, including transferring ownership |
+| **Admin** | Manage members, teams, and organization settings |
+| **Billing** | Manage billing and subscription only |
+| **Member** | Use the product without admin controls |
+
+Owner and Admin can manage members and teams. Owner and Billing can manage billing. Only the Owner can manage the organization itself. Owner, Admin, and Billing can reach the management pages; a Member cannot.
+
+<Note>
+  Note what an organization role does **not** grant: none of these roles is a route into another person's evaluations. Administrative control over an account and visibility into an individual's development data are separate concerns in this product. See [Privacy and data](/product/privacy-and-data).
+</Note>
+
+## Team roles
+
+Team-level permissions, and there are only two.
+
+| Role | What it means |
+| --- | --- |
+| **Manager** | Can manage the team, and gets the team and individual views |
+| **Member** | Belongs to the team |
+
+The manager role carries the product's most sensitive capability, because it is the one that grants any view of another person's development. See [The manager role](/product/manager-role).
+
+## Joining
+
+Two separate invitation systems exist, and they are easy to confuse.
+
+<AccordionGroup>
+  <Accordion title="Platform registration" icon="user-plus">
+    How someone gets a Skill Deck account at all. Email and password, or Google or LinkedIn sign-in, then email verification and a short profile step.
+
+    An application-level **invitation-only mode** (`INVITATION_ONLY`) can restrict registration to people holding an 8-character invite code. It exists for controlled launches. The configuration default is **off**, so registration is open unless deliberately gated.
+
+    When it is on, every user gets a small quota of invites to hand out — 3 by default.
+  </Accordion>
+  <Accordion title="Organization membership" icon="building-2">
+    How an existing or new user joins a customer account. An Owner or Admin invites by email; the membership sits as `invited` until accepted, and can pre-assign a team.
+
+    Invitees who do not yet have an account are matched on the invited email when they register. Members can keep a personal login email and attach a verified work email for organization display.
+  </Accordion>
+</AccordionGroup>
+
+Seats behave differently by subscription type: a Stripe subscription can exceed its included seats and bill the extra, while granted or manual subscriptions enforce a hard limit.
+
+<Note>
+  In-app onboarding is **off for now**. Do not describe a guided onboarding flow. The first-run experience is: create an account, complete your profile, connect a calendar.
+</Note>
+
+## Data portability
+
+A person's Skills, scores, score history, evidence, and evaluations belong to **the user**, and follow them if they change organizations. Benchmarks, membership history, and organization configuration stay with the organization.
+
+Worth raising unprompted in a sales conversation — it reframes the product as something you give someone rather than something you do to them.
+
+## How this maps to selling
+
+Plans are sold in seat bundles against the organization — see [Business model](/company/business-model). A few practical consequences:
+
+- **The buyer is usually not the user.** HR or a founder buys; managers and their teams use it. The organization roles reflect that split, which is why Billing exists as a role that grants no product access.
+- **Teams are where value shows up.** A pilot spread thinly across an organization with no manager attached produces profiles nobody looks at. Put a whole team in, with its manager.
+- **Expansion is team by team.** The natural growth path is one team proving it, then adjacent teams following.

@@ -1,0 +1,6 @@
+node_modules/
+
+# Never commit credentials. The Skill Deck MCP token is a live production secret.
+.env
+.env.*
+!.env.example

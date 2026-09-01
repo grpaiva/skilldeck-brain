@@ -1,0 +1,203 @@
+---
+title: "Canonical facts"
+description: "Every number and claim we are allowed to state, in one place."
+icon: "list-checks"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Warning>
+  If a number is not on this page, **we do not have it**. Do not estimate it, do not derive it, and do not round to something that sounds right. An invented figure here becomes a claim in front of a customer or an investor.
+</Warning>
+
+This page exists so there is exactly one place to correct a number. Other pages link here rather than restating figures.
+
+## Company
+
+| Fact | Value |
+| --- | --- |
+| Product version live in production | 2.0 |
+| Founders | 2 |
+| Employees | 0 |
+| Years in Training & Development | 12 |
+| Prior company | Descola, an online school in Brazil |
+| Descola: enterprise clients | Over 100 |
+| Descola: funding | Completely bootstrapped |
+| Brand accent | Tailwind `purple` — `purple-600` `#9333EA` |
+
+## Fundraising
+
+| Fact | Value |
+| --- | --- |
+| Round | First round, to validate the model |
+| Amount | \$750,000 |
+| Runway | 18 months |
+| Target at end of round | 10,000 paid seats |
+| Use of proceeds | Tools, marketing experiments, key hires |
+
+## Pricing
+
+<Info>
+  Live prices, confirmed by a founder on 2026-09-01. The application's seeder files hold older, lower figures — **ignore them**.
+</Info>
+
+| Plan | Licenses | Price / month | Effective per seat |
+| --- | --- | --- | --- |
+| Small Teams | 5 | \$74.99 | \$15.00 |
+| Growth | 15 | \$199.00 | \$13.27 |
+| Scale Up | 40 | \$499.00 | \$12.48 |
+| Enterprise | 100 | \$999.00 | \$9.99 |
+
+Headline range for team plans: **\$9.90 to \$15.00 per user per month**. Free trial: **1 month**.
+
+The range starts at \$9.90 but Enterprise computes to \$9.99 — an inconsistency in the source material, not a second tier. Quote the range as published.
+
+### Skill Deck Pro (individuals)
+
+One individual plan, two billing intervals. Confirmed from the live Stripe product on 2026-09-01.
+
+| Billing | Price |
+| --- | --- |
+| Monthly | \$19.90 / month |
+| Annual | \$199.00 / year |
+
+Skill Deck Pro exists and is active. It is **not the commercial focus**. The ICP is teams; we do not expect individuals to buy the product as it stands. A future recruitment feature set may make an individual plan interesting — that is planned, not live. Do not lead with Skill Deck Pro in sales, investor, or marketing copy.
+
+Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Picks episode, 1 development report per month. The Slack-channel quota exists; still do not ask new customers to connect Slack at the start. Activity-session quotas are leftover from a legacy feature and are unused.
+
+## Market
+
+| Fact | Value |
+| --- | --- |
+| ICP company size | 10 to 249 employees |
+| Why not 250+ | IT and compliance policies on meeting content and meeting bots. Not HRIS, procurement, or cycle length. |
+| On-customer processing | Planned. Transcripts and AI analysis would run on the customer's infrastructure. Needs a design-partner enterprise. Not live. |
+| ICP work model | Hybrid or remote |
+| First-wave markets | United States, Mexico, Brazil |
+| GTM motion | Land grab, free month then paid |
+
+## Product
+
+<Info>
+  Skill and category figures below are synced from live production through the Skill Deck MCP server. See [Syncing from production](/overview/syncing-from-production).
+</Info>
+
+| Fact | Value | Note |
+| --- | --- | --- |
+| Skills | **58** | Unique, active Skills in production. The application seeds 60; **Body Language Reading** and **Emotional Resilience** are disabled through the Filament panel. |
+| Categories | 8 | Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, Productivity |
+| Category listings | 73 | A Skill can sit in several categories, so per-category counts sum to more than 58. Count unique Skills. |
+| Skills in more than one category | 13 | Active Listening and Conflict Management are each in three |
+| Level scale | 21 levels, scored 0 to 20 | Each level is a named behavior with an example. Always say **21 levels** or **0 to 20**. Never "20 levels". |
+| Minimum Track duration | ~2 weeks (14 days) | A Track can complete only from its second Friday onward, and only if the Goal is met |
+| Cycle length | Quarterly | Calendar quarter or custom dates |
+| Dispatches | 5 types | Kickoff, Weekly Prep, Evidence Evaluated, Weekly Review, Wrap-Up |
+| Weekly Prep sent | Mondays, 12:30 | |
+| Weekly Review sent | Fridays, 16:00 | |
+| Advisor Picks episode generated | Mondays, 11:00 | Before the Prep email, so it can be linked |
+| Track unlock confidence threshold | 0.30 | Configurable; the application notes 0.50 as the long-term ideal |
+| Evaluations for maximum base confidence | 20 | |
+| Confidence recency half-life | 180 days | |
+| Recent-evidence weight bonus | 2.0, for the last 30 days | |
+| Practice evidence confidence factor | 0.8 | Leftover configuration for unused Activities. All live evidence types are 1.0 |
+| Stale Track expiry | 90 days without score movement | |
+| Inactivity pause | 7 days without an evaluation | Track comms pause |
+| Moments per evidence | Up to 5 | Only while a Track is active, after evaluation |
+| Moment excerpt cap | 500 characters | |
+| Track analysis | After evaluation, active Track only | Skill-focused summary plus moments. Backfills last 7 days when a Track starts. |
+| Evidence Evaluated composition | Static | Not AI-written. Includes Track analysis when present, plus a top strength and a growth opportunity. |
+| Resource cards per Track | Up to 4 | The Goal level plus the three above it. Cards show names, not scores. |
+| Level numbers on resource cards | Hidden | Scores still drive the Track Goal. Hide the number so the person uses the behavior when the opening comes, not because it is a higher score. |
+| Activities | Legacy, unused | An early-version feature. Do not describe them, and do not claim "AI interviews". The live claim is **real work evidence**. |
+| In-app onboarding checklist | Off | Do not describe a guided onboarding flow. |
+| Track Goal floor | Level 5 | Auto-set Goals are never lower |
+| Confidence display bands | 50%+ green, 30–49% amber, under 30% red | The Deck can hide anything under 30% |
+| Supported languages | 3 | English, Spanish, Brazilian Portuguese |
+| Live evidence sources | Meetings, plus Slack conversations | Meetings are first-run. Slack is implemented; do not ask new customers or test teams to connect it at the start. Slack scores tend to come in lower than meeting scores. |
+| Never-implemented evidence | Email, documents, files, calls | Early PRD only. Do not claim them. |
+| Other messaging platforms | On hold | Teams chat and similar. Paused after Slack evaluations scored lower than meetings. |
+| Integrations | 4 | Google Calendar, Microsoft Calendar, Zoom, Slack. Only calendars and Zoom are first-run. |
+| Meeting platforms | 3 | Google Meet, Zoom, Microsoft Teams |
+| Meeting bot max duration | 2 hours | |
+| Transcription and speaker mapping | Attendee | Our own jobs for this are unused. |
+| Duplicate detection | Unused | Leftover from when users could upload meeting videos. |
+
+## Manager coaching
+
+From the Manager Coaching Playbook, which is the source of truth for anything manager-facing.
+
+| Fact | Value |
+| --- | --- |
+| Management levels | 3 — Weekly, Monthly, Quarterly |
+| Weekly cadence | ~30 min every week |
+| Monthly cadence | ~45–60 min once a month, ~3 per Cycle |
+| Quarterly cadence | ~45–60 min once per Cycle |
+| Weekly level practical ceiling | ~6–8 direct reports |
+| Standard coaching prep order | Overview → Journal → Deck |
+| Best day for a Weekly coaching meeting | Friday, after the Weekly Review |
+| Escalation rule | Two red flags in a row moves a member one level more frequent, for one Cycle |
+
+<Card title="The full playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
+  Agendas, success signals, coaching prompts, and interventions.
+</Card>
+
+## Privacy
+
+These are safe to state and are the strongest thing we have on the subject.
+
+| Fact | Value |
+| --- | --- |
+| Meeting video recorded | Never |
+| Meeting audio recorded | Never |
+| Bot configuration | Transcript-only |
+| Raw transcript in the database | Never |
+| Transcript retention | 7 days, in cache only |
+| Residual files and bot-provider data | Deleted after 7 days |
+| Who is evaluated from a meeting | Only the evidence owner, never other participants |
+| Single-participant meetings | Not transcribed or evaluated |
+| Model provider retention | Disabled by default |
+| Manager access to an evidence page | None — owner-only, returns 403 |
+| Manager access to Evidence Evaluated dispatches | None — private to the member |
+| Manager access via MCP | None — MCP is first-person only |
+
+<Card title="Full detail" icon="shield" href="/product/privacy-and-data">
+  Read this before answering any privacy question.
+</Card>
+
+## Numbers we do not have
+
+Stating this explicitly is the point of the page. **None of the following exist in this brain, and none may be invented, estimated, or implied.**
+
+- Revenue, ARR, MRR
+- Customer count, seats sold, logos
+- Retention, churn, conversion rate, activation rate
+- Evaluation accuracy or model accuracy
+- Unit economics: CAC, LTV, gross margin, cost per user
+- Valuation, round terms, instrument, investor names
+- Headcount plans or hiring targets beyond "key hires"
+- Any compliance certification
+
+<Warning>
+  Skill Deck holds no compliance certifications documented here. Do not claim SOC 2, ISO 27001, GDPR certification, or equivalent. Skill Deck is also not a validated psychometric instrument.
+</Warning>
+
+## Open discrepancies
+
+Tracked here so they get resolved rather than quietly propagated.
+
+| Discrepancy | Status |
+| --- | --- |
+| 58 Skills vs 60 seeded in the application | **Resolved** — 58 active in production; Body Language Reading and Emotional Resilience are disabled |
+| Which two Skills are disabled | **Resolved** — Body Language Reading, Emotional Resilience |
+| Is the pitch's Storytelling 8/20 example real? | **Resolved** — it matches the live level 8 and 9 rubric almost word for word. Safe to use. |
+| Application seeder level text vs production | **Resolved** — the seeders are stale. Read levels from the live scale only. |
+| Fundraising pricing vs application seeder pricing | **Resolved** — the seeders are outdated. The prices above are live. |
+| An individual, non-seat plan exists in the application | **Resolved** — Skill Deck Pro is live, \$19.90 / month or \$199 / year. Not the GTM focus. Individuals are unlikely to buy until a future recruitment feature set. |
+| \$9.90 headline floor vs \$9.99 computed Enterprise seat price | Open — quote as published |
+| "20 levels" claimed vs a 0–20 scale (21 levels) | **Resolved** — always say **21 levels** or **0 to 20**. |
+| Pitch shows a numeric level; member emails hide it on cards | **Resolved** — scores are the basis for a Track Goal and stay in the product. Resource cards hide the number so the person uses the behavior when the opening comes, not because it is a higher score. Pitch and manager views may show the number. |
+| Activities still described as a live or paused feature | **Resolved** — activities are legacy and unused. Do not describe them. Do not claim "AI interviews". The claim is real work evidence. |
+| In-app onboarding described as a live flow | **Resolved** — onboarding is off for now. Do not describe a guided onboarding flow. |
+| Evidence covers email, documents, files, and calls | **Resolved** — never implemented. Live sources are meetings (first-run) and Slack conversations (implemented, not first-run). Other messaging is on hold. |
+| Skill Deck runs transcription and speaker mapping | **Resolved** — Attendee does both. Our jobs are unused. |
+| A duplicate detector collapses repeated meetings | **Resolved** — unused. It existed for uploaded meeting videos, which are gone. |

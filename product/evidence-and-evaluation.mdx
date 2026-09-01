@@ -1,0 +1,132 @@
+---
+title: "Evidence and evaluation"
+description: "What counts as evidence, how a meeting becomes one, and how evaluation agents turn it into scores."
+icon: "file-search"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Evidence sources and the live pipeline were confirmed by a founder on 2026-09-01: Attendee transcribes and maps speakers; Skill Deck does not run duplicate detection; Track analysis and moments run only on an active Track. Enums in the application still list leftover types and statuses — do not treat those as current product behavior.
+</Info>
+
+## What evidence is
+
+Evidence is a piece of real work that Skill Deck analyzes. It is the foundation of the entire product claim: we evaluate what people did, not what they or anyone else says about it.
+
+Evidence volume is something a manager is expected to watch — "What got evaluated?" opens the Weekly coaching meeting.
+
+| Status | Source | What to say |
+| --- | --- | --- |
+| **Live, first-run** | Meetings the bot attends | The source we sell and onboard on. Connect a calendar. |
+| **Live, not first-run** | Slack conversations | Implemented. Do not ask new customers or test teams to connect Slack at the start. Slack evaluations tend to score lower than meetings. |
+| **Never implemented** | Email, documents, files, calls | Early PRD only, same vintage as Activities. Do not claim them. |
+| **On hold** | Other messaging (Teams chat and similar) | Roadmapped, then paused after Slack scores came in lower than meetings. Do not promise them. |
+
+The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, and `activity_session`. Those names are leftover. The live claim is **real work evidence from meetings**, not AI interviews and not a multi-channel inbox.
+
+`activity_session` is leftover from the unused [Activities](/product/cycles-and-tracks) feature. If one ever scored, it would count at a 0.8 confidence multiplier — do not treat that as a current product surface.
+
+## From meeting to evidence
+
+<Steps>
+  <Step title="The calendar integration schedules a bot">
+    Connecting Google Calendar or Microsoft Calendar automatically schedules **transcript-only** meeting bots for upcoming meetings. For Zoom, the bot can join as the user using an OnBehalf token.
+  </Step>
+  <Step title="The bot joins">
+    The bot's progress is visible in the evidence status: `waiting_for_meeting`, `bot_joining`, `bot_in_waiting_room`, then `recording` — shown to the user as **In Meeting**.
+
+    A bot sitting in a waiting room is a visible state, not a silent one.
+  </Step>
+  <Step title="Attendee returns the transcript">
+    [Attendee](/overview/glossary) transcribes the meeting and maps speakers. Skill Deck receives text that already says who said what.
+
+    Any Skill Deck job or workflow for transcription or speaker mapping is **legacy and unused**. Do not describe us as running those steps.
+  </Step>
+  <Step title="Processing">
+    The transcript is processed into evidence, then triage and evaluation run.
+
+    Duplicate detection is **unused**. It was a leftover job from when users could upload their own meeting videos, to catch the same file twice. Do not describe a live deduplicator, and do not say we collapse a meeting attended by several Skill Deck users into one piece of evidence.
+  </Step>
+  <Step title="Triage">
+    A triage agent reads the evidence and decides **which Skills it can say anything about**. A one-hour meeting speaks to a handful of Skills, not to all 58.
+
+    Whitelisted Skills get a mild bias **only when the person has no active Track**. Once a Track is active, triage is deliberately unbiased — over-evaluating the tracked Skill was pulling its live score down. See [The manager role](/product/manager-role).
+  </Step>
+  <Step title="Evaluation">
+    For each Skill triage selected, an evaluator scores the observed behavior against that Skill's level scale, with a written justification. Near-zero scores pass through the [silence gate](#the-gate-silence-is-not-a-score) before they are kept.
+  </Step>
+  <Step title="Scores update">
+    Status reaches `evaluated`. Scores and confidence move for every Skill that was actually scored.
+  </Step>
+  <Step title="Track analysis and moments, if a Track is active">
+    If Tracks are on and the person has an **active Track**, a second job reads the same meeting through [that Skill](/product/cycles-and-tracks). It writes a **Track analysis** — a short Skill-focused summary — and up to **5 moments** (demonstration or opportunity). Each moment is an excerpt plus commentary, capped at **500 characters**, and may be attributed to one [resource card](/product/cycles-and-tracks) by name, never by score.
+
+    The job prefers an empty moments list over stretching a weak connection. It needs the transcript still in cache. If there is no active Track, this step is skipped.
+
+    Starting a Track also backfills analyses for evaluated meetings from the last **7 days**.
+  </Step>
+  <Step title="Evidence Evaluated email">
+    After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis and scores, not written by an AI composer.
+  </Step>
+</Steps>
+
+## The gate: silence is not a score
+
+This is the most important design decision in the evaluation pipeline, and it is a strong point in a demo.
+
+When an evaluator returns a near-zero score, a separate gate agent inspects the justification and decides whether it should be recorded at all. The rule it applies:
+
+- If the justification says the evidence contained **no clear, direct, relevant behavior** for that Skill, the evaluation is discarded.
+- If it describes **relevant behavior, even very poor behavior**, the evaluation is kept.
+
+A person is not marked down for a Skill that simply did not come up. A quiet meeting is not a bad score — it produces no score. Genuinely poor behavior does get recorded, including a zero.
+
+This is what stops the profile drifting toward the mean as evidence accumulates, and it is the honest answer to "does it penalize me for meetings where I just listened?"
+
+## What an evaluation contains
+
+Each evaluation carries a score against the Skill's level scale and a written justification tied to what was actually observed.
+
+That is the Deck-facing output. The Track-facing output is separate and only runs on an **active Track**.
+
+## Track analysis and moments
+
+When a Track is active, every newly evaluated meeting is read a second time through the tracked Skill.
+
+| Piece | What it is |
+| --- | --- |
+| **Track analysis** | One Skill-focused summary for that meeting. Unique per Track + evidence pair. |
+| **Moment** | A short excerpt plus commentary. Type is **demonstration** (they showed the behavior) or **opportunity** (they could have and did not). |
+| **Card attribution** | Optional. The model may attach a moment to one card in the hand. Scores stay internal. |
+
+Caps: **5 moments** per meeting, **500 characters** per excerpt. Empty moments are allowed, and preferred, when the meeting did not really speak to the Skill.
+
+This is the material in the member's Evidence Evaluated email, the Weekly Review, and a manager's coaching deep-dive. A manager sees the analysis, not a click-through to the meeting. See [Privacy and data](/product/privacy-and-data).
+
+## Asking questions about your evidence
+
+The product includes agents for generating questions about a piece of evidence and answering them, so a user can interrogate their own analysis rather than only receive it. This powers the "Deep Dive" experience on evidence details.
+
+{/* TODO: Confirm whether the evidence Deep Dive is available to managers on a member's evidence, or only to the person the evidence belongs to. */}
+
+## Where evidence comes from
+
+Four integrations exist (`IntegrationPlatform`). Only the calendar and Zoom ones are first-run.
+
+<Columns cols={2}>
+  <Card title="Google Calendar" icon="calendar">
+    Automatically schedules transcript-only meeting bots. First-run.
+  </Card>
+  <Card title="Microsoft Calendar" icon="calendar">
+    Automatically schedules transcript-only meeting bots. First-run.
+  </Card>
+  <Card title="Zoom" icon="video">
+    Bots join as the user using an OnBehalf token. First-run when the team uses Zoom.
+  </Card>
+  <Card title="Slack" icon="message-square">
+    Imports channel messages and conversations. Implemented, not first-run. Do not ask new customers or test teams to connect it at the start.
+  </Card>
+</Columns>
+
+Slack is the one integration where the user configures scope after connecting, because a whole workspace is not something anyone should hand over by default. Other chat platforms stay on hold.
