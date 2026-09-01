@@ -25,13 +25,15 @@ The canonical positioning statement, which all copy must support:
 
 1. **Never invent a fact.** Not a number, not a feature, not a customer, not a date. If the brain does not contain it, say so. A plausible invention here becomes a product claim in front of a customer, and it is worse than an admitted gap.
 2. **Numbers come from `overview/canonical-facts.mdx`.** Every price, count, threshold, and target. If a figure is not on that page, you do not have it. Do not estimate, do not round, do not derive.
-3. **Check `status` before you trust a page.** `verified` is safe to state externally. `draft` is internal only. `stale` must be re-verified first.
-4. **Distinguish shipped from planned.** Product pages label features that are not live. Never describe a planned capability in the present tense.
-5. **English only.** Source material is often in Portuguese. Translate it; never paste it.
-6. **Privacy answers come from `product/privacy-and-data.mdx`.** Never from inference, and never from what seems reasonable. Getting this wrong damages trust in a way that is hard to repair.
-7. **Use glossary terms exactly.** See `overview/glossary.mdx`. Do not invent synonyms for concepts that already have a name.
-8. **This repo is not the engineering docs.** Application architecture, schemas, and runbooks live in `grpaiva/skilldeck` under `docs/`. Do not copy them here.
-9. **Open a pull request. Do not push to `main`.**
+3. **Never edit a generated block.** Blocks fenced with `{/* BEGIN GENERATED: ... */}` are synced from live production. Run the sync instead — see `overview/syncing-from-production.mdx`.
+4. **Check `status` before you trust a page.** `verified` is safe to state externally. `draft` is internal only. `stale` must be re-verified first.
+5. **Distinguish shipped from planned.** Product pages label features that are not live. Never describe a planned capability in the present tense.
+6. **English only.** Source material is often in Portuguese. Translate it; never paste it.
+7. **Privacy answers come from `product/privacy-and-data.mdx`.** Never from inference, and never from what seems reasonable. Getting this wrong damages trust in a way that is hard to repair.
+8. **Use glossary terms exactly.** See `overview/glossary.mdx`. Do not invent synonyms for concepts that already have a name.
+9. **This repo is not the engineering docs.** Application architecture, schemas, and runbooks live in `grpaiva/skilldeck` under `docs/`. Do not copy them here.
+10. **Never commit a credential.** The Skill Deck MCP token is a live production secret and belongs in an environment variable only.
+11. **Open a pull request. Do not push to `main`.**
 
 ---
 
@@ -64,6 +66,7 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | How do I write about Skill Deck? What can I not claim? | `playbooks/messaging-and-claims.mdx` |
 | What is the exact number for X? | `overview/canonical-facts.mdx` |
 | What does this word mean? | `overview/glossary.mdx` |
+| How do I refresh Skills and categories from production? | `overview/syncing-from-production.mdx` |
 
 ### Route by task
 
@@ -166,9 +169,11 @@ mint validate
 
 | What | Where | Note |
 | --- | --- | --- |
+| Live Skills and categories | Skill Deck MCP, `https://skilldeck.ai/mcp/skilldeck` | The only source of truth for the taxonomy and level rubrics. Synced by `npm run sync:skills`. |
 | Manager guidance | Manager Coaching Playbook (PDF) | Synced into `playbooks/manager-coaching/`. The PDF wins if they diverge. |
 | The application | `grpaiva/skilldeck` | Private. Laravel, Livewire, Filament. |
 | Engineering docs | `grpaiva/skilldeck` → `docs/` | Deep and partly outdated. Prefer code and config over prose. |
+| Skill seeder files | `grpaiva/skilldeck` → `database/seeders/AttributeLevels/**` | **Stale. Do not use.** 60 Skills where production runs 58, and the level text differs. |
 | Product behavior constants | `grpaiva/skilldeck` → `config/` | `tracks.php`, `scoring.php`, `quotas.php` and neighbors are the most reliable statement of how the product actually behaves. |
 | Mintlify product knowledge | `https://www.mintlify.com/docs/mcp` | For questions about Mintlify itself. |
 | This site over MCP | `https://mcp.mintlify.com` | For reading and editing this content. |

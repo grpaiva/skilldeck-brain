@@ -1,0 +1,112 @@
+{
+  "skill": "Storytelling",
+  "syncedAt": "2026-09-01",
+  "source": "Skill Deck MCP `get_attribute_scale`",
+  "levels": [
+    {
+      "score": 0,
+      "title": "Narrative Sabotage",
+      "body": "Intentionally fabricates or distorts a sequence of events to scapegoat others or hide critical systemic failures. Example: The Revisionist — \"The project failed because the Marketing team ignored the brief from day one. I warned them, but they chose to fail.\" (The subject uses a false 'villain' narrative to hide their own lack of oversight)."
+    },
+    {
+      "score": 1,
+      "title": "Toxic Framing",
+      "body": "Uses stories to create \"Us vs. Them\" dynamics, purposefully demoralizing initiatives or reinforcing harmful hierarchies. Example: The Divider — \"Remember when the 'suits' upstairs tried this in 2018 and it blew up in our faces? This new plan is just history repeating itself.\""
+    },
+    {
+      "score": 2,
+      "title": "The Dead-End Loop",
+      "body": "Starts a story but loses the thread or fails to provide a resolution, leaving the audience with unresolved cognitive tension. Example: The Trail-Follower — \"So, I was talking to the client, and they mentioned their dog... anyway, the dog was a lab... wait, what was I saying about the contract? I guess it's fine.\""
+    },
+    {
+      "score": 3,
+      "title": "Narrative Chaos",
+      "body": "Presents information without any chronological or logical sequence, making it impossible for the listener to follow the \"thread.\" Example: The Shuffled Deck — \"We need to fix the bug. Last week we had a meeting. The CEO wants growth. I sent an email on Tuesday. Does that make sense?\""
+    },
+    {
+      "score": 4,
+      "title": "The Data Dump",
+      "body": "Provides a list of facts or events without a \"Why\" or any emotional connection, failing to engage the listener's memory. Example: The Human Spreadsheet — \"Event A happened at 9 AM. Event B happened at 10 AM. Event C followed. End of report.\""
+    },
+    {
+      "score": 5,
+      "title": "The Sequence Starter",
+      "body": "Follows a basic chronological arc (Once upon a time... Every day... Until one day...) that allows for predictable clarity. Example: The Chronological Narrator — \"Once we had a stable market. Every day we sold X. Until one day, a new competitor arrived. Because of that, we had to change. Finally, we recovered.\""
+    },
+    {
+      "score": 6,
+      "title": "Contextual Grounding",
+      "body": "Establishes the \"Who, What, and Where\" clearly before diving into the details of the story. Example: The Scene Setter — \"Before I tell you about the bug, you need to understand that our team was working 60-hour weeks in the middle of a server migration. That is the world where this mistake happened.\""
+    },
+    {
+      "score": 7,
+      "title": "The Hook & Payoff",
+      "body": "Uses an engaging opening to grab attention and ensures the story ends with a clear, valuable \"Moral\" or \"Lesson.\" Example: The Engagement Builder — \"Imagine losing half million in sixty seconds. That was our reality last Tuesday. Here is the story of how we found the leak and why it will never happen again.\""
+    },
+    {
+      "score": 8,
+      "title": "Descriptive Vibrancy",
+      "body": "Uses \"Mental Images\" and specific details to make a story more concrete and less abstract. Example: The Painter — \"The client wasn't just 'unhappy.' They were sitting in a silent office with ten broken monitors, staring at a blank screen. That is the urgency we are dealing with.\""
+    },
+    {
+      "score": 9,
+      "title": "Narrative Pacing",
+      "body": "Consciously alternates between tension and relief, using pauses to let important narrative moments \"sink in.\" Example: The Rhythm-Keeper — \"We pushed the code. We waited. (Long pause). And then, for the first time in three years... the system held.\""
+    },
+    {
+      "score": 10,
+      "title": "The Hero's Journey (Self-Growth)",
+      "body": "Frames a professional challenge as a personal \"Quest,\" where the struggle leads to a tangible gain in knowledge or skill. Example: The Quest Narrator — \"I thought I knew everything about sales. Then I met this client who challenged every assumption I had. That 'failure' was the mentor I didn't know I needed.\""
+    },
+    {
+      "score": 11,
+      "title": "Humanizing Data",
+      "body": "Wraps complex statistics or technical themes in a personal story to make them relatable to a non-expert audience. Example: The Data Translator — \"This 2% increase in latency isn't just a number. It's the story of a mother trying to pay her bills whose app crashes right at the finish line. That is who we are fixing this for.\""
+    },
+    {
+      "score": 12,
+      "title": "The Vulnerable Bridge",
+      "body": "Shares authentic \"Failure Stories\" to lower the team's defensiveness and normalize learning from mistakes. Example: The Humanizer — \"I once deleted a production database early in my career. I'm telling you this because I want you to know that mistakes are part of our story, not the end of it.\""
+    },
+    {
+      "score": 13,
+      "title": "The Analogous Leap",
+      "body": "Uses sophisticated metaphors to simplify high-complexity organizational shifts. Example: The Metaphor Architect — \"Our current strategy is like a heavy anchor. It kept us safe during the storm, but now the sun is out and we need to cut the rope if we want to actually sail.\""
+    },
+    {
+      "score": 14,
+      "title": "Resistance Reframing",
+      "body": "Uses storytelling to address objections pre-emptively, turning a \"Threat\" narrative into a \"Challenge\" narrative. Example: The Perspective Shifter — \"I know the new AI tool feels like a replacement. But think of it as moving from being the person digging the hole to the person driving the excavator. We are just getting more power.\""
+    },
+    {
+      "score": 15,
+      "title": "The Strategic Pivot Story",
+      "body": "Translates a dry strategic plan into a compelling \"Future Vision\" narrative that makes change feel desirable. Example: The Vision Caster — \"We aren't just 'cutting costs.' We are clearing the overgrown forest so we can finally see the path to the mountain. This is the beginning of our new chapter.\""
+    },
+    {
+      "score": 16,
+      "title": "The Mindset Catalyst",
+      "body": "Uses a story to trigger a permanent shift in how a team perceives its own capacity or mission. Example: The Belief-Builder — \"We used to think we were a 'Support' team. But after seeing how you saved that account, it's clear we are actually the 'Retention Engine' of this company. Our story changed today.\""
+    },
+    {
+      "score": 17,
+      "title": "The Viral Narrative",
+      "body": "Crafts stories so simple and resonant that they are spontaneously repeated by others, becoming part of the \"Team Folklore.\" Example: The Myth-Maker — The subject shares a story of extreme customer service that becomes \"The Legend of the Friday Night Fix,\" which every new hire hears on day one."
+    },
+    {
+      "score": 18,
+      "title": "The Strategy-as-Story",
+      "body": "Communicates massive organizational transformations as a cohesive narrative that makes 1,000 moving parts feel like one logical journey. Example: The Master Architect — \"During the M&A, I didn't give them a chart. I told them the story of two rivers joining to create a force that could reach the ocean. The logic was in the flow, not the spreadsheet.\""
+    },
+    {
+      "score": 19,
+      "title": "The Existential Reset",
+      "body": "Uses a \"Watershed Story\" to help an organization \"Unlearn\" its past success and pivot to a new identity during an existential crisis. Example: The Paradigm Shifter — \"Our old success is a ghost haunting our future. It's time to bury the ghost so we can become the pioneers we were 20 years ago. Let's write the first page of the new book.\""
+    },
+    {
+      "score": 20,
+      "title": "The Cultural Mythos (Legacy)",
+      "body": "Defines the organization's enduring purpose through a master narrative that survives the leader's presence and dictates behavior for decades. Example: The Identity Architect — The subject's story about \"Why we exist\" becomes the foundational \"Founding Myth\" that guides every strategic decision, M&A, and hire for the next generation of the company."
+    }
+  ]
+}

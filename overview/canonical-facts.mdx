@@ -60,11 +60,17 @@ Headline range: **$9.90 to $15.00 per user per month**. Free trial: **1 month**.
 
 ## Product
 
+<Info>
+  Skill and category figures below are synced from live production through the Skill Deck MCP server. See [Syncing from production](/overview/syncing-from-production).
+</Info>
+
 | Fact | Value | Note |
 | --- | --- | --- |
-| Skills | **58** | The application seeds level data for 60; two are disabled through the Filament admin panel. 58 is correct. |
-| Categories | 8 | Communication, Leadership, Emotional intelligence, Productivity, Critical thinking, Creativity, Interpersonal relations, Resilience/flexibility/adaptability |
-| Level scale | 0 to 20 | 21 defined levels. Say "0 to 20", not "20 levels". |
+| Skills | **58** | Unique, active Skills in production. The application seeds 60; **Body Language Reading** and **Emotional Resilience** are disabled through the Filament panel. |
+| Categories | 8 | Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, Productivity |
+| Category listings | 73 | A Skill can sit in several categories, so per-category counts sum to more than 58. Count unique Skills. |
+| Skills in more than one category | 13 | Active Listening and Conflict Management are each in three |
+| Level scale | 0 to 20 | 21 defined levels, each a named behavior with an example. Say "0 to 20", not "20 levels". |
 | Minimum Track duration | ~2 weeks (14 days) | A Track can complete only from its second Friday onward, and only if the Goal is met |
 | Cycle length | Quarterly | Calendar quarter or custom dates |
 | Dispatches | 5 types | Kickoff, Weekly Prep, Evidence Evaluated, Weekly Review, Wrap-Up |
@@ -145,10 +151,12 @@ Tracked here so they get resolved rather than quietly propagated.
 
 | Discrepancy | Status |
 | --- | --- |
-| 58 Skills vs 60 seeded in the application | **Resolved** — 58 is correct; two are disabled through the Filament panel |
+| 58 Skills vs 60 seeded in the application | **Resolved** — 58 active in production; Body Language Reading and Emotional Resilience are disabled |
+| Which two Skills are disabled | **Resolved** — Body Language Reading, Emotional Resilience |
 | Fundraising material says "competencies" | **Resolved** — the term is Skill; that wording is legacy and should be corrected on contact |
+| Is the pitch's Storytelling 8/20 example real? | **Resolved** — it matches the live level 8 and 9 rubric almost word for word. Safe to use. |
+| Application seeder level text vs production | **Resolved** — the seeders are stale. Read levels from the live scale only. |
 | $9.90 headline floor vs $9.99 computed Enterprise seat price | Open — quote as published |
 | "20 levels" claimed vs a 0–20 scale (21 levels) | Open — say "0 to 20" |
 | Pitch shows a numeric level; member emails deliberately hide it | Open — decide which surface a demo shows |
-| Which two Skills are disabled | Open — needed before we can publish a Skill list |
 | Activities feature is temporarily disabled in the application | Open — do not demo activities |

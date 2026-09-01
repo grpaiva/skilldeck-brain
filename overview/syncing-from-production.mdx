@@ -1,0 +1,132 @@
+---
+title: "Syncing from production"
+description: "How this brain pulls live Skill Deck data through the MCP server, and when to re-run it."
+icon: "refresh-cw"
+updated: "2026-09-01"
+status: "verified"
+---
+
+Some facts in this brain change without anyone editing a document. A Skill can be enabled or disabled in the Filament admin panel, a category description can be reworded, a level rubric can be rewritten. Copying those by hand guarantees drift.
+
+So we pull them from production.
+
+<Warning>
+  **Application seeder files are not a source of truth.** `database/seeders/AttributeLevels/**` in the application repository is out of date: it seeds 60 Skills where production runs 58, and its level text differs substantially from what production serves. Read live data, or read nothing.
+</Warning>
+
+## What is synced
+
+| Content | Source | Lives in |
+| --- | --- | --- |
+| Categories and the Skills in each | MCP `list_attributes` | Generated block in [Skills and levels](/product/skills-and-levels), plus `data/skill-taxonomy.json` |
+| Example level rubric | MCP `get_attribute_scale` | Generated block in [Skills and levels](/product/skills-and-levels), plus `data/skill-scale-storytelling.json` |
+
+Generated blocks are fenced with markers and must not be edited by hand:
+
+```mdx
+{/* BEGIN GENERATED: skill-taxonomy */}
+...
+{/* END GENERATED: skill-taxonomy */}
+```
+
+## Running the sync
+
+<Steps>
+  <Step title="Get a token">
+    In Skill Deck, go to **Settings → API tokens** and generate one. A read-only token is enough; the sync only calls read tools.
+  </Step>
+  <Step title="Export it">
+    ```bash
+    export SKILLDECK_MCP_TOKEN="<token>"
+    ```
+
+    Never commit the token, never paste it into a page, and never hardcode it in the script. It is a live production credential.
+  </Step>
+  <Step title="Run it">
+    ```bash
+    npm run sync:skills
+    ```
+
+    The script reports the counts, lists anything that changed since the last sync, rewrites the generated blocks, and updates the JSON files.
+  </Step>
+  <Step title="Review and commit">
+    Read the diff. If the Skill count changed, update [Canonical facts](/overview/canonical-facts) in the same commit — the count appears there too, and the script deliberately does not edit it for you.
+  </Step>
+</Steps>
+
+To verify without writing anything:
+
+```bash
+npm run sync:skills -- --check
+```
+
+This exits non-zero when the committed docs no longer match production, so it can run on a schedule or in CI.
+
+## When to re-run it
+
+- Someone enables or disables a Skill in the Filament panel.
+- A category is added, renamed, or re-described.
+- Level rubrics are rewritten.
+- Before any work that depends on the exact Skill list — an investor deck, a sales one-pager, a customer-facing Skill catalogue.
+- Otherwise: periodically. This is cheap and read-only.
+
+## The MCP connection
+
+Skill Deck runs its own MCP server, which is how agents should read live data.
+
+| | |
+| --- | --- |
+| Endpoint | `https://skilldeck.ai/mcp/skilldeck` |
+| Transport | Streamable HTTP |
+| Auth | `Authorization: Bearer <token>` |
+| Token source | Settings → API tokens in Skill Deck |
+
+To give an AI tool direct access, add it to that tool's MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "skilldeck": {
+      "url": "https://skilldeck.ai/mcp/skilldeck",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      }
+    }
+  }
+}
+```
+
+<Warning>
+  A Skill Deck MCP token grants access to **the token owner's own behavioral data** — their Deck, their evidence, their meeting transcripts while still cached. Treat it like a password. Do not share one, do not commit one, and rotate it if it is ever pasted somewhere it should not be.
+</Warning>
+
+## What the MCP server exposes
+
+Reference data, which is what this brain syncs:
+
+- `list_attributes` — the full taxonomy: categories and their Skills, with descriptions. No user data.
+- `get_attribute_scale` — the 0–20 rubric for one Skill.
+
+Personal data, scoped to the authenticated user:
+
+- `get_my_deck` — all category and Skill scores with confidence.
+- `get_attribute_evaluations` — the evaluations behind one Skill's score.
+- `list_my_evidence`, `get_evidence_detail`, `get_evidence_content` — evidence, its evaluations, and the cached transcript while it still exists.
+- `get_my_targets`, `get_target_progress`, `get_target_history` — Targets and quarter-over-quarter progress.
+- `list_advisor_picks`, `get_advisor_pick` — Advisor Picks episodes.
+
+One write tool:
+
+- `launch_meeting_bot` — deploys a transcript-only bot to a meeting. Requires a write-enabled token.
+
+<Note>
+  Only `list_attributes` and `get_attribute_scale` return organization-independent reference data. Everything else is the token owner's own data, so it is not suitable for populating this brain.
+</Note>
+
+## Not yet synced
+
+Worth knowing what still drifts by hand:
+
+- Pricing, plans, and fundraising figures. These live only in [Canonical facts](/overview/canonical-facts).
+- Dispatch timings and scoring constants, which come from application configuration rather than the API.
+- Which two Skills are disabled. The MCP returns only active Skills, so the disabled pair is derived by comparing against the seeder list. If a third is ever disabled, the sync will show the removal but the page note needs updating by hand.

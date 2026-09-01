@@ -1,0 +1,14 @@
+{
+  "name": "skilldeck-brain",
+  "private": true,
+  "type": "module",
+  "description": "Skill Deck's second brain — a Mintlify documentation site.",
+  "scripts": {
+    "dev": "mint dev",
+    "check": "mint validate && mint broken-links",
+    "sync:skills": "node scripts/sync-skills.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

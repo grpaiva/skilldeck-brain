@@ -1,0 +1,903 @@
+{
+  "source": "Skill Deck MCP `list_attributes`",
+  "syncedAt": "2026-09-01",
+  "categoryCount": 8,
+  "skillCount": 58,
+  "listingCount": 73,
+  "categories": [
+    {
+      "name": "Communication",
+      "description": "Ability to convey information effectively and efficiently.",
+      "skills": [
+        {
+          "name": "Written Communication",
+          "translation": null,
+          "description": "Ability to express ideas with textual clarity, structuring information logically, eliminating ambiguities, and adapting style and complexity to the target audience to ensure precise comprehension, minimize operational rework, and establish organizational documentation standards."
+        },
+        {
+          "name": "Active Listening",
+          "translation": null,
+          "description": "Ability to fully absorb spoken messages and tone without interruption, validate understanding through accurate summarization, and synthesize underlying intent to eliminate communication noise."
+        },
+        {
+          "name": "Nonverbal Communication",
+          "translation": null,
+          "description": "Ability to transmit and interpret messages through facial expressions, physical gestures, posture, and vocal tonality, aligning screen presence to verbal discourse and accurately reading others' expressions to drive communicational coherence and psychological safety in digital and hybrid environments."
+        },
+        {
+          "name": "Presentation Skills",
+          "translation": null,
+          "description": "Ability to engage audiences and deliver information with high impact, utilizing supportive visual aids effectively to facilitate the efficient assimilation of complex content, and answering questions with data-backed confidence to drive structured alignment and decision-making."
+        },
+        {
+          "name": "Storytelling",
+          "translation": null,
+          "description": "Ability to structure and share compelling narratives by contextualizing complex information into memorable stories, connecting strategic messages to emotional values, and maintaining clarity amidst complexity to drive engagement, information retention, and systemic cultural transformation."
+        },
+        {
+          "name": "Persuasion",
+          "translation": null,
+          "description": "Ability to influence decisions, opinions, and behaviors by constructing compelling logical and emotional arguments, anticipating objections, and tailoring approaches to the interlocutor's profile to win support, build consensus, and drive strategic alignment across diverse stakeholders."
+        },
+        {
+          "name": "Message Adaptation to Audience",
+          "translation": null,
+          "description": "Ability to personalize communication by adjusting complexity, tone, and format according to the audience's knowledge and interests, eliminating communication noise to ensure universal comprehension and drive strategic alignment across diverse cultural and organizational contexts."
+        },
+        {
+          "name": "Feedback",
+          "translation": null,
+          "description": "Ability to offer and receive constructive feedback by focusing on objective behaviors, accepting suggestions with openness, and facilitating growth dialogues to drive mutual development and continuous improvement."
+        },
+        {
+          "name": "Synthesis",
+          "translation": null,
+          "description": "Ability to condense complex information into concise messages by extracting core concepts, eliminating redundancies, and communicating key ideas with density to drive agile decision-making, strategic focus, and systemic clarity across the organization."
+        },
+        {
+          "name": "Objectivity",
+          "translation": null,
+          "description": "Ability to analyze and communicate situations with concise neutrality, separating facts from opinions without padding, and weighing contradictory evidence to drive impartial evaluations."
+        }
+      ]
+    },
+    {
+      "name": "Creativity",
+      "description": "Ability to generate innovative solutions and original ideas.",
+      "skills": [
+        {
+          "name": "Divergent Thinking",
+          "translation": null,
+          "description": "Ability to explore multiple perspectives, question established assumptions, and welcome unconventional ideas to generate diverse possibilities and drive disruptive innovation."
+        },
+        {
+          "name": "Idea Generation",
+          "translation": null,
+          "description": "Ability to conceive original solutions, connect seemingly disconnected concepts, and transcend limitations to propose novel approaches that drive competitive differentiation."
+        },
+        {
+          "name": "Experimentation",
+          "translation": null,
+          "description": "Ability to test new approaches in practice, learning from attempts and embracing errors as a valuable part of the process to validate assumptions, iterate rapidly, and minimize uncertainty."
+        },
+        {
+          "name": "Courage",
+          "translation": null,
+          "description": "Ability to propose and defend disruptive ideas, take calculated risks, and persist against criticism to drive paradigm-shifting breakthroughs."
+        },
+        {
+          "name": "Curiosity",
+          "translation": null,
+          "description": "Ability to seek knowledge beyond conventional boundaries, question established premises, and investigate diverse sources to drive continuous learning and uncover unseen opportunities."
+        },
+        {
+          "name": "Improvisation",
+          "translation": null,
+          "description": "Ability to adapt quickly to unexpected situations, creating spontaneous solutions with available resources, maintaining composure under pressure, and adjusting plans in real time to drive operational resilience."
+        },
+        {
+          "name": "Originality",
+          "translation": null,
+          "description": "Ability to develop genuinely new concepts, avoiding direct copies or established patterns, while creating work with a unique identity that transcends existing references to drive authentic breakthroughs."
+        },
+        {
+          "name": "Prototyping",
+          "translation": null,
+          "description": "Ability to materialize abstract ideas into testable models, gathering tangible feedback to iteratively refine solutions and drive accelerated practical validation."
+        }
+      ]
+    },
+    {
+      "name": "Critical Thinking",
+      "description": "Ability to analyze information objectively, draw logical connections, and make reasoned judgments.",
+      "skills": [
+        {
+          "name": "Problem Solving",
+          "translation": null,
+          "description": "Ability to break complex challenges down into manageable parts, isolate root causes objectively, and implement effective solutions that overcome obstacles and drive systemic improvement."
+        },
+        {
+          "name": "Logical Reasoning",
+          "translation": null,
+          "description": "Ability to construct coherent arguments, identify inconsistencies and biases across complex variables, and draw well-founded conclusions to drive sound actions."
+        },
+        {
+          "name": "Curiosity",
+          "translation": null,
+          "description": "Ability to seek knowledge beyond conventional boundaries, question established premises, and investigate diverse sources to drive continuous learning and uncover unseen opportunities."
+        },
+        {
+          "name": "Data Analysis",
+          "translation": null,
+          "description": "Ability to interpret quantitative and qualitative information, cross-reference diverse sources, and audit methodologies to extract insights that drive precise, evidence-based decisions."
+        },
+        {
+          "name": "Decision Making",
+          "translation": null,
+          "description": "Ability to evaluate alternatives and risks objectively, mitigate bias under pressure, and confidently commit to a clear path to drive timely progress."
+        },
+        {
+          "name": "Critical Sense",
+          "translation": null,
+          "description": "Ability to evaluate information rigorously, challenge underlying assumptions, and demand robust evidence to identify biases, drive impartial judgments, and minimize cognitive errors."
+        },
+        {
+          "name": "Risk Assessment",
+          "translation": null,
+          "description": "Ability to anticipate and mitigate threats, quantify probabilities and impacts, and proactively monitor risk indicators to design robust contingency plans that ensure operational resilience."
+        },
+        {
+          "name": "Hypothesis Formulation",
+          "translation": null,
+          "description": "Ability to propose testable explanations and verifiable causal relationships, establish clear validation parameters, and adjust models based on new evidence to drive structured investigations."
+        },
+        {
+          "name": "Objectivity",
+          "translation": null,
+          "description": "Ability to analyze and communicate situations with concise neutrality, separating facts from opinions without padding, and weighing contradictory evidence to drive impartial evaluations."
+        }
+      ]
+    },
+    {
+      "name": "Emotional Intelligence",
+      "description": "Ability to understand, use, and manage emotions positively.",
+      "skills": [
+        {
+          "name": "Self-Awareness",
+          "translation": null,
+          "description": "Ability to accurately recognize one’s own emotions and their impacts, identify emotional triggers, and honestly assess reactions to adjust behavior and drive effective self-management."
+        },
+        {
+          "name": "Empathy",
+          "translation": null,
+          "description": "Ability to understand others’ perspectives and unspoken needs, validating feelings without judgment, and adapting communication to their emotional state to offer genuine support and build deep connections."
+        },
+        {
+          "name": "Self-Motivation",
+          "translation": null,
+          "description": "Ability to generate internal energy to pursue goals, maintaining enthusiasm when facing obstacles, visualizing long-term results, and persisting without immediate rewards to drive resilience throughout the journey."
+        },
+        {
+          "name": "Recognizing Emotions in Others",
+          "translation": null,
+          "description": "Ability to identify others’ emotional states by perceiving subtle cues and underlying subtext, adapting approaches based on the context to respond with sensitivity and drive tailored, effective interactions."
+        },
+        {
+          "name": "Stress Management",
+          "translation": null,
+          "description": "Ability to maintain performance and balance under pressure by utilizing emotional regulation techniques, prioritizing critical tasks, and preserving cognitive clarity to drive effectiveness in challenging and ambiguous scenarios."
+        },
+        {
+          "name": "Emotional Balance",
+          "translation": null,
+          "description": "Ability to regulate intense emotional reactions, avoiding extremes like outbursts or apathy, while maintaining serenity during conflicts and processing internal states healthily to drive relational stability."
+        },
+        {
+          "name": "Self-Confidence",
+          "translation": null,
+          "description": "Ability to believe in one’s own potential and competencies, taking on aligned challenges, defending convictions with a realistic foundation, and constructively accepting feedback to drive balanced assertiveness."
+        },
+        {
+          "name": "Conflict Management",
+          "translation": null,
+          "description": "Ability to mediate opposing perspectives impartially, de-escalate emotional tension, and transform professional friction into creative solutions that strengthen collaboration."
+        },
+        {
+          "name": "Resilience",
+          "translation": null,
+          "description": "Ability to recover from adverse situations while demonstrating robust emotional resilience, maintaining functionality during crises and processing setbacks healthily to extract constructive learning from failures and resume actions with renewed energy, thereby driving long-term professional sustainability and strategic antifragility."
+        }
+      ]
+    },
+    {
+      "name": "Flexibility",
+      "description": "Ability to adapt to challenges, maintain optimism, and recover from setbacks.",
+      "skills": [
+        {
+          "name": "Tolerance of Ambiguity",
+          "translation": null,
+          "description": "Ability to operate effectively within uncertainty, making decisions with incomplete information, adapting to paradoxes, and maintaining productivity without definitive answers to drive resilience in complex scenarios."
+        },
+        {
+          "name": "Learning Ability",
+          "translation": null,
+          "description": "Ability to quickly absorb, synthesize, and apply new knowledge, integrating feedback and modifying behaviors based on experiences to master demanded skills and drive continuous adaptation."
+        },
+        {
+          "name": "Growth Mindset",
+          "translation": null,
+          "description": "Belief that abilities can be developed through dedication and effort rather than innate talent, viewing challenges as learning opportunities, persisting through setbacks, and treating failures as valuable data to drive constant personal and strategic evolution."
+        },
+        {
+          "name": "Resilience",
+          "translation": null,
+          "description": "Ability to recover from adverse situations while demonstrating robust emotional resilience, maintaining functionality during crises and processing setbacks healthily to extract constructive learning from failures and resume actions with renewed energy, thereby driving long-term professional sustainability and strategic antifragility."
+        },
+        {
+          "name": "Adaptability",
+          "translation": null,
+          "description": "Ability to adjust to changes by swiftly revising plans and strategies, embracing new contexts without resistance, and maintaining operational effectiveness during transitions to drive relevance in the face of continuous transformations."
+        },
+        {
+          "name": "Change Management",
+          "translation": null,
+          "description": "Ability to communicate transformation needs clearly, mitigate human resistance proactively, and engage teams to achieve smooth transitions and sustainable adoption."
+        },
+        {
+          "name": "Stress Management",
+          "translation": null,
+          "description": "Ability to maintain performance and balance under pressure by utilizing emotional regulation techniques, prioritizing critical tasks, and preserving cognitive clarity to drive effectiveness in challenging and ambiguous scenarios."
+        },
+        {
+          "name": "Emotional Balance",
+          "translation": null,
+          "description": "Ability to regulate intense emotional reactions, avoiding extremes like outbursts or apathy, while maintaining serenity during conflicts and processing internal states healthily to drive relational stability."
+        }
+      ]
+    },
+    {
+      "name": "Interpersonal Relations",
+      "description": "Ability to interact effectively with others and build productive relationships.",
+      "skills": [
+        {
+          "name": "Empathy",
+          "translation": null,
+          "description": "Ability to understand others’ perspectives and unspoken needs, validating feelings without judgment, and adapting communication to their emotional state to offer genuine support and build deep connections."
+        },
+        {
+          "name": "Active Listening",
+          "translation": null,
+          "description": "Ability to fully absorb spoken messages and tone without interruption, validate understanding through accurate summarization, and synthesize underlying intent to eliminate communication noise."
+        },
+        {
+          "name": "Networking",
+          "translation": null,
+          "description": "Ability to build strategic networks by cultivating mutually beneficial professional relationships, sharing knowledge generously, and maintaining relevant connections to drive collaborative opportunities."
+        },
+        {
+          "name": "Collaboration",
+          "translation": null,
+          "description": "Ability to work synergistically with others, integrating diverse perspectives, sharing credits and resources, and prioritizing collective goals to deliver outcomes that exceed the sum of their parts."
+        },
+        {
+          "name": "Conflict Management",
+          "translation": null,
+          "description": "Ability to mediate opposing perspectives impartially, de-escalate emotional tension, and transform professional friction into creative solutions that strengthen collaboration."
+        },
+        {
+          "name": "Negotiation",
+          "translation": null,
+          "description": "Ability to achieve advantageous agreements by identifying common interests, proposing strategic concessions, and preserving professional relationships to drive sustainable, win-win solutions that create mutual value."
+        },
+        {
+          "name": "Trust",
+          "translation": null,
+          "description": "Ability to build relational credibility through consistency between words and actions, fulfilling promises reliably, and demonstrating integrity to establish a solid reputation and foster enduring partnerships."
+        },
+        {
+          "name": "Influence",
+          "translation": null,
+          "description": "Ability to build credibility, adapt communication to the listener's perspective, and use persuasive logic to align diverse interests and mobilize action."
+        },
+        {
+          "name": "Feedback",
+          "translation": null,
+          "description": "Ability to offer and receive constructive feedback by focusing on objective behaviors, accepting suggestions with openness, and facilitating growth dialogues to drive mutual development and continuous improvement."
+        },
+        {
+          "name": "Respect",
+          "translation": null,
+          "description": "Ability to value human dignity, utilizing respectful language and mindful communication, while treating everyone with equity, listening to divergent perspectives without judgment, and recognizing diverse contributions to foster an inclusive and safe environment."
+        }
+      ]
+    },
+    {
+      "name": "Leadership",
+      "description": "Ability to guide, influence, and develop individuals and teams toward achieving goals.",
+      "skills": [
+        {
+          "name": "Decision Making",
+          "translation": null,
+          "description": "Ability to evaluate alternatives and risks objectively, mitigate bias under pressure, and confidently commit to a clear path to drive timely progress."
+        },
+        {
+          "name": "Strategy",
+          "translation": null,
+          "description": "Ability to look ahead to anticipate what’s coming, connect daily actions to a long-term vision, and make deliberate trade-offs to achieve a sustainable competitive advantage."
+        },
+        {
+          "name": "Team Motivation",
+          "translation": null,
+          "description": "Ability to inspire authentic engagement by connecting individual work to a collective purpose, cultivate trust through open recognition, and energize teams to autonomously commit to shared goals."
+        },
+        {
+          "name": "Conflict Management",
+          "translation": null,
+          "description": "Ability to mediate opposing perspectives impartially, de-escalate emotional tension, and transform professional friction into creative solutions that strengthen collaboration."
+        },
+        {
+          "name": "Delegation",
+          "translation": null,
+          "description": "Ability to assign responsibilities strategically based on competence, provide calibrated autonomy with structured support, and track results without micromanaging to drive talent development and operational efficiency."
+        },
+        {
+          "name": "People Development",
+          "translation": null,
+          "description": "Ability to identify individual potential and capability gaps, provide clear behavioral feedback, and create targeted stretch opportunities to accelerate professional growth and build long-term team capability."
+        },
+        {
+          "name": "Accountability",
+          "translation": null,
+          "description": "Accountability: Ability to take full responsibility for outcomes, honor commitments transparently, and address missed targets proactively to foster a culture of trust and shared ownership."
+        },
+        {
+          "name": "Change Management",
+          "translation": null,
+          "description": "Ability to communicate transformation needs clearly, mitigate human resistance proactively, and engage teams to achieve smooth transitions and sustainable adoption."
+        },
+        {
+          "name": "Problem Solving",
+          "translation": null,
+          "description": "Ability to break complex challenges down into manageable parts, isolate root causes objectively, and implement effective solutions that overcome obstacles and drive systemic improvement."
+        },
+        {
+          "name": "Influence",
+          "translation": null,
+          "description": "Ability to build credibility, adapt communication to the listener's perspective, and use persuasive logic to align diverse interests and mobilize action."
+        },
+        {
+          "name": "Active Listening",
+          "translation": null,
+          "description": "Ability to fully absorb spoken messages and tone without interruption, validate understanding through accurate summarization, and synthesize underlying intent to eliminate communication noise."
+        }
+      ]
+    },
+    {
+      "name": "Productivity",
+      "description": "Ability to efficiently manage time, resources, and tasks to achieve desired outcomes.",
+      "skills": [
+        {
+          "name": "Time Management",
+          "translation": null,
+          "description": "Ability to optimize temporal resources, plan realistic schedules with buffer margins, and protect focus blocks to consistently meet deadlines."
+        },
+        {
+          "name": "Task Prioritization",
+          "translation": null,
+          "description": "Ability to distinguish real from superficial impact, concentrate efforts on strategic, high-leverage activities, and delegate or eliminate distractions to drive consistent progress on key goals."
+        },
+        {
+          "name": "Focus and Concentration",
+          "translation": null,
+          "description": "Ability to maintain sustained attention by eliminating distractions, breaking complex tasks into manageable stages, and rapidly recovering focus after interruptions to drive analytical depth and quality execution."
+        },
+        {
+          "name": "Organization",
+          "translation": null,
+          "description": "Ability to structure efficient physical and digital systems, standardize processes, and facilitate information access to drive agile workflows and eliminate rework"
+        },
+        {
+          "name": "Efficiency",
+          "translation": null,
+          "description": "Ability to maximize results using minimal resources, simplify workflows by eliminating waste and redundancies, and calibrate effort-to-return ratios to drive optimized value delivery."
+        },
+        {
+          "name": "Discipline and Consistency",
+          "translation": null,
+          "description": "Ability to maintain productive routines, execute established plans despite motivational fluctuations, and uphold rigorous quality standards to deliver predictable reliability and continuous progress."
+        },
+        {
+          "name": "Personal Energy Management",
+          "translation": null,
+          "description": "Ability to balance intensive performance with strategic recovery, recognize early signs of fatigue, and protect health routines to maintain long-term performance sustainability."
+        },
+        {
+          "name": "Project Completion",
+          "translation": null,
+          "description": "Ability to drive initiatives to full completion, persisting through obstacles, maintaining strict focus on the final scope, and delivering complete results to generate tangible value."
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Accountability",
+      "translation": null,
+      "description": "Accountability: Ability to take full responsibility for outcomes, honor commitments transparently, and address missed targets proactively to foster a culture of trust and shared ownership.",
+      "categories": [
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Active Listening",
+      "translation": null,
+      "description": "Ability to fully absorb spoken messages and tone without interruption, validate understanding through accurate summarization, and synthesize underlying intent to eliminate communication noise.",
+      "categories": [
+        "Communication",
+        "Interpersonal Relations",
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Adaptability",
+      "translation": null,
+      "description": "Ability to adjust to changes by swiftly revising plans and strategies, embracing new contexts without resistance, and maintaining operational effectiveness during transitions to drive relevance in the face of continuous transformations.",
+      "categories": [
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Change Management",
+      "translation": null,
+      "description": "Ability to communicate transformation needs clearly, mitigate human resistance proactively, and engage teams to achieve smooth transitions and sustainable adoption.",
+      "categories": [
+        "Flexibility",
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Collaboration",
+      "translation": null,
+      "description": "Ability to work synergistically with others, integrating diverse perspectives, sharing credits and resources, and prioritizing collective goals to deliver outcomes that exceed the sum of their parts.",
+      "categories": [
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Conflict Management",
+      "translation": null,
+      "description": "Ability to mediate opposing perspectives impartially, de-escalate emotional tension, and transform professional friction into creative solutions that strengthen collaboration.",
+      "categories": [
+        "Emotional Intelligence",
+        "Interpersonal Relations",
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Courage",
+      "translation": null,
+      "description": "Ability to propose and defend disruptive ideas, take calculated risks, and persist against criticism to drive paradigm-shifting breakthroughs.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "Critical Sense",
+      "translation": null,
+      "description": "Ability to evaluate information rigorously, challenge underlying assumptions, and demand robust evidence to identify biases, drive impartial judgments, and minimize cognitive errors.",
+      "categories": [
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Curiosity",
+      "translation": null,
+      "description": "Ability to seek knowledge beyond conventional boundaries, question established premises, and investigate diverse sources to drive continuous learning and uncover unseen opportunities.",
+      "categories": [
+        "Creativity",
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Data Analysis",
+      "translation": null,
+      "description": "Ability to interpret quantitative and qualitative information, cross-reference diverse sources, and audit methodologies to extract insights that drive precise, evidence-based decisions.",
+      "categories": [
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Decision Making",
+      "translation": null,
+      "description": "Ability to evaluate alternatives and risks objectively, mitigate bias under pressure, and confidently commit to a clear path to drive timely progress.",
+      "categories": [
+        "Critical Thinking",
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Delegation",
+      "translation": null,
+      "description": "Ability to assign responsibilities strategically based on competence, provide calibrated autonomy with structured support, and track results without micromanaging to drive talent development and operational efficiency.",
+      "categories": [
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Discipline and Consistency",
+      "translation": null,
+      "description": "Ability to maintain productive routines, execute established plans despite motivational fluctuations, and uphold rigorous quality standards to deliver predictable reliability and continuous progress.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Divergent Thinking",
+      "translation": null,
+      "description": "Ability to explore multiple perspectives, question established assumptions, and welcome unconventional ideas to generate diverse possibilities and drive disruptive innovation.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "Efficiency",
+      "translation": null,
+      "description": "Ability to maximize results using minimal resources, simplify workflows by eliminating waste and redundancies, and calibrate effort-to-return ratios to drive optimized value delivery.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Emotional Balance",
+      "translation": null,
+      "description": "Ability to regulate intense emotional reactions, avoiding extremes like outbursts or apathy, while maintaining serenity during conflicts and processing internal states healthily to drive relational stability.",
+      "categories": [
+        "Emotional Intelligence",
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Empathy",
+      "translation": null,
+      "description": "Ability to understand others’ perspectives and unspoken needs, validating feelings without judgment, and adapting communication to their emotional state to offer genuine support and build deep connections.",
+      "categories": [
+        "Emotional Intelligence",
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Experimentation",
+      "translation": null,
+      "description": "Ability to test new approaches in practice, learning from attempts and embracing errors as a valuable part of the process to validate assumptions, iterate rapidly, and minimize uncertainty.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "Feedback",
+      "translation": null,
+      "description": "Ability to offer and receive constructive feedback by focusing on objective behaviors, accepting suggestions with openness, and facilitating growth dialogues to drive mutual development and continuous improvement.",
+      "categories": [
+        "Communication",
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Focus and Concentration",
+      "translation": null,
+      "description": "Ability to maintain sustained attention by eliminating distractions, breaking complex tasks into manageable stages, and rapidly recovering focus after interruptions to drive analytical depth and quality execution.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Growth Mindset",
+      "translation": null,
+      "description": "Belief that abilities can be developed through dedication and effort rather than innate talent, viewing challenges as learning opportunities, persisting through setbacks, and treating failures as valuable data to drive constant personal and strategic evolution.",
+      "categories": [
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Hypothesis Formulation",
+      "translation": null,
+      "description": "Ability to propose testable explanations and verifiable causal relationships, establish clear validation parameters, and adjust models based on new evidence to drive structured investigations.",
+      "categories": [
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Idea Generation",
+      "translation": null,
+      "description": "Ability to conceive original solutions, connect seemingly disconnected concepts, and transcend limitations to propose novel approaches that drive competitive differentiation.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "Improvisation",
+      "translation": null,
+      "description": "Ability to adapt quickly to unexpected situations, creating spontaneous solutions with available resources, maintaining composure under pressure, and adjusting plans in real time to drive operational resilience.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "Influence",
+      "translation": null,
+      "description": "Ability to build credibility, adapt communication to the listener's perspective, and use persuasive logic to align diverse interests and mobilize action.",
+      "categories": [
+        "Interpersonal Relations",
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Learning Ability",
+      "translation": null,
+      "description": "Ability to quickly absorb, synthesize, and apply new knowledge, integrating feedback and modifying behaviors based on experiences to master demanded skills and drive continuous adaptation.",
+      "categories": [
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Logical Reasoning",
+      "translation": null,
+      "description": "Ability to construct coherent arguments, identify inconsistencies and biases across complex variables, and draw well-founded conclusions to drive sound actions.",
+      "categories": [
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Message Adaptation to Audience",
+      "translation": null,
+      "description": "Ability to personalize communication by adjusting complexity, tone, and format according to the audience's knowledge and interests, eliminating communication noise to ensure universal comprehension and drive strategic alignment across diverse cultural and organizational contexts.",
+      "categories": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Negotiation",
+      "translation": null,
+      "description": "Ability to achieve advantageous agreements by identifying common interests, proposing strategic concessions, and preserving professional relationships to drive sustainable, win-win solutions that create mutual value.",
+      "categories": [
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Networking",
+      "translation": null,
+      "description": "Ability to build strategic networks by cultivating mutually beneficial professional relationships, sharing knowledge generously, and maintaining relevant connections to drive collaborative opportunities.",
+      "categories": [
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Nonverbal Communication",
+      "translation": null,
+      "description": "Ability to transmit and interpret messages through facial expressions, physical gestures, posture, and vocal tonality, aligning screen presence to verbal discourse and accurately reading others' expressions to drive communicational coherence and psychological safety in digital and hybrid environments.",
+      "categories": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Objectivity",
+      "translation": null,
+      "description": "Ability to analyze and communicate situations with concise neutrality, separating facts from opinions without padding, and weighing contradictory evidence to drive impartial evaluations.",
+      "categories": [
+        "Communication",
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Organization",
+      "translation": null,
+      "description": "Ability to structure efficient physical and digital systems, standardize processes, and facilitate information access to drive agile workflows and eliminate rework",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Originality",
+      "translation": null,
+      "description": "Ability to develop genuinely new concepts, avoiding direct copies or established patterns, while creating work with a unique identity that transcends existing references to drive authentic breakthroughs.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "People Development",
+      "translation": null,
+      "description": "Ability to identify individual potential and capability gaps, provide clear behavioral feedback, and create targeted stretch opportunities to accelerate professional growth and build long-term team capability.",
+      "categories": [
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Personal Energy Management",
+      "translation": null,
+      "description": "Ability to balance intensive performance with strategic recovery, recognize early signs of fatigue, and protect health routines to maintain long-term performance sustainability.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Persuasion",
+      "translation": null,
+      "description": "Ability to influence decisions, opinions, and behaviors by constructing compelling logical and emotional arguments, anticipating objections, and tailoring approaches to the interlocutor's profile to win support, build consensus, and drive strategic alignment across diverse stakeholders.",
+      "categories": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Presentation Skills",
+      "translation": null,
+      "description": "Ability to engage audiences and deliver information with high impact, utilizing supportive visual aids effectively to facilitate the efficient assimilation of complex content, and answering questions with data-backed confidence to drive structured alignment and decision-making.",
+      "categories": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "translation": null,
+      "description": "Ability to break complex challenges down into manageable parts, isolate root causes objectively, and implement effective solutions that overcome obstacles and drive systemic improvement.",
+      "categories": [
+        "Critical Thinking",
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Project Completion",
+      "translation": null,
+      "description": "Ability to drive initiatives to full completion, persisting through obstacles, maintaining strict focus on the final scope, and delivering complete results to generate tangible value.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Prototyping",
+      "translation": null,
+      "description": "Ability to materialize abstract ideas into testable models, gathering tangible feedback to iteratively refine solutions and drive accelerated practical validation.",
+      "categories": [
+        "Creativity"
+      ]
+    },
+    {
+      "name": "Recognizing Emotions in Others",
+      "translation": null,
+      "description": "Ability to identify others’ emotional states by perceiving subtle cues and underlying subtext, adapting approaches based on the context to respond with sensitivity and drive tailored, effective interactions.",
+      "categories": [
+        "Emotional Intelligence"
+      ]
+    },
+    {
+      "name": "Resilience",
+      "translation": null,
+      "description": "Ability to recover from adverse situations while demonstrating robust emotional resilience, maintaining functionality during crises and processing setbacks healthily to extract constructive learning from failures and resume actions with renewed energy, thereby driving long-term professional sustainability and strategic antifragility.",
+      "categories": [
+        "Emotional Intelligence",
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Respect",
+      "translation": null,
+      "description": "Ability to value human dignity, utilizing respectful language and mindful communication, while treating everyone with equity, listening to divergent perspectives without judgment, and recognizing diverse contributions to foster an inclusive and safe environment.",
+      "categories": [
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Risk Assessment",
+      "translation": null,
+      "description": "Ability to anticipate and mitigate threats, quantify probabilities and impacts, and proactively monitor risk indicators to design robust contingency plans that ensure operational resilience.",
+      "categories": [
+        "Critical Thinking"
+      ]
+    },
+    {
+      "name": "Self-Awareness",
+      "translation": null,
+      "description": "Ability to accurately recognize one’s own emotions and their impacts, identify emotional triggers, and honestly assess reactions to adjust behavior and drive effective self-management.",
+      "categories": [
+        "Emotional Intelligence"
+      ]
+    },
+    {
+      "name": "Self-Confidence",
+      "translation": null,
+      "description": "Ability to believe in one’s own potential and competencies, taking on aligned challenges, defending convictions with a realistic foundation, and constructively accepting feedback to drive balanced assertiveness.",
+      "categories": [
+        "Emotional Intelligence"
+      ]
+    },
+    {
+      "name": "Self-Motivation",
+      "translation": null,
+      "description": "Ability to generate internal energy to pursue goals, maintaining enthusiasm when facing obstacles, visualizing long-term results, and persisting without immediate rewards to drive resilience throughout the journey.",
+      "categories": [
+        "Emotional Intelligence"
+      ]
+    },
+    {
+      "name": "Storytelling",
+      "translation": null,
+      "description": "Ability to structure and share compelling narratives by contextualizing complex information into memorable stories, connecting strategic messages to emotional values, and maintaining clarity amidst complexity to drive engagement, information retention, and systemic cultural transformation.",
+      "categories": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Strategy",
+      "translation": null,
+      "description": "Ability to look ahead to anticipate what’s coming, connect daily actions to a long-term vision, and make deliberate trade-offs to achieve a sustainable competitive advantage.",
+      "categories": [
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Stress Management",
+      "translation": null,
+      "description": "Ability to maintain performance and balance under pressure by utilizing emotional regulation techniques, prioritizing critical tasks, and preserving cognitive clarity to drive effectiveness in challenging and ambiguous scenarios.",
+      "categories": [
+        "Emotional Intelligence",
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Synthesis",
+      "translation": null,
+      "description": "Ability to condense complex information into concise messages by extracting core concepts, eliminating redundancies, and communicating key ideas with density to drive agile decision-making, strategic focus, and systemic clarity across the organization.",
+      "categories": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Task Prioritization",
+      "translation": null,
+      "description": "Ability to distinguish real from superficial impact, concentrate efforts on strategic, high-leverage activities, and delegate or eliminate distractions to drive consistent progress on key goals.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Team Motivation",
+      "translation": null,
+      "description": "Ability to inspire authentic engagement by connecting individual work to a collective purpose, cultivate trust through open recognition, and energize teams to autonomously commit to shared goals.",
+      "categories": [
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Time Management",
+      "translation": null,
+      "description": "Ability to optimize temporal resources, plan realistic schedules with buffer margins, and protect focus blocks to consistently meet deadlines.",
+      "categories": [
+        "Productivity"
+      ]
+    },
+    {
+      "name": "Tolerance of Ambiguity",
+      "translation": null,
+      "description": "Ability to operate effectively within uncertainty, making decisions with incomplete information, adapting to paradoxes, and maintaining productivity without definitive answers to drive resilience in complex scenarios.",
+      "categories": [
+        "Flexibility"
+      ]
+    },
+    {
+      "name": "Trust",
+      "translation": null,
+      "description": "Ability to build relational credibility through consistency between words and actions, fulfilling promises reliably, and demonstrating integrity to establish a solid reputation and foster enduring partnerships.",
+      "categories": [
+        "Interpersonal Relations"
+      ]
+    },
+    {
+      "name": "Written Communication",
+      "translation": null,
+      "description": "Ability to express ideas with textual clarity, structuring information logically, eliminating ambiguities, and adapting style and complexity to the target audience to ensure precise comprehension, minimize operational rework, and establish organizational documentation standards.",
+      "categories": [
+        "Communication"
+      ]
+    }
+  ]
+}

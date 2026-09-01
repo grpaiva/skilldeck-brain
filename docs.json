@@ -9,6 +9,12 @@
     "dark": "#047857"
   },
   "favicon": "/favicon.svg",
+  "fonts": {
+    "family": "Instrument Sans"
+  },
+  "icons": {
+    "library": "lucide"
+  },
   "navigation": {
     "tabs": [
       {
@@ -20,7 +26,8 @@
               "index",
               "overview/how-to-use-this-brain",
               "overview/canonical-facts",
-              "overview/glossary"
+              "overview/glossary",
+              "overview/syncing-from-production"
             ]
           }
         ]

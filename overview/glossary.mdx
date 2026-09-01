@@ -7,7 +7,7 @@ status: "verified"
 ---
 
 <Info>
-  Verified against the Manager Coaching Playbook (the source of truth for manager-facing language) and against enums and configuration in the `grpaiva/skilldeck` application repository, on 2026-09-01. When the app and this page disagree, the app is right — fix the page.
+  Verified against live production data through the Skill Deck MCP server, the Manager Coaching Playbook (the source of truth for manager-facing language), and enums and configuration in the `grpaiva/skilldeck` application repository, on 2026-09-01. When production and this page disagree, production is right — fix the page.
 </Info>
 
 ## The word that matters most
@@ -31,7 +31,9 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
     Internally the same object is called an `Attribute`. Do not say "competency", "trait", or "metric".
   </Accordion>
   <Accordion title="Category">
-    The grouping that Skills belong to. There are 8, and every Skill sits in exactly one.
+    The grouping that Skills belong to. There are 8: Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, and Productivity.
+
+    A Skill can belong to **more than one** category — Active Listening is in Communication, Interpersonal Relations, and Leadership. So the per-category counts add up to more than 58. Count unique Skills.
 
     Do not say "pillar", "domain", or "bucket".
   </Accordion>
