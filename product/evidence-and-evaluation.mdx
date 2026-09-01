@@ -7,7 +7,7 @@ status: "verified"
 ---
 
 <Info>
-  Evidence sources and the live pipeline (Attendee transcribes and maps speakers; we do not run duplicate detection) were confirmed by a founder on 2026-09-01. Enums in the application still list leftover types and statuses — do not treat those as current product behavior.
+  Evidence sources and the live pipeline were confirmed by a founder on 2026-09-01: Attendee transcribes and maps speakers; Skill Deck does not run duplicate detection; Track analysis and moments run only on an active Track. Enums in the application still list leftover types and statuses — do not treat those as current product behavior.
 </Info>
 
 ## What evidence is
@@ -51,13 +51,23 @@ The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, an
   <Step title="Triage">
     A triage agent reads the evidence and decides **which Skills it can say anything about**. A one-hour meeting speaks to a handful of Skills, not to all 58.
 
-    If the person's manager has whitelisted Skills for them, those are passed into triage as a mild bias — but only when the person has no active Track. See [The manager role](/product/manager-role).
+    Whitelisted Skills get a mild bias **only when the person has no active Track**. Once a Track is active, triage is deliberately unbiased — over-evaluating the tracked Skill was pulling its live score down. See [The manager role](/product/manager-role).
   </Step>
   <Step title="Evaluation">
-    For each Skill triage selected, an evaluator scores the observed behavior against that Skill's level scale, with a written justification.
+    For each Skill triage selected, an evaluator scores the observed behavior against that Skill's level scale, with a written justification. Near-zero scores pass through the [silence gate](#the-gate-silence-is-not-a-score) before they are kept.
   </Step>
   <Step title="Scores update">
-    Status reaches `evaluated`, scores and confidence move, and an [Evidence Evaluated dispatch](/product/track-dispatches) goes out.
+    Status reaches `evaluated`. Scores and confidence move for every Skill that was actually scored.
+  </Step>
+  <Step title="Track analysis and moments, if a Track is active">
+    If Tracks are on and the person has an **active Track**, a second job reads the same meeting through [that Skill](/product/cycles-and-tracks). It writes a **Track analysis** — a short Skill-focused summary — and up to **5 moments** (demonstration or opportunity). Each moment is an excerpt plus commentary, capped at **500 characters**, and may be attributed to one [resource card](/product/cycles-and-tracks) by name, never by score.
+
+    The job prefers an empty moments list over stretching a weak connection. It needs the transcript still in cache. If there is no active Track, this step is skipped.
+
+    Starting a Track also backfills analyses for evaluated meetings from the last **7 days**.
+  </Step>
+  <Step title="Evidence Evaluated email">
+    After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis and scores, not written by an AI composer.
   </Step>
 </Steps>
 
@@ -78,9 +88,21 @@ This is what stops the profile drifting toward the mean as evidence accumulates,
 
 Each evaluation carries a score against the Skill's level scale and a written justification tied to what was actually observed.
 
-While a [Track](/product/cycles-and-tracks) is running, the evidence is also mined for **moments**: up to five short excerpts per piece of evidence, each labelled a **demonstration** or an **opportunity**. Excerpts are capped at 500 characters, which limits how much transcript content the product persists.
+That is the Deck-facing output. The Track-facing output is separate and only runs on an **active Track**.
 
-Together these form the **Track analysis** for that meeting, which is what a manager walks through in a coaching deep-dive.
+## Track analysis and moments
+
+When a Track is active, every newly evaluated meeting is read a second time through the tracked Skill.
+
+| Piece | What it is |
+| --- | --- |
+| **Track analysis** | One Skill-focused summary for that meeting. Unique per Track + evidence pair. |
+| **Moment** | A short excerpt plus commentary. Type is **demonstration** (they showed the behavior) or **opportunity** (they could have and did not). |
+| **Card attribution** | Optional. The model may attach a moment to one card in the hand. Scores stay internal. |
+
+Caps: **5 moments** per meeting, **500 characters** per excerpt. Empty moments are allowed, and preferred, when the meeting did not really speak to the Skill.
+
+This is the material in the member's Evidence Evaluated email, the Weekly Review, and a manager's coaching deep-dive. A manager sees the analysis, not a click-through to the meeting. See [Privacy and data](/product/privacy-and-data).
 
 ## Asking questions about your evidence
 

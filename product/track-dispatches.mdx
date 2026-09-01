@@ -62,9 +62,11 @@ The design reasoning is worth repeating in a demo: a person given a single targe
     Weekly comms adapt to where the user is (`WeeklyTrackCommsMode`): `active` and `pending` are Track-bound, while `unlocking` and `ready_to_start` cover people who do not have a Track yet — someone still accumulating evidence gets a different message from someone mid-Track.
   </Accordion>
   <Accordion title="Evidence Evaluated" icon="file-check">
-    Sent after a piece of evidence has been analyzed. This is the "analysis after every meeting" from the pitch.
+    Sent after a meeting is evaluated. This is the "analysis after every meeting" from the pitch. Subject: `Meeting analysis for :title`.
 
-    It is the dispatch that makes the product feel alive, because it arrives close to the work it describes rather than weeks later.
+    The body is **static** — assembled from stored data, not written by an AI composer. When the member has an active Track, it includes the Track analysis summary and moments. It then shows a top strength and a growth opportunity from that meeting's evaluations.
+
+    It arrives close to the work it describes, not weeks later. Managers never receive this dispatch.
   </Accordion>
   <Accordion title="Weekly Review" icon="chart-bar">
     Fridays at 16:00. The week's Track moments and score movement.
@@ -82,9 +84,9 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 ## How dispatches are written
 
-Each dispatch is composed by an AI agent rather than filled into a template. The agent receives the real data — the Track, the cards, the recent meeting analyses with their moments — and writes the body in the user's language.
+Kickoff, Prep, Review, and Wrap-Up are composed by an AI agent from the real Track data — cards, analyses, moments — in the user's language. If AI composition is off or the call fails, those four fall back to static translated templates. `COMMS_AI_ENABLED` defaults to on.
 
-If AI composition is disabled or the call fails, composers fall back to static translated templates, so the communication always goes out. `COMMS_AI_ENABLED` controls this and defaults to on.
+**Evidence Evaluated is never AI-composed.** It renders stored analysis and scores.
 
 ### The rules the coach writes under
 
