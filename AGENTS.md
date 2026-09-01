@@ -55,6 +55,7 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | How does the product work end to end? | `product/how-it-works.mdx` |
 | What are the Skills, categories, and levels? | `product/skills-and-levels.mdx` |
 | What counts as evidence? How does an evaluation happen? | `product/evidence-and-evaluation.mdx` |
+| Who transcribes meetings? Do we deduplicate them? | `product/evidence-and-evaluation.mdx` |
 | What is a confidence score? How is a level calculated? | `product/confidence-and-scoring.mdx` |
 | What is a Track? What is a Cycle? | `product/cycles-and-tracks.mdx` |
 | What emails does a user get, and when? | `product/track-dispatches.mdx` |

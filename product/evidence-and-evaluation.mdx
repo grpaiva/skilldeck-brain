@@ -7,7 +7,7 @@ status: "verified"
 ---
 
 <Info>
-  Verified against the `EvidenceType` and `EvidenceStatus` enums, `app/Ai/Agents/Evidence`, and `config/scoring.php` in the application repository on 2026-09-01.
+  Evidence sources and the live pipeline (Attendee transcribes and maps speakers; we do not run duplicate detection) were confirmed by a founder on 2026-09-01. Enums in the application still list leftover types and statuses — do not treat those as current product behavior.
 </Info>
 
 ## What evidence is
@@ -38,11 +38,15 @@ The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, an
 
     A bot sitting in a waiting room is a visible state, not a silent one.
   </Step>
-  <Step title="Transcription and speaker mapping">
-    Status moves through `transcribing` and `mapping_speakers`. Speaker mapping is what makes the rest possible: without knowing who said what, nothing can be attributed to a person.
+  <Step title="Attendee returns the transcript">
+    [Attendee](/overview/glossary) transcribes the meeting and maps speakers. Skill Deck receives text that already says who said what.
+
+    Any Skill Deck job or workflow for transcription or speaker mapping is **legacy and unused**. Do not describe us as running those steps.
   </Step>
-  <Step title="Processing and deduplication">
-    The content is processed into evidence. A duplicate detector runs, and repeated content is marked `duplicate` rather than scored twice — so a meeting attended by several Skill Deck users does not inflate anyone's evidence count.
+  <Step title="Processing">
+    The transcript is processed into evidence, then triage and evaluation run.
+
+    Duplicate detection is **unused**. It was a leftover job from when users could upload their own meeting videos, to catch the same file twice. Do not describe a live deduplicator, and do not say we collapse a meeting attended by several Skill Deck users into one piece of evidence.
   </Step>
   <Step title="Triage">
     A triage agent reads the evidence and decides **which Skills it can say anything about**. A one-hour meeting speaks to a handful of Skills, not to all 58.
