@@ -11,7 +11,13 @@ Some facts in this brain change without anyone editing a document. A Skill can b
 So we pull them from production.
 
 <Warning>
-  **Application seeder files are not a source of truth.** `database/seeders/AttributeLevels/**` in the application repository is out of date: it seeds 60 Skills where production runs 58, and its level text differs substantially from what production serves. Read live data, or read nothing.
+  **Application seeder files are not a source of truth.** They are development fixtures, and they have already been wrong about three separate things:
+
+  - `database/seeders/AttributeLevels/**` seeds 60 Skills where production runs 58.
+  - Its level text differs substantially from what production serves.
+  - `OrganizationPlanSeeder` and `SubscriptionPlanSeeder` held plan prices roughly half the live ones.
+
+  Read live data, or ask a founder. Never quote a seeder.
 </Warning>
 
 ## What is synced
@@ -127,6 +133,6 @@ One write tool:
 
 Worth knowing what still drifts by hand:
 
-- Pricing, plans, and fundraising figures. These live only in [Canonical facts](/overview/canonical-facts).
+- **Pricing, plans, and fundraising figures.** These are founder-confirmed and live only in [Canonical facts](/overview/canonical-facts). There is no automated source — the application's seeded prices were stale, and its live Stripe configuration is not exposed through the MCP server.
 - Dispatch timings and scoring constants, which come from application configuration rather than the API.
 - Which two Skills are disabled. The MCP returns only active Skills, so the disabled pair is derived by comparing against the seeder list. If a third is ever disabled, the sync will show the removal but the page note needs updating by hand.

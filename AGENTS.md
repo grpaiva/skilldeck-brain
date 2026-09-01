@@ -173,7 +173,8 @@ mint validate
 | Manager guidance | Manager Coaching Playbook (PDF) | Synced into `playbooks/manager-coaching/`. The PDF wins if they diverge. |
 | The application | `grpaiva/skilldeck` | Private. Laravel, Livewire, Filament. |
 | Engineering docs | `grpaiva/skilldeck` → `docs/` | Deep and partly outdated. Prefer code and config over prose. |
-| Skill seeder files | `grpaiva/skilldeck` → `database/seeders/AttributeLevels/**` | **Stale. Do not use.** 60 Skills where production runs 58, and the level text differs. |
+| Pricing and plans | A founder | Confirmed 2026-09-01 and recorded on `overview/canonical-facts.mdx`. Nowhere else. |
+| Any seeder file | `grpaiva/skilldeck` → `database/seeders/**` | **Stale. Do not use as a source of truth.** Seeders are development fixtures. They have already been wrong about the Skill list, Skill level text, and plan prices. |
 | Product behavior constants | `grpaiva/skilldeck` → `config/` | `tracks.php`, `scoring.php`, `quotas.php` and neighbors are the most reliable statement of how the product actually behaves. |
 | Mintlify product knowledge | `https://www.mintlify.com/docs/mcp` | For questions about Mintlify itself. |
 | This site over MCP | `https://mcp.mintlify.com` | For reading and editing this content. |
