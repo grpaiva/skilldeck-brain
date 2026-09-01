@@ -1,6 +1,21 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skill Deck">
-  <rect width="32" height="32" rx="7" fill="#059669"/>
-  <rect x="6.2" y="9.4" width="12" height="15.6" rx="2.6" transform="rotate(-12 12.2 17.2)" fill="#34D399"/>
-  <rect x="13" y="6.6" width="12.4" height="18.8" rx="2.8" fill="#ECFDF5"/>
-  <path d="M16.4 12.4h5.6M16.4 15.6h5.6M16.4 18.8h3.2" stroke="#059669" stroke-width="1.7" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><style>
+    #light-icon {
+      display: inline;
+    }
+    #dark-icon {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #light-icon {
+        display: none;
+      }
+      #dark-icon {
+        display: inline;
+      }
+    }
+  </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1037)"><rect width="1000" height="1000" fill="#171717"></rect><g transform="matrix(25,0,0,25,200,200)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path fill="white" d="M12 3L9.1 9.1L3 12l6.1 2.9L12 21l2.9-6.1L21 12l-6.1-2.9L12 3z"></path>
+</svg></svg></g></g><defs><clipPath id="SvgjsClipPath1037"><rect width="1000" height="1000" x="0" y="0" rx="200" ry="200"></rect></clipPath></defs></svg></g><g id="dark-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1038)"><rect width="1000" height="1000" fill="#ffffff"></rect><g transform="matrix(29.166666666666668,0,0,29.166666666666668,150,150)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path fill="#171717" d="M12 3L9.1 9.1L3 12l6.1 2.9L12 21l2.9-6.1L21 12l-6.1-2.9L12 3z"></path>
+</svg></svg></g></g><defs><clipPath id="SvgjsClipPath1038"><rect width="1000" height="1000" x="0" y="0" rx="200" ry="200"></rect></clipPath></defs></svg></g></svg>
