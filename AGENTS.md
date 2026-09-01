@@ -48,6 +48,7 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | What does Skill Deck do? What problem does it solve? | `company/what-is-skill-deck.mdx` |
 | What is our unique value proposition? | `company/what-is-skill-deck.mdx` |
 | Who do we sell to? Which markets? | `company/icp-and-market.mdx` |
+| Why not companies above 250 people? | `company/icp-and-market.mdx` |
 | What does it cost? What are the plans? | `company/business-model.mdx` |
 | What stage are we at? What are we raising and why? | `company/stage-and-fundraising.mdx` |
 | Who are the founders? Why them? | `company/team-and-history.mdx` |
