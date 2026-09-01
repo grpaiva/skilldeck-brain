@@ -93,7 +93,7 @@ The single most common mistake is writing "competency" where the product says "S
 | **Attribute** | The internal database name for a Skill. Code and engineering docs only. | Anything customer-facing |
 | **Category** | The grouping that Skills belong to. There are 8. | "Pillar", "domain", "bucket" |
 | **Level** | The graded position within a Skill. **21 levels**, scored 0 to 20. | "Rating", "grade", "20 levels", "out of 20 levels" |
-| **Evidence** | A piece of real work the product analyzes — usually a meeting. | "Recording", "data point", "sample" |
+| **Evidence** | A piece of real work the product analyzes. Meetings are first-run. Slack exists but is not first-run. | "Recording", "data point", "sample", or claiming email / documents / files / calls |
 | **Evaluation** | The scored assessment produced from evidence. | "Test", "assessment result", "review" |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
 | **Track** | A development cycle on one Skill. Needs about two weeks minimum. | "Course", "program", "module", "sprint" |

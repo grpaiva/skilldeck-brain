@@ -65,9 +65,11 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
 <AccordionGroup>
   <Accordion title="Evidence">
-    A piece of real work that Skill Deck analyzes. A meeting is the main one. The product also models `email`, `conversation`, `chat_topic`, `phone_call`, `document`, and `file`. `activity_session` is leftover from a [legacy Activities feature](/product/cycles-and-tracks) and is unused.
+    A piece of real work that Skill Deck analyzes. **Meetings** are the live source we sell and onboard on. **Slack conversations** are implemented but we do not ask new customers or test teams to connect Slack at the start.
 
-    Say "evidence", not "recording", "data point", or "sample". The live claim is **real work evidence**, not AI interviews.
+    Email, documents, files, and calls were in an early PRD and were never implemented. Other messaging platforms are on hold. `activity_session` is leftover from a [legacy Activities feature](/product/cycles-and-tracks).
+
+    Say "evidence", not "recording", "data point", or "sample". The live claim is **real work evidence from meetings**, not AI interviews and not a multi-channel inbox.
   </Accordion>
   <Accordion title="Evaluation">
     The scored assessment produced from a piece of evidence. One evidence can produce evaluations across several Skills.
@@ -179,7 +181,7 @@ The pages a manager and a member actually work in. Use these names in any instru
     The internal metering that bounds how much processing a plan gets.
   </Accordion>
   <Accordion title="Integration">
-    A connected external source (`IntegrationPlatform`): Google Calendar, Microsoft Calendar, Zoom, or Slack.
+    A connected external source (`IntegrationPlatform`): Google Calendar, Microsoft Calendar, Zoom, or Slack. Calendars and Zoom are first-run. Slack is implemented; do not ask new customers to connect it at the start.
   </Accordion>
   <Accordion title="Attendee">
     The third-party service that supplies the meeting bots. Internal term — customers should hear "the Skill Deck meeting bot".

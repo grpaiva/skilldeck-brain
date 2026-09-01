@@ -39,7 +39,7 @@ These are the application's stated core privacy commitments, and they are the st
 | --- | --- | --- |
 | Meeting video and audio | Nowhere. Never captured. | — |
 | Meeting transcript | Application cache only | 7 days |
-| Raw email and conversation bodies | Application cache only | 7 days |
+| Slack conversation bodies | Application cache only | 7 days, if Slack is connected |
 | Residual files and bot-provider data | Temporary storage | Deleted after 7 days by a daily job |
 | Evidence metadata (title, type, status, timestamps, participants) | Database | Retained |
 | Evaluations, scores, and score history | Database | Retained |
@@ -53,7 +53,7 @@ Raw transcript text is never written to a database column. Notifications are exp
 
 This is the point that resolves most objections, and it is not widely understood.
 
-> The subject is always the evidence owner. In multi-person meetings, emails, or conversations, agents evaluate only the owner's behavior. Other participants matter only when they clarify the owner's behavior or impact.
+> The subject is always the evidence owner. In multi-person meetings or Slack conversations, agents evaluate only the owner's behavior. Other participants matter only when they clarify the owner's behavior or impact.
 
 A meeting with five people does not produce five profiles. It produces evidence for the Skill Deck user whose calendar scheduled the bot, about that person only. Colleagues appearing in the transcript are context, not subjects.
 
