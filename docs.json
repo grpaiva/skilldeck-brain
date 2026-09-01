@@ -4,9 +4,9 @@
   "name": "Skill Deck Brain",
   "description": "The shared source of truth about what Skill Deck is, how it works, and how we talk about it.",
   "colors": {
-    "primary": "#059669",
-    "light": "#10B981",
-    "dark": "#047857"
+    "primary": "#9333EA",
+    "light": "#A855F7",
+    "dark": "#7E22CE"
   },
   "favicon": "/favicon.svg",
   "fonts": {

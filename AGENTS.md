@@ -65,6 +65,7 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | A member is stuck. What do I do? | `playbooks/manager-coaching/red-flags.mdx` |
 | How do I write about Skill Deck? What can I not claim? | `playbooks/messaging-and-claims.mdx` |
 | What is the exact number for X? | `overview/canonical-facts.mdx` |
+| What brand colors do we use? | `overview/canonical-facts.mdx` |
 | What does this word mean? | `overview/glossary.mdx` |
 | How do I refresh Skills and categories from production? | `overview/syncing-from-production.mdx` |
 
@@ -175,6 +176,7 @@ mint validate
 | The application | `grpaiva/skilldeck` | Private. Laravel, Livewire, Filament. |
 | Engineering docs | `grpaiva/skilldeck` → `docs/` | Deep and partly outdated. Prefer code and config over prose. |
 | Pricing and plans | A founder | Confirmed 2026-09-01 and recorded on `overview/canonical-facts.mdx`. Nowhere else. |
+| Brand accent | skilldeck.ai `theme-color` and Tailwind `purple` | `purple-600` `#9333EA`. Docs `colors` in `docs.json` use 600 / 500 / 700. |
 | Any seeder file | `grpaiva/skilldeck` → `database/seeders/**` | **Stale. Do not use as a source of truth.** Seeders are development fixtures. They have already been wrong about the Skill list, Skill level text, and plan prices. |
 | Product behavior constants | `grpaiva/skilldeck` → `config/` | `tracks.php`, `scoring.php`, `quotas.php` and neighbors are the most reliable statement of how the product actually behaves. |
 | Mintlify product knowledge | `https://www.mintlify.com/docs/mcp` | For questions about Mintlify itself. |
