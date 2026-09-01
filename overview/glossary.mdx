@@ -1,0 +1,191 @@
+---
+title: "Glossary"
+description: "The Skill Deck vocabulary. Use these terms exactly, in the product and in everything we write."
+icon: "book-a"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Verified against the Manager Coaching Playbook (the source of truth for manager-facing language) and against enums and configuration in the `grpaiva/skilldeck` application repository, on 2026-09-01. When the app and this page disagree, the app is right — fix the page.
+</Info>
+
+## The word that matters most
+
+**Skill.** Not competency, not attribute, not trait.
+
+Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. The product, the emails, and the Manager Coaching Playbook all say Skill, and so should we.
+
+<Warning>
+  Some of our fundraising material says "58 competencies". That wording is legacy. Do not repeat it in anything new, and correct it when you touch that material.
+
+  **Attribute** is the internal database name for a Skill. It appears in code, enums, and engineering docs. It never appears in customer-facing writing.
+</Warning>
+
+## The Skill model
+
+<AccordionGroup>
+  <Accordion title="Skill">
+    One of the 58 behaviors Skill Deck measures. The product term, in the UI, in emails, and in everything we write.
+
+    Internally the same object is called an `Attribute`. Do not say "competency", "trait", or "metric".
+  </Accordion>
+  <Accordion title="Category">
+    The grouping that Skills belong to. There are 8, and every Skill sits in exactly one.
+
+    Do not say "pillar", "domain", or "bucket".
+  </Accordion>
+  <Accordion title="Level">
+    The graded position a person holds within a single Skill, on a **0 to 20** scale. Each level has a written description of the behavior it represents.
+
+    Write it as "8/20 in Storytelling", not "a rating" and not "a grade".
+  </Accordion>
+  <Accordion title="Deck">
+    A person's full set of Skills taken together — their behavioral profile, and the product's namesake. Also the name of the page where a user sees it.
+
+    "Deck movement" means change in scores over a period. "Deck confidence" means confidence across the whole profile rather than one Skill.
+  </Accordion>
+  <Accordion title="Snapshot">
+    A point-in-time capture of a Deck, used to show how a profile changed over a period. Generated automatically at the end of each Cycle.
+  </Accordion>
+  <Accordion title="Benchmark">
+    A comparison of a person or team's scores against a reference set.
+  </Accordion>
+</AccordionGroup>
+
+## Evidence and evaluation
+
+<AccordionGroup>
+  <Accordion title="Evidence">
+    A piece of real work that Skill Deck analyzes. A meeting is the main one, but the product models several types (`EvidenceType`): `meeting`, `email`, `conversation`, `chat_topic`, `phone_call`, `document`, `file`, and `activity_session`.
+
+    Say "evidence", not "recording", "data point", or "sample". Evidence is the noun the whole product rests on — the claim is that we evaluate what people *did*.
+  </Accordion>
+  <Accordion title="Evaluation">
+    The scored assessment produced from a piece of evidence. One evidence can produce evaluations across several Skills.
+
+    Not a "test", a "review", or an "assessment result".
+  </Accordion>
+  <Accordion title="Confidence">
+    How much evidence stands behind a score, expressed from 0 to 1 and usually shown as a percentage. Low confidence means "we have not seen enough of this yet", **not** "we think this person is inconsistent".
+
+    Never call it "accuracy", "certainty", or "reliability". Managers watch for **hollow confidence** — a score that is not backed by recent evidence.
+  </Accordion>
+  <Accordion title="Track analysis">
+    The per-meeting analysis produced while a Track is active: a summary plus the moments found in that meeting. Visible on the member page and used in coaching deep-dives.
+  </Accordion>
+  <Accordion title="Moment">
+    A short, specific excerpt from one piece of evidence showing the tracked Skill in action. Two types exist (`TrackMomentType`): a **demonstration**, where the person showed the behavior, and an **opportunity**, where they could have and did not.
+  </Accordion>
+</AccordionGroup>
+
+## The development cycle
+
+<AccordionGroup>
+  <Accordion title="Track">
+    A development cycle focused on a single Skill. **Tracks need about two weeks minimum** and can run longer.
+
+    Statuses (`TrackStatus`): `pending_attribute` (shown as Pending Skill Selection), `pending_goal`, `active`, `completed`, `switched`, `expired`. A Track can also be **rolled** into a fresh one at a Cycle boundary.
+
+    Not a "course", "program", "module", or "sprint".
+  </Accordion>
+  <Accordion title="Goal">
+    The score a Track is aiming at. A Track can complete only when the Goal is met and the minimum duration has passed.
+  </Accordion>
+  <Accordion title="Cycle">
+    A quarter. Tracks live inside a Cycle, and Cycle boundaries trigger snapshots, reports, and Track rolls. Cycle dates can follow the calendar quarter or be custom.
+
+    Use "Cycle" and "quarter" interchangeably in prose; "Cycle" is the product term.
+  </Accordion>
+  <Accordion title="Churn (Skill churn)">
+    Switching Skills so often that Tracks never reach the two-week completion window. The single biggest failure mode in manager usage, and named as such in the Manager Coaching Playbook.
+  </Accordion>
+  <Accordion title="Dispatch">
+    A scheduled communication sent to a user during a Track, normally by email. Five types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, and **Wrap-Up**.
+
+    In manager-facing writing, use the short names: Prep, Review, Kickoff, Wrap-Up. Not "notification", "alert", or "digest".
+  </Accordion>
+  <Accordion title="Unlock">
+    The point at which a Skill has enough confidence behind it to be eligible for a Track. "Unlocking" is the state a member is in while they accumulate evidence and no Skill is eligible yet.
+  </Accordion>
+  <Accordion title="Target">
+    An optional goal set over a period, for a person or a team. Two types (`TargetType`): a **Skill target** on specific scores, or a **confidence target** to reach a minimum average Deck confidence.
+  </Accordion>
+  <Accordion title="Resource card">
+    One of the named behaviors a user holds during a Track — the Goal-level behavior plus the levels above it. Each card has a name, a description, and an example. Users see card names, never the level numbers behind them.
+  </Accordion>
+  <Accordion title="Activity">
+    A practical exercise that becomes evidence as an `activity_session`.
+
+    **Temporarily disabled in the application.** Do not describe activities as available.
+  </Accordion>
+</AccordionGroup>
+
+## Surfaces
+
+The pages a manager and a member actually work in. Use these names in any instruction, because they match what is on screen.
+
+| Surface | What it is |
+| --- | --- |
+| **Deck** | The person's full Skill profile, with scores and confidence |
+| **Overview** | The Track-centric page: progress vs Goal, time on Track, Track history |
+| **Journal** | The reading feed of stored dispatches — Preps, Reviews, Kickoffs, Wrap-Ups |
+| **Team page** | Cycle stats and the member Tracks timeline for a team |
+| **Member page** | One person, seen by their manager. Prep for coaching in the order Overview → Journal → Deck |
+| **Track Settings** | Where Skill Tracks, automation, and the whitelist are configured |
+| **Advisor Picks** | Weekly audio episodes on the week's learning topic |
+
+## Organizations and people
+
+<AccordionGroup>
+  <Accordion title="Organization">
+    The customer account. Holds the subscription, the members, and the teams.
+  </Accordion>
+  <Accordion title="Team">
+    A group of people inside an organization, with a manager. Skill Tracks, automation, and the whitelist are set up here.
+  </Accordion>
+  <Accordion title="Organization role">
+    Account-level permissions (`OrganizationRole`): **Owner** has full control including ownership transfer; **Admin** manages members, teams, and settings; **Billing** manages billing and subscription only; **Member** uses the product without admin controls.
+  </Accordion>
+  <Accordion title="Team role">
+    Team-level permissions (`TeamRole`): **Manager** or **Member**.
+  </Accordion>
+  <Accordion title="Whitelist">
+    The set of Skills a manager marks as most relevant for a person or team, based on job scope, personal challenges, or organizational values. Keeps Track focus role-aligned.
+  </Accordion>
+  <Accordion title="Management level">
+    How often a manager meets their team about development: **Weekly**, **Monthly**, or **Quarterly**. Named for the manager's coaching cadence, not for how often Skill Deck emails the member.
+
+    See the [Manager Coaching Playbook](/playbooks/manager-coaching/overview).
+  </Accordion>
+</AccordionGroup>
+
+## Other terms you will meet
+
+<AccordionGroup>
+  <Accordion title="Insight">
+    An observation the product surfaces about a person or a team, derived from their accumulated evidence.
+  </Accordion>
+  <Accordion title="Superpower">
+    An insight highlighting a standout strength, shareable as a public page or image.
+  </Accordion>
+  <Accordion title="Quota">
+    The internal metering that bounds how much processing a plan gets.
+  </Accordion>
+  <Accordion title="Integration">
+    A connected external source (`IntegrationPlatform`): Google Calendar, Microsoft Calendar, Zoom, or Slack.
+  </Accordion>
+  <Accordion title="Attendee">
+    The third-party service that supplies the meeting bots. Internal term — customers should hear "the Skill Deck meeting bot".
+  </Accordion>
+</AccordionGroup>
+
+## Words we do not use
+
+| Never | Why | Instead |
+| --- | --- | --- |
+| Competency, attribute (externally) | The product says Skill | Skill |
+| Surveillance, monitoring | Repeating the frame reinforces it, even in a denial | Describe what the product does |
+| Grading, ranking, judging | Implies comparison between people and a verdict | Scoring, evaluating, levelling |
+| AI-powered, powerful, seamless | Says nothing and reads as filler | Name the mechanism |
+| Accuracy (about confidence) | Confidence is about evidence volume, not correctness | Confidence |

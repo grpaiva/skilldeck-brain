@@ -1,0 +1,134 @@
+---
+title: "Skills and levels"
+description: "The 58 Skills, the 8 categories they sit in, and what a level actually says."
+icon: "layers"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Verified against `database/seeders/AttributeLevels/**` and the dispatch prompt views in the application repository on 2026-09-01, and against the Manager Coaching Playbook for terminology.
+</Info>
+
+The Skill model is the product's core asset. It is what turns a transcript into something a person can act on, and it is the hardest part to copy.
+
+<Note>
+  **Skill** is the product term. `Attribute` is the internal database name for the same object, and appears only in code and engineering docs. Never write "competency" in customer-facing material.
+</Note>
+
+## Structure
+
+```text
+Category          8 of them
+└── Skill         one behavior, e.g. Storytelling
+    └── Level     0 to 20, each with a written behavioral description
+```
+
+**58 Skills are active.** The application seeds level data for 60; two are disabled through the Filament admin panel and are not part of the live model.
+
+## The eight categories
+
+<Columns cols={2}>
+  <Card title="Communication" icon="message-circle">
+    Message adaptation · Nonverbal communication · Persuasion · Presentation skills · Storytelling · Synthesis · Written communication
+  </Card>
+  <Card title="Leadership" icon="compass">
+    Accountability · Active listening · Change management · Conflict management · Decision making · Delegation · Influence · People development · Problem solving · Strategy · Team motivation
+  </Card>
+  <Card title="Emotional intelligence" icon="heart">
+    Body language reading · Emotional balance · Emotional resilience · Empathy · Recognizing emotions in others · Self-awareness · Self-confidence · Self-motivation · Stress management
+  </Card>
+  <Card title="Productivity" icon="zap">
+    Discipline and consistency · Efficiency · Focus and concentration · Organization · Personal energy management · Project completion · Task prioritization · Time management
+  </Card>
+  <Card title="Critical thinking" icon="brain">
+    Critical sense · Curiosity · Data analysis · Hypothesis formulation · Logical reasoning · Objectivity · Risk assessment
+  </Card>
+  <Card title="Creativity" icon="lightbulb">
+    Courage · Divergent thinking · Experimentation · Idea generation · Improvisation · Originality · Prototyping
+  </Card>
+  <Card title="Interpersonal relations" icon="users">
+    Collaboration · Feedback · Negotiation · Networking · Respect · Trust
+  </Card>
+  <Card title="Resilience, flexibility and adaptability" icon="waves">
+    Adaptability · Ambiguity tolerance · Growth mindset · Learning ability · Resilience
+  </Card>
+</Columns>
+
+<Warning>
+  The lists above come from the seeded level data, which covers all 60 Skills. Two of them are disabled and therefore not in the live model, and this page does not yet record which two.
+
+  Use the categories freely. Do not publish a full Skill list, and do not promise a specific Skill to a customer without checking it in the product.
+</Warning>
+
+{/* TODO: Record which two Skills are disabled in the Filament panel, then mark them in the lists above so this page can be used as a definitive reference. */}
+
+## Levels
+
+Each Skill is scored on a **0 to 20 scale**, and every point on that scale has a written description of the behavior it represents. This granularity is what the whole pitch rests on.
+
+The bottom of the scale is not "not very good". It describes actively harmful behavior. Levels 0 through 4 of Storytelling cover deliberate manipulation, sabotage, demoralizing narratives, and communication so disorganized it causes confusion. The scale then climbs through competent, to skilled, to behavior that changes an organization.
+
+<Note>
+  **Say "0 to 20", not "20 levels".** The scale runs from 0 to 20, which is 21 defined levels. The external claim of "20 levels" is close enough to survive, but do not repeat it in anything precise, and never say "out of 20 levels".
+</Note>
+
+### What a level looks like
+
+Real descriptors from the Storytelling Skill:
+
+<CodeGroup>
+```text Level 8
+Structures narratives with progression creating audience expectation.
+Selects specific details reinforcing the story's central point. Uses
+concrete language at key moments to maximize impact. Incorporates
+contrast or comparison elements highlighting important points.
+```
+
+```text Level 9
+Structures narratives with tension and relief moments creating dynamism.
+Uses simple analogies or metaphors making abstract concepts more
+accessible. Incorporates authentic vulnerability elements generating
+connection. Adapts stories in real time based on audience engagement cues.
+```
+
+```text Level 15
+Structures narratives becoming enduring references within the organization.
+Uses stories effectively translating strategy into personal meaning.
+Adapts complex narratives for different organizational levels without
+losing essence. Establishes stories aligning diverse groups around
+shared purpose.
+```
+</CodeGroup>
+
+Every level is a list of observable behaviors, not an adjective. That is what makes a score checkable against a transcript, and what makes the next level actionable.
+
+<Tip>
+  The Storytelling example in our pitch material is a light paraphrase of the real level 8 and level 9 descriptors. It is fair to use, but do not present it as a verbatim product output.
+</Tip>
+
+## How levels reach the user
+
+A user does not see "you are level 8". During a Track they hold **resource cards** — the Goal-level behavior and the levels above it, each with a name, a description, and an example — and the coaching refers to them by name.
+
+The reason given in the product's own prompts: surfacing the number turns a behavior into a grade.
+
+Managers do see scores. The Manager Coaching Playbook has them read progress against Goal on the Overview and check confidence on the Deck, and the coaching prompts are written around those numbers.
+
+<Warning>
+  Our external pitch quotes a numeric level ("You scored 8/20 in Storytelling") while the member's own emails deliberately avoid one. Both are real design decisions. Before building a demo script around the numeric example, decide which surface you are showing.
+</Warning>
+
+## What is scored, and what is not
+
+Skills carry `do_not_evaluate_on` rules that exclude them from evidence types where they cannot fairly be judged. Written communication is not assessed from a meeting transcript the way it would be from an email.
+
+Triage then narrows further: for each piece of evidence, it decides which Skills that evidence can meaningfully speak to. One meeting touches a handful, never all 58. See [Evidence and evaluation](/product/evidence-and-evaluation).
+
+## Why the model is the moat
+
+Worth understanding before you pitch it.
+
+The models that read the transcripts are commodity. The integration that puts a bot in a meeting is buildable. What is not quickly reproducible is 58 Skills × 21 levels of written, observable behavioral descriptors, tuned so a language model can consistently place a person on the scale from evidence.
+
+That is the asset. Lead with the granularity it produces, not with the AI.

@@ -1,0 +1,65 @@
+---
+title: "Organizations and teams"
+description: "How customer accounts, teams, and roles are structured."
+icon: "building-2"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Roles on this page were read from the `OrganizationRole` and `TeamRole` enums in the application repository on 2026-09-01.
+</Info>
+
+## The hierarchy
+
+```text
+Organization          the customer account — holds the subscription and the members
+└── Team              a group of people, with a manager
+    └── Member        a person, with their own deck, evidence, and tracks
+```
+
+An organization is the unit that pays. A team is the unit where development actually happens, because a team has a manager and the manager is the person the product is trying to equip.
+
+## Organization roles
+
+Account-level permissions.
+
+| Role | What it can do |
+| --- | --- |
+| **Owner** | Full control of the organization, including transferring ownership |
+| **Admin** | Manage members, teams, and organization settings |
+| **Billing** | Manage billing and subscription only |
+| **Member** | Use the product without admin controls |
+
+Owner and Admin can manage members and teams. Owner and Billing can manage billing. Only the Owner can manage the organization itself. Owner, Admin, and Billing can reach the management pages; a Member cannot.
+
+<Note>
+  Note what an organization role does **not** grant: none of these roles is a route into another person's evaluations. Administrative control over an account and visibility into an individual's development data are separate concerns in this product. See [Privacy and data](/product/privacy-and-data).
+</Note>
+
+## Team roles
+
+Team-level permissions, and there are only two.
+
+| Role | What it means |
+| --- | --- |
+| **Manager** | Can manage the team, and gets the team and individual views |
+| **Member** | Belongs to the team |
+
+The manager role carries the product's most sensitive capability, because it is the one that grants any view of another person's development. See [The manager role](/product/manager-role).
+
+## Joining an organization
+
+People are added by invitation from an Owner or Admin.
+
+The application also supports an invitation-only mode at the application level (`INVITATION_ONLY`), which restricts registration entirely to people holding a valid invitation code. It exists for controlled launches and pilots.
+
+{/* TODO: Confirm whether invitation-only mode is currently enabled in production, and document the exact self-serve signup path if one exists. */}
+
+## How this maps to selling
+
+Plans are sold in seat bundles against the organization — see [Business model](/company/business-model). A few practical consequences:
+
+- **The buyer is usually not the user.** HR or a founder buys; managers and their teams use it. The organization roles reflect that split, which is why Billing exists as a role that grants no product access.
+- **Teams are where value shows up.** A pilot spread thinly across an organization with no manager attached produces profiles nobody looks at. Put a whole team in, with its manager.
+- **Expansion is team by team.** The natural growth path is one team proving it, then adjacent teams following.

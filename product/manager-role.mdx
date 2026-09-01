@@ -1,0 +1,129 @@
+---
+title: "The manager role"
+description: "What a manager sees, what they can do, and why the product is built around them."
+icon: "user-cog"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Verified against the Manager Coaching Playbook and the application's routes and enums on 2026-09-01.
+</Info>
+
+## The position we take
+
+Skill Deck does the analysis. The manager does the leading.
+
+We are explicit, in the pitch and in the product, that the human role of the leader is essential to development. The tool is not trying to replace the manager with an algorithm — it is trying to remove the two things that stop managers from developing their people: no time, and no specifics.
+
+The playbook states the division cleanly: the manager's job is **not to replace the product's weekly autopilot**. It is to coach, guide, and hold accountable.
+
+<Columns cols={3}>
+  <Card title="Coach" icon="messages-square">
+    Turn signals into clearer practice and better judgment.
+  </Card>
+  <Card title="Guide" icon="compass">
+    Keep the right Skill and Goal in focus.
+  </Card>
+  <Card title="Hold accountable" icon="check-circle">
+    Make progress and evidence volume a regular conversation.
+  </Card>
+</Columns>
+
+## What a manager sees
+
+Two surfaces.
+
+### Team page
+
+Cycle stats and the member Tracks timeline for the team. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline.
+
+### Member page
+
+One person in depth. The playbook's standard prep order is **Overview → Journal → Deck**, and those are the three things a manager reads:
+
+| Surface | What the manager reads |
+| --- | --- |
+| **Overview** | Progress vs Goal, days or weeks on the current Track, and Track history — completed, still active, switched, rolled, expired |
+| **Journal** | The member's stored dispatches: this week's Prep and Review, Kickoffs, and Wrap-Ups |
+| **Deck** | Current scores and confidence across the member's Skills, plus the quarterly report callout |
+| **Track analyses** | The per-meeting analysis, used for the one-meeting deep-dive in a coaching conversation |
+
+<Note>
+  A manager reads their member's Journal and Track analyses. This is normal and intended — the coaching conversation is built on them. What a manager never gets is a transcript. See [Privacy and data](/product/privacy-and-data).
+</Note>
+
+## What a manager can do
+
+<AccordionGroup>
+  <Accordion title="Set up the team" icon="settings">
+    On the team page: enable Skill Tracks, and set automation and the whitelist. This is step two of the playbook's six moves, and skipping it is the most common setup failure.
+  </Accordion>
+  <Accordion title="Whitelist Skills" icon="list-filter">
+    Mark the Skills most relevant for a person or a team — matched to job scope, personal challenges, or organizational values. It keeps Track focus role-aligned without the manager choosing every Track by hand.
+
+    The whitelist is a **bias, not a filter**. When a person has no active Track, the organization and team whitelist Skills are passed into triage as a mild bias toward evaluating those Skills. When a person *does* have an active Track, triage is deliberately **not** biased toward the tracked Skill — the product avoids manufacturing evidence for the thing it is looking for.
+
+    That last detail is a good answer to "is it just going to tell me what I want to hear?"
+  </Accordion>
+  <Accordion title="Start, configure, and edit Tracks" icon="flag">
+    A manager can start a Track, configure a pending Skill or Goal, and edit an active Track.
+
+    They can also leave it to automation. The playbook recommends auto-assigning the Skill and Goal at the Monthly and Quarterly levels, so a member is never blocked waiting on a manager decision.
+  </Accordion>
+  <Accordion title="Set optional Targets" icon="target">
+    Targets can be created for an individual member or a whole team. Two kinds: a **Skill target** on specific scores, or a **confidence target** to reach a minimum average Deck confidence.
+
+    Targets are optional in the playbook's agendas. The confidence target is the right first one for a new team, because nothing can be developed until the profiles mean something.
+  </Accordion>
+  <Accordion title="Review at the end of a period" icon="calendar-check">
+    At the end of each Track, month, or Cycle, a manager has data to review both how the tool is being used and how the person is developing. The Cycle-end pipeline generates snapshots and reports automatically, which is what makes quarter-over-quarter comparison possible.
+  </Accordion>
+</AccordionGroup>
+
+## The coaching cadence
+
+A manager picks a **management level** — Weekly, Monthly, or Quarterly — based on team size, seniority, Skill criticality, and how mature the team's evidence is. Levels are named for how often the *manager* meets, not for how often Skill Deck emails the member; the product sends Monday Prep and Friday Review every week regardless.
+
+<Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
+  The full playbook: choosing a level, the agenda for each, coaching prompts, and red flags.
+</Card>
+
+## One-to-ones
+
+The coaching meeting *is* the one-to-one, and it is where Skill Deck pays off: the manager arrives with progress against Goal, themes from the week's Prep and Review, and a specific meeting to walk through.
+
+<Warning>
+  There is **no dedicated 1-on-1 feature**. Sessions, agendas, and notes are not product objects. The playbook supplies the agenda; the product supplies the material.
+
+  Describe the one-to-one as the use case the manager surfaces support, not as a module.
+</Warning>
+
+## The failure mode to design against
+
+Across all three management levels, the playbook names the same one: **Skill churn**. Switching Skills so often that Tracks never reach the two-week completion window.
+
+It is worth understanding why this is the recurring risk. A manager who is engaged wants to act, and the most available action is changing the Skill. The playbook's default bias — keep the Track unless there is a strong reason to switch — exists to redirect that energy into coaching practice quality instead.
+
+<Card title="Red flags and interventions" icon="triangle-alert" href="/playbooks/manager-coaching/red-flags">
+  Every stuck state, and what to do about it.
+</Card>
+
+## The limits
+
+A manager's access is bounded by the product's privacy model, and those bounds are a selling point rather than a limitation.
+
+- **No transcripts.** After 7 days no transcript exists anywhere in the system, and raw content is never written to the database.
+- **Only the member's own behavior is evaluated.** A meeting produces evidence about the Skill Deck user it came from, not about their colleagues.
+
+<Card title="Privacy and data" icon="shield" href="/product/privacy-and-data">
+  Answer every access question from here.
+</Card>
+
+## Open questions
+
+{/* TODO: Verify against the running product: */}
+
+- Whether a member can see exactly what their manager sees about them.
+- Whether a member can opt out of manager visibility, and what happens if they do.
+- Whether managers receive their own dispatches, or only the member does.

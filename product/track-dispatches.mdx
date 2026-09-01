@@ -1,0 +1,108 @@
+---
+title: "Track dispatches"
+description: "The five communications a user receives, what each contains, and when it arrives."
+icon: "mail"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Verified against the `DispatchType` enum, `routes/console.php`, `config/comms.php`, and the dispatch prompt views in the application repository on 2026-09-01.
+</Info>
+
+Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
+
+## The five dispatches
+
+| Dispatch | When | What it does |
+| --- | --- | --- |
+| **Kickoff** | When a Track starts | Introduces the Skill, where the person stands, and their hand of cards |
+| **Weekly Prep** | Mondays, 12:30 | Sets up the week ahead |
+| **Evidence Evaluated** | After a meeting is analyzed | The analysis of that meeting |
+| **Weekly Review** | Fridays, 16:00 | The week's moments and score movement |
+| **Wrap-Up** | When a Track ends | The arc of the whole Track and what to carry forward |
+
+The rhythm is deliberate: a Monday setup, real-time analysis as work happens, and a Friday retrospective. Development is attached to the working week rather than to an annual event.
+
+<Note>
+  Dispatches keep running at this weekly rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook is explicit that its Weekly, Monthly, and Quarterly levels describe the *manager's* cadence — the product still sends Monday Prep and Friday Review every week for active Tracks.
+</Note>
+
+Dispatches are stored and readable in the **Journal**, which is also what a manager reads when preparing a coaching meeting.
+
+## Resource cards
+
+Before the individual dispatches make sense, this concept has to be clear, because it shapes all of them.
+
+When a user starts a Track, they draw a **hand of resource cards** — the Goal-level behavior plus the levels above it, each one a concrete behavior with a name, a description, and an example of what it looks like. They are told to play whichever card a situation calls for.
+
+<Warning>
+  **Members never see the level number behind a card.** The dispatch prompts instruct the coach to refer to a card by name and never by score, because "surfacing them turns a behavior into a grade".
+
+  This matters for messaging. Our external pitch quotes a numeric level — "You scored 8/20 in Storytelling" — but the emails a member receives deliberately avoid the number. Do not describe the emails as delivering scores. Managers do see scores, on the Overview and the Deck.
+</Warning>
+
+The design reasoning is worth repeating in a demo: a person given a single target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment calls for.
+
+## Each dispatch
+
+<AccordionGroup>
+  <Accordion title="Kickoff" icon="flag">
+    Sent when a Track starts, and it can replace the Monday Weekly Prep for that week.
+
+    It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It then walks through the hand of cards by name, strongest first, so the user can recognize the moment for each one — framed as tools they now carry, not levels they are graded on.
+
+    It introduces the week's learning topic and links the Advisor Picks audio episode for it, then closes with two or three concrete openings to watch for in upcoming meetings, each tied to a card by name.
+  </Accordion>
+  <Accordion title="Weekly Prep" icon="calendar">
+    Mondays at 12:30, for users with an open Track.
+
+    The Advisor Picks episode for the week is generated at 11:00, an hour and a half earlier, specifically so the Prep email can reference the week's learning topic and link a fresh episode.
+
+    Weekly comms adapt to where the user is (`WeeklyTrackCommsMode`): `active` and `pending` are Track-bound, while `unlocking` and `ready_to_start` cover people who do not have a Track yet — someone still accumulating evidence gets a different message from someone mid-Track.
+  </Accordion>
+  <Accordion title="Evidence Evaluated" icon="file-check">
+    Sent after a piece of evidence has been analyzed. This is the "analysis after every meeting" from the pitch.
+
+    It is the dispatch that makes the product feel alive, because it arrives close to the work it describes rather than weeks later.
+  </Accordion>
+  <Accordion title="Weekly Review" icon="chart-bar">
+    Fridays at 16:00. The week's Track moments and score movement.
+
+    Friday afternoon is also when Track Goal checks run, so a Track that met its Goal wraps at the same point in the week that the Review lands. This is why the Manager Coaching Playbook makes **Friday the best day for a Weekly coaching meeting** — hold it after the member has their Review, or their Wrap-Up.
+  </Accordion>
+  <Accordion title="Wrap-Up" icon="trophy">
+    Sent when a Track ends — either because the Goal was reached, or because the quarterly Cycle rolled it over.
+
+    It opens with the arc of the Track: starting score, ending score, duration, and the overall pattern across meetings. It highlights two to four of the most meaningful moments from the whole Track, then looks back over the cards: which became second nature, and which are worth carrying forward. It closes with what comes next.
+
+    When the Goal was not reached, the Wrap-Up is written as a retrospective rather than a failure — a look at the work done and what to carry forward.
+  </Accordion>
+</AccordionGroup>
+
+## How dispatches are written
+
+Each dispatch is composed by an AI agent rather than filled into a template. The agent receives the real data — the Track, the cards, the recent meeting analyses with their moments — and writes the body in the user's language.
+
+If AI composition is disabled or the call fails, composers fall back to static translated templates, so the communication always goes out. `COMMS_AI_ENABLED` controls this and defaults to on.
+
+### The rules the coach writes under
+
+These are in the prompt guidelines, and they tell you a lot about the product's intended voice:
+
+- Warm, direct, coach-like. No corporate filler, no exclamation overload.
+- Concrete and grounded in the data provided. **Never invent meetings, scores, quotes, or events.** If context is thin, keep the message short rather than padding it.
+- Written entirely in the user's language — English, Spanish, or Brazilian Portuguese — with no English product terms leaking into a translated body.
+- Refer to cards by name, never by level or score.
+
+<Note>
+  "If context is thin, keep the message short instead of padding it" is a good line to quote when someone asks whether this is just AI-generated noise. The product is built to say less when it has seen less.
+</Note>
+
+## When dispatches stop
+
+A user with no evaluation for **7 days** is treated as inactive, and Track communications and recurring Track jobs are skipped until they are back. Someone on holiday does not return to a fortnight of accumulated email.
+
+<Tip>
+  For a manager, paused emails are a signal rather than a quiet failure. "Weekly emails may pause" is listed as a red flag in the Manager Coaching Playbook, and the intervention is upstream: fix integrations and bot coverage, and agree on concrete meetings to capture.
+</Tip>

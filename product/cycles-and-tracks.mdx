@@ -1,0 +1,151 @@
+---
+title: "Cycles and Tracks"
+description: "How development is organized: quarterly Cycles, Goals, and one Skill at a time."
+icon: "flag"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Verified against `config/tracks.php`, the `TrackStatus`, `TargetType`, and `TrackMomentType` enums, and the Manager Coaching Playbook, on 2026-09-01.
+</Info>
+
+## The idea
+
+Most development plans fail because they try to improve a person on several dimensions at once. Skill Deck does the opposite: **one Skill, for at least two weeks, with a Goal**.
+
+A **Track** is that unit. A **Cycle** is a quarter, and a person works through a series of Tracks within it.
+
+## Why one at a time
+
+Two reasons, and both are worth giving to a skeptical buyer.
+
+A person can only deliberately practice one behavior at a time. Splitting attention across five Skills produces attention on none.
+
+And evidence is scarce. Scoring one Skill closely across two weeks of real meetings produces something specific enough to act on. Spreading the same evidence across the whole model produces a dashboard.
+
+## Track lifecycle
+
+<Steps>
+  <Step title="The Skill unlocks">
+    A Skill becomes eligible once its confidence passes the unlock threshold, currently **0.30**. Before that, the starting level is a guess. See [Confidence and scoring](/product/confidence-and-scoring).
+  </Step>
+  <Step title="Pending Skill Selection">
+    Status `pending_attribute`. The Track exists but the Skill to focus on has not been settled yet.
+  </Step>
+  <Step title="Pending Goal definition">
+    Status `pending_goal`. The Skill is chosen; the Goal score is being set.
+  </Step>
+  <Step title="Active">
+    Status `active`. The Track is running, dispatches are going out, and every new piece of evidence is read against this Skill.
+  </Step>
+  <Step title="It ends">
+    A Track reaches one of three terminal states: `completed` when the Goal is met, `switched` when the person moves to a different Skill, or `expired` when it goes stale. It can also be **rolled** into a fresh Track at a Cycle boundary.
+  </Step>
+</Steps>
+
+<Warning>
+  A Track left in a pending state is the most common stuck state a manager will see. The Manager Coaching Playbook is explicit: do not leave a Skill or Goal pending across a Weekly coaching meeting, and prefer auto-assignment at the Monthly and Quarterly levels so a member is never blocked waiting on you.
+</Warning>
+
+### Timing rules
+
+| Rule | Value | Why it exists |
+| --- | --- | --- |
+| Minimum duration | **~2 weeks** (14 days) | A Track cannot complete before this, no matter how fast the score moves. Behavior change needs more than one good meeting. |
+| Goal checks | **Fridays** | A Track started on a Friday can complete on its second Friday at the earliest, and only if the Goal is met. |
+| Stale expiry | **90 days** without score movement | Prevents a disengaged user from being stuck against a Goal they will never reach. |
+| Inactivity pause | **7 days** without any evaluation | Track communications and recurring jobs are skipped until the person is back. |
+
+That last rule matters for the product's tone. Someone on holiday or in a heads-down month does not come back to two weeks of accumulated nagging.
+
+## Do not churn Skills
+
+<Warning>
+  **Switching Skills so often that Tracks never reach the two-week window is the single biggest failure mode in how Skill Deck gets used.** The Manager Coaching Playbook names it at every management level and builds its default bias against it: keep the Track unless there is a strong reason to switch.
+</Warning>
+
+The reasoning is worth internalising, because the instinct runs the other way. A Track sitting at flat progress looks like a Track that is not working, and the most available action is to change the Skill. But a long Track with no movement is usually an evidence problem — the person is not in the situations where that Skill shows up — and switching the Skill does not fix it. Diagnose evidence quality and situation fit first.
+
+## The quarterly Cycle
+
+Tracks sit inside a Cycle. Cycle dates can follow the calendar quarter or be custom, which is worth confirming before running a quarterly review.
+
+At the end of a Cycle the product runs a sequence, in order:
+
+<Steps>
+  <Step title="The next quarter is created">
+    `quarters:create-next`.
+  </Step>
+  <Step title="Snapshots are generated">
+    `snapshots:generate-quarterly` captures each Deck at that point in time, which is what makes quarter-over-quarter change visible.
+  </Step>
+  <Step title="Reports are generated">
+    `reports:generate-quarterly`. The report callout can appear on the Deck.
+  </Step>
+  <Step title="Active Tracks roll over">
+    `tracks:roll-cycle` rolls an active Track into a fresh one when the user's Cycle ends.
+  </Step>
+</Steps>
+
+A Track that rolls over at the Cycle boundary without reaching its Goal is not treated as a failure. Its [Wrap-Up](/product/track-dispatches) is written as a retrospective — what was done, what improved, what to carry forward.
+
+This is what gives a manager something concrete at the end of each quarter: a snapshot, a report, and a set of Track outcomes to review.
+
+## Goals and Targets
+
+A Track has a **Goal** score that determines whether it completes.
+
+Separately, the product models optional **Targets** (`TargetType`), set over a period for a person or a team:
+
+- **Skill target** — focused on specific Skill scores.
+- **Confidence target** — reach a minimum average confidence across the whole Deck.
+
+The confidence target is the interesting one for a new user or a new team. Early on, the most valuable goal is not "get better at X" but "give the product enough evidence that the profile means something".
+
+## Resource cards
+
+When a Track starts, the user draws a **hand of resource cards**: the Goal-level behavior plus the levels above it, each one a named, concrete behavior with a description and an example of what it looks like. They are told to play whichever card the situation calls for.
+
+Cards are the product's central metaphor made literal, and the reasoning behind them is good demo material. A person given one target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment actually calls for.
+
+<Warning>
+  Members see card **names**, never the level numbers behind them. Surfacing the number turns a behavior into a grade. Managers do see scores. See [Track dispatches](/product/track-dispatches).
+</Warning>
+
+## Moments
+
+While a Track is active, each piece of evidence is mined for **moments**: short, specific excerpts showing the tracked Skill in action.
+
+<Columns cols={2}>
+  <Card title="Demonstration" icon="check">
+    The person showed the behavior. Quoted back to them with commentary.
+  </Card>
+  <Card title="Opportunity" icon="lightbulb">
+    A place where they could have used it and did not.
+  </Card>
+</Columns>
+
+Up to **5 moments** are extracted per piece of evidence, and excerpts are capped at **500 characters**. The cap is a privacy decision as much as a design one: it limits how much transcript content is persisted.
+
+Moments are the most concrete output the product has. "You said this, in this meeting, and here is what it shows" is the thing users remember, and it is the material for a coaching deep-dive.
+
+## Activities
+
+**Activities** are practical dynamics a user can run to build the next level. When a user completes one, the session itself becomes evidence, recorded as an `activity_session` and weighted at 0.8 rather than 1.0 because it is simulated rather than observed.
+
+<Warning>
+  Activities are **temporarily disabled** in the application. The routes still resolve, but every request redirects to the dashboard, and the application notes the feature is paused while the team decides whether to keep it.
+
+  Do not demo activities and do not describe them as available. The pitch line "receive dynamics to evolve" currently refers to the guidance inside [dispatches](/product/track-dispatches) — the cards, the openings to watch for, and the weekly learning topic — not to a separate activities feature.
+</Warning>
+
+## Enabling Tracks
+
+Skill Tracks are enabled per team, on the team page, along with automation settings and the whitelist. It is step two of the Manager Coaching Playbook's six moves, and skipping it is the most common setup failure.
+
+<Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
+  Setting up the team, and running the coaching cadence on top.
+</Card>
+
+{/* TODO: Record how many Tracks a person is typically expected to complete in a Cycle. The playbook says "several Tracks per Cycle, or fewer longer ones" without a target number. */}

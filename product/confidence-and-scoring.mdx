@@ -1,0 +1,103 @@
+---
+title: "Confidence and scoring"
+description: "How a level is derived from evaluations, and what a confidence score does and does not mean."
+icon: "gauge"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Info>
+  Values on this page were read from `config/scoring.php` and `config/tracks.php` in the application repository on 2026-09-01. They are environment-configurable defaults, so treat them as current behavior rather than as permanent product guarantees.
+</Info>
+
+## Confidence, in one sentence
+
+Confidence says **how much evidence stands behind a score**, on a scale from 0 to 1.
+
+This is the concept people most often get wrong, so be precise about it:
+
+<Columns cols={2}>
+  <Card title="What low confidence means" icon="check">
+    We have not observed this Skill enough times to say much about it yet.
+  </Card>
+  <Card title="What it does not mean" icon="x">
+    That the person is inconsistent, unreliable, or that the score is inaccurate.
+  </Card>
+</Columns>
+
+Never describe confidence as "accuracy" or "certainty". Confidence is a statement about our evidence, not about the person and not about whether we got it right.
+
+## What moves confidence
+
+Four factors combine.
+
+<AccordionGroup>
+  <Accordion title="How many evaluations exist" icon="hash">
+    The base factor. Confidence climbs toward its maximum as evaluations accumulate, on a curve that rises quickly at first and then flattens.
+
+    The target for maximum base confidence is **20 evaluations** for a Skill (`CONFIDENCE_TARGET_EVALUATIONS`), with a curve steepness of 3.0 so that early evidence counts for a lot.
+  </Accordion>
+  <Accordion title="How recent that evidence is" icon="clock">
+    Old evidence carries less weight. Confidence decays with a **half-life of 180 days**, and evaluations from the **last 30 days** get a weight bonus of 2.0.
+
+    A person who was observed heavily last year and not at all since will see confidence fall, which is the correct behavior: we no longer know whether that is still true of them.
+  </Accordion>
+  <Accordion title="What kind of evidence it is" icon="layers">
+    Each evidence type carries a multiplier. Real work — meetings, email, conversations, calls, documents, files — all count at 1.0.
+
+    An `activity_session` counts at **0.8**. A practice exercise is still evidence, but it is simulated rather than observed, and the product is explicit about valuing it less.
+  </Accordion>
+  <Accordion title="The bounds" icon="brackets">
+    Confidence is clamped between **0.01 and 1.00**. It never reaches zero and never quite implies certainty.
+  </Accordion>
+</AccordionGroup>
+
+Category-level confidence includes Skills that have no scores at all, so a category is not credited for Skills the product has never observed.
+
+## Why confidence gates development
+
+A Skill becomes eligible for a [Track](/product/cycles-and-tracks) once its confidence passes the **unlock threshold**, currently **0.30**.
+
+The reasoning is worth understanding because it comes up in demos. Developing a Skill requires knowing where the person is starting from. Below the threshold, the starting level is a guess, so the Track would be built on nothing.
+
+The Manager Coaching Playbook has managers work with this number directly: in the Weekly prep checklist, they check the Skills with confidence over 30% around the Track Skill.
+
+<Note>
+  The threshold sits at 30% deliberately, to give new users faster traction. The application's own configuration notes that the ideal long-term value is 50%. Expect this number to move.
+</Note>
+
+## How a level is derived
+
+A person's level in a Skill is not the average of their evaluations.
+
+**Time-based exponential decay** is the active algorithm (`time_based_exponential_decay`). Each evaluation is weighted by its actual date, so recent behavior dominates and older behavior fades. This is what makes the profile a picture of who someone is *now* rather than a running total of everything they have ever done.
+
+Two older algorithms exist in the code — a simple average and a batch-based exponential decay — but they are legacy. Do not describe them as options.
+
+### Top Performance Average
+
+Alongside the current level, the product computes a **Top Performance Average**: the average of a person's best scores rather than all of them.
+
+| Setting | Value |
+| --- | --- |
+| Share of top scores included | 5% |
+| Minimum evaluations before the percentage applies | 5 |
+| Minimum top scores always included | 1 |
+
+Below five evaluations, all scores are used. The purpose is to capture what someone is capable of at their best, which is a different and useful question from what they do on average.
+
+## Explaining this to a customer
+
+Three points, in this order:
+
+1. **Confidence is about us, not about you.** It measures how much we have seen.
+2. **Recent behavior counts more.** The profile tracks who you are now, and it decays if we stop seeing you.
+3. **Development waits for evidence.** We do not put you on a Track for a Skill we have barely observed, because we would be guessing at your starting point.
+
+That third point turns the product's slowness into a statement of rigor, which is what it actually is.
+
+## Hollow confidence
+
+The Manager Coaching Playbook has a useful phrase for the failure state: **confidence that is not hollow** means scores backed by recent evidence across the quarter.
+
+A Deck can look complete while resting on evidence that is months old and decaying. Falling confidence with flat progress is the signal, and the fix is never a new Goal — it is calendar connection, bot coverage, and getting the person into the meetings where the Skill shows up.

@@ -1,0 +1,130 @@
+---
+title: "Privacy and data"
+description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
+icon: "shield"
+updated: "2026-09-01"
+status: "verified"
+---
+
+<Warning>
+  Answer every privacy question from this page. Never from memory, never from what seems reasonable, and never by reasoning from how similar products work. Getting this wrong costs a deal and damages trust in a way that is hard to repair.
+</Warning>
+
+<Info>
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md` (the application's living privacy reference, last updated 20 July 2026), `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01.
+</Info>
+
+## The commitments
+
+These are the application's stated core privacy commitments, and they are the strongest thing we have to say on this subject.
+
+<Columns cols={2}>
+  <Card title="No video, ever" icon="video-off">
+    Skill Deck never records meeting video or audio. Bots are configured transcript-only, with recording format set to `none`.
+  </Card>
+  <Card title="Transcripts are temporary" icon="clock">
+    Raw content, including transcripts, never lives in the database. It sits in a cache that expires after **7 days**.
+  </Card>
+  <Card title="Residual data is deleted" icon="trash-2">
+    A daily job deletes leftover files and calls the bot provider's delete-data endpoint after 7 days.
+  </Card>
+  <Card title="Only conclusions persist" icon="database">
+    What survives is metadata, processing state, evaluations, scores, score history, notifications, and share records.
+  </Card>
+</Columns>
+
+## What is stored, and for how long
+
+| Data | Where it lives | How long |
+| --- | --- | --- |
+| Meeting video and audio | Nowhere. Never captured. | — |
+| Meeting transcript | Application cache only | 7 days |
+| Raw email and conversation bodies | Application cache only | 7 days |
+| Residual files and bot-provider data | Temporary storage | Deleted after 7 days by a daily job |
+| Evidence metadata (title, type, status, timestamps, participants) | Database | Retained |
+| Evaluations, scores, and score history | Database | Retained |
+| Moment excerpts from a track | Database | Retained, capped at 500 characters each, maximum 5 per evidence |
+
+The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
+
+Raw transcript text is never written to a database column. Notifications are explicitly forbidden from containing raw transcript or body content.
+
+## Only your own behavior is evaluated
+
+This is the point that resolves most objections, and it is not widely understood.
+
+> The subject is always the evidence owner. In multi-person meetings, emails, or conversations, agents evaluate only the owner's behavior. Other participants matter only when they clarify the owner's behavior or impact.
+
+A meeting with five people does not produce five profiles. It produces evidence for the Skill Deck user whose calendar scheduled the bot, about that person only. Colleagues appearing in the transcript are context, not subjects.
+
+Related: a **single-participant meeting is marked processed without transcription or evaluation**. There is no behavior with others to observe, so nothing is analyzed.
+
+## What a manager can see
+
+<Note>
+  The distinction that matters: a manager sees **the analysis**, not **the recording**.
+</Note>
+
+Be accurate about this rather than reassuring. A manager's access is real, and the honest version is more credible than a vague one.
+
+**A manager does see**, on their team member's page:
+
+- Progress against Goal, time on the current Track, and Track history — completed, active, switched, rolled, expired.
+- The member's **Journal**: their stored dispatches, including the weekly Prep, the weekly Review, Kickoffs, and Wrap-Ups.
+- The member's **Deck**: current scores and confidence across their Skills.
+- **Track analyses** — the per-meeting analysis, used for a deep-dive in a coaching conversation. These contain the moment excerpts.
+
+The Manager Coaching Playbook has managers read exactly these, in the order Overview → Journal → Deck, before every coaching meeting. The coaching conversation is built on them.
+
+**A manager does not get:**
+
+- Meeting video or audio. It is never captured.
+- Meeting transcripts. Raw content is never written to the database, and it is gone from cache after 7 days.
+- Evidence about anyone other than the member themselves.
+
+<Tip>
+  The clean way to say this: a manager can see what Skill Deck concluded and the short excerpts it based those conclusions on, up to 500 characters each. They cannot see the meeting.
+</Tip>
+
+## Model providers
+
+Responses are configured not to be retained on the provider's side. The `OPENAI_STORE` setting defaults to `false` in the application's AI configuration, specifically so that evidence-derived conversations are not stored by the provider.
+
+## Sharing
+
+A user can share a piece of evidence with another user. This is user-initiated, and it is bounded by the same retention rules:
+
+- Sharing only works while the content is still cached, so a share invitation expires no later than 7 days after processing.
+- Accepting a share copies content into the recipient's cache, not into the database.
+- The copy is re-evaluated for the recipient, with the original triage and evaluation metadata stripped, so the recipient gets their own evaluation rather than inheriting someone else's.
+
+## Answering the surveillance objection
+
+When someone says "this is surveillance", do not argue with the frame. Replace it with facts, in this order:
+
+<Steps>
+  <Step title="Nothing is recorded">
+    No video and no audio, ever. The bot produces text and nothing else.
+  </Step>
+  <Step title="The text does not survive">
+    Transcripts live in a cache for 7 days and are then gone. They are never written to the database.
+  </Step>
+  <Step title="Only the user is evaluated">
+    A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
+  </Step>
+  <Step title="The manager gets the analysis, not the meeting">
+    Scores, Track progress, and short excerpts the analysis was based on. Not a record of the meeting.
+  </Step>
+</Steps>
+
+Never use the words "surveillance" or "monitoring" about our own product, including when denying the charge. Repeating the frame reinforces it. Describe what the product does instead.
+
+## What we do not claim
+
+<Warning>
+  Skill Deck holds **no compliance certifications** documented in this brain. Do not claim SOC 2, ISO 27001, GDPR certification, or any equivalent.
+</Warning>
+
+Skill Deck is also not a validated psychometric instrument, and we never describe it as one.
+
+{/* TODO: Document the customer-facing data processing agreement, sub-processor list, and the position on GDPR and LGPD. These will be asked for by any buyer above the smallest plans. */}
