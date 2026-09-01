@@ -12,15 +12,19 @@ status: "verified"
 
 ## The word that matters most
 
-**Skill.** Not competency, not attribute, not trait.
+**Skill.** Always Skill.
 
-Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. The product, the emails, and the Manager Coaching Playbook all say Skill, and so should we.
+Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. The product, the emails, and the Manager Coaching Playbook all say Skill, and so do we — in every language.
 
-<Warning>
-  Some of our fundraising material says "58 competencies". That wording is legacy. Do not repeat it in anything new, and correct it when you touch that material.
+| Language | Term |
+| --- | --- |
+| English | Skill |
+| Portuguese (Brazil) | habilidade |
+| Spanish | habilidad |
 
+<Note>
   **Attribute** is the internal database name for a Skill. It appears in code, enums, and engineering docs. It never appears in customer-facing writing.
-</Warning>
+</Note>
 
 ## The Skill model
 
@@ -29,6 +33,8 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
     One of the 58 behaviors Skill Deck measures. The product term, in the UI, in emails, and in everything we write.
 
     Internally the same object is called an `Attribute`. Do not say "competency", "trait", or "metric".
+
+    If the localized term ever changes, it changes in the code and translations first, and then here.
   </Accordion>
   <Accordion title="Category">
     The grouping that Skills belong to. There are 8: Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, and Productivity.

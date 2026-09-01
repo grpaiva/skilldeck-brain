@@ -132,6 +132,7 @@ status: "verified"
 - No filler ("it's important to note", "in order to") and no editorializing ("simply", "obviously", "just").
 - Bold for UI elements: click **Settings**. Code formatting for file names, commands, and paths.
 - Do not end a page with a summary of the page.
+- **Escape dollar signs before a digit: `\$9.90`.** Two unescaped `$` on one line are parsed as inline LaTeX, and the prices silently render as italic maths. Check any page you add a price to.
 
 ### Components
 

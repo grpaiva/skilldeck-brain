@@ -15,6 +15,9 @@
   "icons": {
     "library": "lucide"
   },
+  "styling": {
+    "latex": false
+  },
   "navigation": {
     "tabs": [
       {
