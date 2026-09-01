@@ -48,11 +48,22 @@ This page exists so there is exactly one place to correct a number. Other pages 
 | Scale Up | 40 | \$499.00 | \$12.48 |
 | Enterprise | 100 | \$999.00 | \$9.99 |
 
-Headline range: **\$9.90 to \$15.00 per user per month**. Free trial: **1 month**.
+Headline range for team plans: **\$9.90 to \$15.00 per user per month**. Free trial: **1 month**.
 
 The range starts at \$9.90 but Enterprise computes to \$9.99 — an inconsistency in the source material, not a second tier. Quote the range as published.
 
-Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Picks episode and 2 activity sessions per week, 1 development report per month.
+### Skill Deck Pro (individuals)
+
+One individual plan, two billing intervals. Confirmed from the live Stripe product on 2026-09-01.
+
+| Billing | Price |
+| --- | --- |
+| Monthly | \$19.90 / month |
+| Annual | \$199.00 / year |
+
+Skill Deck Pro exists and is active. It is **not the commercial focus**. The ICP is teams; we do not expect individuals to buy the product as it stands. A future recruitment feature set may make an individual plan interesting — that is planned, not live. Do not lead with Skill Deck Pro in sales, investor, or marketing copy.
+
+Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Picks episode, 1 development report per month. Activity-session quotas are leftover from a legacy feature and are unused.
 
 ## Market
 
@@ -75,7 +86,7 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Categories | 8 | Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, Productivity |
 | Category listings | 73 | A Skill can sit in several categories, so per-category counts sum to more than 58. Count unique Skills. |
 | Skills in more than one category | 13 | Active Listening and Conflict Management are each in three |
-| Level scale | 0 to 20 | 21 defined levels, each a named behavior with an example. Say "0 to 20", not "20 levels". |
+| Level scale | 21 levels, scored 0 to 20 | Each level is a named behavior with an example. Always say **21 levels** or **0 to 20**. Never "20 levels". |
 | Minimum Track duration | ~2 weeks (14 days) | A Track can complete only from its second Friday onward, and only if the Goal is met |
 | Cycle length | Quarterly | Calendar quarter or custom dates |
 | Dispatches | 5 types | Kickoff, Weekly Prep, Evidence Evaluated, Weekly Review, Wrap-Up |
@@ -86,12 +97,15 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Evaluations for maximum base confidence | 20 | |
 | Confidence recency half-life | 180 days | |
 | Recent-evidence weight bonus | 2.0, for the last 30 days | |
-| Practice evidence confidence factor | 0.8 | All other evidence types are 1.0 |
+| Practice evidence confidence factor | 0.8 | Leftover configuration for unused Activities. All live evidence types are 1.0 |
 | Stale Track expiry | 90 days without score movement | |
 | Inactivity pause | 7 days without an evaluation | Track comms pause |
 | Moments per evidence | Up to 5 | |
 | Moment excerpt cap | 500 characters | |
-| Resource cards per Track | Up to 4 | The Goal level plus the three above it |
+| Resource cards per Track | Up to 4 | The Goal level plus the three above it. Cards show names, not scores. |
+| Level numbers on resource cards | Hidden | Scores still drive the Track Goal. Hide the number so the person uses the behavior when the opening comes, not because it is a higher score. |
+| Activities | Legacy, unused | An early-version feature. Do not describe them, and do not claim "AI interviews". The live claim is **real work evidence**. |
+| In-app onboarding checklist | Off | Do not describe a guided onboarding flow. |
 | Track Goal floor | Level 5 | Auto-set Goals are never lower |
 | Confidence display bands | 50%+ green, 30–49% amber, under 30% red | The Deck can hide anything under 30% |
 | Supported languages | 3 | English, Spanish, Brazilian Portuguese |
@@ -169,9 +183,9 @@ Tracked here so they get resolved rather than quietly propagated.
 | Is the pitch's Storytelling 8/20 example real? | **Resolved** — it matches the live level 8 and 9 rubric almost word for word. Safe to use. |
 | Application seeder level text vs production | **Resolved** — the seeders are stale. Read levels from the live scale only. |
 | Fundraising pricing vs application seeder pricing | **Resolved** — the seeders are outdated. The prices above are live. |
-| An individual, non-seat plan exists in the application | Open — decide whether we sell to individuals at all. Its seeded price is stale, so no figure is recorded here. |
+| An individual, non-seat plan exists in the application | **Resolved** — Skill Deck Pro is live, \$19.90 / month or \$199 / year. Not the GTM focus. Individuals are unlikely to buy until a future recruitment feature set. |
 | \$9.90 headline floor vs \$9.99 computed Enterprise seat price | Open — quote as published |
-| "20 levels" claimed vs a 0–20 scale (21 levels) | Open — say "0 to 20" |
-| Pitch shows a numeric level; member emails deliberately hide it | Open — decide which surface a demo shows |
-| Activities feature is temporarily disabled in the application | Open — do not demo activities |
-| In-app onboarding checklist switched off April 2026 | Open — do not describe a guided onboarding flow |
+| "20 levels" claimed vs a 0–20 scale (21 levels) | **Resolved** — always say **21 levels** or **0 to 20**. |
+| Pitch shows a numeric level; member emails hide it on cards | **Resolved** — scores are the basis for a Track Goal and stay in the product. Resource cards hide the number so the person uses the behavior when the opening comes, not because it is a higher score. Pitch and manager views may show the number. |
+| Activities feature is temporarily disabled in the application | **Resolved** — activities are legacy and unused. Do not describe them. Do not claim "AI interviews". The claim is real work evidence. |
+| In-app onboarding checklist switched off April 2026 | **Resolved** — onboarding is off for now. Do not describe a guided onboarding flow. |

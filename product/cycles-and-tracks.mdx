@@ -111,12 +111,12 @@ The confidence target is the interesting one for a new user or a new team. Early
 
 ## Resource cards
 
-When a Track starts, the user draws a **hand of up to four resource cards**: the Goal-level behavior plus the three levels above it, each one a named, concrete behavior with a description and an example. They are told to play whichever card the situation calls for, and stronger cards move the score faster.
+When a Track starts, the user draws a **hand of up to four resource cards**: the Goal-level behavior plus the three levels above it, each one a named, concrete behavior with a description and an example. They are told to play whichever card the situation calls for.
 
-Cards are the product's central metaphor made literal, and the reasoning behind them is good demo material. A person given one target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment actually calls for.
+Cards are the product's central metaphor made literal. A person given one target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment actually calls for.
 
 <Warning>
-  Members see card **names**, never the level numbers behind them. Surfacing the number turns a behavior into a grade. Managers do see scores. See [Track dispatches](/product/track-dispatches).
+  Members see card **names**, never the level numbers behind them. The scores still matter — they set the Track Goal, and managers read them. Hide the number on the card so the person uses the behavior when the opening comes, not because it is a higher score. See [Track dispatches](/product/track-dispatches).
 </Warning>
 
 ## Moments
@@ -138,13 +138,9 @@ Moments are the most concrete output the product has. "You said this, in this me
 
 ## Activities
 
-**Activities** are practical dynamics a user can run to build the next level. When a user completes one, the session itself becomes evidence, recorded as an `activity_session` and weighted at 0.8 rather than 1.0 because it is simulated rather than observed.
+**Activities** were an early-version feature: scripted practice sessions, effectively AI interviews, that became `activity_session` evidence. They are **legacy and unused**. The live claim is **real work evidence** — meetings people already have — not interviews the product runs.
 
-<Warning>
-  Activities are **temporarily disabled** in the application. The routes still resolve, but every request redirects to the dashboard, and the application notes the feature is paused while the team decides whether to keep it.
-
-  Do not demo activities and do not describe them as available. The pitch line "receive dynamics to evolve" currently refers to the guidance inside [dispatches](/product/track-dispatches) — the cards, the openings to watch for, and the weekly learning topic — not to a separate activities feature.
-</Warning>
+Do not describe activities as available. Do not demo them. Do not say "AI interviews". If old copy talks about "dynamics to evolve", that now means the guidance inside [dispatches](/product/track-dispatches) — the cards, the openings to watch for, and the weekly learning topic.
 
 ## Enabling Tracks
 

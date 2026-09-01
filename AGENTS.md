@@ -91,7 +91,7 @@ The single most common mistake is writing "competency" where the product says "S
 | **Skill** | One of the 58 behaviors Skill Deck measures. The product term, everywhere a customer can see. | "Competency", "attribute", "trait", "metric" |
 | **Attribute** | The internal database name for a Skill. Code and engineering docs only. | Anything customer-facing |
 | **Category** | The grouping that Skills belong to. There are 8. | "Pillar", "domain", "bucket" |
-| **Level** | The graded position within a Skill, on a 0 to 20 scale. | "Rating", "grade", "out of 20 levels" |
+| **Level** | The graded position within a Skill. **21 levels**, scored 0 to 20. | "Rating", "grade", "20 levels", "out of 20 levels" |
 | **Evidence** | A piece of real work the product analyzes — usually a meeting. | "Recording", "data point", "sample" |
 | **Evaluation** | The scored assessment produced from evidence. | "Test", "assessment result", "review" |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
@@ -100,6 +100,7 @@ The single most common mistake is writing "competency" where the product says "S
 | **Cycle** | A quarter. Tracks live inside one. | — |
 | **Deck** | A person's full Skill profile. | "Dashboard", "scorecard" |
 | **Dispatch** | A scheduled communication sent during a Track. Kickoff, Prep, Review, Wrap-Up, Evidence Evaluated. | "Notification", "alert", "digest" |
+| **Activity** | A leftover practice session from the initial version. Unused. | "AI interview", or describing activities as available |
 
 **Capitalize the product nouns** — Skill, Track, Goal, Cycle, Deck — as the Manager Coaching Playbook does.
 
