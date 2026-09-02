@@ -114,8 +114,10 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Live evidence sources | Meetings, plus Slack conversations | Meetings are first-run. Slack is implemented; do not ask new customers or test teams to connect it at the start. Slack scores tend to come in lower than meeting scores. |
 | Never-implemented evidence | Email, documents, files, calls | Early PRD only. Do not claim them. |
 | Other messaging platforms | On hold | Teams chat and similar. Paused after Slack evaluations scored lower than meetings. |
-| Integrations | 4 | Google Calendar, Microsoft Calendar, Zoom, Slack. Only calendars and Zoom are first-run. |
-| Meeting platforms | 3 | Google Meet, Zoom, Microsoft Teams |
+| Evidence sources | 2 | Meeting bots, and Slack channels the user selects. A calendar is not an evidence source — it schedules bots. |
+| Connections | 4 | Google Calendar, Microsoft Calendar, Zoom, Slack. Calendars auto-schedule bots; Zoom needs its own connection so the bot can join as the user; Slack needs channel selection. |
+| Meeting platforms a bot can attend | 3 | Google Meet, Zoom, Microsoft Teams. Detected from the event's meeting link. |
+| Slack evaluation cadence | Daily | A daily sync reads new messages in each selected channel. |
 | Meeting bot max duration | 2 hours |  |
 | Transcription and speaker mapping | Attendee | Our own jobs for this are unused. |
 | Duplicate detection | Unused | Leftover from when users could upload meeting videos. |

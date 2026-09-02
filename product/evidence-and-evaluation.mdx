@@ -18,7 +18,7 @@ Evidence volume is something a manager is expected to watch — "What got evalua
 
 | Status | Source | What to say |
 | --- | --- | --- |
-| **Live, first-run** | Meetings the bot attends | The source we sell and onboard on. Connect a calendar. |
+| **Live, first-run** | Meetings a bot attends, on Google Meet, Zoom, or Teams | The source we sell and onboard on. Connect a calendar, plus Zoom if the team uses it. |
 | **Live, not first-run** | Slack conversations | Implemented. Do not ask new customers or test teams to connect Slack at the start. Slack evaluations tend to score lower than meetings. |
 | **Never implemented** | Email, documents, files, calls | Early PRD only, same vintage as Activities. Do not claim them. |
 | **On hold** | Other messaging (Teams chat and similar) | Roadmapped, then paused after Slack scores came in lower than meetings. Do not promise them. |
@@ -30,8 +30,8 @@ The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, an
 ## From meeting to evidence
 
 <Steps>
-  <Step title="The calendar integration schedules a bot">
-    Connecting Google Calendar or Microsoft Calendar automatically schedules **transcript-only** meeting bots for upcoming meetings. For Zoom, the bot can join as the user using an OnBehalf token.
+  <Step title="A bot gets scheduled">
+    A connected calendar schedules a **transcript-only** bot for any upcoming event whose link points at Google Meet, Zoom, or Teams. Zoom also needs its own connection, so the bot can join as the user.
   </Step>
   <Step title="The bot joins">
     The bot's progress is visible in the evidence status: `waiting_for_meeting`, `bot_joining`, `bot_in_waiting_room`, then `recording` — shown to the user as **In Meeting**.
@@ -112,21 +112,37 @@ The product includes agents for generating questions about a piece of evidence a
 
 ## Where evidence comes from
 
-Four integrations exist (`IntegrationPlatform`). Only the calendar and Zoom ones are first-run.
+Evidence has **two** sources. Calendars are not one of them — a calendar is how bots get scheduled, not something we evaluate.
 
 <Columns cols={2}>
-  <Card title="Google Calendar" icon="calendar">
-    Automatically schedules transcript-only meeting bots. First-run.
-  </Card>
-  <Card title="Microsoft Calendar" icon="calendar">
-    Automatically schedules transcript-only meeting bots. First-run.
-  </Card>
-  <Card title="Zoom" icon="video">
-    Bots join as the user using an OnBehalf token. First-run when the team uses Zoom.
+  <Card title="Meeting bots" icon="video">
+    A transcript-only bot attends the meeting on **Google Meet**, **Zoom**, or **Microsoft Teams**. This is the first-run source and the one we sell on.
   </Card>
   <Card title="Slack" icon="message-square">
-    Imports channel messages and conversations. Implemented, not first-run. Do not ask new customers or test teams to connect it at the start.
+    For the channels the user selects, our bot reads messages daily and evaluates them. Implemented, not first-run.
   </Card>
 </Columns>
 
-Slack is the one integration where the user configures scope after connecting, because a whole workspace is not something anyone should hand over by default. Other chat platforms stay on hold.
+### The connections that feed them
+
+<AccordionGroup>
+  <Accordion title="Google Calendar or Microsoft Calendar" icon="calendar">
+    Connecting a calendar is what makes bots join **automatically**. Skill Deck reads upcoming events, and schedules a bot for any event whose meeting link points at Google Meet, Zoom, or Teams.
+
+    The calendar produces no evidence of its own. It decides which meetings get a bot.
+  </Accordion>
+  <Accordion title="Zoom" icon="video">
+    Zoom needs **its own connection** on top of the calendar. Once connected, the bot joins as the user.
+
+    Without it, a scheduled Zoom meeting cannot be covered, which is why the product emails users who have upcoming Zoom meetings and no Zoom connection. Confirm this before a pilot with a Zoom-first team.
+  </Accordion>
+  <Accordion title="Slack" icon="message-square">
+    A custom integration with a second step: after connecting the workspace, the user **picks the channels** to track. A whole workspace is not something anyone should hand over by default.
+
+    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same triage and evaluation as a meeting.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Do not ask new customers or test teams to connect Slack at the start. Slack evaluations tend to score lower than meetings. Other chat platforms stay on hold for the same reason.
+</Note>
