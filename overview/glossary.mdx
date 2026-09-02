@@ -181,7 +181,9 @@ The pages a manager and a member actually work in. Use these names in any instru
     The internal metering that bounds how much processing a plan gets.
   </Accordion>
   <Accordion title="Integration">
-    A connected external source (`IntegrationPlatform`): Google Calendar, Microsoft Calendar, Zoom, or Slack. Calendars and Zoom are first-run. Slack is implemented; do not ask new customers to connect it at the start.
+    A connected external account (`IntegrationPlatform`): Google Calendar, Microsoft Calendar, Zoom, or Slack.
+
+    An integration is not the same as an evidence source. Evidence comes from **meeting bots** and **Slack channels**. Calendars schedule the bots; Zoom needs its own connection so a bot can join Zoom meetings; Slack needs the user to pick channels. Do not ask new customers to connect Slack at the start.
   </Accordion>
   <Accordion title="Attendee">
     The third-party service that supplies the meeting bots, and that transcribes the meeting and maps speakers. Internal term — customers should hear "the Skill Deck meeting bot". Skill Deck does not run its own transcription or speaker-mapping jobs.
