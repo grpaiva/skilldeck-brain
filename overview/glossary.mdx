@@ -2,12 +2,12 @@
 title: "Glossary"
 description: "The Skill Deck vocabulary. Use these terms exactly, in the product and in everything we write."
 icon: "book-a"
-updated: "2026-09-01"
+updated: "2026-09-03"
 status: "verified"
 ---
 
 <Info>
-  Verified against live production data through the Skill Deck MCP server, the Manager Coaching Playbook (the source of truth for manager-facing language), and enums and configuration in the `grpaiva/skilldeck` application repository, on 2026-09-01. When production and this page disagree, production is right — fix the page.
+  The Manager Coaching Playbook is the source of truth for manager-facing language. When production and this page disagree, production is right — fix the page.
 </Info>
 
 ## The word that matters most
@@ -36,6 +36,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
     If the localized term ever changes, it changes in the code and translations first, and then here.
   </Accordion>
+
   <Accordion title="Category">
     The grouping that Skills belong to. There are 8: Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, and Productivity.
 
@@ -43,19 +44,23 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
     Do not say "pillar", "domain", or "bucket".
   </Accordion>
+
   <Accordion title="Level">
     The graded position a person holds within a single Skill. There are **21 levels**, scored **0 to 20**. Each level has a written description of the behavior it represents.
 
     Always say **21 levels** or **0 to 20**. Never "20 levels". Write a score as "8/20 in Storytelling", not "a rating" and not "a grade".
   </Accordion>
+
   <Accordion title="Deck">
     A person's full set of Skills taken together — their behavioral profile, and the product's namesake. Also the name of the page where a user sees it.
 
     "Deck movement" means change in scores over a period. "Deck confidence" means confidence across the whole profile rather than one Skill.
   </Accordion>
+
   <Accordion title="Snapshot">
     A point-in-time capture of a Deck, used to show how a profile changed over a period. Generated automatically at the end of each Cycle.
   </Accordion>
+
   <Accordion title="Benchmark">
     A comparison of a person or team's scores against a reference set.
   </Accordion>
@@ -67,23 +72,27 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   <Accordion title="Evidence">
     A piece of real work that Skill Deck analyzes. **Meetings** are the live source we sell and onboard on. **Slack conversations** are implemented but we do not ask new customers or test teams to connect Slack at the start.
 
-    Email, documents, files, and calls were in an early PRD and were never implemented. Other messaging platforms are on hold. `activity_session` is leftover from a [legacy Activities feature](/product/cycles-and-tracks).
+    Other messaging platforms are on hold.
 
-    Say "evidence", not "recording", "data point", or "sample". The live claim is **real work evidence from meetings**, not AI interviews and not a multi-channel inbox.
+    Say "evidence", not "recording", "data point", or "sample". The live claim is **real work evidence**. See [Messaging and claims](/playbooks/messaging-and-claims) for the claims that are off limits.
   </Accordion>
+
   <Accordion title="Evaluation">
     The scored assessment produced from a piece of evidence. One evidence can produce evaluations across several Skills.
 
     Not a "test", a "review", or an "assessment result".
   </Accordion>
+
   <Accordion title="Confidence">
     How much evidence stands behind a score, expressed from 0 to 1 and usually shown as a percentage. Low confidence means "we have not seen enough of this yet", **not** "we think this person is inconsistent".
 
     Never call it "accuracy", "certainty", or "reliability". Managers watch for **hollow confidence** — a score that is not backed by recent evidence.
   </Accordion>
+
   <Accordion title="Track analysis">
     The per-meeting analysis produced **only while a Track is active**: a Skill-focused summary plus moments. Written after evaluation, once the transcript is still in cache. Used in the Evidence Evaluated email, Weekly Review, and coaching deep-dives. Starting a Track backfills the last 7 days of evaluated meetings.
   </Accordion>
+
   <Accordion title="Moment">
     A short, specific excerpt from one piece of evidence showing the tracked Skill in action. Written only while a Track is active. Two types (`TrackMomentType`): a **demonstration**, where the person showed the behavior, and an **opportunity**, where they could have and did not. May be attributed to one resource card. Empty is allowed.
   </Accordion>
@@ -99,33 +108,37 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
     Not a "course", "program", "module", or "sprint".
   </Accordion>
+
   <Accordion title="Goal">
     The score a Track is aiming at. A Track can complete only when the Goal is met and the minimum duration has passed.
   </Accordion>
+
   <Accordion title="Cycle">
     A quarter. Tracks live inside a Cycle, and Cycle boundaries trigger snapshots, reports, and Track rolls. Cycle dates can follow the calendar quarter or be custom.
 
     Use "Cycle" and "quarter" interchangeably in prose; "Cycle" is the product term.
   </Accordion>
+
   <Accordion title="Churn (Skill churn)">
     Switching Skills so often that Tracks never reach the two-week completion window. The single biggest failure mode in manager usage, and named as such in the Manager Coaching Playbook.
   </Accordion>
+
   <Accordion title="Dispatch">
     A scheduled communication sent to a user during a Track, normally by email. Five types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, and **Wrap-Up**.
 
     In manager-facing writing, use the short names: Prep, Review, Kickoff, Wrap-Up. Not "notification", "alert", or "digest".
   </Accordion>
+
   <Accordion title="Unlock">
     The point at which a Skill has enough confidence behind it to be eligible for a Track. "Unlocking" is the state a member is in while they accumulate evidence and no Skill is eligible yet.
   </Accordion>
+
   <Accordion title="Target">
     An optional goal set over a period, for a person or a team. Two types (`TargetType`): a **Skill target** on specific scores, or a **confidence target** to reach a minimum average Deck confidence.
   </Accordion>
+
   <Accordion title="Resource card">
     One of the named behaviors a user holds during a Track — the Goal-level behavior plus the levels above it. Each card has a name, a description, and an example. Users see card names, never the level numbers behind them. The number still sets the Track Goal; it is hidden on the card so the person uses the behavior when the opening comes, not because it is a higher score.
-  </Accordion>
-  <Accordion title="Activity">
-    A legacy practice session from the initial version. Unused. Do not describe activities as available, and do not call them "AI interviews".
   </Accordion>
 </AccordionGroup>
 
@@ -149,18 +162,23 @@ The pages a manager and a member actually work in. Use these names in any instru
   <Accordion title="Organization">
     The customer account. Holds the subscription, the members, and the teams.
   </Accordion>
+
   <Accordion title="Team">
     A group of people inside an organization, with a manager. Skill Tracks, automation, and the whitelist are set up here.
   </Accordion>
+
   <Accordion title="Organization role">
     Account-level permissions (`OrganizationRole`): **Owner** has full control including ownership transfer; **Admin** manages members, teams, and settings; **Billing** manages billing and subscription only; **Member** uses the product without admin controls.
   </Accordion>
+
   <Accordion title="Team role">
     Team-level permissions (`TeamRole`): **Manager** or **Member**.
   </Accordion>
+
   <Accordion title="Whitelist">
     The set of Skills a manager marks as most relevant for a person or team, based on job scope, personal challenges, or organizational values. Keeps Track focus role-aligned.
   </Accordion>
+
   <Accordion title="Management level">
     How often a manager meets their team about development: **Weekly**, **Monthly**, or **Quarterly**. Named for the manager's coaching cadence, not for how often Skill Deck emails the member.
 
@@ -174,19 +192,23 @@ The pages a manager and a member actually work in. Use these names in any instru
   <Accordion title="Insight">
     An observation the product surfaces about a person or a team, derived from their accumulated evidence.
   </Accordion>
+
   <Accordion title="Superpower">
     An insight highlighting a standout strength, shareable as a public page or image.
   </Accordion>
+
   <Accordion title="Quota">
     The internal metering that bounds how much processing a plan gets.
   </Accordion>
+
   <Accordion title="Integration">
     A connected external account (`IntegrationPlatform`): Google Calendar, Microsoft Calendar, Zoom, or Slack.
 
-    An integration is not the same as an evidence source. Evidence comes from **meeting bots** and **Slack channels**. Calendars schedule the bots; Zoom needs its own connection so a bot can join Zoom meetings; Slack needs the user to pick channels. Do not ask new customers to connect Slack at the start.
+    Each integration has its own job. Calendars schedule the bots; Zoom needs its own connection so a bot can join Zoom meetings; Slack needs the user to pick channels. The evidence itself comes from **meeting bots** and **Slack channels**. Do not ask new customers to connect Slack at the start.
   </Accordion>
+
   <Accordion title="Attendee">
-    The third-party service that supplies the meeting bots, and that transcribes the meeting and maps speakers. Internal term — customers should hear "the Skill Deck meeting bot". Skill Deck does not run its own transcription or speaker-mapping jobs.
+    The third-party service that supplies the meeting bots, and that transcribes the meeting and maps speakers. Internal term — customers should hear "the Skill Deck meeting bot".
   </Accordion>
 </AccordionGroup>
 

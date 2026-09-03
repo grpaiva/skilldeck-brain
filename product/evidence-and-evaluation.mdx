@@ -2,13 +2,9 @@
 title: "Evidence and evaluation"
 description: "What counts as evidence, how a meeting becomes one, and how evaluation agents turn it into scores."
 icon: "file-search"
-updated: "2026-09-01"
+updated: "2026-09-03"
 status: "verified"
 ---
-
-<Info>
-  Evidence sources and the live pipeline were confirmed by a founder on 2026-09-01: Attendee transcribes and maps speakers; Skill Deck does not run duplicate detection; Track analysis and moments run only on an active Track. Enums in the application still list leftover types and statuses — do not treat those as current product behavior.
-</Info>
 
 ## What evidence is
 
@@ -16,16 +12,47 @@ Evidence is a piece of real work that Skill Deck analyzes. It is the foundation 
 
 Evidence volume is something a manager is expected to watch — "What got evaluated?" opens the Weekly coaching meeting.
 
-| Status | Source | What to say |
-| --- | --- | --- |
-| **Live, first-run** | Meetings a bot attends, on Google Meet, Zoom, or Teams | The source we sell and onboard on. Connect a calendar, plus Zoom if the team uses it. |
-| **Live, not first-run** | Slack conversations | Implemented. Do not ask new customers or test teams to connect Slack at the start. Slack evaluations tend to score lower than meetings. |
-| **Never implemented** | Email, documents, files, calls | Early PRD only, same vintage as Activities. Do not claim them. |
-| **On hold** | Other messaging (Teams chat and similar) | Roadmapped, then paused after Slack scores came in lower than meetings. Do not promise them. |
+The live claim is **real work evidence**. See [Messaging and claims](/playbooks/messaging-and-claims) for the claims that are off limits.
 
-The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, and `activity_session`. Those names are leftover. The live claim is **real work evidence from meetings**, not AI interviews and not a multi-channel inbox.
+## Where evidence comes from
 
-`activity_session` is leftover from the unused [Activities](/product/cycles-and-tracks) feature. If one ever scored, it would count at a 0.8 confidence multiplier — do not treat that as a current product surface.
+Evidence has **two** sources.
+
+<Columns cols={2}>
+  <Card title="Meeting bots" icon="video">
+    A transcript-only bot attends the meeting on **Google Meet**, **Zoom**, or **Microsoft Teams**. This is the first-run source and the one we sell on.
+  </Card>
+
+  <Card title="Slack" icon="message-square">
+    For the channels the user selects, our bot reads messages daily and evaluates them. Implemented, not first-run.
+  </Card>
+</Columns>
+
+### The connections that feed them
+
+<AccordionGroup>
+  <Accordion title="Google Calendar or Microsoft Calendar" icon="calendar">
+    Connecting a calendar is what makes bots join **automatically**. Skill Deck reads upcoming events, and schedules a bot for any event whose meeting link points at Google Meet, Zoom, or Teams.
+
+    The calendar's job is deciding which meetings get a bot.
+  </Accordion>
+
+  <Accordion title="Zoom" icon="video">
+    Zoom needs **its own connection** on top of the calendar. Once connected, the bot joins as the user, which is what lets a scheduled Zoom meeting be covered.
+
+    The product emails users who have upcoming Zoom meetings and no Zoom connection. Confirm the connection before a pilot with a Zoom-first team.
+  </Accordion>
+
+  <Accordion title="Slack" icon="message-square">
+    A custom integration with a second step: after connecting the workspace, the user **picks the channels** to track. Channel selection keeps the scope to what the user chose to share.
+
+    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same triage and evaluation as a meeting.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Do not ask new customers or test teams to connect Slack at the start. Slack evaluations tend to score lower than meetings. Other chat platforms, such as Teams chat, are on hold for the same reason.
+</Note>
 
 ## From meeting to evidence
 
@@ -36,22 +63,18 @@ The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, an
   <Step title="The bot joins">
     The bot's progress is visible in the evidence status: `waiting_for_meeting`, `bot_joining`, `bot_in_waiting_room`, then `recording` — shown to the user as **In Meeting**.
 
-    A bot sitting in a waiting room is a visible state, not a silent one.
+    A bot sitting in a waiting room is a state the user can see.
   </Step>
   <Step title="Attendee returns the transcript">
     [Attendee](/overview/glossary) transcribes the meeting and maps speakers. Skill Deck receives text that already says who said what.
-
-    Any Skill Deck job or workflow for transcription or speaker mapping is **legacy and unused**. Do not describe us as running those steps.
   </Step>
   <Step title="Processing">
     The transcript is processed into evidence, then triage and evaluation run.
-
-    Duplicate detection is **unused**. It was a leftover job from when users could upload their own meeting videos, to catch the same file twice. Do not describe a live deduplicator, and do not say we collapse a meeting attended by several Skill Deck users into one piece of evidence.
   </Step>
   <Step title="Triage">
     A triage agent reads the evidence and decides **which Skills it can say anything about**. A one-hour meeting speaks to a handful of Skills, not to all 58.
 
-    Whitelisted Skills get a mild bias **only when the person has no active Track**. Once a Track is active, triage is deliberately unbiased — over-evaluating the tracked Skill was pulling its live score down. See [The manager role](/product/manager-role).
+    Whitelisted Skills get a mild bias **only when the person has no active Track**. Once a Track is active, triage runs unbiased, so the tracked Skill's live score keeps reflecting what the evidence shows. See [The manager role](/product/manager-role).
   </Step>
   <Step title="Evaluation">
     For each Skill triage selected, an evaluator scores the observed behavior against that Skill's level scale, with a written justification. Near-zero scores pass through the [silence gate](#the-gate-silence-is-not-a-score) before they are kept.
@@ -67,7 +90,7 @@ The enum still lists `email`, `phone_call`, `document`, `file`, `chat_topic`, an
     Starting a Track also backfills analyses for evaluated meetings from the last **7 days**.
   </Step>
   <Step title="Evidence Evaluated email">
-    After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis and scores, not written by an AI composer.
+    After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis and scores.
   </Step>
 </Steps>
 
@@ -109,40 +132,3 @@ This is the material in the member's Evidence Evaluated email, the Weekly Review
 The product includes agents for generating questions about a piece of evidence and answering them, so a user can interrogate their own analysis rather than only receive it. This powers the "Deep Dive" experience on evidence details.
 
 {/* TODO: Confirm whether the evidence Deep Dive is available to managers on a member's evidence, or only to the person the evidence belongs to. */}
-
-## Where evidence comes from
-
-Evidence has **two** sources. Calendars are not one of them — a calendar is how bots get scheduled, not something we evaluate.
-
-<Columns cols={2}>
-  <Card title="Meeting bots" icon="video">
-    A transcript-only bot attends the meeting on **Google Meet**, **Zoom**, or **Microsoft Teams**. This is the first-run source and the one we sell on.
-  </Card>
-  <Card title="Slack" icon="message-square">
-    For the channels the user selects, our bot reads messages daily and evaluates them. Implemented, not first-run.
-  </Card>
-</Columns>
-
-### The connections that feed them
-
-<AccordionGroup>
-  <Accordion title="Google Calendar or Microsoft Calendar" icon="calendar">
-    Connecting a calendar is what makes bots join **automatically**. Skill Deck reads upcoming events, and schedules a bot for any event whose meeting link points at Google Meet, Zoom, or Teams.
-
-    The calendar produces no evidence of its own. It decides which meetings get a bot.
-  </Accordion>
-  <Accordion title="Zoom" icon="video">
-    Zoom needs **its own connection** on top of the calendar. Once connected, the bot joins as the user.
-
-    Without it, a scheduled Zoom meeting cannot be covered, which is why the product emails users who have upcoming Zoom meetings and no Zoom connection. Confirm this before a pilot with a Zoom-first team.
-  </Accordion>
-  <Accordion title="Slack" icon="message-square">
-    A custom integration with a second step: after connecting the workspace, the user **picks the channels** to track. A whole workspace is not something anyone should hand over by default.
-
-    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same triage and evaluation as a meeting.
-  </Accordion>
-</AccordionGroup>
-
-<Note>
-  Do not ask new customers or test teams to connect Slack at the start. Slack evaluations tend to score lower than meetings. Other chat platforms stay on hold for the same reason.
-</Note>

@@ -2,12 +2,12 @@
 title: "Confidence and scoring"
 description: "How a level is derived from evaluations, and what a confidence score does and does not mean."
 icon: "gauge"
-updated: "2026-09-01"
+updated: "2026-09-03"
 status: "verified"
 ---
 
 <Info>
-  Values on this page were read from `config/scoring.php` and `config/tracks.php` in the application repository on 2026-09-01. They are environment-configurable defaults, so treat them as current behavior rather than as permanent product guarantees.
+  The values on this page are configurable defaults. Treat them as current behavior rather than as permanent product guarantees.
 </Info>
 
 ## Confidence, in one sentence
@@ -20,6 +20,7 @@ This is the concept people most often get wrong, so be precise about it:
   <Card title="What low confidence means" icon="check">
     We have not observed this Skill enough times to say much about it yet.
   </Card>
+
   <Card title="What it does not mean" icon="x">
     That the person is inconsistent, unreliable, or that the score is inaccurate.
   </Card>
@@ -47,16 +48,17 @@ Four factors combine.
 
     The target for maximum base confidence is **20 evaluations** for a Skill (`CONFIDENCE_TARGET_EVALUATIONS`), with a curve steepness of 3.0 so that early evidence counts for a lot.
   </Accordion>
+
   <Accordion title="How recent that evidence is" icon="clock">
     Old evidence carries less weight. Confidence decays with a **half-life of 180 days**, and evaluations from the **last 30 days** get a weight bonus of 2.0.
 
     A person who was observed heavily last year and not at all since will see confidence fall, which is the correct behavior: we no longer know whether that is still true of them.
   </Accordion>
-  <Accordion title="What kind of evidence it is" icon="layers">
-    Each evidence type carries a multiplier. Live evidence — meetings, and Slack conversations if connected — counts at 1.0. Email, documents, files, and calls were never implemented.
 
-    An `activity_session` would count at **0.8** if one existed. Activities are [legacy and unused](/product/cycles-and-tracks), so this multiplier is leftover configuration, not a current surface.
+  <Accordion title="What kind of evidence it is" icon="layers">
+    Each evidence type carries a multiplier. Live evidence — meetings, and Slack conversations if connected — counts at 1.0.
   </Accordion>
+
   <Accordion title="The bounds" icon="brackets">
     Confidence is clamped between **0.01 and 1.00**. It never reaches zero and never quite implies certainty.
   </Accordion>
@@ -73,16 +75,14 @@ The reasoning is worth understanding because it comes up in demos. Developing a 
 The Manager Coaching Playbook has managers work with this number directly: in the Weekly prep checklist, they check the Skills with confidence over 30% around the Track Skill.
 
 <Note>
-  The threshold sits at 30% deliberately, to give new users faster traction. The application's own configuration notes that the ideal long-term value is 50%. Expect this number to move.
+  The threshold sits at 30% deliberately, to give new users faster traction. The long-term ideal is 50%, so expect this number to move.
 </Note>
 
 ## How a level is derived
 
 A person's level in a Skill is not the average of their evaluations.
 
-**Time-based exponential decay** is the active algorithm (`time_based_exponential_decay`). Each evaluation is weighted by its actual date on a 180-day half-life, so recent behavior dominates and older behavior fades. This is what makes the profile a picture of who someone is *now* rather than a running total of everything they have ever done.
-
-Two older algorithms exist in the code — a simple average and a batch-based exponential decay — but they are legacy. Do not describe them as options.
+**Time-based exponential decay** is the active algorithm (`time_based_exponential_decay`). Each evaluation is weighted by its actual date on a 180-day half-life, so recent behavior dominates and older behavior fades. This is what makes the profile a picture of who someone is _now_ rather than a running total of everything they have ever done.
 
 <Note>
   **Scores are decimals; levels are integers.** A person's score is a weighted mean carried to one decimal place, so someone can sit at 12.3 — between the level 12 and level 13 behaviors. The 21 written level descriptors are the integer rungs; the score is a position on the ladder, not a rung.
