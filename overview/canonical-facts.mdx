@@ -37,10 +37,6 @@ This page exists so there is exactly one place to correct a number. Other pages 
 
 ## Pricing
 
-<Info>
-  Live prices, confirmed by a founder on 2026-09-01. The application's seeder files hold older, lower figures — **ignore them**.
-</Info>
-
 | Plan | Licenses | Price / month | Effective per seat |
 | --- | --- | --- | --- |
 | Small Teams | 5 | \$74.99 | \$15.00 |
@@ -52,7 +48,7 @@ Headline range for team plans: **\$9.99 to \$15.00 per user per month**. Free tr
 
 ### Skill Deck Pro (individuals)
 
-One individual plan, two billing intervals. Confirmed from the live Stripe product on 2026-09-01.
+One individual plan, two billing intervals.
 
 | Billing | Price |
 | --- | --- |
@@ -61,14 +57,14 @@ One individual plan, two billing intervals. Confirmed from the live Stripe produ
 
 Skill Deck Pro exists and is active. It is **not the commercial focus**. The ICP is teams; we do not expect individuals to buy the product as it stands. A future recruitment feature set may make an individual plan interesting — that is planned, not live. Do not lead with Skill Deck Pro in sales, investor, or marketing copy.
 
-Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Picks episode, 1 development report per month. The Slack-channel quota exists; still do not ask new customers to connect Slack at the start. Activity-session quotas are leftover from a legacy feature and are unused.
+Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Picks episode, 1 development report per month. The Slack-channel quota exists; still do not ask new customers to connect Slack at the start.
 
 ## Market
 
 | Fact | Value |
 | --- | --- |
 | ICP company size | 10 to 249 employees |
-| Why not 250\+ | IT and compliance policies on meeting content and meeting bots. Not HRIS, procurement, or cycle length. |
+| Why not 250+ | IT and compliance policies on meeting content and meeting bots. Not HRIS, procurement, or cycle length. |
 | On-customer processing | Planned. Transcripts and AI analysis would run on the customer's infrastructure. Needs a design-partner enterprise. Not live. |
 | ICP work model | Hybrid or remote |
 | First-wave markets | United States, Mexico, Brazil |
@@ -82,7 +78,7 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 
 | Fact | Value | Note |
 | --- | --- | --- |
-| Skills | **58** | Unique, active Skills in production. The application seeds 60; **Body Language Reading** and **Emotional Resilience** are disabled through the Filament panel. |
+| Skills | **58** | Unique, active Skills in production. **Body Language Reading** and **Emotional Resilience** are inactive. |
 | Categories | 8 | Communication, Creativity, Critical Thinking, Emotional Intelligence, Flexibility, Interpersonal Relations, Leadership, Productivity |
 | Category listings | 73 | A Skill can sit in several categories, so per-category counts sum to more than 58. Count unique Skills. |
 | Skills in more than one category | 13 | Active Listening and Conflict Management are each in three |
@@ -97,7 +93,6 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Evaluations for maximum base confidence | 20 |  |
 | Confidence recency half-life | 180 days |  |
 | Recent-evidence weight bonus | 2.0, for the last 30 days |  |
-| Practice evidence confidence factor | 0.8 | Leftover configuration for unused Activities. All live evidence types are 1.0 |
 | Stale Track expiry | 90 days without score movement |  |
 | Inactivity pause | 7 days without an evaluation | Track comms pause |
 | Moments per evidence | Up to 5 | Only while a Track is active, after evaluation |
@@ -106,21 +101,19 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Evidence Evaluated composition | Static | Not AI-written. Includes Track analysis when present, plus a top strength and a growth opportunity. |
 | Resource cards per Track | Up to 4 | The Goal level plus the three above it. Cards show names, not scores. |
 | Level numbers on resource cards | Hidden | Scores still drive the Track Goal. Hide the number so the person uses the behavior when the opening comes, not because it is a higher score. |
-| Activities | Legacy, unused | An early-version feature. Do not describe them, and do not claim "AI interviews". The live claim is **real work evidence**. |
-| In-app onboarding checklist | Off | Do not describe a guided onboarding flow. |
+| In-app onboarding checklist | Off | Do not describe a guided onboarding flow |
 | Track Goal floor | Level 5 | Auto-set Goals are never lower |
-| Confidence display bands | 50%\+ green, 30–49% amber, under 30% red | The Deck can hide anything under 30% |
+| Confidence display bands | 50%+ green, 30–49% amber, under 30% red | The Deck can hide anything under 30% |
 | Supported languages | 3 | English, Spanish, Brazilian Portuguese |
 | Live evidence sources | Meetings, plus Slack conversations | Meetings are first-run. Slack is implemented; do not ask new customers or test teams to connect it at the start. Slack scores tend to come in lower than meeting scores. |
-| Never-implemented evidence | Email, documents, files, calls | Early PRD only. Do not claim them. |
-| Other messaging platforms | On hold | Teams chat and similar. Paused after Slack evaluations scored lower than meetings. |
-| Evidence sources | 2 | Meeting bots, and Slack channels the user selects. A calendar is not an evidence source — it schedules bots. |
+| Never-implemented evidence | Email, documents, files, calls | Do not claim them |
+| Other messaging platforms | On hold | Teams chat and similar. Slack evaluations score lower than meetings |
+| Evidence sources | 2 | Meeting bots, and Slack channels the user selects |
 | Connections | 4 | Google Calendar, Microsoft Calendar, Zoom, Slack. Calendars auto-schedule bots; Zoom needs its own connection so the bot can join as the user; Slack needs channel selection. |
 | Meeting platforms a bot can attend | 3 | Google Meet, Zoom, Microsoft Teams. Detected from the event's meeting link. |
 | Slack evaluation cadence | Daily | A daily sync reads new messages in each selected channel. |
 | Meeting bot max duration | 2 hours |  |
-| Transcription and speaker mapping | Attendee | Our own jobs for this are unused. |
-| Duplicate detection | Unused | Leftover from when users could upload meeting videos. |
+| Transcription and speaker mapping | Attendee | The bot provider transcribes and maps speakers |
 
 ## Manager coaching
 
@@ -181,23 +174,10 @@ Stating this explicitly is the point of the page. **None of the following exist 
   Skill Deck holds no compliance certifications documented here. Do not claim SOC 2, ISO 27001, GDPR certification, or equivalent. Skill Deck is also not a validated psychometric instrument.
 </Warning>
 
-## Open discrepancies
+## Open questions
 
-Tracked here so they get resolved rather than quietly propagated.
+Tracked here so they get answered rather than quietly propagated.
 
-| Discrepancy | Status |
+| Question | Status |
 | --- | --- |
-| 58 Skills vs 60 seeded in the application | **Resolved** — 58 active in production; Body Language Reading and Emotional Resilience are disabled |
-| Which two Skills are disabled | **Resolved** — Body Language Reading, Emotional Resilience |
-| Is the pitch's Storytelling 8/20 example real? | **Resolved** — it matches the live level 8 and 9 rubric almost word for word. Safe to use. |
-| Application seeder level text vs production | **Resolved** — the seeders are stale. Read levels from the live scale only. |
-| Fundraising pricing vs application seeder pricing | **Resolved** — the seeders are outdated. The prices above are live. |
-| An individual, non-seat plan exists in the application | **Resolved** — Skill Deck Pro is live, \$19.90 / month or \$199 / year. Not the GTM focus. Individuals are unlikely to buy until a future recruitment feature set. |
 | \$9.90 headline floor vs \$9.99 computed Enterprise seat price | Open — quote as published |
-| "20 levels" claimed vs a 0–20 scale (21 levels) | **Resolved** — always say **21 levels** or **0 to 20**. |
-| Pitch shows a numeric level; member emails hide it on cards | **Resolved** — scores are the basis for a Track Goal and stay in the product. Resource cards hide the number so the person uses the behavior when the opening comes, not because it is a higher score. Pitch and manager views may show the number. |
-| Activities still described as a live or paused feature | **Resolved** — activities are legacy and unused. Do not describe them. Do not claim "AI interviews". The claim is real work evidence. |
-| In-app onboarding described as a live flow | **Resolved** — onboarding is off for now. Do not describe a guided onboarding flow. |
-| Evidence covers email, documents, files, and calls | **Resolved** — never implemented. Live sources are meetings (first-run) and Slack conversations (implemented, not first-run). Other messaging is on hold. |
-| Skill Deck runs transcription and speaker mapping | **Resolved** — Attendee does both. Our jobs are unused. |
-| A duplicate detector collapses repeated meetings | **Resolved** — unused. It existed for uploaded meeting videos, which are gone. |
