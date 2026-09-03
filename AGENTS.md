@@ -147,7 +147,7 @@ Favor Mintlify's built-in components over custom ones, and do not decorate. Reac
 When you cannot verify something, do not guess and do not silently omit it. Write what you know and mark the gap:
 
 ```mdx
-{/* TODO: Confirm whether the evidence Deep Dive is available to managers, or only to the evidence owner. */}
+{/* TODO: Confirm <the specific thing you could not verify>. */}
 ```
 
 Then set the page `status: draft`. A marked gap tells the next reader exactly what to check; an invented fact tells them nothing is wrong.
