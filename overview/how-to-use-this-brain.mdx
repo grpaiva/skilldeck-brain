@@ -12,9 +12,11 @@ status: "verified"
   <Card title="Teammates" icon="users">
     Onboard yourself, or check a fact before a call, without pinging a founder.
   </Card>
+
   <Card title="AI agents" icon="bot">
     Load context before writing copy, answering a prospect, or building a feature.
   </Card>
+
   <Card title="Partners and advisors" icon="handshake">
     Understand the company quickly enough to be useful to us.
   </Card>
@@ -71,12 +73,30 @@ status: "verified"
 ## Rules for writing here
 
 - **English only.** Every page, every heading, every example. Source material in Portuguese gets translated, not pasted.
-- **Say what is shipped.** When something is planned rather than live, label it inline. The clearest phrasing is "Planned — not shipped as of *date*".
+- **Say what is shipped.** When something is planned rather than live, label it inline. The clearest phrasing is "Planned — not shipped as of _date_".
+- **Write the end state.** A page describes Skill Deck as it stands today, for a reader who has never seen an earlier version of it. State what is true rather than arguing against what someone might wrongly assume. See [Correcting a page](#correcting-a-page).
 - **One idea per sentence.** Second person. Active voice.
 - **No marketing adjectives.** "Powerful", "seamless", "robust", "cutting-edge" do not appear here, even on the company pages. State the mechanism instead; it is more persuasive anyway.
 - **Numbers live in one place.** Prices, Skill counts, seat targets, and raise amounts belong on [Canonical facts](/overview/canonical-facts). Link to it rather than restating a number, so there is exactly one place to correct.
 - **Product vocabulary is fixed.** Use the terms in the [glossary](/overview/glossary) exactly as written. The product says **Skill**, never "competency". Capitalize the product nouns: Skill, Track, Goal, Cycle, Deck.
 - **Escape dollar signs before a digit:** write `\$9.90`. Two unescaped `$` on one line get parsed as inline LaTeX and the prices render as italic maths.
+
+## Correcting a page
+
+When you find a wrong claim, rewrite or delete the sentence and leave the corrected fact in its place. Never append a caveat to an error, and never keep the error on the page in order to argue with it. The reader arrives with no wrong belief to undo, so a correction written as a correction plants the idea it denies.
+
+Four things stay off every page.
+
+| Keep off the page | Write instead |
+| --- | --- |
+| A negation: "calendars are not a source" | The positive fact, on the page where it belongs |
+| A rebuttal of what someone might wrongly assume | A sentence clear enough that the wrong assumption never forms |
+| Change history: "updated", "previously", "this used to say" | The current fact. The `updated` date in frontmatter carries the history |
+| Labels for what the product dropped: "legacy", "deprecated", "unused" | Nothing. Something the product does not do does not appear here |
+
+When a thing plays a different role than someone expects, describe that role in the place it belongs and say nothing about the role it does not play. Evidence comes from meeting bot transcripts and from the Slack channels a user selects, so that is what [Evidence and evaluation](/product/evidence-and-evaluation) says. Calendar connections schedule those bots, so calendars are described where connections are described. Neither page states what a calendar is not.
+
+The shipped-state labels are the exception, because they describe today: "Planned — not shipped as of _date_" for work that is coming, and "implemented, not first-run" for something live that we do not lead with.
 
 ## How to make a change
 
