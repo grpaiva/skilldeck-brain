@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-09-01"
+updated: "2026-09-03"
 status: "verified"
 ---
 
@@ -22,12 +22,15 @@ These are the application's stated core privacy commitments, and they are the st
   <Card title="No video, ever" icon="video-off">
     Skill Deck never records meeting video or audio. Bots are configured transcript-only, with recording format set to `none`.
   </Card>
+
   <Card title="Transcripts are temporary" icon="clock">
     Raw content, including transcripts, never lives in the database. It sits in a cache that expires after **7 days**.
   </Card>
+
   <Card title="Residual data is deleted" icon="trash-2">
     A daily job deletes leftover files and calls the bot provider's delete-data endpoint after 7 days.
   </Card>
+
   <Card title="Only conclusions persist" icon="database">
     What survives is metadata, processing state, evaluations, scores, score history, notifications, and share records.
   </Card>
@@ -133,6 +136,19 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
 
 Never use the words "surveillance" or "monitoring" about our own product, including when denying the charge. Repeating the frame reinforces it. Describe what the product does instead.
 
+## The published policy
+
+The **Privacy Policy** at `/privacy-policy` is the customer-facing document, and it is what a buyer can be pointed to today. Four things in it answer common diligence questions:
+
+| Question | What the policy says |
+| --- | --- |
+| Who else touches the data? | Vendors and service providers access data only as needed to deliver the service, disclosed by category: hosting, data storage, analytics, payment processing, fraud prevention, customer service, AI-assisted tools, and marketing |
+| What analytics run? | **Fathom Analytics** only, named, collecting anonymous aggregate data with no cookies and no cross-site tracking |
+| Which regimes is it written against? | **GDPR** and **CCPA** |
+| Does our AI training use their data? | Data passed to third-party AI tools is not used to train generalized models, and Google Workspace API data is never sold |
+
+A member-facing companion sits at `/knowledge-base`, which is where a member reads what their manager can open. See [The manager role](/product/manager-role).
+
 ## What we do not claim
 
 <Warning>
@@ -141,10 +157,12 @@ Never use the words "surveillance" or "monitoring" about our own product, includ
 
 Skill Deck is also not a validated psychometric instrument, and we never describe it as one.
 
+Three documents a larger buyer will ask for are not ready to hand over: a countersignable data processing agreement, a sub-processor list naming each provider, and a stated LGPD position. Route any of the three to a founder rather than answering from the policy alone.
+
 ## Planned: processing on the customer's infrastructure
 
 Not live. Companies above roughly 250 employees often cannot put meeting content or meeting bots on our infrastructure because of IT and compliance policy. A planned architecture would run transcripts and AI analysis on theirs, with a small implementation on their side.
 
 The next step is a design-partner enterprise willing to build that implementation model with us. Do not describe this as available. See [ICP and market](/company/icp-and-market).
 
-{/* TODO: Document the customer-facing data processing agreement, sub-processor list, and the position on GDPR and LGPD. These will be asked for by any buyer above the smallest plans. */}
+{/* TODO: Produce the three artifacts and record them here: a countersignable DPA, a sub-processor list naming each provider (including the transcription provider and the model provider), and an explicit LGPD position. The published policy covers vendor categories, Fathom by name, GDPR and CCPA. */}
