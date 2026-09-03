@@ -6,10 +6,6 @@ updated: "2026-09-01"
 status: "verified"
 ---
 
-<Info>
-  Verified against the Manager Coaching Playbook and the application's routes and enums on 2026-09-01.
-</Info>
-
 ## The position we take
 
 Skill Deck does the analysis. The manager does the leading.
@@ -22,9 +18,11 @@ The playbook states the division cleanly: the manager's job is **not to replace 
   <Card title="Coach" icon="messages-square">
     Turn signals into clearer practice and better judgment.
   </Card>
+
   <Card title="Guide" icon="compass">
     Keep the right Skill and Goal in focus.
   </Card>
+
   <Card title="Hold accountable" icon="check-circle">
     Make progress and evidence volume a regular conversation.
   </Card>
@@ -62,6 +60,7 @@ One person in depth. The playbook's standard prep order is **Overview → Journa
   <Accordion title="Set up the team" icon="settings">
     On the team page: enable Skill Tracks, and set automation and the whitelist. This is step two of the playbook's six moves, and skipping it is the most common setup failure.
   </Accordion>
+
   <Accordion title="Whitelist Skills" icon="list-filter">
     Mark the Skills most relevant for a person or a team — matched to job scope, personal challenges, or organizational values. It keeps Track focus role-aligned without the manager choosing every Track by hand.
 
@@ -71,20 +70,23 @@ One person in depth. The playbook's standard prep order is **Overview → Journa
       The whitelist controls **which Skills a member can start a Track on**. It is not a visibility filter — a manager still sees every scored Skill on the member's Deck, whitelisted or not.
     </Warning>
 
-    Its only other effect is a mild bias in evidence triage, and only when the member has **no active Track**. When a member *does* have an active Track, triage is deliberately **not** biased toward the tracked Skill. Over-evaluating the tracked Skill was found to pull scores down, and manufacturing evidence for the thing you are looking for is not evidence.
+    Its only other effect is a mild bias in evidence triage, and only when the member has **no active Track**. Once a Track is active, triage runs unbiased, so the tracked Skill's score keeps reflecting what the evidence shows. Evidence has to turn up on its own to count.
 
     That last detail is the answer to "is it just going to tell me what I want to hear?"
   </Accordion>
+
   <Accordion title="Start, configure, and edit Tracks" icon="flag">
     A manager can start a Track, configure a pending Skill or Goal, and edit an active Track.
 
     They can also leave it to automation. The playbook recommends auto-assigning the Skill and Goal at the Monthly and Quarterly levels, so a member is never blocked waiting on a manager decision.
   </Accordion>
+
   <Accordion title="Set optional Targets" icon="target">
     Targets can be created for an individual member or a whole team. Two kinds: a **Skill target** on specific scores, or a **confidence target** to reach a minimum average Deck confidence.
 
     Targets are optional in the playbook's agendas. The confidence target is the right first one for a new team, because nothing can be developed until the profiles mean something.
   </Accordion>
+
   <Accordion title="Review at the end of a period" icon="calendar-check">
     At the end of each Track, month, or Cycle, a manager has data to review both how the tool is being used and how the person is developing. The Cycle-end pipeline generates snapshots and reports automatically, which is what makes quarter-over-quarter comparison possible.
   </Accordion>
@@ -92,7 +94,7 @@ One person in depth. The playbook's standard prep order is **Overview → Journa
 
 ## The coaching cadence
 
-A manager picks a **management level** — Weekly, Monthly, or Quarterly — based on team size, seniority, Skill criticality, and how mature the team's evidence is. Levels are named for how often the *manager* meets, not for how often Skill Deck emails the member; the product sends Monday Prep and Friday Review every week regardless.
+A manager picks a **management level** — Weekly, Monthly, or Quarterly — based on team size, seniority, Skill criticality, and how mature the team's evidence is. Levels are named for how often the _manager_ meets, not for how often Skill Deck emails the member; the product sends Monday Prep and Friday Review every week regardless.
 
 <Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
   The full playbook: choosing a level, the agenda for each, coaching prompts, and red flags.
@@ -100,7 +102,7 @@ A manager picks a **management level** — Weekly, Monthly, or Quarterly — bas
 
 ## One-to-ones
 
-The coaching meeting *is* the one-to-one, and it is where Skill Deck pays off: the manager arrives with progress against Goal, themes from the week's Prep and Review, and a specific meeting to walk through.
+The coaching meeting _is_ the one-to-one, and it is where Skill Deck pays off: the manager arrives with progress against Goal, themes from the week's Prep and Review, and a specific meeting to walk through.
 
 <Warning>
   There is **no dedicated 1-on-1 feature**. Sessions, agendas, and notes are not product objects. The playbook supplies the agenda; the product supplies the material.
@@ -138,10 +140,12 @@ Access to a member's page requires one of:
 
 There is no separate "direct report" object. Management is expressed through team membership plus the Manager role.
 
-## Open questions
+## What the member is told
 
-{/* TODO: Verify against the running product: */}
+The member learns the shape of manager access from the **User Guide**, opened from the sidebar and published at `/knowledge-base`. It names both halves. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history and settings, the four Journal dispatches, and the Track analyses. Moments, Evidence Evaluated posts, and raw evidence content stay with the member. The disclosure ships in English, Portuguese, and Spanish.
 
-- Whether a member can see exactly what their manager sees about them, or is told what is shared.
-- Whether a member can opt out of manager visibility. No such flag was found — privacy is enforced by not building the views, which is sturdier but leaves the member no control if a view is ever added.
-- Whether managers receive their own dispatches, or only the member does.
+A member reads a superset of that on their own Overview, Deck, and Journal, so a manager holds nothing the member has not already seen.
+
+Every dispatch is addressed to the member alone. A manager reaches four of the five by opening the member's Journal on the member page.
+
+Access follows the roles above and applies the same way to everyone on a team. The boundary lives in the authorization layer rather than in a per-member setting, so "who can see my data" has one answer for the whole team.
