@@ -2,7 +2,7 @@
 title: "Track dispatches"
 description: "The five communications a user receives, what each contains, and when it arrives."
 icon: "mail"
-updated: "2026-09-01"
+updated: "2026-09-03"
 status: "verified"
 ---
 
@@ -25,7 +25,7 @@ Skill Deck delivers itself by email. This is the low-friction claim in practice:
 The rhythm is deliberate: a Monday setup, real-time analysis as work happens, and a Friday retrospective. Development is attached to the working week rather than to an annual event.
 
 <Note>
-  Dispatches keep running at this weekly rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook is explicit that its Weekly, Monthly, and Quarterly levels describe the *manager's* cadence — the product still sends Monday Prep and Friday Review every week for active Tracks.
+  Dispatches keep running at this weekly rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook is explicit that its Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still sends Monday Prep and Friday Review every week for active Tracks.
 </Note>
 
 Dispatches are stored and readable in the **Journal**, which is also what a manager reads when preparing a coaching meeting.
@@ -54,6 +54,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     It introduces the week's learning topic and links the Advisor Picks audio episode for it, then closes with two or three concrete openings to watch for in upcoming meetings, each tied to a card by name.
   </Accordion>
+
   <Accordion title="Weekly Prep" icon="calendar">
     Mondays at 12:30, for users with an open Track.
 
@@ -61,18 +62,21 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     Weekly comms adapt to where the user is (`WeeklyTrackCommsMode`): `active` and `pending` are Track-bound, while `unlocking` and `ready_to_start` cover people who do not have a Track yet — someone still accumulating evidence gets a different message from someone mid-Track.
   </Accordion>
+
   <Accordion title="Evidence Evaluated" icon="file-check">
     Sent after a meeting is evaluated. This is the "analysis after every meeting" from the pitch. Subject: `Meeting analysis for :title`.
 
-    The body is **static** — assembled from stored data, not written by an AI composer. When the member has an active Track, it includes the Track analysis summary and moments. It then shows a top strength and a growth opportunity from that meeting's evaluations.
+    The body is **static**, assembled from stored data. When the member has an active Track, it includes the Track analysis summary and moments. It then shows a top strength and a growth opportunity from that meeting's evaluations.
 
-    It arrives close to the work it describes, not weeks later. Managers never receive this dispatch.
+    It arrives close to the work it describes. This is the one dispatch that stays with the member alone — a manager's journal view covers the other four.
   </Accordion>
+
   <Accordion title="Weekly Review" icon="chart-bar">
     Fridays at 16:00. The week's Track moments and score movement.
 
     Friday afternoon is also when Track Goal checks run, so a Track that met its Goal wraps at the same point in the week that the Review lands. This is why the Manager Coaching Playbook makes **Friday the best day for a Weekly coaching meeting** — hold it after the member has their Review, or their Wrap-Up.
   </Accordion>
+
   <Accordion title="Wrap-Up" icon="trophy">
     Sent when a Track ends — either because the Goal was reached, or because the quarterly Cycle rolled it over.
 
