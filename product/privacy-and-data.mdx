@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md` (the application's living privacy reference, last updated 20 July 2026), `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md` (the application's living privacy reference, last updated 20 July 2026), `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04.
 </Info>
 
 ## The commitments
@@ -114,6 +114,41 @@ A user can share a piece of evidence with another user. This is user-initiated, 
 - Sharing only works while the content is still cached, so a share invitation expires no later than 7 days after processing.
 - Accepting a share copies content into the recipient's cache, not into the database.
 - The copy is re-evaluated for the recipient, with the original triage and evaluation metadata stripped, so the recipient gets their own evaluation rather than inheriting someone else's.
+
+## Deleting an account
+
+A person can permanently wipe their Skill Deck account from **Settings → Profile**. Filament admin user delete runs the same wipe. Bulk admin delete is disabled.
+
+### Confirmation
+
+- Type the account email exactly to enable Delete account.
+- Password accounts also enter their current password.
+- Google- or LinkedIn-only accounts re-authenticate with that provider (or enter a password if one exists).
+
+### Organization owners
+
+Delete is blocked while the person still owns any organization. Transfer ownership first, then delete. The Profile page lists those organizations with links to transfer.
+
+### What the wipe removes in Skill Deck
+
+The wipe hard-deletes the user and their personal data in the application:
+
+- Cancels active Cashier/Stripe subscriptions on the account first. If an active or incomplete Stripe subscription cannot be canceled, the wipe **fails closed** — the local account stays.
+- Disconnects integrations and revokes their tokens.
+- Deletes evidence files and content cache, activity recordings, Advisor Picks storage, insight OG images, and the avatar file when it is stored locally.
+- Deletes notifications, personal access tokens, MCP tool-call rows, and identifiable prism agent traces for that user.
+- Scrubs matching emails off invitations and organization membership invites.
+- Deletes sessions and password-reset tokens, then hard-deletes the user row. A leftover job cleans residual files and queued jobs that still name that user.
+
+Personal product data owned by the user (evidence, evaluations, scores, Journal, Tracks where they are the subject, and similar) goes with the user through ordinary cascades.
+
+### What stays for other people
+
+When the deleted person authored manager-side records for someone else — Snapshots, Tracks, or Targets on another member — those records stay with the subject. Authorship is reassigned to the subject (or cleared for Targets with no subject user). Organization ownership does not cascade-delete the organization when a former owner's user row is removed.
+
+### What this does not cover
+
+The wipe is Skill Deck's application-side hard delete. It does not rewrite the published Privacy Policy page, and it does not claim deletion of Stripe's own invoice history, Fathom analytics aggregates, or third-party vendor logs outside Skill Deck's control.
 
 ## Answering the surveillance objection
 
