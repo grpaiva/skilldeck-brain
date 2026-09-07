@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md` (the application's living privacy reference, last updated 20 July 2026), `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07.
 </Info>
 
 ## The commitments
@@ -27,12 +27,16 @@ These are the application's stated core privacy commitments, and they are the st
     Raw content, including transcripts, never lives in the database. It sits in a cache that expires after **7 days**.
   </Card>
 
-  <Card title="Residual data is deleted" icon="trash-2">
-    A daily job deletes leftover files and calls the bot provider's delete-data endpoint after 7 days.
+  <Card title="Only conclusions persist" icon="database">
+    What survives is metadata, processing state, evaluations, scores, score history, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
   </Card>
 
-  <Card title="Only conclusions persist" icon="database">
-    What survives is metadata, processing state, evaluations, scores, score history, notifications, and share records.
+  <Card title="Only the account holder is evaluated" icon="user-check">
+    Agents evaluate only the evidence owner's behavior. Other participants are context, not subjects.
+  </Card>
+
+  <Card title="No sale, ads, or tracking cookies" icon="ban">
+    Skill Deck does not sell personal data, does not run advertising trackers, and uses necessary session cookies only, plus privacy-focused anonymous site analytics.
   </Card>
 </Columns>
 
@@ -44,9 +48,11 @@ These are the application's stated core privacy commitments, and they are the st
 | Meeting transcript | Application cache only | 7 days |
 | Slack conversation bodies | Application cache only | 7 days, if Slack is connected |
 | Residual files and bot-provider data | Temporary storage | Deleted after 7 days by a daily job |
-| Evidence metadata (title, type, status, timestamps, participants) | Database | Retained |
-| Evaluations, scores, and score history | Database | Retained |
-| Moment excerpts from a track | Database | Retained, capped at 500 characters each, maximum 5 per evidence |
+| Evidence metadata (title, type, status, timestamps, participants) | Database | For the life of the account, then wiped on account delete |
+| Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
+| Moment excerpts from a track | Database | For the life of the account, then wiped on account delete; capped at 500 characters each, maximum 5 per evidence |
+| Support correspondence | Support systems | 24 months |
+| Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
@@ -173,14 +179,18 @@ Never use the words "surveillance" or "monitoring" about our own product, includ
 
 ## The published policy
 
-The **Privacy Policy** at `/privacy-policy` is the customer-facing document, and it is what a buyer can be pointed to today. Four things in it answer common diligence questions:
+The **Privacy Policy** at `/privacy-policy` is the customer-facing document. It is an **LGPD-first** rewrite (shipped 2026-09-06 / PR 198) with CCPA/CPRA as a goodwill annex. There is **no EU/GDPR annex** in this version.
 
 | Question | What the policy says |
 | --- | --- |
-| Who else touches the data? | Vendors and service providers access data only as needed to deliver the service, disclosed by category: hosting, data storage, analytics, payment processing, fraud prevention, customer service, AI-assisted tools, and marketing |
-| What analytics run? | **Fathom Analytics** only, named, collecting anonymous aggregate data with no cookies and no cross-site tracking |
-| Which regimes is it written against? | **GDPR** and **CCPA** |
-| Does our AI training use their data? | Data passed to third-party AI tools is not used to train generalized models, and Google Workspace API data is never sold |
+| Who is the company? | **Skill Deck LTDA**, CNPJ 67.748.313/0001-01, Rua Pais Leme 215, conj. 1713, Pinheiros, São Paulo, SP, CEP 05424-150 |
+| Privacy contact / Encarregado | **Gustavo Paiva** · `privacy@skilldeck.ai` (PT / EN / ES) |
+| What evidence does the policy describe? | Meetings scheduled through Google or Microsoft Calendar, plus Zoom when connected — not Gmail, Outlook inbox reading, documents, files, or phone calls |
+| Who else touches the data? | §9 discloses vendors **by category only**. §11 names recipients for international transfer: Attendee, OpenAI, Anthropic, Laravel Cloud (AWS), Neon, Stripe, Mailgun, Cloudflare, primarily in **AWS us-east-1**, with ANPD Resolução 19/2024 SCC framing |
+| What analytics run? | Privacy-focused anonymous site analytics (product truth: **Fathom**), with necessary session cookies only — no advertising trackers |
+| Which regimes? | **LGPD** (Anexo A) primary; **CCPA/CPRA** (Anexo B) goodwill |
+| Automated scoring | Art. 20 explanation and human review by email to `privacy@skilldeck.ai` — no in-app review UI |
+| Does our AI training use their data? | Data passed to third-party AI tools is not used to train generalized models |
 
 A member-facing companion sits at `/knowledge-base`, which is where a member reads what their manager can open. See [The manager role](/product/manager-role).
 
@@ -192,7 +202,7 @@ A member-facing companion sits at `/knowledge-base`, which is where a member rea
 
 Skill Deck is also not a validated psychometric instrument, and we never describe it as one.
 
-Three documents a larger buyer will ask for are not ready to hand over: a countersignable data processing agreement, a sub-processor list naming each provider, and a stated LGPD position. Route any of the three to a founder rather than answering from the policy alone.
+Two diligence artifacts a larger buyer may still ask for are not a separate handout yet: a countersignable data processing agreement, and a standalone sub-processor schedule beyond what the Privacy Policy already states. Route those to a founder rather than inventing extra paper.
 
 ## Planned: processing on the customer's infrastructure
 
@@ -200,4 +210,4 @@ Not live. Companies above roughly 250 employees often cannot put meeting content
 
 The next step is a design-partner enterprise willing to build that implementation model with us. Do not describe this as available. See [ICP and market](/company/icp-and-market).
 
-{/* TODO: Produce the three artifacts and record them here: a countersignable DPA, a sub-processor list naming each provider (including the transcription provider and the model provider), and an explicit LGPD position. The published policy covers vendor categories, Fathom by name, GDPR and CCPA. */}
+{/* TODO: Produce a countersignable DPA and a standalone sub-processor schedule if buyers need paper beyond the Privacy Policy. */}
