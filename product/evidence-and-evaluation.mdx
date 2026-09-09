@@ -40,6 +40,8 @@ Evidence has **two** sources.
   <Accordion title="Zoom" icon="video">
     Zoom needs **its own connection** on top of the calendar. Once connected, the bot joins as the user, which is what lets a scheduled Zoom meeting be covered.
 
+    Zoom must also grant the bot permission to capture. If that never happens, the meeting ends without a transcript — see [When a meeting does not produce evidence](#when-a-meeting-does-not-produce-evidence).
+
     The product emails users who have upcoming Zoom meetings and no Zoom connection. Confirm the connection before a pilot with a Zoom-first team.
   </Accordion>
 
@@ -93,6 +95,16 @@ Evidence has **two** sources.
     After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis and scores.
   </Step>
 </Steps>
+
+## When a meeting does not produce evidence
+
+Not every bot session becomes scored evidence.
+
+| Case | What happens |
+| --- | --- |
+| **Single-participant meeting** | Marked processed without transcription or evaluation. There is no behavior with others to observe. See [Privacy and data](/product/privacy-and-data). |
+| **No usable transcript** | For example the Zoom bot joined but never received external-recording permission, or Attendee ended without a transcript after retries. Evidence is marked failed. Meeting-recording quota is released. Skill Deck does **not** send an error email. |
+| **Real processing error** | Evidence is marked failed and the user gets an error notification. |
 
 ## The gate: silence is not a score
 
