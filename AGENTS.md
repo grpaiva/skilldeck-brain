@@ -56,6 +56,7 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | What are the Skills, categories, and levels? | `product/skills-and-levels.mdx` |
 | What counts as evidence? How does an evaluation happen? | `product/evidence-and-evaluation.mdx` |
 | How does Soft Skill evaluation work? What is a demonstration? | `product/evidence-and-evaluation.mdx` |
+| What language are Soft Skill justifications and highlights in? | `product/evidence-and-evaluation.mdx` |
 | Who transcribes meetings? Do we deduplicate them? | `product/evidence-and-evaluation.mdx` |
 | What is a confidence score? How is a level calculated? | `product/confidence-and-scoring.mdx` |
 | What is a Track? What is a Cycle? | `product/cycles-and-tracks.mdx` |
@@ -98,8 +99,8 @@ The single most common mistake is writing "competency" where the product says "S
 | **Evidence** | A piece of real work the product analyzes. Meetings are first-run. Slack exists but is not first-run. | "Recording", "data point", "sample", or claiming email / documents / files / calls |
 | **Evaluation** | The scored assessment produced from evidence. Under Soft Skill evaluation, each demonstration is its own evaluation row. | "Test", "assessment result", "review" |
 | **Soft Skill evaluation** | Production pipeline that scores Skills from evidence (clips → classification → demonstrations → highlights). Customer-facing copy still says Skill. | Treating Soft Skills as a second taxonomy |
-| **Demonstration** | One scored observation of a Skill in a subject clip. | Confusing with a Track moment |
-| **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. | Heuristic "top score" pick |
+| **Demonstration** | One scored observation of a Skill in a subject clip. Justification is in the evidence owner's language. | Confusing with a Track moment |
+| **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language. | Heuristic "top score" pick |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
 | **Track** | A development cycle on one Skill. Needs about two weeks minimum. | "Course", "program", "module", "sprint" |
 | **Goal** | The score a Track aims at. | "Objective", "KPI" |
