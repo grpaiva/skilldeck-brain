@@ -48,7 +48,7 @@ Evidence has **two** sources.
   <Accordion title="Slack" icon="message-square">
     A custom integration with a second step: after connecting the workspace, the user **picks the channels** to track. Channel selection keeps the scope to what the user chose to share.
 
-    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same triage and evaluation as a meeting.
+    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same Soft Skill evaluation as a meeting.
   </Accordion>
 </AccordionGroup>
 
@@ -71,18 +71,21 @@ Evidence has **two** sources.
     [Attendee](/overview/glossary) transcribes the meeting and maps speakers. Skill Deck receives text that already says who said what.
   </Step>
   <Step title="Processing">
-    The transcript is processed into evidence, then triage and evaluation run.
+    The transcript is processed into evidence, then Soft Skill evaluation runs.
   </Step>
-  <Step title="Triage">
-    A triage agent reads the evidence and decides **which Skills it can say anything about**. A one-hour meeting speaks to a handful of Skills, not to all 58.
+  <Step title="Subject clips">
+    The transcript is split into **subject clips** — short spans that keep the evidence owner's speaking turns in focus, with enough interlocutor context to read the moment. A short meeting may pass through as a single clip.
+  </Step>
+  <Step title="Behavior classification">
+    Each clip is classified against the Skill level rubric. The classifier asks whether specific level behaviors appear in that clip, then aggregates hits into **demonstrations**: one scored observation of a Skill in that clip, tied to a level title on the 0–20 scale.
 
-    Whitelisted Skills get a mild bias **only when the person has no active Track**. Once a Track is active, triage runs unbiased, so the tracked Skill's live score keeps reflecting what the evidence shows. See [The manager role](/product/manager-role).
+    A Skill can produce **several demonstrations** from one piece of evidence when the person shows that Skill more than once. Skills with no hits stay silent — see [Silence is not a score](#silence-is-not-a-score).
   </Step>
-  <Step title="Evaluation">
-    For each Skill triage selected, an evaluator scores the observed behavior against that Skill's level scale, with a written justification. Near-zero scores pass through the [silence gate](#the-gate-silence-is-not-a-score) before they are kept.
+  <Step title="Justifications and highlights">
+    Each demonstration gets a written justification tied to the clip. Then Soft Skill **highlights** are chosen and stored: a **Top Strength**, and a **Growth Opportunity** when more than one Skill was demonstrated. Highlight copy describes the Skill as a whole in the meeting, not a single demonstration's score.
   </Step>
   <Step title="Scores update">
-    Status reaches `evaluated`. Scores and confidence move for every Skill that was actually scored.
+    Status reaches `evaluated` only after highlights settle — or immediately when Soft Skill evaluation produced no evaluations at all. Each demonstration updates score history for that Skill. Deck impact for a Skill on this evidence is aggregated across its demonstrations.
   </Step>
   <Step title="Track analysis and moments, if a Track is active">
     If the person's team has Tracks enabled and they have an **active Track**, a second job reads the same meeting through [that Skill](/product/cycles-and-tracks). It writes a **Track analysis** — a short Skill-focused summary — and up to **5 moments** (demonstration or opportunity). Each moment is an excerpt plus commentary, capped at **500 characters**, and may be attributed to one [resource card](/product/cycles-and-tracks) by name, never by score.
@@ -92,7 +95,7 @@ Evidence has **two** sources.
     Starting a Track also backfills analyses for evaluated meetings from the last **7 days**.
   </Step>
   <Step title="Evidence Evaluated email">
-    After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis and scores.
+    After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis, Soft Skill highlights, and scores.
   </Step>
 </Steps>
 
@@ -106,22 +109,41 @@ Not every bot session becomes scored evidence.
 | **No usable transcript** | For example the Zoom bot joined but never received external-recording permission, or Attendee ended without a transcript after retries. Evidence is marked failed. Meeting-recording quota is released. Skill Deck does **not** send an error email. |
 | **Real processing error** | Evidence is marked failed and the user gets an error notification. |
 
-## The gate: silence is not a score
+## Silence is not a score
 
-This is the most important design decision in the evaluation pipeline, and it is a strong point in a demo.
+This is the most important design decision in Soft Skill evaluation, and it is a strong point in a demo.
 
-When an evaluator returns a near-zero score, a separate gate agent inspects the justification and decides whether it should be recorded at all. The rule it applies:
+A Skill is scored from this evidence only when the classifier finds **clear, demonstrated behavior** for that Skill. Skills that simply did not show up produce no demonstrations and no score movement.
 
-- If the justification says the evidence contained **no clear, direct, relevant behavior** for that Skill, the evaluation is discarded.
-- If it describes **relevant behavior, even very poor behavior**, the evaluation is kept.
-
-A person is not marked down for a Skill that simply did not come up. A quiet meeting is not a bad score — it produces no score. Genuinely poor behavior does get recorded, including a zero.
+A quiet meeting is not a bad score — it produces no score for the Skills that stayed silent. Genuinely poor behavior that the rubric does catch does get recorded, including a low or zero level.
 
 This is what stops the profile drifting toward the mean as evidence accumulates, and it is the honest answer to "does it penalize me for meetings where I just listened?"
 
 ## What an evaluated piece of evidence contains
 
-Three parts, on the evidence page that belongs to the person the evidence is about.
+On the evidence page that belongs to the person the evidence is about.
+
+### Soft Skill highlights
+
+Stored for that evidence after Soft Skill evaluation.
+
+| Piece | What it is |
+| --- | --- |
+| **Top Strength** | The Skill this meeting showed at its best, with a short holistic summary |
+| **Growth Opportunity** | A different Skill worth attention next, when more than one Skill was demonstrated |
+
+Highlight cards show the Skill name and summary. They do not show a score pill. When only one Skill was demonstrated, Top Strength is that Skill and Growth Opportunity is omitted.
+
+### Skill cards and demonstrations
+
+Each Skill that was demonstrated gets a card on the **Evaluations** tab.
+
+| Piece | What it is |
+| --- | --- |
+| **Demonstration** | One scored observation of that Skill in a subject clip: level title, score, justification, and a clip excerpt while the content cache still holds it |
+| **Scale markers** | Dots on the 0–20 scale for the distinct scores shown on this evidence; on multi-demo cards the dots are clickable to jump the carousel |
+| **Carousel** | When a Skill has more than one demonstration, slides run low → high and open on the highest score |
+| **Deck impact** | One aggregated score movement for that Skill from this evidence, shown under the card |
 
 ### Track analysis and moments
 
@@ -135,16 +157,12 @@ Written while a Track is active, when the meeting is read a second time through 
 
 Caps: **5 moments** per meeting, **500 characters** per excerpt. Empty moments are allowed, and preferred, when the meeting did not really speak to the Skill.
 
-### Skill scores and summaries
-
-One evaluation per Skill that triage selected: a score against that Skill's level scale, a written justification tied to what was observed, and the movement the score caused on the Deck. Two are highlighted — the **top strength** and the **growth opportunity**.
-
 ### Deep Dive
 
 Skill Deck writes suggested questions about the evidence. The person clicks one and Skill Deck answers it, so they can interrogate their own analysis rather than only receive it.
 
 <Note>
-  A manager sees the Track analysis, without its moments. Scores reach a manager through the member's Deck. The Deep Dive stays with the person the evidence is about. See [Privacy and data](/product/privacy-and-data).
+  A manager sees the Track analysis, without its moments. Scores reach a manager through the member's Deck. Soft Skill evidence cards, highlights, and the Deep Dive stay with the person the evidence is about. See [Privacy and data](/product/privacy-and-data).
 </Note>
 
 This material also carries into the member's Evidence Evaluated email, the Weekly Review, and a manager's coaching preparation.
