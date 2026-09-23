@@ -20,14 +20,14 @@ Skill Deck runs one loop, continuously. Understanding the loop is enough to answ
     See [Evidence and evaluation](/product/evidence-and-evaluation) for the bot lifecycle and what happens to the transcript.
   </Step>
   <Step title="The meeting becomes evidence" icon="file-text">
-    A transcript is triaged and processed into a piece of **evidence**. Meetings are the live source we sell and onboard on. Slack conversations can also be evaluated, but we do not ask new customers or test teams to connect Slack at the start.
+    A transcript is processed into a piece of **evidence**. Meetings are the live source we sell and onboard on. Slack conversations can also be evaluated, but we do not ask new customers or test teams to connect Slack at the start.
 
     See [Evidence and evaluation](/product/evidence-and-evaluation).
   </Step>
-  <Step title="Evaluation agents score the evidence" icon="bot">
-    Agents read the evidence and score the behavior they observe against the Skill model — 58 Skills in 8 categories, each graded from 0 to 20.
+  <Step title="Soft Skill evaluation scores the evidence" icon="bot">
+    The evidence is split into subject clips and classified against the Skill level rubric. Hits become **demonstrations** — scored observations of a Skill in a clip — on the 0 to 20 scale across the 58 Skills in 8 categories.
 
-    A single meeting typically produces evaluations for several Skills, not all of them. Skill Deck only scores what it actually saw.
+    A single meeting typically produces demonstrations for several Skills, not all of them. Skill Deck only scores what it actually saw. Soft Skill highlights (Top Strength and Growth Opportunity) are stored before the evidence is marked evaluated.
   </Step>
   <Step title="Scores and confidence update" icon="trending-up">
     Each new evaluation moves the person's score for that Skill, weighted so recent evidence counts more than old evidence. Confidence for that Skill rises as evidence accumulates.
