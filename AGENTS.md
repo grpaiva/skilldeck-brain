@@ -61,6 +61,8 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | What is a confidence score? How is a level calculated? | `product/confidence-and-scoring.mdx` |
 | What is a Track? What is a Cycle? | `product/cycles-and-tracks.mdx` |
 | What emails does a user get, and when? | `product/track-dispatches.mdx` |
+| What is the Advisor stage ladder? How does a staged Track complete? | `product/cycles-and-tracks.mdx` |
+| What does a manager see in Journal on a staged Track? | `product/privacy-and-data.mdx`, `product/manager-role.mdx` |
 | How do organizations, teams, and roles work? | `product/organizations-and-teams.mdx` |
 | What does a manager see and do? | `product/manager-role.mdx` |
 | What can a manager see about an employee? Is this surveillance? | `product/privacy-and-data.mdx` |
@@ -103,7 +105,10 @@ The single most common mistake is writing "competency" where the product says "S
 | **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language, addresses them as "you", and does not restate the Skill name. | Heuristic "top score" pick |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
 | **Track** | A development cycle on one Skill. Needs about two weeks minimum. | "Course", "program", "module", "sprint" |
-| **Goal** | The score a Track aims at. | "Objective", "KPI" |
+| **Stage** | One step on the Advisor stage ladder (0 Kickoff–5 Apply). | Treating stages as score levels |
+| **Practice** | The concrete behavior chosen at Stage 3 and worked through Discuss and Apply. | "Exercise", "homework", "drill" |
+| **Advisor thread** | Email + Journal conversation on a staged Track. Manager reads stage, messages, Verifier excerpts; member composes. | Separate email and Journal as different threads |
+| **Goal** | The score a Track aims at on the score-goal path. | "Objective", "KPI" |
 | **Cycle** | A quarter. Tracks live inside one. | — |
 | **Deck** | A person's full Skill profile. | "Dashboard", "scorecard" |
 | **Dispatch** | A scheduled communication sent during a Track. Kickoff, Prep, Review, Wrap-Up, Evidence Evaluated. | "Notification", "alert", "digest" |
