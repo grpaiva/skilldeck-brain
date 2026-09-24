@@ -2,7 +2,7 @@
 title: "Glossary"
 description: "The Skill Deck vocabulary. Use these terms exactly, in the product and in everything we write."
 icon: "book-a"
-updated: "2026-09-03"
+updated: "2026-09-24"
 status: "verified"
 ---
 
@@ -152,7 +152,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Dispatch">
-    A scheduled communication sent to a user during a Track, normally by email. Five types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, and **Wrap-Up**.
+    A scheduled communication sent to a user during a Track, normally by email. Five standing types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, and **Wrap-Up**. **Advisor** is a further type while the stage ladder is on, and a manager can read those messages in Journal.
 
     In manager-facing writing, use the short names: Prep, Review, Kickoff, Wrap-Up. Not "notification", "alert", or "digest".
   </Accordion>
@@ -168,6 +168,26 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   <Accordion title="Resource card">
     One of the named behaviors a user holds during a Track — the Goal-level behavior plus the levels above it. Each card has a name, a description, and an example. Users see card names, never the level numbers behind them. The number still sets the Track Goal; it is hidden on the card so the person uses the behavior when the opening comes, not because it is a higher score.
   </Accordion>
+
+  <Accordion title="Stage">
+    A step on the Advisor stage ladder for one Track, numbered 0 to 5: Kickoff, Reflect, Mention, Choose, Discuss, Apply. Implemented in the application, not first-run until Tracks are onboarded onto stages. See [Canonical facts](/overview/canonical-facts).
+
+    While it is on, a Track completes when Stage 5 verification says the member applied their chosen Practice with a visible outcome.
+  </Accordion>
+
+  <Accordion title="Practice">
+    The named behavior a member chooses at Stage 3, taken from that Skill's level catalog. Later stages ask them to talk about it, then apply it.
+  </Accordion>
+
+  <Accordion title="Advisor thread">
+    One conversation on a Track. Email and the site Journal are two clients of the same thread. The member replies from the Journal composer or by email. A manager reads the thread in Journal — stage, Advisor messages, the member's replies, and Verifier excerpts — and does not send a reply.
+
+    Advisor Picks, listed under Surfaces, are the weekly audio episodes. The Advisor thread is the Track conversation.
+  </Accordion>
+
+  <Accordion title="Verifier excerpt">
+    A short quote the Track Verifier attaches when it checks Stage 2, Stage 4, or Stage 5 against a meeting. It appears in Journal on the Advisor thread. A manager can read it there. The member's evidence page stays owner-only.
+  </Accordion>
 </AccordionGroup>
 
 ## Surfaces
@@ -178,7 +198,7 @@ The pages a manager and a member actually work in. Use these names in any instru
 | --- | --- |
 | **Deck** | The person's full Skill profile, with scores and confidence |
 | **Overview** | The Track-centric page: progress vs Goal, time on Track, Track history |
-| **Journal** | The reading feed of stored dispatches — Preps, Reviews, Kickoffs, Wrap-Ups |
+| **Journal** | The member's reading feed of stored dispatches, plus the Advisor thread when a Track is on the stage ladder. The member has a composer on that thread. A manager reads stage, Advisor messages, and Verifier excerpts, and does not reply. |
 | **Team page** | Cycle stats and the member Tracks timeline for a team |
 | **Member page** | One person, seen by their manager. Prep for coaching in the order Overview → Journal → Deck |
 | **Track Settings** | Where Skill Tracks, automation, and the whitelist are configured |
