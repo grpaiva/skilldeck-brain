@@ -99,8 +99,8 @@ The single most common mistake is writing "competency" where the product says "S
 | **Evidence** | A piece of real work the product analyzes. Meetings are first-run. Slack exists but is not first-run. | "Recording", "data point", "sample", or claiming email / documents / files / calls |
 | **Evaluation** | The scored assessment produced from evidence. Under Soft Skill evaluation, each demonstration is its own evaluation row. | "Test", "assessment result", "review" |
 | **Soft Skill evaluation** | Production pipeline that scores Skills from evidence (clips → classification → demonstrations → highlights). Customer-facing copy still says Skill. | Treating Soft Skills as a second taxonomy |
-| **Demonstration** | One scored observation of a Skill in a subject clip. Justification is in the evidence owner's language. | Confusing with a Track moment |
-| **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language. | Heuristic "top score" pick |
+| **Demonstration** | One scored observation of a Skill in a subject clip. Justification is in the evidence owner's language, second person, no Skill-name opening. | Confusing with a Track moment |
+| **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language, addresses them as "you", and does not restate the Skill name. | Heuristic "top score" pick |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
 | **Track** | A development cycle on one Skill. Needs about two weeks minimum. | "Course", "program", "module", "sprint" |
 | **Goal** | The score a Track aims at. | "Objective", "KPI" |
