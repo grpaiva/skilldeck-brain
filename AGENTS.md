@@ -105,7 +105,10 @@ The single most common mistake is writing "competency" where the product says "S
 | **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language, addresses them as "you", and does not restate the Skill name. | Heuristic "top score" pick |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
 | **Track** | A development cycle on one Skill. Needs about two weeks minimum. | "Course", "program", "module", "sprint" |
-| **Goal** | The score a Track aims at. | "Objective", "KPI" |
+| **Stage** | One step on a staged Advisor Track (0 Kickoff–5 Apply). Gated by `tracks.staged_v1`. | Treating stages as score levels |
+| **Practice** | The concrete behavior chosen at Stage 3 and worked through Discuss and Apply. | "Exercise", "homework", "drill" |
+| **Advisor thread** | Email + Journal conversation on a staged Track. Manager reads stage, messages, Verifier excerpts; member composes. | Separate email and Journal as different threads |
+| **Goal** | The score a Track aims at on the score-goal path. | "Objective", "KPI" |
 | **Cycle** | A quarter. Tracks live inside one. | — |
 | **Deck** | A person's full Skill profile. | "Dashboard", "scorecard" |
 | **Dispatch** | A scheduled communication sent during a Track. Kickoff, Prep, Review, Wrap-Up, Evidence Evaluated. | "Notification", "alert", "digest" |
