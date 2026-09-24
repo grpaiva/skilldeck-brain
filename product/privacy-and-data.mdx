@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Manager-visible Journal stage Advisor messages and Verifier excerpts verified against merged [PR 240](https://github.com/grpaiva/skilldeck/pull/240) on 2026-09-24.
 </Info>
 
 ## The commitments
@@ -28,7 +28,7 @@ These are the application's stated core privacy commitments, and they are the st
   </Card>
 
   <Card title="Only conclusions persist" icon="database">
-    What survives is metadata, processing state, evaluations (including the subject-clip text that backs each Soft Skill demonstration), scores, score history, Track moment excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
+    What survives is metadata, processing state, evaluations (including the subject-clip text that backs each Soft Skill demonstration), scores, score history, Track moment excerpts, Advisor thread messages, Track stage verification excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
   </Card>
 
   <Card title="Only the account holder is evaluated" icon="user-check">
@@ -52,12 +52,14 @@ These are the application's stated core privacy commitments, and they are the st
 | Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
 | Soft Skill demonstration clip text | Database (on the evaluation) | For the life of the account, then wiped on account delete; the subject-clip text used to score and justify that demonstration |
 | Moment excerpts from a track | Database | For the life of the account, then wiped on account delete; capped at 500 characters each, maximum 5 per evidence |
+| Advisor thread messages | Database | For the life of the account, then wiped on account delete; email and site Journal are two clients on one thread |
+| Track stage verification excerpts | Database | For the life of the account, then wiped on account delete; short excerpts the Stage Verifier used on stages 2, 4, and 5 |
 | Support correspondence | Support systems | 24 months |
 | Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
-The full meeting transcript is never written to a database column. Soft Skill demonstrations store the subject-clip text used to score and justify them, the same way Track moments store short excerpts. The evidence page still shows a clip excerpt only while the content cache holds it. Notifications are explicitly forbidden from containing raw transcript or body content.
+The full meeting transcript is never written to a database column. Soft Skill demonstrations store the subject-clip text used to score and justify them, the same way Track moments and Stage Verifier rows store short excerpts. Advisor thread messages persist as the conversation between the member and the Advisor. The evidence page still shows a clip excerpt only while the content cache holds it. Notifications are explicitly forbidden from containing raw transcript or body content.
 
 ## Only your own behavior is evaluated
 
@@ -82,11 +84,13 @@ Be accurate about this rather than reassuring. A manager's access is real but de
 On their team member's page, in the order the Manager Coaching Playbook has them read it:
 
 - **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
-- **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full.
+- **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full. On a staged Advisor Track, also the current stage, the Advisor thread messages, and Stage Verifier excerpts. The manager's Journal view is read-only; only the member can reply in the composer.
 - **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
-- **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts.
+- **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts when the Track is on the score-goal path.
 
 Opening a member's Journal post does not mark it read for the member.
+
+Soft Skill highlights (Top Strength and Growth Opportunity) stay on the member's evidence page. A manager does not see them through Journal or Track analyses.
 
 ### A manager does not see
 
@@ -105,7 +109,7 @@ This list is enforced, not aspirational:
 | Anything through the MCP server | MCP is first-person only. There is no manager, recruiter, or org-level access path. |
 
 <Tip>
-  The clean way to say this: **a manager sees the conclusions and the short excerpts behind them, never the meeting and never the raw analysis.** The member gets more detail about themselves than their manager does.
+  The clean way to say this: **a manager sees the conclusions and the short excerpts behind them, never the meeting and never the member's Soft Skill highlights.** On a staged Track that includes Verifier excerpts and Advisor messages in Journal; the member still gets the evidence page to themselves.
 </Tip>
 
 That last point is the strongest thing to say in a privacy conversation, and it happens to be true.
@@ -166,13 +170,13 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     No video and no audio, ever. The bot produces text and nothing else.
   </Step>
   <Step title="The text does not survive">
-    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. Subject-clip text that backs Soft Skill demonstrations, and Track moment excerpts, stay with those conclusions.
+    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. Subject-clip text that backs Soft Skill demonstrations, Track moment excerpts, and Stage Verifier excerpts stay with those conclusions.
   </Step>
   <Step title="Only the user is evaluated">
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
   </Step>
   <Step title="The manager gets the analysis, not the meeting">
-    Scores, Track progress, and short excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and the post-meeting analysis a member receives is private to them.
+    Scores, Track progress, Journal dispatches, and — on a staged Track — Advisor messages and Verifier excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and Soft Skill highlights stay on that evidence page with the member.
   </Step>
 </Steps>
 

@@ -118,11 +118,19 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Track analysis">
-    The per-meeting analysis produced **only while a Track is active**: a Skill-focused summary plus moments. Written after evaluation, once the transcript is still in cache. Used in the Evidence Evaluated email, Weekly Review, and coaching deep-dives. Starting a Track backfills the last 7 days of evaluated meetings.
+    The per-meeting analysis produced **only while a Track is active** on the score-goal path: a Skill-focused summary plus moments. Written after evaluation, once the transcript is still in cache. Used in the Evidence Evaluated email, Weekly Review, and coaching deep-dives. Starting a Track backfills the last 7 days of evaluated meetings.
+
+    On a staged Advisor Track (`tracks.staged_v1`), meetings are read by the **Track Stage Verifier** instead. Moments are not written for that Track.
   </Accordion>
 
   <Accordion title="Moment">
-    A short, specific excerpt from one piece of evidence showing the tracked Skill in action. Written only while a Track is active. Two types (`TrackMomentType`): a **demonstration**, where the person showed the behavior, and an **opportunity**, where they could have and did not. May be attributed to one resource card. Empty is allowed.
+    A short, specific excerpt from one piece of evidence showing the tracked Skill in action. Written only while a score-goal Track is active. Two types (`TrackMomentType`): a **demonstration**, where the person showed the behavior, and an **opportunity**, where they could have and did not. May be attributed to one resource card. Empty is allowed.
+
+    Staged Advisor Tracks do not write moments; they store Stage Verifier excerpts instead.
+  </Accordion>
+
+  <Accordion title="Track Stage Verifier">
+    The agent that checks stages 2 (Mention), 4 (Discuss), and 5 (Apply) against meeting evidence. It stores a short excerpt and advances the stage when the objective is met. Stage 5-quality evidence during Stage 4 advances only to Stage 5 — Apply still has to pass on its own. Those excerpts are manager-visible in Journal.
   </Accordion>
 </AccordionGroup>
 
@@ -134,11 +142,31 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
     Statuses (`TrackStatus`): `pending_attribute` (shown as Pending Skill Selection), `pending_goal`, `active`, `completed`, `switched`, `expired`. A Track can also be **rolled** into a fresh one at a Cycle boundary.
 
+    When `tracks.staged_v1` is on and the Track has a stage, progress follows the Advisor stage ladder (stages 0–5) instead of Friday score-goal completion. See **Stage** and **Practice**.
+
     Not a "course", "program", "module", or "sprint".
   </Accordion>
 
+  <Accordion title="Stage">
+    One step on a staged Advisor Track (`TrackStage`): **0 Kickoff**, **1 Reflect**, **2 Mention**, **3 Choose**, **4 Discuss**, **5 Apply**. The Track completes only when Stage 5 verification says the member applied their chosen Practice with a visible outcome.
+
+    Gated by `tracks.staged_v1` (`TRACKS_STAGED_V1`, default off). Friday score-goal completion stays until the flag is on and the Track has a stage.
+  </Accordion>
+
+  <Accordion title="Practice">
+    A concrete behavior the member chooses at Stage 3 of a staged Track — drawn from the Skill's level cards — and works through Discuss and Apply. After Stage 5, the member can start a new Skill or restart the same Skill at Stage 3 with a new Practice.
+
+    Customer-facing term. Internally Practices come from AttributeLevels.
+  </Accordion>
+
+  <Accordion title="Advisor thread">
+    The ongoing conversation between the member and the Advisor on a staged Track. Email (Reply-To plus-token) and the site Journal are two clients on the same message thread. The member composes replies; a manager can read stage, messages, and Verifier excerpts in Journal but cannot reply.
+  </Accordion>
+
   <Accordion title="Goal">
-    The score a Track is aiming at. A Track can complete only when the Goal is met and the minimum duration has passed.
+    The score a Track is aiming at on the score-goal path. A Track can complete only when the Goal is met and the minimum duration has passed, checked on Fridays.
+
+    On a staged Advisor Track, Stage 5 verification is the completion path instead of the Friday Goal check.
   </Accordion>
 
   <Accordion title="Cycle">
@@ -178,11 +206,11 @@ The pages a manager and a member actually work in. Use these names in any instru
 | --- | --- |
 | **Deck** | The person's full Skill profile, with scores and confidence |
 | **Overview** | The Track-centric page: progress vs Goal, time on Track, Track history |
-| **Journal** | The reading feed of stored dispatches — Preps, Reviews, Kickoffs, Wrap-Ups |
+| **Journal** | The reading feed of stored dispatches — Preps, Reviews, Kickoffs, Wrap-Ups. On a staged Track, also the Advisor thread (member composer; manager read-only stage, messages, and Verifier excerpts) |
 | **Team page** | Cycle stats and the member Tracks timeline for a team |
 | **Member page** | One person, seen by their manager. Prep for coaching in the order Overview → Journal → Deck |
 | **Track Settings** | Where Skill Tracks, automation, and the whitelist are configured |
-| **Advisor Picks** | Weekly audio episodes on the week's learning topic |
+| **Advisor Picks** | Audio episodes for the Track. On a staged Track, Kickoff and Practice episodes are anchored on the Skill or Practice, not a learning topic |
 | **Currency** | Settings → Currency. A person pins USD, BRL, or automatic (location). Catalog prices and checkout follow that pin. A card issued in Brazil is charged in BRL. |
 
 ## Organizations and people

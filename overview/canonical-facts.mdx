@@ -93,12 +93,14 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Category listings | 73 | A Skill can sit in several categories, so per-category counts sum to more than 58. Count unique Skills. |
 | Skills in more than one category | 13 | Active Listening and Conflict Management are each in three |
 | Level scale | 21 levels, scored 0 to 20 | Each level is a named behavior with an example. Always say **21 levels** or **0 to 20**. Never "20 levels". |
-| Minimum Track duration | ~2 weeks (14 days) | A Track can complete only from its second Friday onward, and only if the Goal is met |
+| Minimum Track duration | ~2 weeks (14 days) | On the score-goal path, a Track can complete only from its second Friday onward, and only if the Goal is met |
+| Advisor stage ladder | Stages 0–5 | Shipped behind `tracks.staged_v1` (`TRACKS_STAGED_V1`, default **off**). Kill-switch, not a partial rollout. Completion = Stage 5 Practice applied with visible outcome |
+| Stage names | 0 Kickoff, 1 Reflect, 2 Mention, 3 Choose, 4 Discuss, 5 Apply | Stages 2/4/5 wait on Track Stage Verifier; one Advisor analysis email after Verifier |
 | Cycle length | Quarterly | Calendar quarter or custom dates |
 | Dispatches | 5 types | Kickoff, Weekly Prep, Evidence Evaluated, Weekly Review, Wrap-Up |
 | Weekly Prep sent | Mondays, 12:30 |  |
 | Weekly Review sent | Fridays, 16:00 |  |
-| Advisor Picks episode generated | Mondays, 11:00 | Before the Prep email, so it can be linked |
+| Advisor Picks episode generated | Mondays, 11:00 | Before the Prep email, so it can be linked. Staged Kickoff/Practice episodes are anchored on Skill or Practice |
 | Track unlock confidence threshold | 0.30 | Configurable; the application notes 0.50 as the long-term ideal |
 | Evaluations for maximum base confidence | 20 |  |
 | Confidence recency half-life | 180 days |  |
@@ -107,15 +109,17 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Inactivity pause | 7 days without an evaluation | Track comms pause |
 | Soft Skill evaluation pipeline | **Live in production** | Subject clips → behavior classification → demonstrations → justifications → Soft Skill highlights, then evidence marked evaluated. Customer-facing term remains **Skill**. |
 | Demonstrations per Skill per evidence | One or more | Each demonstration is its own evaluation row and score-history write. Skills with no hits stay silent. |
-| Soft Skill highlights | Stored | Top Strength always when Soft Skill evaluations exist; Growth Opportunity when two or more Skills were demonstrated. Not a score-heuristic fallback. Justifications and highlight summaries are written in the evidence owner's language (English, Spanish, or Brazilian Portuguese), address the subject as "you", and do not open by restating the Skill name. |
+| Soft Skill highlights | Stored | Top Strength always when Soft Skill evaluations exist; Growth Opportunity when two or more Skills were demonstrated. Not a score-heuristic fallback. Justifications and highlight summaries are written in the evidence owner's language (English, Spanish, or Brazilian Portuguese), address the subject as "you", and do not open by restating the Skill name. Manager cannot see highlights — privacy unchanged by the Advisor stage ladder. |
 | Evidence Evaluated composition | Static | Not AI-written. Includes Track analysis when present, plus stored Top Strength and Growth Opportunity Soft Skill highlights. |
-| Moments per evidence | Up to 5 | Only while a Track is active, after evaluation |
+| Moments per evidence | Up to 5 | Score-goal Track only, after evaluation. Staged Tracks write Verifier excerpts instead |
 | Moment excerpt cap | 500 characters |  |
-| Track analysis | After evaluation, active Track only | Skill-focused summary plus moments. Backfills last 7 days when a Track starts. |
-| Resource cards per Track | Up to 4 | The Goal level plus the three above it. Cards show names, not scores. |
+| Track analysis | After evaluation, active score-goal Track only | Skill-focused summary plus moments. Backfills last 7 days when a Track starts. |
+| Advisor thread | Email + Journal | Two clients on one thread for staged Tracks. Manager Journal: read-only stage, messages, Verifier excerpts |
+| Resource cards per Track | Up to 4 | The Goal level plus the three above it. Cards show names, not scores. On staged Tracks these are the Practice choices |
 | Level numbers on resource cards | Hidden | Scores still drive the Track Goal. Hide the number so the person uses the behavior when the opening comes, not because it is a higher score. |
 | In-app onboarding checklist | Off | Do not describe a guided onboarding flow |
 | Tracks feature | **Live in production** | Global kill-switch on in prod. Teams still enable Tracks per team. Do not describe as dark-launched. |
+| Advisor stage ladder flag | `tracks.staged_v1` default **false** | Turn on only after `tracks:onboard-staged`. Friday score-goal completion stays until flag is on and Track has a stage |
 | Track Goal floor | Level 5 | Auto-set Goals are never lower |
 | Confidence display bands | 50%+ green, 30–49% amber, under 30% red | The Deck can hide anything under 30% |
 | Supported languages | 3 | English, Spanish, Brazilian Portuguese |
@@ -160,6 +164,8 @@ These are safe to state and are the strongest thing we have on the subject.
 | Bot configuration | Transcript-only |
 | Raw transcript in the database | Never |
 | Soft Skill demonstration clip text | Stored on the evaluation for account lifetime |
+| Advisor thread messages | Stored for account lifetime; email and Journal share one thread |
+| Track stage verification excerpts | Stored for account lifetime; manager-visible in Journal on staged Tracks |
 | Transcript retention | 7 days, in cache only |
 | Residual files and bot-provider data | Deleted after 7 days |
 | Who is evaluated from a meeting | Only the evidence owner, never other participants |
@@ -167,6 +173,8 @@ These are safe to state and are the strongest thing we have on the subject.
 | Model provider retention | Disabled by default |
 | Manager access to an evidence page | None — owner-only, returns 403 |
 | Manager access to Evidence Evaluated dispatches | None — private to the member |
+| Manager access to Soft Skill highlights | None — stay on the member's evidence page |
+| Manager access to staged Journal Advisor thread | Read-only stage, messages, and Verifier excerpts; no composer |
 | Manager access via MCP | None — MCP is first-person only |
 | Account hard-delete | Settings → Profile; typed email plus password or Google/LinkedIn re-auth |
 | Org-owner account delete | Blocked until ownership is transferred |

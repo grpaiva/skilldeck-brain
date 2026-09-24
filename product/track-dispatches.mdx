@@ -7,10 +7,12 @@ status: "verified"
 ---
 
 <Info>
-  Verified against the `DispatchType` enum, `routes/console.php`, `config/comms.php`, and the dispatch prompt views in the application repository on 2026-09-01.
+  Verified against the `DispatchType` enum, `routes/console.php`, `config/comms.php`, and the dispatch prompt views in the application repository on 2026-09-01. Advisor stage ladder and Journal thread verified against merged [PR 240](https://github.com/grpaiva/skilldeck/pull/240) on 2026-09-24.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
+
+On a staged Advisor Track (`tracks.staged_v1`), email and the site Journal are two clients on **one Advisor thread**. Replies use a Reply-To plus-token; inbound mail lands at `POST /api/webhooks/mailgun/inbound` and is accepted only from the Track owner or a verified alias.
 
 ## The five dispatches
 
@@ -28,7 +30,22 @@ The rhythm is deliberate: a Monday setup, real-time analysis as work happens, an
   Dispatches keep running at this weekly rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook is explicit that its Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still sends Monday Prep and Friday Review every week for active Tracks.
 </Note>
 
-Dispatches are stored and readable in the **Journal**, which is also what a manager reads when preparing a coaching meeting.
+Dispatches are stored and readable in the **Journal**, which is also what a manager reads when preparing a coaching meeting. On a staged Track, Journal also shows the Advisor thread: the member composes replies; the manager sees stage, messages, and Verifier excerpts read-only.
+
+## Advisor thread on staged Tracks
+
+When `tracks.staged_v1` is on and the Track has a stage, progress follows the [Advisor stage ladder](/product/cycles-and-tracks#advisor-stage-ladder). The communications shift with it:
+
+| Stage | What the member gets |
+| --- | --- |
+| **0 Kickoff** | Kickoff opens the Track; Advisor Picks episode anchored on the **Skill** |
+| **1 Reflect** | Member replies with a substantive reflection (email or Journal) |
+| **2 Mention** | After Verifier on meeting evidence: **one** Advisor analysis email. A yes appends the Practice offer to that same message — no Verifier-only follow-up |
+| **3 Choose** | Practice choice and confirmation; Practice episode anchored on the **Practice** |
+| **4 Discuss** | After Verifier: one Advisor analysis email |
+| **5 Apply** | After Verifier says the Practice was applied with a visible outcome: Track completes |
+
+Stages 2, 4, and 5 wait on the Track Stage Verifier before that single analysis email. Soft Skill highlights on the evidence page stay private to the member; Verifier excerpts in Journal are manager-visible.
 
 ## Resource cards
 
@@ -52,7 +69,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It then walks through the hand of cards by name, strongest first, so the user can recognize the moment for each one — framed as tools they now carry, not levels they are graded on.
 
-    It introduces the week's learning topic and links the Advisor Picks audio episode for it, then closes with two or three concrete openings to watch for in upcoming meetings, each tied to a card by name.
+    On the score-goal path it introduces the week's learning topic and links the Advisor Picks audio episode for it. On a staged Track, Kickoff and Practice episodes are anchored on the Skill or Practice, not a learning topic. It closes with two or three concrete openings to watch for in upcoming meetings, each tied to a card by name.
   </Accordion>
 
   <Accordion title="Weekly Prep" icon="calendar">

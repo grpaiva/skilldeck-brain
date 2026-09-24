@@ -90,11 +90,13 @@ Evidence has **two** sources.
     Status reaches `evaluated` only after highlights settle — or immediately when Soft Skill evaluation produced no evaluations at all. Each demonstration updates score history for that Skill. Deck impact for a Skill on this evidence is aggregated across its demonstrations.
   </Step>
   <Step title="Track analysis and moments, if a Track is active">
-    If the person's team has Tracks enabled and they have an **active Track**, a second job reads the same meeting through [that Skill](/product/cycles-and-tracks). It writes a **Track analysis** — a short Skill-focused summary — and up to **5 moments** (demonstration or opportunity). Each moment is an excerpt plus commentary, capped at **500 characters**, and may be attributed to one [resource card](/product/cycles-and-tracks) by name, never by score.
+    If the person's team has Tracks enabled and they have an **active Track** on the score-goal path, a second job reads the same meeting through [that Skill](/product/cycles-and-tracks). It writes a **Track analysis** — a short Skill-focused summary — and up to **5 moments** (demonstration or opportunity). Each moment is an excerpt plus commentary, capped at **500 characters**, and may be attributed to one [resource card](/product/cycles-and-tracks) by name, never by score.
 
     The job prefers an empty moments list over stretching a weak connection. It needs the transcript still in cache. If there is no active Track, this step is skipped.
 
     Starting a Track also backfills analyses for evaluated meetings from the last **7 days**.
+
+    On a staged Advisor Track (`tracks.staged_v1`), stages 2, 4, and 5 use the **Track Stage Verifier** instead. Moments are not written for that Track; Verifier excerpts land on the Advisor thread and are manager-visible in Journal.
   </Step>
   <Step title="Evidence Evaluated email">
     After analysis settles — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from stored analysis, Soft Skill highlights, and scores.
@@ -149,7 +151,7 @@ Each Skill that was demonstrated gets a card on the **Evaluations** tab.
 
 ### Track analysis and moments
 
-Written while a Track is active, when the meeting is read a second time through the tracked Skill.
+Written while a score-goal Track is active, when the meeting is read a second time through the tracked Skill.
 
 | Piece | What it is |
 | --- | --- |
@@ -159,12 +161,14 @@ Written while a Track is active, when the meeting is read a second time through 
 
 Caps: **5 moments** per meeting, **500 characters** per excerpt. Empty moments are allowed, and preferred, when the meeting did not really speak to the Skill.
 
+On a staged Advisor Track, the Track Stage Verifier writes short excerpts for stages 2, 4, and 5 instead of moments. Those excerpts appear on the Advisor thread in Journal.
+
 ### Deep Dive
 
 Skill Deck writes suggested questions about the evidence. The person clicks one and Skill Deck answers it, so they can interrogate their own analysis rather than only receive it.
 
 <Note>
-  A manager sees the Track analysis, without its moments. Scores reach a manager through the member's Deck. Soft Skill evidence cards, highlights, and the Deep Dive stay with the person the evidence is about. See [Privacy and data](/product/privacy-and-data).
+  A manager sees the Track analysis, without its moments, on the score-goal path. On a staged Track they see Verifier excerpts and Advisor messages in Journal. Scores reach a manager through the member's Deck. Soft Skill evidence cards, highlights, and the Deep Dive stay with the person the evidence is about. See [Privacy and data](/product/privacy-and-data).
 </Note>
 
 This material also carries into the member's Evidence Evaluated email, the Weekly Review, and a manager's coaching preparation.

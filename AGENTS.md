@@ -61,6 +61,8 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | What is a confidence score? How is a level calculated? | `product/confidence-and-scoring.mdx` |
 | What is a Track? What is a Cycle? | `product/cycles-and-tracks.mdx` |
 | What emails does a user get, and when? | `product/track-dispatches.mdx` |
+| What is the Advisor stage ladder? How does a staged Track complete? | `product/cycles-and-tracks.mdx` |
+| What does a manager see in Journal on a staged Track? | `product/privacy-and-data.mdx`, `product/manager-role.mdx` |
 | How do organizations, teams, and roles work? | `product/organizations-and-teams.mdx` |
 | What does a manager see and do? | `product/manager-role.mdx` |
 | What can a manager see about an employee? Is this surveillance? | `product/privacy-and-data.mdx` |

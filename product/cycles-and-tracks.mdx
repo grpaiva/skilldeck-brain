@@ -36,7 +36,7 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
     Status `active`. The Track is running, dispatches are going out, and every new piece of evidence is read against this Skill.
   </Step>
   <Step title="It ends">
-    A Track reaches one of three terminal states: `completed` when the Goal is met, `switched` when the person moves to a different Skill, or `expired` when it goes stale. It can also be **rolled** into a fresh Track at a Cycle boundary.
+    A Track reaches one of three terminal states: `completed` when the Goal is met (score-goal path) or when Stage 5 verification passes (staged Advisor path), `switched` when the person moves to a different Skill, or `expired` when it goes stale. It can also be **rolled** into a fresh Track at a Cycle boundary.
   </Step>
 </Steps>
 
@@ -48,8 +48,9 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
 
 | Rule | Value | Why it exists |
 | --- | --- | --- |
-| Minimum duration | **~2 weeks** (14 days) | A Track cannot complete before this, no matter how fast the score moves. Behavior change needs more than one good meeting. |
+| Minimum duration | **~2 weeks** (14 days) | A Track cannot complete before this on the score-goal path, no matter how fast the score moves. Behavior change needs more than one good meeting. |
 | Goal checks | **Fridays only** | A Track started on a Friday can complete on its second Friday at the earliest. A score update mid-week never completes a Track. |
+| Staged Advisor completion | **Stage 5 verification** | When `tracks.staged_v1` is on and the Track has a stage, Friday score-goal completion does not run. The Track completes when Stage 5 says the Practice was applied with a visible outcome. |
 | Stale expiry | **90 days** without score movement | Prevents a disengaged user from being stuck against a Goal they will never reach. |
 | Inactivity pause | **7 days** without any evaluation | Track communications and recurring jobs are skipped until the person is back. |
 
@@ -60,6 +61,35 @@ That last rule matters for the product's tone. Someone on holiday or in a heads-
 A Goal is a whole number on the 0–20 scale, normally the next integer above the current score, and **never below level 5**. When the product sets it automatically the formula is `min(max(floor(score) + 1, 5), 20)`.
 
 A setting controls what happens when the two weeks are up but the Goal is not met. With **require goal on**, the Track keeps running. With it off, the Track time-boxes: it switches on the Friday after the minimum duration regardless, and the Wrap-Up is written as a retrospective.
+
+On a staged Advisor Track, the Goal score still orients the hand of Practices; completion follows Stage 5 verification rather than the Friday Goal check.
+
+## Advisor stage ladder
+
+Shipped behind `tracks.staged_v1` (`TRACKS_STAGED_V1`, default **off**). It is a kill-switch, not a partial rollout: after `tracks:onboard-staged` and flipping the flag, active Tracks with a stage follow this ladder. Friday score-goal completion stays until the flag is on **and** the Track has a stage.
+
+<Steps>
+  <Step title="0 · Kickoff">
+    Opens the Track and invites a reflection on the Skill. Kickoff Advisor Picks episodes are anchored on the Skill.
+  </Step>
+  <Step title="1 · Reflect">
+    The member replies with a substantive reflection on the Skill — by email or in the Journal composer.
+  </Step>
+  <Step title="2 · Mention">
+    Meaningfully mention the Skill in a meeting. The Track Stage Verifier checks evidence; one Advisor analysis email follows (no Verifier-only follow-up). A yes appends the Practice offer to that same analysis.
+  </Step>
+  <Step title="3 · Choose">
+    Choose a Practice and confirm it after the Practice episode. Episodes are anchored on the Practice, not a learning topic.
+  </Step>
+  <Step title="4 · Discuss">
+    Talk about the chosen Practice in a meeting. Verifier, then one Advisor analysis email. Stage 5-quality evidence here advances only to Stage 5.
+  </Step>
+  <Step title="5 · Apply">
+    Apply the Practice in a meeting with a visible outcome. When verification passes, the Track completes. The member can then start a new Skill, or the same Skill at Stage 3 with a new Practice.
+  </Step>
+</Steps>
+
+Email and the site Journal are two clients on one **Advisor thread**. The member composes; a manager reads stage, messages, and Verifier excerpts in Journal and cannot open the member's evidence page. See [Privacy and data](/product/privacy-and-data) and [Track dispatches](/product/track-dispatches).
 
 ## Do not churn Skills
 
@@ -123,7 +153,7 @@ Cards are the product's central metaphor made literal. A person given one target
 
 ## Track analysis and moments
 
-After a meeting is evaluated, if the person has an **active Track**, Skill Deck runs a second pass on that meeting for the tracked Skill. It writes a **Track analysis** (a short summary) and **moments** — short excerpts showing the Skill in action.
+After a meeting is evaluated, if the person has an **active Track** on the score-goal path, Skill Deck runs a second pass on that meeting for the tracked Skill. It writes a **Track analysis** (a short summary) and **moments** — short excerpts showing the Skill in action.
 
 <Columns cols={2}>
   <Card title="Demonstration" icon="check">
@@ -139,11 +169,13 @@ Up to **5 moments** per meeting, excerpts capped at **500 characters**. A moment
 
 Starting a Track also backfills this for evaluated meetings from the last **7 days**. Without an active Track, evaluation still scores the Deck — it just does not write a Track analysis. See [Evidence and evaluation](/product/evidence-and-evaluation).
 
+On a staged Advisor Track, that second pass is the **Track Stage Verifier** for stages 2, 4, and 5. Moments are not written or shown for that Track; Verifier excerpts live on the Advisor thread and are manager-visible in Journal.
+
 ## Enabling Tracks
 
 Tracks are **live in production**. Teams turn them on per team (team page), along with automation settings and the whitelist. That per-team switch is step two of the Manager Coaching Playbook's six moves, and skipping it is the most common setup failure.
 
-Do not describe Tracks as dark-launched or globally off. A global kill-switch still exists in application config for emergencies; production has it on.
+Do not describe Tracks as dark-launched or globally off. A global kill-switch still exists in application config for emergencies; production has it on. The Advisor stage ladder has its own kill-switch (`tracks.staged_v1`, default off) — turn it on only after `tracks:onboard-staged`.
 
 <Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
   Setting up the team, and running the coaching cadence on top.
