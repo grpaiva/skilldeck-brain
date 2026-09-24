@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-09-03"
+updated: "2026-09-24"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24.
 </Info>
 
 ## The commitments
@@ -24,11 +24,11 @@ These are the application's stated core privacy commitments, and they are the st
   </Card>
 
   <Card title="Transcripts are temporary" icon="clock">
-    Raw content, including transcripts, never lives in the database. It sits in a cache that expires after **7 days**.
+    The full meeting transcript sits in a cache that expires after **7 days**. It is never written to a database column as a full transcript.
   </Card>
 
   <Card title="Only conclusions persist" icon="database">
-    What survives is metadata, processing state, evaluations, scores, score history, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
+    What survives is metadata, processing state, evaluations (including the subject-clip text that backs each Soft Skill demonstration), scores, score history, Track moment excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
   </Card>
 
   <Card title="Only the account holder is evaluated" icon="user-check">
@@ -50,13 +50,14 @@ These are the application's stated core privacy commitments, and they are the st
 | Residual files and bot-provider data | Temporary storage | Deleted after 7 days by a daily job |
 | Evidence metadata (title, type, status, timestamps, participants) | Database | For the life of the account, then wiped on account delete |
 | Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
+| Soft Skill demonstration clip text | Database (on the evaluation) | For the life of the account, then wiped on account delete; the subject-clip text used to score and justify that demonstration |
 | Moment excerpts from a track | Database | For the life of the account, then wiped on account delete; capped at 500 characters each, maximum 5 per evidence |
 | Support correspondence | Support systems | 24 months |
 | Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
-Raw transcript text is never written to a database column. Notifications are explicitly forbidden from containing raw transcript or body content.
+The full meeting transcript is never written to a database column. Soft Skill demonstrations store the subject-clip text used to score and justify them, the same way Track moments store short excerpts. The evidence page still shows a clip excerpt only while the content cache holds it. Notifications are explicitly forbidden from containing raw transcript or body content.
 
 ## Only your own behavior is evaluated
 
@@ -165,7 +166,7 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     No video and no audio, ever. The bot produces text and nothing else.
   </Step>
   <Step title="The text does not survive">
-    Transcripts live in a cache for 7 days and are then gone. They are never written to the database.
+    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. Subject-clip text that backs Soft Skill demonstrations, and Track moment excerpts, stay with those conclusions.
   </Step>
   <Step title="Only the user is evaluated">
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
