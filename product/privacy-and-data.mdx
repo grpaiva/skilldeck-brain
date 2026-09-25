@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Advisor Journal visibility verified against merged [PR 240](https://github.com/grpaiva/skilldeck/pull/240) (`2bb8c5eb`) on 2026-09-24. Staged Overview verified against merged [PR 242](https://github.com/grpaiva/skilldeck/pull/242) (`63f3b5c9`) into `tracks-staged` on 2026-09-24.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24.
 </Info>
 
 ## The commitments
@@ -52,8 +52,6 @@ These are the application's stated core privacy commitments, and they are the st
 | Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
 | Soft Skill demonstration clip text | Database (on the evaluation) | For the life of the account, then wiped on account delete; the subject-clip text used to score and justify that demonstration |
 | Moment excerpts from a track | Database | For the life of the account, then wiped on account delete; capped at 500 characters each, maximum 5 per evidence |
-| Advisor thread messages | Database | For the life of the account, then wiped on account delete; email and site Journal are two clients on one thread |
-| Track stage verification excerpts | Database | For the life of the account, then wiped on account delete; short excerpts the Track Verifier used on stages 2, 4, and 5 |
 | Support correspondence | Support systems | 24 months |
 | Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
 
@@ -83,8 +81,8 @@ Be accurate about this rather than reassuring. A manager's access is real but de
 
 On their team member's page, in the order the Manager Coaching Playbook has them read it:
 
-- **Overview** — on the score-goal path, progress against Goal, time on the current Track, Track history (completed, active, switched, rolled, expired), the resource-card hand, and the number of evaluations in the Cycle. On a staged Track, a stages timeline; the Practice title appears after Stage 3. See [Staged Overview](/product/cycles-and-tracks#staged-overview).
-- **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full. On a Track that is on the [Advisor stage ladder](/overview/canonical-facts), the same Journal also shows the stage, the Advisor thread, and Verifier excerpts. The thread holds Advisor messages and the member's replies. The member writes from the Journal composer. A manager reads that thread and does not send a reply.
+- **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
+- **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full.
 - **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
 - **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts.
 
@@ -176,7 +174,7 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
   </Step>
   <Step title="The manager gets the analysis, not the meeting">
-    Scores, Track progress, and short excerpts. On a staged Track, Journal also shows the stage, Advisor messages, and Verifier excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and the post-meeting analysis a member receives is private to them.
+    Scores, Track progress, and short excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and the post-meeting analysis a member receives is private to them.
   </Step>
 </Steps>
 
