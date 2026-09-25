@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-09-24"
+updated: "2026-09-25"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Advisor Journal visibility verified against merged [PR 240](https://github.com/grpaiva/skilldeck/pull/240) (`2bb8c5eb`) on 2026-09-24.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Advisor Journal visibility verified against merged [PR 240](https://github.com/grpaiva/skilldeck/pull/240) (`2bb8c5eb`) on 2026-09-24. Staged Overview verified against merged [PR 242](https://github.com/grpaiva/skilldeck/pull/242) (`63f3b5c9`) into `tracks-staged` on 2026-09-24.
 </Info>
 
 ## The commitments
@@ -83,7 +83,7 @@ Be accurate about this rather than reassuring. A manager's access is real but de
 
 On their team member's page, in the order the Manager Coaching Playbook has them read it:
 
-- **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
+- **Overview** — on the score-goal path, progress against Goal, time on the current Track, Track history (completed, active, switched, rolled, expired), the resource-card hand, and the number of evaluations in the Cycle. On a staged Track, a stages timeline; the Practice title appears after Stage 3. See [Staged Overview](/product/cycles-and-tracks#staged-overview).
 - **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full. On a Track that is on the [Advisor stage ladder](/overview/canonical-facts), the same Journal also shows the stage, the Advisor thread, and Verifier excerpts. The thread holds Advisor messages and the member's replies. The member writes from the Journal composer. A manager reads that thread and does not send a reply.
 - **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
 - **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts.
