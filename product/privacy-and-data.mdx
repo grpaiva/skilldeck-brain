@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-09-25"
+updated: "2026-09-28"
 status: "verified"
 ---
 
@@ -28,7 +28,7 @@ These are the application's stated core privacy commitments, and they are the st
   </Card>
 
   <Card title="Only conclusions persist" icon="database">
-    What survives is metadata, processing state, evaluations (including the subject-clip text that backs each Soft Skill demonstration), scores, score history, Track moment excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
+    What survives is metadata, processing state, evaluations (including the subject-clip text that backs each Soft Skill demonstration), scores, score history, stage-check excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
   </Card>
 
   <Card title="Only the account holder is evaluated" icon="user-check">
@@ -58,7 +58,7 @@ These are the application's stated core privacy commitments, and they are the st
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
-The full meeting transcript is never written to a database column. Soft Skill demonstrations store the subject-clip text used to score and justify them, the same way Track moments store short excerpts. The evidence page still shows a clip excerpt only while the content cache holds it. Notifications are explicitly forbidden from containing raw transcript or body content.
+The full meeting transcript is never written to a database column. Soft Skill demonstrations store the subject-clip text used to score and justify them, and stage checks store short meeting excerpts. The evidence page still shows a Soft Skill clip excerpt only while the content cache holds it. Notifications are explicitly forbidden from containing raw transcript or body content.
 
 ## Only your own behavior is evaluated
 
@@ -83,11 +83,10 @@ Be accurate about this rather than reassuring. A manager's access is real but de
 On their team member's page, in the order the Manager Coaching Playbook has them read it:
 
 - **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
-- **Tracks / Conversations** — the member's Tracks, stage progress, and Advisor threads (including meeting-evaluated threads) **read-only**. Managers never reply and never mark threads read for the member.
+- **Tracks / Conversations** — the member's Tracks, stage progress, and Advisor threads (including meeting-evaluated threads with stage-check outcomes) **read-only**. Managers never reply and never mark threads read for the member.
 - **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
-- **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts.
 
-Soft Skill highlights stay with the member. A manager does not open them by reading Tracks or Conversations. See [Evidence and evaluation](/product/evidence-and-evaluation).
+Soft Skill highlights and the member's evidence page stay with the member. A manager does not open them by reading Tracks or Conversations. See [Evidence and evaluation](/product/evidence-and-evaluation).
 
 ### A manager does not see
 
@@ -98,8 +97,7 @@ This list is enforced, not aspirational:
 | Meeting video and audio | Never captured |
 | Meeting transcripts | Never in the database; gone from cache after 7 days |
 | **Evidence Evaluated Journal dispatches** | Explicitly excluded from the manager-visible Journal dispatch list. The legacy post-meeting Journal post stays with the member. Meeting-evaluated **Conversations** threads on a Track are visible to managers read-only. |
-| Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. |
-| Click-through from a Track analysis to the underlying evidence | The expand link is disabled for managers |
+| Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. The Analyses tab, stage-check excerpt, Soft Skill highlights, and Deep Dive stay there. |
 | The full list of individual evaluations | Not exposed in any manager view |
 | The body of a member's development report | The manager sees that a report exists, with no link to open it |
 | Benchmarks the member favorited | Private, so a member can hold aspirations their manager does not see |
@@ -167,7 +165,7 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     No video and no audio, ever. The bot produces text and nothing else.
   </Step>
   <Step title="The text does not survive">
-    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. Subject-clip text that backs Soft Skill demonstrations, and Track moment excerpts, stay with those conclusions.
+    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. Subject-clip text that backs Soft Skill demonstrations, and stage-check excerpts, stay with those conclusions.
   </Step>
   <Step title="Only the user is evaluated">
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.

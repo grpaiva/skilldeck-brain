@@ -7,7 +7,7 @@ icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282), Track episode teaching in [PR 283](https://github.com/grpaiva/skilldeck/pull/283), and Practice explanation before the meeting in [PR 284](https://github.com/grpaiva/skilldeck/pull/284) (2026-09-28): `TrackStageEngine`, `DefaultTrackStages`, `TrackEpisodeBrief`, `GenerateTrackEpisodeJob`, `StageOpeningWriter`, `AdvisorStageMessenger`, `DispatchType`, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282), Track episode teaching in [PR 283](https://github.com/grpaiva/skilldeck/pull/283), Practice explanation before the meeting in [PR 284](https://github.com/grpaiva/skilldeck/pull/284), and stage-check surface on evidence and Evidence Evaluated in [PR 285](https://github.com/grpaiva/skilldeck/pull/285) (2026-09-28): `TrackStageEngine`, `GenerateTrackAnalysisJob`, `EvidenceDetail`, `EvidenceEvaluatedComposer`, `DispatchType`, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -53,7 +53,7 @@ Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_AD
 | **Kickoff** | When a Track starts (or is onboarded onto the ladder) | Opens the Track and stage 1; introduces the Skill and the hand of cards |
 | **Weekly Prep** | Mondays, 12:30 | Sets up the week ahead |
 | **Evidence Evaluated** | After a meeting is analyzed | The analysis of that meeting |
-| **Weekly Review** | Fridays, 16:00 | The week's moments and score movement |
+| **Weekly Review** | Fridays, 16:00 | The week's Track progress and score movement |
 | **Wrap-Up** | When a Track ends | The arc of the whole Track and what to carry forward |
 
 On the staged ladder, Friday Review no longer completes the Track from a score Goal. Completion is Stage 5.
@@ -94,15 +94,13 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   <Accordion title="Evidence Evaluated" icon="file-check">
     Sent after a meeting is evaluated. This is the "analysis after every meeting" from the pitch. Subject: `Meeting analysis for :title`.
 
-    The body is **static**, assembled from stored data. When the member has an active Track, it includes the Track analysis summary and moments. It then shows the stored **Top Strength** and **Growth Opportunity** Soft Skill highlights from that meeting — summaries already written in the member's language.
+    The body is **static**, assembled from stored data. When a stage check exists for that meeting, the email includes whether the stage was met, the rationale and next step (addressing the member as "you"), and an italicized excerpt when the check has one. When the member has an active Track, it can also show the tracked Skill score from that meeting. It then shows the stored **Top Strength** and **Growth Opportunity** Soft Skill highlights — summaries already written in the member's language.
 
-    On meeting stages, the stage-check rationale and next step address the member as "you". When the check includes a meeting excerpt, that quote is italicized.
-
-    It arrives close to the work it describes. As a legacy Journal dispatch, Evidence Evaluated stays with the member alone. On the Conversations surface, managers can open meeting-evaluated threads for Tracks they manage; that does not reopen the old Journal Evidence Evaluated post.
+    It arrives close to the work it describes. As a Journal dispatch, Evidence Evaluated stays with the member alone. On the Conversations surface, managers can open meeting-evaluated threads for Tracks they manage; that does not reopen the Journal Evidence Evaluated post.
   </Accordion>
 
   <Accordion title="Weekly Review" icon="chart-bar">
-    Fridays at 16:00. The week's Track moments and score movement.
+    Fridays at 16:00. The week's Track progress and score movement.
 
     On the staged ladder this is a retrospective email, not the completion trigger. Stage 5 is what completes the Track.
   </Accordion>
@@ -110,7 +108,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   <Accordion title="Wrap-Up" icon="trophy">
     Sent when a Track ends — because Stage 5 finished, because the Track was switched, or because the quarterly Cycle rolled it over.
 
-    It opens with the arc of the Track: starting score, ending score, duration, and the overall pattern across meetings. It highlights meaningful moments, looks back over the cards and the chosen Practice, and closes with what comes next.
+    It opens with the arc of the Track: starting score, ending score, duration, and the overall pattern across meetings. It highlights meaningful meetings, looks back over the cards and the chosen Practice, and closes with what comes next.
 
     When the Track ends without finishing Stage 5, the Wrap-Up is written as a retrospective rather than a failure.
   </Accordion>
@@ -118,9 +116,9 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 ## How messages are written
 
-Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — cards, analyses, moments, stage goals — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
+Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — cards, stage checks, stage goals — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
 
-**Evidence Evaluated is never AI-composed.** It renders stored analysis and scores.
+**Evidence Evaluated is never AI-composed.** It renders the stage check, Soft Skill highlights, and scores.
 
 ### The rules the coach writes under
 

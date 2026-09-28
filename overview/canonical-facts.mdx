@@ -2,7 +2,7 @@
 title: "Canonical facts"
 description: "Every number and claim we are allowed to state, in one place."
 icon: "list-checks"
-updated: "2026-09-25"
+updated: "2026-09-28"
 status: "verified"
 ---
 
@@ -108,10 +108,8 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Soft Skill evaluation pipeline | **Live in production** | Subject clips → behavior classification → demonstrations → justifications → Soft Skill highlights, then evidence marked evaluated. Customer-facing term remains **Skill**. |
 | Demonstrations per Skill per evidence | One or more | Each demonstration is its own evaluation row and score-history write. Skills with no hits stay silent. |
 | Soft Skill highlights | Stored | Top Strength always when Soft Skill evaluations exist; Growth Opportunity when two or more Skills were demonstrated. Not a score-heuristic fallback. Justifications and highlight summaries are written in the evidence owner's language (English, Spanish, or Brazilian Portuguese), address the subject as "you", and do not open by restating the Skill name. |
-| Evidence Evaluated composition | Static | Not AI-written. Includes Track analysis when present, plus stored Top Strength and Growth Opportunity Soft Skill highlights. |
-| Moments per evidence | Up to 5 | Only while a Track is active, after evaluation |
-| Moment excerpt cap | 500 characters |  |
-| Track analysis | After evaluation, active Track only | Skill-focused summary plus moments. Backfills last 7 days when a Track starts. |
+| Evidence Evaluated composition | Static | Not AI-written. Includes the stage check when present, plus stored Top Strength and Growth Opportunity Soft Skill highlights. |
+| Stage check | After evaluation, active Track meeting stages | Verifier met/not met, rationale, next step, optional excerpt. A met check advances the stage. |
 | Resource cards per Track | Up to 4 | The Goal level plus the three above it. Cards show names, not scores. |
 | Level numbers on resource cards | Hidden | Scores still drive the Track Goal. Hide the number so the person uses the behavior when the opening comes, not because it is a higher score. |
 | In-app onboarding checklist | Off | Do not describe a guided onboarding flow |
