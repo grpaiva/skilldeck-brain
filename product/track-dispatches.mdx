@@ -1,9 +1,10 @@
 ---
-description: "Stage email threads, weekly Prep and Review, and the other Track communications."
+description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, and the other Track communications."
+title: "Track dispatches"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) (2026-09-28): `TrackStageEngine`, `DefaultTrackStages`, `TrackThreadType`, `DispatchType`, `routes/console.php`, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) and Track episode teaching in [PR 283](https://github.com/grpaiva/skilldeck/pull/283) (2026-09-28): `TrackStageEngine`, `DefaultTrackStages`, `TrackEpisodeBrief`, `GenerateTrackEpisodeJob`, `StageOpeningWriter`, `AdvisorStageMessenger`, `DispatchType`, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -33,6 +34,8 @@ In the app, stage mail and replies live on the Track page under **Conversations*
 | 5 · Apply your Practice | Stage-opening email | Meeting bot sees the Practice applied with an outcome |
 
 Completing stage 5 completes the Track and triggers Wrap-Up.
+
+Stage 3 opening copy tells the member the Advisor will send an episode they can **read or listen to** after they pick a Practice — not a "short" episode. When that Practice episode is ready, a written preview (same shape as the Kickoff written version) plus a listen link is posted on the completed choose-Practice thread, so it does not become the next stage's opening.
 
 Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_ADDRESS` with a plus-token). Only the Track owner can reply; managers read Conversations read-only.
 
@@ -70,7 +73,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It walks through the hand of cards by name, then asks one reflection question that starts the Advisor conversation.
 
-    It can introduce the week's learning topic and link an Advisor Picks audio episode when one exists.
+    When a Skill episode is ready, Kickoff includes a **written version** of that Advisor Picks episode — three to five short paragraphs that teach the same idea as the audio — then the listen link. The episode teaches one uncovered Learning Topic on the Track Skill. The stage-opening writer pins that written version and link; the composing agent does not summarize the episode itself.
   </Accordion>
 
   <Accordion title="Weekly Prep" icon="calendar">
