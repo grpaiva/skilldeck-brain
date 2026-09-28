@@ -1,40 +1,58 @@
 ---
-title: "Track dispatches"
-description: "The five communications a user receives, what each contains, and when it arrives."
-icon: "mail"
-updated: "2026-09-25"
-status: "verified"
+description: "Stage email threads, weekly Prep and Review, and the other Track communications."
 ---
 
 <Info>
-  Verified against the `DispatchType` enum, `routes/console.php`, `config/comms.php`, and the dispatch prompt views in the application repository on 2026-09-01.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) (2026-09-28): `TrackStageEngine`, `DefaultTrackStages`, `TrackThreadType`, `DispatchType`, `routes/console.php`, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
 
-## The five dispatches
+## How Track mail works now
+
+An active Track runs on the **Advisor stage ladder**. Each conversation stage opens as its **own email thread**. The member replies in that thread (or in Conversations in the app). When the stage is fulfilled, the Advisor closes the thread and the next stage opens as a new email. Meeting stages open with coaching that mentions the meeting bot; they complete from real meetings, not from a Journal write-up.
+
+Thread subjects name the **Skill** or **Practice** so two Tracks on the same stage do not collapse into one conversation in the inbox.
+
+Weekly Prep and Weekly Review still run on the working week. Evidence Evaluated still lands after a meeting is analyzed. Wrap-Up still closes the Track.
+
+<Note>
+  Dispatches and stage threads keep running at this rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook's Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still emails the member on its own schedule.
+</Note>
+
+In the app, stage mail and replies live on the Track page under **Conversations**. Soft Skill highlights stay with the member.
+
+## Stage openings and threads
+
+| Stage | Opens as | Advances when |
+| --- | --- | --- |
+| 1 · Discuss the Skill | Kickoff / stage-opening email | Member sends a substantive reply about the Skill |
+| 2 · Bring the Skill into a meeting | Stage-opening email | Meeting bot sees a meaningful mention of the Skill |
+| 3 · Choose your Practice | Stage-opening email | Member picks a Practice and confirms it |
+| 4 · Talk about your Practice | Stage-opening email | Meeting bot sees talk about that Practice |
+| 5 · Apply your Practice | Stage-opening email | Meeting bot sees the Practice applied with an outcome |
+
+Completing stage 5 completes the Track and triggers Wrap-Up.
+
+Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_ADDRESS` with a plus-token). Only the Track owner can reply; managers read Conversations read-only.
+
+## The scheduled dispatches
 
 | Dispatch | When | What it does |
 | --- | --- | --- |
-| **Kickoff** | When a Track starts | Introduces the Skill, where the person stands, and their hand of cards |
+| **Kickoff** | When a Track starts (or is onboarded onto the ladder) | Opens the Track and stage 1; introduces the Skill and the hand of cards |
 | **Weekly Prep** | Mondays, 12:30 | Sets up the week ahead |
 | **Evidence Evaluated** | After a meeting is analyzed | The analysis of that meeting |
 | **Weekly Review** | Fridays, 16:00 | The week's moments and score movement |
 | **Wrap-Up** | When a Track ends | The arc of the whole Track and what to carry forward |
 
-The rhythm is deliberate: a Monday setup, real-time analysis as work happens, and a Friday retrospective. Development is attached to the working week rather than to an annual event.
-
-<Note>
-  Dispatches keep running at this weekly rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook is explicit that its Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still sends Monday Prep and Friday Review every week for active Tracks.
-</Note>
-
-Dispatches are stored and readable in the **Journal**, which is also what a manager reads when preparing a coaching meeting. Soft Skill highlights stay with the member.
+On the staged ladder, Friday Review no longer completes the Track from a score Goal. Completion is Stage 5.
 
 ## Resource cards
 
-Before the individual dispatches make sense, this concept has to be clear, because it shapes all of them.
+Before the individual messages make sense, this concept has to be clear, because it shapes all of them.
 
-When a user starts a Track, they draw a **hand of resource cards** — the Goal-level behavior plus the levels above it, each one a concrete behavior with a name, a description, and an example of what it looks like. They are told to play whichever card a situation calls for.
+When a user starts a Track, they draw a **hand of resource cards** — the Goal-level behavior plus the levels above it, each one a concrete behavior with a name, a description, and an example of what it looks like. Stage 3 asks them to choose one as their **Practice**.
 
 <Warning>
   **Members never see the level number behind a card.** Refer to a card by name. The scores still matter — they set the Track Goal, and managers read them on the Overview and the Deck. Hide the number on the card so the person uses the behavior when the opening comes, not because it is a higher score.
@@ -44,15 +62,15 @@ When a user starts a Track, they draw a **hand of resource cards** — the Goal-
 
 The design reasoning is worth repeating in a demo: a person given a single target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment calls for.
 
-## Each dispatch
+## Each scheduled dispatch
 
 <AccordionGroup>
   <Accordion title="Kickoff" icon="flag">
-    Sent when a Track starts, and it can replace the Monday Weekly Prep for that week.
+    Sent when a Track starts or when an active Track is onboarded onto the ladder. It opens stage 1 and can replace the Monday Weekly Prep for that week.
 
-    It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It then walks through the hand of cards by name, strongest first, so the user can recognize the moment for each one — framed as tools they now carry, not levels they are graded on.
+    It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It walks through the hand of cards by name, then asks one reflection question that starts the Advisor conversation.
 
-    It introduces the week's learning topic and links the Advisor Picks audio episode for it. It closes with two or three concrete openings to watch for in upcoming meetings, each tied to a card by name.
+    It can introduce the week's learning topic and link an Advisor Picks audio episode when one exists.
   </Accordion>
 
   <Accordion title="Weekly Prep" icon="calendar">
@@ -68,27 +86,27 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     The body is **static**, assembled from stored data. When the member has an active Track, it includes the Track analysis summary and moments. It then shows the stored **Top Strength** and **Growth Opportunity** Soft Skill highlights from that meeting — summaries already written in the member's language.
 
-    It arrives close to the work it describes. This dispatch stays with the member alone. A manager's Journal covers Kickoff, Weekly Prep, Weekly Review, and Wrap-Up.
+    It arrives close to the work it describes. As a legacy Journal dispatch, Evidence Evaluated stays with the member alone. On the Conversations surface, managers can open meeting-evaluated threads for Tracks they manage; that does not reopen the old Journal Evidence Evaluated post.
   </Accordion>
 
   <Accordion title="Weekly Review" icon="chart-bar">
     Fridays at 16:00. The week's Track moments and score movement.
 
-    Friday afternoon is also when Track Goal checks run, so a Track that met its Goal wraps at the same point in the week that the Review lands. This is why the Manager Coaching Playbook makes **Friday the best day for a Weekly coaching meeting** — hold it after the member has their Review, or their Wrap-Up.
+    On the staged ladder this is a retrospective email, not the completion trigger. Stage 5 is what completes the Track.
   </Accordion>
 
   <Accordion title="Wrap-Up" icon="trophy">
-    Sent when a Track ends — either because the Goal was reached, or because the quarterly Cycle rolled it over.
+    Sent when a Track ends — because Stage 5 finished, because the Track was switched, or because the quarterly Cycle rolled it over.
 
-    It opens with the arc of the Track: starting score, ending score, duration, and the overall pattern across meetings. It highlights two to four of the most meaningful moments from the whole Track, then looks back over the cards: which became second nature, and which are worth carrying forward. It closes with what comes next.
+    It opens with the arc of the Track: starting score, ending score, duration, and the overall pattern across meetings. It highlights meaningful moments, looks back over the cards and the chosen Practice, and closes with what comes next.
 
-    When the Goal was not reached, the Wrap-Up is written as a retrospective rather than a failure — a look at the work done and what to carry forward.
+    When the Track ends without finishing Stage 5, the Wrap-Up is written as a retrospective rather than a failure.
   </Accordion>
 </AccordionGroup>
 
-## How dispatches are written
+## How messages are written
 
-Kickoff, Prep, Review, and Wrap-Up are composed by an AI agent from the real Track data — cards, analyses, moments — in the user's language. If AI composition is off or the call fails, those four fall back to static translated templates. `COMMS_AI_ENABLED` defaults to on.
+Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — cards, analyses, moments, stage goals — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
 
 **Evidence Evaluated is never AI-composed.** It renders stored analysis and scores.
 
@@ -99,13 +117,13 @@ These are in the prompt guidelines, and they tell you a lot about the product's 
 - Warm, direct, coach-like. No corporate filler, no exclamation overload.
 - Concrete and grounded in the data provided. **Never invent meetings, scores, quotes, or events.** If context is thin, keep the message short rather than padding it.
 - Written entirely in the user's language — English, Spanish, or Brazilian Portuguese — with no English product terms leaking into a translated body.
-- Refer to cards by name, never by level or score.
+- Refer to cards and Practices by name, never by level or score.
 
 <Note>
   "If context is thin, keep the message short instead of padding it" is a good line to quote when someone asks whether this is just AI-generated noise. The product is built to say less when it has seen less.
 </Note>
 
-## When dispatches stop
+## When messages stop
 
 A user with no evaluation for **7 days** is treated as inactive, and Track communications and recurring Track jobs are skipped until they are back. Someone on holiday does not return to a fortnight of accumulated email.
 

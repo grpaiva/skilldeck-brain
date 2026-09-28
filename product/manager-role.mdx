@@ -38,18 +38,18 @@ Cycle stats and the member Tracks timeline for the team. This is where stuck sta
 
 ### Member page
 
-One person in depth. The playbook's standard prep order is **Overview → Journal → Deck**, and those are the three things a manager reads:
+One person in depth. The playbook's standard prep order is **Overview → Tracks / Conversations → Deck**:
 
 | Surface | What the manager reads |
 | --- | --- |
 | **Overview** | Progress vs Goal, days or weeks on the current Track, Track history — completed, still active, switched, rolled, expired — and the Cycle's evaluation count |
-| **Journal** | The member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches |
+| **Tracks** | The member's current and past Tracks. Open a Track for stage progress on **Overview**, and Advisor threads on **Conversations** (read-only — managers never reply or mark threads read) |
 | **Deck** | Current scores and confidence across the member's Skills, plus a callout that a quarterly report exists |
 | **Track analyses** | The per-meeting summary for the tracked Skill, used for the one-meeting deep-dive |
 | **Track Settings** | Per-member overrides and the whitelist |
 
 <Warning>
-  The manager's view stops there, by design and in code. They cannot open an individual evidence page, cannot click through from a Track analysis to the meeting behind it, cannot read the member's **Evidence Evaluated** dispatches or Soft Skill highlights, and cannot open the body of their report. A member sees more about themselves than their manager does.
+  The manager's view stops there, by design and in code. They cannot open an individual evidence page, cannot click through from a Track analysis to the meeting behind it, cannot read the member's **Evidence Evaluated** Journal dispatches or Soft Skill highlights, and cannot open the body of their report. They can read Track **Conversations** (including meeting-evaluated threads) read-only. A member still sees more about themselves than their manager does.
 
   See [Privacy and data](/product/privacy-and-data) before answering any question about this.
 </Warning>
@@ -94,7 +94,7 @@ One person in depth. The playbook's standard prep order is **Overview → Journa
 
 ## The coaching cadence
 
-A manager picks a **management level** — Weekly, Monthly, or Quarterly — based on team size, seniority, Skill criticality, and how mature the team's evidence is. Levels are named for how often the _manager_ meets, not for how often Skill Deck emails the member; the product sends Monday Prep and Friday Review every week regardless.
+A manager picks a **management level** — Weekly, Monthly, or Quarterly — based on team size, seniority, Skill criticality, and how mature the team's evidence is. Levels are named for how often the _manager_ meets, not for how often Skill Deck emails the member; the product still sends stage threads, Monday Prep, and Friday Review on its own schedule.
 
 <Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
   The full playbook: choosing a level, the agenda for each, coaching prompts, and red flags.
@@ -102,7 +102,7 @@ A manager picks a **management level** — Weekly, Monthly, or Quarterly — bas
 
 ## One-to-ones
 
-The coaching meeting _is_ the one-to-one, and it is where Skill Deck pays off: the manager arrives with progress against Goal, themes from the week's Prep and Review, and a specific meeting to walk through.
+The coaching meeting _is_ the one-to-one, and it is where Skill Deck pays off: the manager arrives with stage progress, themes from the week's Prep, Review, and Advisor threads, and a specific meeting to walk through.
 
 <Warning>
   There is **no dedicated 1-on-1 feature**. Sessions, agendas, and notes are not product objects. The playbook supplies the agenda; the product supplies the material.
@@ -142,10 +142,10 @@ There is no separate "direct report" object. Management is expressed through tea
 
 ## What the member is told
 
-The member learns the shape of manager access from the **User Guide**, opened from the sidebar and published at `/knowledge-base`. It names both halves. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history and settings, the four Journal dispatches, and Track analyses. Soft Skill highlights, Evidence Evaluated posts, and raw evidence content stay with the member. The disclosure ships in English, Portuguese, and Spanish.
+The member learns the shape of manager access from the **User Guide**, opened from the sidebar and published at `/knowledge-base`. It names both halves. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history, settings, and Advisor conversations, and Track analyses. Soft Skill highlights, Evidence Evaluated Journal posts, evidence moments, and raw evidence content stay with the member. The disclosure ships in English, Portuguese, and Spanish.
 
-A member reads a superset of that on their own Overview, Deck, and Journal, so a manager holds nothing the member has not already seen.
+A member reads a superset of that on their own Overview, Deck, and Tracks, so a manager holds nothing the member has not already seen.
 
-Every dispatch is addressed to the member alone. A manager reaches four of the five by opening the member's Journal on the member page.
+Every dispatch and stage thread is addressed to the member alone. A manager reaches Conversations and the coaching dispatches by opening the member's Tracks on the member page.
 
 Access follows the roles above and applies the same way to everyone on a team. The boundary lives in the authorization layer rather than in a per-member setting, so "who can see my data" has one answer for the whole team.

@@ -1,9 +1,5 @@
 ---
-title: "Cycles and Tracks"
-description: "How development is organized: quarterly Cycles, Goals, and one Skill at a time."
-icon: "flag"
-updated: "2026-09-24"
-status: "verified"
+description: "How development is organized: quarterly Cycles, the Advisor stage ladder, Goals, and one Skill at a time."
 ---
 
 ## The idea
@@ -33,10 +29,10 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
     Status `pending_goal`. The Skill is chosen; the Goal score is being set.
   </Step>
   <Step title="Active">
-    Status `active`. The Track is running, dispatches are going out, and every new piece of evidence is read against this Skill.
+    Status `active`. The Track is running on the Advisor stage ladder, every new piece of evidence is read against this Skill, and stage threads go out by email.
   </Step>
   <Step title="It ends">
-    A Track reaches one of three terminal states: `completed` when the Goal is met and the minimum duration has passed; `switched` when the person moves to a different Skill; or `expired` when it goes stale. It can also be **rolled** into a fresh Track at a Cycle boundary.
+    A Track reaches one of three terminal states: `completed` when the member finishes the last stage (apply the chosen Practice with an outcome); `switched` when the person moves to a different Skill; or `expired` when it goes stale. It can also be **rolled** into a fresh Track at a Cycle boundary.
   </Step>
 </Steps>
 
@@ -44,13 +40,34 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
   A Track left in a pending state is the most common stuck state a manager will see. The Manager Coaching Playbook is explicit: do not leave a Skill or Goal pending across a Weekly coaching meeting, and prefer auto-assignment at the Monthly and Quarterly levels so a member is never blocked waiting on you.
 </Warning>
 
+## The Advisor stage ladder
+
+While a Track is active, the member moves through a fixed ladder of stages with the Advisor. Each stage has a clear goal. Conversation stages advance when the member replies substantively by email or in the app. Meeting stages advance when the meeting bot sees the required behavior in a real meeting.
+
+| Position | Stage | Completes by |
+| --- | --- | --- |
+| 1 | Discuss the Skill with your Advisor | Conversation — a substantive reply about the Skill |
+| 2 | Bring the Skill into a meeting | Meeting — meaningfully mention the Skill |
+| 3 | Choose your Practice | Conversation — pick a Practice and confirm it |
+| 4 | Talk about your Practice in a meeting | Meeting — talk about the chosen Practice |
+| 5 | Apply your Practice | Meeting — apply the Practice with a visible outcome |
+
+Opening the Track sends a Kickoff that starts stage 1. Completing stage 5 completes the Track. Stages 2, 4, and 5 wait on a verifier that reads the meeting through the stage goal before the analysis email lands.
+
+A **Practice** is a named behavior from the Skill's level catalog — the concrete move the member chooses to work on, drawn from options above their current score. After they confirm it, the product can generate a short Practice episode for that choice.
+
+Each stage that opens a conversation gets its **own email thread**. Subjects include the Skill or Practice name so different Tracks do not group together in the inbox. When a conversation stage is fulfilled, that thread closes and the next stage opens as a new email. Meeting-stage openings mention the meeting bot and do not ask for a Journal write-up.
+
+In the app, the member (and a manager viewing them) opens the Track page: **Overview** for stage progress, and **Conversations** for the Advisor threads. Managers read those threads read-only; only the member can reply.
+
+A global kill-switch (`TRACKS_STAGED_V1`) gates the ladder. Production turns it on after active Tracks are onboarded onto stages. While it is on, an active Track with a stage completes through Stage 5 rather than through Friday score-Goal checks.
+
 ### Timing rules
 
 | Rule | Value | Why it exists |
 | --- | --- | --- |
-| Minimum duration | **~2 weeks** (14 days) | A Track cannot complete before this, no matter how fast the score moves. Behavior change needs more than one good meeting. |
-| Goal checks | **Fridays only** | A Track started on a Friday can complete on its second Friday at the earliest. A score update mid-week never completes a Track. |
-| Stale expiry | **90 days** without score movement | Prevents a disengaged user from being stuck against a Goal they will never reach. |
+| Minimum duration | **~2 weeks** (14 days) | Behavior change needs more than one good meeting. Weekly Prep and Review still follow the working week. |
+| Stale expiry | **90 days** without score movement | Prevents a disengaged user from being stuck on a Track they will never finish. |
 | Inactivity pause | **7 days** without any evaluation | Track communications and recurring jobs are skipped until the person is back. |
 
 That last rule matters for the product's tone. Someone on holiday or in a heads-down month does not come back to two weeks of accumulated nagging.
@@ -59,12 +76,12 @@ That last rule matters for the product's tone. Someone on holiday or in a heads-
 
 A Goal is a whole number on the 0–20 scale, normally the next integer above the current score, and **never below level 5**. When the product sets it automatically the formula is `min(max(floor(score) + 1, 5), 20)`.
 
-A setting controls what happens when the two weeks are up but the Goal is not met. With **require goal on**, the Track keeps running. With it off, the Track time-boxes: it switches on the Friday after the minimum duration regardless, and the Wrap-Up is written as a retrospective.
+The Goal still frames where the person is aiming and which Practice options sit above their score. On the staged ladder, finishing the Track means completing Stage 5, not waiting for a Friday Goal check.
 
 ## Do not churn Skills
 
 <Warning>
-  **Switching Skills so often that Tracks never reach the two-week window is the single biggest failure mode in how Skill Deck gets used.** The Manager Coaching Playbook names it at every management level and builds its default bias against it: keep the Track unless there is a strong reason to switch.
+  **Switching Skills so often that Tracks never reach meaningful practice is the single biggest failure mode in how Skill Deck gets used.** The Manager Coaching Playbook names it at every management level and builds its default bias against it: keep the Track unless there is a strong reason to switch.
 </Warning>
 
 The reasoning is worth internalising, because the instinct runs the other way. A Track sitting at flat progress looks like a Track that is not working, and the most available action is to change the Skill. But a long Track with no movement is usually an evidence problem — the person is not in the situations where that Skill shows up — and switching the Skill does not fix it. Diagnose evidence quality and situation fit first.
@@ -90,19 +107,19 @@ At the end of a Cycle the product runs a sequence, in order:
   </Step>
 </Steps>
 
-A Track that rolls over at the Cycle boundary without reaching its Goal is not treated as a failure. Its [Wrap-Up](/product/track-dispatches) is written as a retrospective — what was done, what improved, what to carry forward.
+A Track that rolls over at the Cycle boundary without finishing its stages is not treated as a failure. Its [Wrap-Up](/product/track-dispatches) is written as a retrospective — what was done, what improved, what to carry forward.
 
 This is what gives a manager something concrete at the end of each quarter: a snapshot, a report, and a set of Track outcomes to review.
 
 ### How many Tracks fit in one
 
-The count follows the work. Two weeks is the completion window and a Cycle is a quarter, so several short Tracks and a handful of longer ones are equally healthy shapes for the same quarter. A Cycle is judged on whether each Track produced practice a manager can point to.
+The count follows the work. Two weeks is the usual practice window and a Cycle is a quarter, so several short Tracks and a handful of longer ones are equally healthy shapes for the same quarter. A Cycle is judged on whether each Track produced practice a manager can point to.
 
 Treat depth as the measure and let the count land where it lands. Managing to a Track count is the fastest route to [Skill churn](#do-not-churn-skills).
 
 ## Goals and Targets
 
-A Track has a **Goal** score that determines whether it completes.
+A Track has a **Goal** score that frames the aim and the Practice options.
 
 Separately, the product models optional **Targets** (`TargetType`), set over a period for a person or a team:
 
@@ -113,7 +130,7 @@ The confidence target is the interesting one for a new user or a new team. Early
 
 ## Resource cards
 
-When a Track starts, the user draws a **hand of up to four resource cards**: the Goal-level behavior plus the three levels above it, each one a named, concrete behavior with a description and an example. They are told to play whichever card the situation calls for.
+When a Track starts, the user draws a **hand of up to four resource cards**: the Goal-level behavior plus the three levels above it, each one a named, concrete behavior with a description and an example. They are told to play whichever card the situation calls for. Stage 3 asks them to **choose a Practice** from those options and confirm it with the Advisor.
 
 Cards are the product's central metaphor made literal. A person given one target behavior fixates on it and misses richer openings. A person holding several named behaviors picks the one the moment actually calls for.
 
@@ -123,7 +140,7 @@ Cards are the product's central metaphor made literal. A person given one target
 
 ## Track analysis and moments
 
-After a meeting is evaluated, if the person has an **active Track**, Skill Deck runs a second pass on that meeting for the tracked Skill. It writes a **Track analysis** (a short summary) and **moments** — short excerpts showing the Skill in action.
+After a meeting is evaluated, if the person has an **active Track**, Skill Deck runs a second pass on that meeting for the tracked Skill. It writes a **Track analysis** (a short summary) and **moments** — short excerpts showing the Skill in action. On meeting stages, a verifier also checks whether the stage goal was met before the stage advances.
 
 <Columns cols={2}>
   <Card title="Demonstration" icon="check">
@@ -143,7 +160,7 @@ Starting a Track also backfills this for evaluated meetings from the last **7 da
 
 Tracks are **live in production**. Teams turn them on per team (team page), along with automation settings and the whitelist. That per-team switch is step two of the Manager Coaching Playbook's six moves, and skipping it is the most common setup failure.
 
-Do not describe Tracks as dark-launched or globally off. A global kill-switch still exists in application config for emergencies; production has it on.
+Do not describe Tracks as dark-launched or globally off. A global kill-switch still exists in application config for emergencies; production has it on. The staged ladder has its own kill-switch (`TRACKS_STAGED_V1`); production turns that on with the stage ship.
 
 <Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
   Setting up the team, and running the coaching cadence on top.

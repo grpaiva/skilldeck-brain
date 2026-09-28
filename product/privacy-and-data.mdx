@@ -52,6 +52,7 @@ These are the application's stated core privacy commitments, and they are the st
 | Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
 | Soft Skill demonstration clip text | Database (on the evaluation) | For the life of the account, then wiped on account delete; the subject-clip text used to score and justify that demonstration |
 | Moment excerpts from a track | Database | For the life of the account, then wiped on account delete; capped at 500 characters each, maximum 5 per evidence |
+| Advisor thread messages (stage email and in-app replies) | Database | For the life of the account, then wiped on account delete |
 | Support correspondence | Support systems | 24 months |
 | Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
 
@@ -82,13 +83,11 @@ Be accurate about this rather than reassuring. A manager's access is real but de
 On their team member's page, in the order the Manager Coaching Playbook has them read it:
 
 - **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
-- **Journal** — the member's Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches, in full.
+- **Tracks / Conversations** — the member's Tracks, stage progress, and Advisor threads (including meeting-evaluated threads) **read-only**. Managers never reply and never mark threads read for the member.
 - **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
 - **Track analyses** — the per-meeting summary for the tracked Skill, including moment excerpts.
 
-Opening a member's Journal post does not mark it read for the member.
-
-Soft Skill highlights stay with the member. A manager does not open them by reading the Journal. See [Evidence and evaluation](/product/evidence-and-evaluation).
+Soft Skill highlights stay with the member. A manager does not open them by reading Tracks or Conversations. See [Evidence and evaluation](/product/evidence-and-evaluation).
 
 ### A manager does not see
 
@@ -98,7 +97,7 @@ This list is enforced, not aspirational:
 | --- | --- |
 | Meeting video and audio | Never captured |
 | Meeting transcripts | Never in the database; gone from cache after 7 days |
-| **Evidence Evaluated dispatches** | Explicitly excluded from the manager-visible dispatch list. The post-meeting analysis a member receives is private to them. |
+| **Evidence Evaluated Journal dispatches** | Explicitly excluded from the manager-visible Journal dispatch list. The legacy post-meeting Journal post stays with the member. Meeting-evaluated **Conversations** threads on a Track are visible to managers read-only. |
 | Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. |
 | Click-through from a Track analysis to the underlying evidence | The expand link is disabled for managers |
 | The full list of individual evaluations | Not exposed in any manager view |
@@ -107,7 +106,7 @@ This list is enforced, not aspirational:
 | Anything through the MCP server | MCP is first-person only. There is no manager, recruiter, or org-level access path. |
 
 <Tip>
-  The clean way to say this: **a manager sees the conclusions and the short excerpts behind them, never the meeting and never the raw analysis.** The member gets more detail about themselves than their manager does.
+  The clean way to say this: **a manager sees the conclusions, the Advisor stage threads, and the short excerpts behind them, never the meeting and never the raw transcript.** The member gets more detail about themselves than their manager does.
 </Tip>
 
 That last point is the strongest thing to say in a privacy conversation, and it happens to be true.
