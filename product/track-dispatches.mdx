@@ -1,10 +1,13 @@
 ---
 description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, and the other Track communications."
 title: "Track dispatches"
+updated: "2026-09-28"
+status: "verified"
+icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) and Track episode teaching in [PR 283](https://github.com/grpaiva/skilldeck/pull/283) (2026-09-28): `TrackStageEngine`, `DefaultTrackStages`, `TrackEpisodeBrief`, `GenerateTrackEpisodeJob`, `StageOpeningWriter`, `AdvisorStageMessenger`, `DispatchType`, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282), Track episode teaching in [PR 283](https://github.com/grpaiva/skilldeck/pull/283), and Practice explanation before the meeting in [PR 284](https://github.com/grpaiva/skilldeck/pull/284) (2026-09-28): `TrackStageEngine`, `DefaultTrackStages`, `TrackEpisodeBrief`, `GenerateTrackEpisodeJob`, `StageOpeningWriter`, `AdvisorStageMessenger`, `DispatchType`, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -35,7 +38,11 @@ In the app, stage mail and replies live on the Track page under **Conversations*
 
 Completing stage 5 completes the Track and triggers Wrap-Up.
 
-Stage 3 opening copy tells the member the Advisor will send an episode they can **read or listen to** after they pick a Practice — not a "short" episode. When that Practice episode is ready, a written preview (same shape as the Kickoff written version) plus a listen link is posted on the completed choose-Practice thread, so it does not become the next stage's opening.
+Stage 3 opening lists the Practice options, then adds exactly two sentences before the required closing: these Practices were selected so the member can improve or go deeper on the Skill (saying how many are listed), and the one they choose is the Practice they will now go deep on. The closing asks them to reply with the one they want; after they choose, the Advisor sends an episode they can **read or listen to**, then they confirm together.
+
+Completing the Practice choice generates the learning-topic Practice episode before the stage 4 opening is sent, so that opening can carry the episode gist. While the stage 4 opening is still pending, the standalone Practice written-preview email is suppressed; otherwise that preview still posts on the choose-Practice thread with a listen link.
+
+Stage 4 opening explains the chosen Practice in two or three sentences using only the definition and example already on file, shows the Practice episode written summary, connects that summary to talking about the Practice in the meeting, and adds the listen link. The spoken script stays out of the email.
 
 Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_ADDRESS` with a plus-token). Only the Track owner can reply; managers read Conversations read-only.
 
@@ -88,6 +95,8 @@ The design reasoning is worth repeating in a demo: a person given a single targe
     Sent after a meeting is evaluated. This is the "analysis after every meeting" from the pitch. Subject: `Meeting analysis for :title`.
 
     The body is **static**, assembled from stored data. When the member has an active Track, it includes the Track analysis summary and moments. It then shows the stored **Top Strength** and **Growth Opportunity** Soft Skill highlights from that meeting — summaries already written in the member's language.
+
+    On meeting stages, the stage-check rationale and next step address the member as "you". When the check includes a meeting excerpt, that quote is italicized.
 
     It arrives close to the work it describes. As a legacy Journal dispatch, Evidence Evaluated stays with the member alone. On the Conversations surface, managers can open meeting-evaluated threads for Tracks they manage; that does not reopen the old Journal Evidence Evaluated post.
   </Accordion>
