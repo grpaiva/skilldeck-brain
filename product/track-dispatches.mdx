@@ -7,7 +7,7 @@ icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 285](https://github.com/grpaiva/skilldeck/pull/285), and member-grounded openings and episodes in [PR 286](https://github.com/grpaiva/skilldeck/pull/286) (2026-09-29): `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), and meeting-analysis thread attachment plus the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -98,7 +98,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     The body is **static**, assembled from stored data. When a stage check exists for that meeting, the email includes whether the stage was met, the rationale and next step (addressing the member as "you"), and an italicized excerpt when the check has one. When the member has an active Track, it can also show the tracked Skill score from that meeting. It then shows the stored **Top Strength** and **Growth Opportunity** Soft Skill highlights — summaries already written in the member's language.
 
-    It arrives close to the work it describes. As a Journal dispatch, Evidence Evaluated stays with the member alone. On the Conversations surface, managers can open meeting-evaluated threads for Tracks they manage; that does not reopen the Journal Evidence Evaluated post.
+    When Skill Deck can attach the meeting to a Track, the email joins that Track's Advisor thread — Advisor From and Reply-To — and appears under **Conversations**. Attachment prefers the Track from the latest stage check for that meeting, then the member's active Track. A stage check alone is enough; a written analysis is not required. Soft Skill highlights stay with the member. Managers read the meeting-evaluated Conversations thread read-only and do not reopen the member-only Journal Evidence Evaluated post.
   </Accordion>
 
   <Accordion title="Weekly Review" icon="chart-bar">
