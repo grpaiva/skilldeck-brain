@@ -1,13 +1,13 @@
 ---
 description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, and the other Track communications."
 title: "Track dispatches"
-updated: "2026-09-28"
+updated: "2026-09-29"
 status: "verified"
 icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282), Track episode teaching in [PR 283](https://github.com/grpaiva/skilldeck/pull/283), Practice explanation before the meeting in [PR 284](https://github.com/grpaiva/skilldeck/pull/284), and stage-check surface on evidence and Evidence Evaluated in [PR 285](https://github.com/grpaiva/skilldeck/pull/285) (2026-09-28): `TrackStageEngine`, `GenerateTrackAnalysisJob`, `EvidenceDetail`, `EvidenceEvaluatedComposer`, `DispatchType`, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 285](https://github.com/grpaiva/skilldeck/pull/285), and member-grounded openings and episodes in [PR 286](https://github.com/grpaiva/skilldeck/pull/286) (2026-09-29): `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -40,9 +40,11 @@ Completing stage 5 completes the Track and triggers Wrap-Up.
 
 Stage 3 opening lists the Practice options, then adds exactly two sentences before the required closing: these Practices were selected so the member can improve or go deeper on the Skill (saying how many are listed), and the one they choose is the Practice they will now go deep on. The closing asks them to reply with the one they want; after they choose, the Advisor sends an episode they can **read or listen to**, then they confirm together.
 
-Completing the Practice choice generates the learning-topic Practice episode before the stage 4 opening is sent, so that opening can carry the episode gist. While the stage 4 opening is still pending, the standalone Practice written-preview email is suppressed; otherwise that preview still posts on the choose-Practice thread with a listen link.
+Completing the Practice choice generates the Practice episode before the stage 4 opening is sent, so that opening can carry the episode gist. That episode teaches the chosen Practice in the member's context — about three to five minutes — and explains a tool when the Practice is one, or may use one or two tools already named in the member's context. While the stage 4 opening is still pending, the standalone Practice written-preview email is suppressed; otherwise that preview still posts on the choose-Practice thread with a listen link.
 
 Stage 4 opening explains the chosen Practice in two or three sentences using only the definition and example already on file, shows the Practice episode written summary, connects that summary to talking about the Practice in the meeting, and adds the listen link. The spoken script stays out of the email.
+
+Stage openings, Advisor dialogue, the stage verifier, and Track episodes receive the member's profile, Deck, ten latest evaluations, and five latest evidences. Stage-specific opening briefs live on each stage record. Meeting-stage openings still carry the meeting-bot completion rules in the opening prompt.
 
 Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_ADDRESS` with a plus-token). Only the Track owner can reply; managers read Conversations read-only.
 
@@ -80,7 +82,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It walks through the hand of cards by name, then asks one reflection question that starts the Advisor conversation.
 
-    When a Skill episode is ready, Kickoff includes a **written version** of that Advisor Picks episode — three to five short paragraphs that teach the same idea as the audio — then the listen link. The episode teaches one uncovered Learning Topic on the Track Skill. The stage-opening writer pins that written version and link; the composing agent does not summarize the episode itself.
+    When a Skill episode is ready, Kickoff includes a **written version** of that Advisor Picks episode — three to five short paragraphs that teach the same idea as the audio — then the listen link. The episode teaches the Track Skill for the member's role and recent work, grounded in their profile, Deck, latest evaluations, and latest evidences. It runs about three to five minutes. The stage-opening writer pins that written version and link; the composing agent does not summarize the episode itself.
   </Accordion>
 
   <Accordion title="Weekly Prep" icon="calendar">
@@ -116,7 +118,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 ## How messages are written
 
-Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — cards, stage checks, stage goals — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
+Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — cards, stage checks, stage goals, and member context — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
 
 **Evidence Evaluated is never AI-composed.** It renders the stage check, Soft Skill highlights, and scores.
 
