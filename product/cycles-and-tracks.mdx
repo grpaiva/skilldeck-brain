@@ -64,6 +64,8 @@ A **Practice** is a named behavior from the Skill's level catalog — the concre
 
 Stage openings, Advisor dialogue, the stage verifier, and Track episodes all receive the same member context: profile, Deck, the ten latest evaluations, and the five latest evidences. Stage-specific opening briefs live on each stage record. For meeting stages, the opening prompt still carries the meeting-bot completion rules.
 
+While replying on a conversation stage, the Advisor can also call the same tools as the Skill Deck MCP server, scoped to that Track member — for example to look up a Skill scale before explaining a score, to read a cached meeting transcript before quoting it, to answer about Advisor Picks or Targets when asked, or to send the meeting bot to a Zoom, Microsoft Teams, or Google Meet link the member provides. Tool results do not complete a stage; conversation stages still advance only when the member's messages meet the done-when line, and meeting stages still wait on the meeting bot. See [Syncing from production](/overview/syncing-from-production) for the tool list.
+
 Each stage that opens a conversation gets its **own email thread**. Subjects include the Skill or Practice name so different Tracks do not group together in the inbox. When a conversation stage is fulfilled, that thread closes and the next stage opens as a new email. Meeting-stage openings mention the meeting bot and do not ask for a Journal write-up.
 
 In the app, the member (and a manager viewing them) opens the Track page: **Overview** for stage progress, and **Conversations** for the Advisor threads. Managers read those threads read-only; only the member can reply.
