@@ -7,7 +7,7 @@ icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29), the Stage met / Not yet badge on that card in [PR 289](https://github.com/grpaiva/skilldeck/pull/289) (2026-09-30), and the Skill/stage subheading plus **View Track** link on that card in [PR 290](https://github.com/grpaiva/skilldeck/pull/290) (2026-09-30): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29), the Stage met / Not yet badge on that card in [PR 289](https://github.com/grpaiva/skilldeck/pull/289) (2026-09-30), the Skill/stage subheading plus **View Track** link on that card in [PR 290](https://github.com/grpaiva/skilldeck/pull/290) (2026-09-30), and Advisor dialogue tools in [PR 291](https://github.com/grpaiva/skilldeck/pull/291) (2026-09-30): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, `AdvisorDialogueAgent` tools, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -45,6 +45,8 @@ Completing the Practice choice generates the Practice episode before the stage 4
 Stage 4 opening explains the chosen Practice in two or three sentences using only the definition and example already on file, shows the Practice episode written summary, connects that summary to talking about the Practice in the meeting, and adds the listen link. The spoken script stays out of the email.
 
 Stage openings, Advisor dialogue, the stage verifier, and Track episodes receive the member's profile, Deck, ten latest evaluations, and five latest evidences. Stage-specific opening briefs live on each stage record. Meeting-stage openings still carry the meeting-bot completion rules in the opening prompt.
+
+While replying on a conversation stage, the Advisor can also call the same tools as the Skill Deck MCP server, scoped to that Track member — Skill scales before explaining a score, cached meeting detail before quoting a transcript, Advisor Picks or Targets when the member asks, and launching the meeting bot to a Zoom, Microsoft Teams, or Google Meet link they provide. Tool results do not complete a stage. See [Cycles and Tracks](/product/cycles-and-tracks) and [Syncing from production](/overview/syncing-from-production).
 
 Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_ADDRESS` with a plus-token). Only the Track owner can reply; managers read Conversations read-only.
 

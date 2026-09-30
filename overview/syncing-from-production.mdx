@@ -2,7 +2,7 @@
 title: "Syncing from production"
 description: "How this brain pulls live Skill Deck data through the MCP server, and when to re-run it."
 icon: "refresh-cw"
-updated: "2026-09-01"
+updated: "2026-09-30"
 status: "verified"
 ---
 
@@ -123,7 +123,9 @@ Personal data, scoped to the authenticated user:
 
 One write tool:
 
-- `launch_meeting_bot` — deploys a transcript-only bot to a meeting. Requires a write-enabled token.
+- `launch_meeting_bot` — deploys a transcript-only bot to a meeting. Over the HTTP MCP path, requires a write-enabled token.
+
+The Advisor dialogue agent on a Track conversation stage can call this same tool set for the Track member while composing a reply. Those calls are scoped to that member, do not require an MCP token, and are not recorded as MCP tool calls. When the member asks, the Advisor can launch the meeting bot without a write-enabled MCP token. Tool results do not complete a stage.
 
 <Note>
   Only `list_attributes` and `get_attribute_scale` return organization-independent reference data. Everything else is the token owner's own data, so it is not suitable for populating this brain.
