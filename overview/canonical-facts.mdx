@@ -2,7 +2,7 @@
 title: "Canonical facts"
 description: "Every number and claim we are allowed to state, in one place."
 icon: "list-checks"
-updated: "2026-09-30"
+updated: "2026-10-01"
 status: "verified"
 ---
 
@@ -93,11 +93,13 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Category listings | 73 | A Skill can sit in several categories, so per-category counts sum to more than 58. Count unique Skills. |
 | Skills in more than one category | 13 | Active Listening and Conflict Management are each in three |
 | Level scale | 21 levels, scored 0 to 20 | Each level is a named behavior with an example. Always say **21 levels** or **0 to 20**. Never "20 levels". |
-| Minimum Track duration | ~2 weeks (14 days) | A Track can complete only from its second Friday onward, and only if the Goal is met |
+| Minimum Track duration | ~2 weeks (14 days) | Practice window for the Track. On the staged ladder, completing Stage 5 ends the Track on any day and starts the next one |
 | Cycle length | Quarterly | Calendar quarter or custom dates |
 | Dispatches | 5 | Kickoff, Weekly Prep, Evidence Evaluated, Weekly Review, Wrap-Up |
-| Weekly Prep sent | Mondays, 12:30 |  |
-| Weekly Review sent | Fridays, 16:00 |  |
+| Weekly Prep sent | Mondays, 12:30 | On a staged Track, coaches the current stage from progress and meeting stage checks |
+| Weekly Review sent | Fridays, 16:00 | Stage retrospective; does not complete a staged Track |
+| Wrap-Up on Stage 5 | Completes Track + starts next | Reviews only the ended Track; stays open for a reply; does not name the next Skill. Next Track Kickoff carries instructions |
+| `tracks:roll-cycle` while staged | No-op | Active staged Tracks stay across the Cycle boundary |
 | Advisor Picks episode generated | Mondays, 11:00 | Before the Prep email, so it can be linked |
 | Track unlock confidence threshold | 0.30 | Configurable; the application notes 0.50 as the long-term ideal |
 | Evaluations for maximum base confidence | 20 |  |
