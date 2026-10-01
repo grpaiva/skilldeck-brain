@@ -1,7 +1,7 @@
 ---
 description: "How development is organized: quarterly Cycles, the Advisor stage ladder, Goals, Track episodes grounded in the member, and one Skill at a time."
 title: "Cycles and Tracks"
-updated: "2026-09-30"
+updated: "2026-10-01"
 status: "verified"
 icon: "route"
 ---
@@ -36,7 +36,7 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
     Status `active`. The Track is running on the Advisor stage ladder, every new piece of evidence is read against this Skill, and stage threads go out by email.
   </Step>
   <Step title="It ends">
-    A Track reaches one of three terminal states: `completed` when the member finishes the last stage (apply the chosen Practice with an outcome); `switched` when the person moves to a different Skill; or `expired` when it goes stale. It can also be **rolled** into a fresh Track at a Cycle boundary.
+    A Track reaches one of three terminal states: `completed` when the member finishes the last stage (apply the chosen Practice with an outcome); `switched` when the person moves to a different Skill; or `expired` when it goes stale. Completing the last stage also starts the next Track immediately; Wrap-Up reviews only the Track that ended.
   </Step>
 </Steps>
 
@@ -56,7 +56,7 @@ While a Track is active, the member moves through a fixed ladder of stages with 
 | 4 | Talk about your Practice in a meeting | Meeting — talk about the chosen Practice |
 | 5 | Apply your Practice | Meeting — apply the Practice with a visible outcome |
 
-Opening the Track sends a Kickoff that starts stage 1. Completing stage 5 completes the Track. Stages 2, 4, and 5 wait on a verifier that reads the meeting through the stage goal before the analysis email lands. That verifier's rationale and next step address the member as "you".
+Opening the Track sends a Kickoff that starts stage 1. Completing stage 5 completes the Track, sends Wrap-Up (without naming the next Skill), and starts the next Track with its own Kickoff. Stages 2, 4, and 5 wait on a verifier that reads the meeting through the stage goal before the analysis email lands. That verifier's rationale and next step address the member as "you".
 
 Kickoff includes an **Advisor Picks** episode on the Track Skill. The episode teaches that Skill for the member's role and recent work — about three to five minutes — using the member's profile, Deck, latest evaluations, and latest evidences. The Kickoff email carries a written version of the teaching before the listen link, so the member can read it without playing the audio. See the [glossary](/overview/glossary).
 
@@ -76,7 +76,7 @@ A global kill-switch (`TRACKS_STAGED_V1`) gates the ladder. Production turns it 
 
 | Rule | Value | Why it exists |
 | --- | --- | --- |
-| Minimum duration | **~2 weeks** (14 days) | Behavior change needs more than one good meeting. Weekly Prep and Review still follow the working week. |
+| Minimum duration | **~2 weeks** (14 days) | Behavior change needs more than one good meeting. Weekly Prep and Review still follow the working week. Completing Stage 5 can land on any day. |
 | Stale expiry | **90 days** without score movement | Prevents a disengaged user from being stuck on a Track they will never finish. |
 | Inactivity pause | **7 days** without any evaluation | Track communications and recurring jobs are skipped until the person is back. |
 
@@ -112,14 +112,12 @@ At the end of a Cycle the product runs a sequence, in order:
   <Step title="Reports are generated">
     `reports:generate-quarterly`. The report callout can appear on the Deck.
   </Step>
-  <Step title="Active Tracks roll over">
-    `tracks:roll-cycle` rolls an active Track into a fresh one when the user's Cycle ends.
+  <Step title="Active Tracks stay on the ladder">
+    While staged Tracks are on, `tracks:roll-cycle` is a no-op. An active Track keeps its stages across the Cycle boundary. Completing the last stage is what ends a Track and starts the next one.
   </Step>
 </Steps>
 
-A Track that rolls over at the Cycle boundary without finishing its stages is not treated as a failure. Its [Wrap-Up](/product/track-dispatches) is written as a retrospective — what was done, what improved, what to carry forward.
-
-This is what gives a manager something concrete at the end of each quarter: a snapshot, a report, and a set of Track outcomes to review.
+This is what gives a manager something concrete at the end of each quarter: a snapshot, a report, and the Track outcomes that finished on the stage ladder during the Cycle.
 
 ### How many Tracks fit in one
 

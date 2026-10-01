@@ -1,13 +1,13 @@
 ---
 description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, and the other Track communications."
 title: "Track dispatches"
-updated: "2026-09-30"
+updated: "2026-10-01"
 status: "verified"
 icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29), the Stage met / Not yet badge on that card in [PR 289](https://github.com/grpaiva/skilldeck/pull/289) (2026-09-30), the Skill/stage subheading plus **View Track** link on that card in [PR 290](https://github.com/grpaiva/skilldeck/pull/290) (2026-09-30), Advisor dialogue tools in [PR 291](https://github.com/grpaiva/skilldeck/pull/291) (2026-09-30), and unmet next-step grounding in [PR 292](https://github.com/grpaiva/skilldeck/pull/292) (2026-09-30): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, `AdvisorDialogueAgent` tools, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29), the Stage met / Not yet badge on that card in [PR 289](https://github.com/grpaiva/skilldeck/pull/289) (2026-09-30), the Skill/stage subheading plus **View Track** link on that card in [PR 290](https://github.com/grpaiva/skilldeck/pull/290) (2026-09-30), Advisor dialogue tools in [PR 291](https://github.com/grpaiva/skilldeck/pull/291) (2026-09-30), unmet next-step grounding in [PR 292](https://github.com/grpaiva/skilldeck/pull/292) (2026-09-30), and staged email / completion alignment in [PR 296](https://github.com/grpaiva/skilldeck/pull/296) (2026-10-01): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, `AdvisorDialogueAgent` tools, `ResolvesTrackStageContext`, `CompleteTrackAction`, `RollTracksAtCycleEnd`, weekly Prep/Review composers, Wrap-Up composer, and `config/tracks.php`.
 </Info>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -18,7 +18,7 @@ An active Track runs on the **Advisor stage ladder**. Each conversation stage op
 
 Thread subjects name the **Skill** or **Practice** so two Tracks on the same stage do not collapse into one conversation in the inbox.
 
-Weekly Prep and Weekly Review still run on the working week. Evidence Evaluated still lands after a meeting is analyzed. Wrap-Up still closes the Track.
+Weekly Prep and Weekly Review still run on the working week. Evidence Evaluated still lands after a meeting is analyzed. Completing the last stage ends the Track, sends Wrap-Up, and starts the next Track; Wrap-Up stays open for a reply and does not name the next Skill.
 
 <Note>
   Dispatches and stage threads keep running at this rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook's Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still emails the member on its own schedule.
@@ -54,13 +54,13 @@ Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_AD
 
 | Dispatch | When | What it does |
 | --- | --- | --- |
-| **Kickoff** | When a Track starts (or is onboarded onto the ladder) | Opens the Track and stage 1; introduces the Skill and the hand of cards |
-| **Weekly Prep** | Mondays, 12:30 | Sets up the week ahead |
+| **Kickoff** | When a Track starts (including right after the previous Track's last stage) | Opens the Track and stage 1; carries that Track's instructions |
+| **Weekly Prep** | Mondays, 12:30 | Coaches the current stage from Track progress and meeting stage checks |
 | **Evidence Evaluated** | After a meeting is analyzed | The analysis of that meeting |
-| **Weekly Review** | Fridays, 16:00 | The week's Track progress and score movement |
-| **Wrap-Up** | When a Track ends | The arc of the whole Track and what to carry forward |
+| **Weekly Review** | Fridays, 16:00 | Reviews the week against the current stage; does not complete the Track |
+| **Wrap-Up** | When a Track ends (last stage completed, or switched) | Reviews only the Track that ended; stays open for a reply |
 
-On the staged ladder, Friday Review no longer completes the Track from a score Goal. Completion is Stage 5.
+On the staged ladder, Friday Review and the quarter Cycle roll leave an active Track in place. Completing Stage 5 is what ends the Track and starts the next one.
 
 ## Resource cards
 
@@ -80,7 +80,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 <AccordionGroup>
   <Accordion title="Kickoff" icon="flag">
-    Sent when a Track starts or when an active Track is onboarded onto the ladder. It opens stage 1 and can replace the Monday Weekly Prep for that week.
+    Sent when a Track starts or when an active Track is onboarded onto the ladder. It opens stage 1 and can replace the Monday Weekly Prep for that week. When the previous Track ended on Stage 5, Kickoff goes out with the new Track right away — Wrap-Up does not carry the next Skill.
 
     It orients the user: you are starting a Track on this Skill, here is where you stand today, grounded in what your recent meetings actually show. It walks through the hand of cards by name, then asks one reflection question that starts the Advisor conversation.
 
@@ -90,7 +90,9 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   <Accordion title="Weekly Prep" icon="calendar">
     Mondays at 12:30, for users with an open Track.
 
-    The Advisor Picks episode for the week is generated at 11:00, an hour and a half earlier, specifically so the Prep email can reference the week's learning topic and link a fresh episode.
+    On an active staged Track, Prep coaches the **current stage** from Track progress and meeting stage checks — stage feedback from this week's window first, earlier checks as background. When a Practice is chosen, it talks about that Practice by name. It does not organize the week as a hand of cards or as moving a score toward a Goal.
+
+    The Advisor Picks episode for the week is generated at 11:00, an hour and a half earlier, so Prep can reference the week's learning topic and link a fresh episode when the meetings actually touched it.
 
     Weekly comms adapt to where the user is (`WeeklyTrackCommsMode`): `active` and `pending` are Track-bound, while `unlocking` and `ready_to_start` cover people who do not have a Track yet — someone still accumulating evidence gets a different message from someone mid-Track.
   </Accordion>
@@ -104,15 +106,15 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   </Accordion>
 
   <Accordion title="Weekly Review" icon="chart-bar">
-    Fridays at 16:00. The week's Track progress and score movement.
+    Fridays at 16:00. On an active staged Track, Review looks at the week against the **current stage** and the same stage-progress / stage-check material as Prep. It does not complete the Track, name a next Skill, or frame the week as a score moving toward a Goal.
 
-    On the staged ladder this is a retrospective email, not the completion trigger. Stage 5 is what completes the Track.
+    Completing Stage 5 is what ends the Track. Friday Review leaves the active Track in place.
   </Accordion>
 
   <Accordion title="Wrap-Up" icon="trophy">
-    Sent when a Track ends — because Stage 5 finished, because the Track was switched, or because the quarterly Cycle rolled it over.
+    Sent when a Track ends — usually because Stage 5 finished, and also when the Track was switched. It can land on any day.
 
-    It opens with the arc of the Track: starting score, ending score, duration, and the overall pattern across meetings. It highlights meaningful meetings, looks back over the cards and the chosen Practice, and closes with what comes next.
+    It reviews **only the Track that just ended**: the path through the stages, the chosen Practice by name, and meeting stage feedback on file. The member can reply on that thread. It does not name, suggest, or invent a next Skill. A new Track starts on its own, and its Kickoff carries that Track's instructions.
 
     When the Track ends without finishing Stage 5, the Wrap-Up is written as a retrospective rather than a failure.
   </Accordion>
@@ -120,7 +122,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 ## How messages are written
 
-Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — cards, stage checks, stage goals, and member context — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
+Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — stage progress, stage checks, the chosen Practice, cards where they still apply, and member context — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
 
 **Evidence Evaluated is never AI-composed.** It renders the stage check, Soft Skill highlights, and scores.
 
