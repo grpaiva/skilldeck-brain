@@ -1,7 +1,7 @@
 ---
 description: "How development is organized: quarterly Cycles, the Advisor stage ladder, Goals, Track episodes grounded in the member, and one Skill at a time."
 title: "Cycles and Tracks"
-updated: "2026-10-01"
+updated: "2026-10-06"
 status: "verified"
 icon: "route"
 ---
@@ -36,13 +36,24 @@ And evidence is scarce. Scoring one Skill closely across two weeks of real meeti
     Status `active`. The Track is running on the Advisor stage ladder, every new piece of evidence is read against this Skill, and stage threads go out by email.
   </Step>
   <Step title="It ends">
-    A Track reaches one of three terminal states: `completed` when the member finishes the last stage (apply the chosen Practice with an outcome); `switched` when the person moves to a different Skill; or `expired` when it goes stale. Completing the last stage also starts the next Track immediately. Wrap-Up reviews only the Track that ended.
+    A Track reaches one of three terminal states: `completed` when the member finishes the last stage (apply the chosen Practice with an outcome); `switched` when the person moves to a different Skill, including when someone ends the Track early with **End track**; or `expired` when it goes stale. Completing the last stage also starts the next Track immediately. Wrap-Up reviews only the Track that ended.
   </Step>
 </Steps>
 
 <Warning>
   A Track left in a pending state is the most common stuck state a manager will see. The Manager Coaching Playbook is explicit: do not leave a Skill or Goal pending across a Weekly coaching meeting, and prefer auto-assignment at the Monthly and Quarterly levels so a member is never blocked waiting on you.
 </Warning>
+
+### Ending a Track early
+
+**End track** closes an active Track as `switched` and starts the next one through the same path as completing Stage 5. Skill Deck picks the next Skill, sends Wrap-Up for the Track that ended, and sends the new Track's Kickoff right away. The action asks for confirmation first and cannot be undone. When no other Skill is available to start yet, the Track still closes and the member waits for the next one.
+
+End track appears on the member's Track page, on the **Tracks** tab of the member page, and in the Track flyout on the team timeline. It shows only on an active Track, and only to someone who can manage that Track:
+
+- **The member**, when their team or organization lets members manage their own Tracks. Each organization decides for itself. A team-level block applies only inside that team's organization, and a block in one organization leaves an allow in another organization in place. A person with no team and no organization always manages their own Tracks.
+- **Organization Owners, Admins, and Team Managers**, for the people they manage and for their own Tracks.
+
+Ending a Track early is a switch, so the [Skill churn](#do-not-churn-skills) warning applies.
 
 ## The Advisor stage ladder
 
@@ -113,7 +124,7 @@ At the end of a Cycle the product runs a sequence, in order:
     `reports:generate-quarterly`. The report callout can appear on the Deck.
   </Step>
   <Step title="Active Tracks stay on the ladder">
-    While staged Tracks are on, `tracks:roll-cycle` is a no-op. An active Track keeps its stages across the Cycle boundary. Completing the last stage is what ends a Track and starts the next one.
+    While staged Tracks are on, `tracks:roll-cycle` is a no-op. An active Track keeps its stages across the Cycle boundary. Completing the last stage, or [ending the Track early](#ending-a-track-early), is what ends a Track and starts the next one.
   </Step>
 </Steps>
 
