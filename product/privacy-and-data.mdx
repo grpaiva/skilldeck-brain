@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-09-28"
+updated: "2026-10-13"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Soft Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13.
 </Info>
 
 ## The commitments
@@ -69,6 +69,8 @@ This is the point that resolves most objections, and it is not widely understood
 A meeting with five people does not produce five profiles. It produces evidence for the Skill Deck user whose calendar scheduled the bot, about that person only. Colleagues appearing in the transcript are context, not subjects.
 
 Related: a **single-participant meeting is marked processed without transcription or evaluation**. There is no behavior with others to observe, so nothing is analyzed.
+
+A meeting where the evidence owner never speaks is also marked processed without evaluation: no scores, highlights, or Evidence Evaluated email. The other participants are never scored in the owner's place.
 
 ## What a manager can see
 
