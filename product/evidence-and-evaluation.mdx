@@ -2,7 +2,7 @@
 title: "Evidence and evaluation"
 description: "What counts as evidence, how a meeting becomes one, and how Soft Skill evaluation turns it into scores and highlights."
 icon: "file-search"
-updated: "2026-09-30"
+updated: "2026-10-13"
 status: "verified"
 ---
 
@@ -74,7 +74,7 @@ Evidence has **two** sources.
     The transcript is processed into evidence, then Soft Skill evaluation runs.
   </Step>
   <Step title="Subject clips">
-    The transcript is split into **subject clips** — short spans that keep the evidence owner's speaking turns in focus, with enough interlocutor context to read the moment. A short meeting may pass through as a single clip.
+    The transcript is split into **subject clips** — short spans that keep the evidence owner's speaking turns in focus, with enough interlocutor context to read the moment. A short meeting may pass through as a single clip. When the transcript has speaker labels, clips that leave the owner out are dropped.
   </Step>
   <Step title="Behavior classification">
     Each clip is classified against the Skill level rubric. The classifier asks whether specific level behaviors appear in that clip, then aggregates hits into **demonstrations**: one scored observation of a Skill in that clip, tied to a level title on the 0–20 scale.
@@ -106,6 +106,7 @@ Not every bot session becomes scored evidence.
 | Case | What happens |
 | --- | --- |
 | **Single-participant meeting** | Marked processed without transcription or evaluation. There is no behavior with others to observe. See [Privacy and data](/product/privacy-and-data). |
+| **Evidence owner never speaks** | The transcript names its speakers and none of them is the evidence owner, or every subject clip leaves the owner out. Marked processed with no scores, highlights, or Evidence Evaluated email. Skill Deck matches the owner by comparing each speaker label with the account's first name; a label that carries more than the first name must also contain the last name. A transcript without speaker labels is evaluated as usual. |
 | **No usable transcript** | For example the Zoom bot joined but never received external-recording permission, or Attendee ended without a transcript after retries. Evidence is marked failed. Meeting-recording quota is released. Skill Deck does **not** send an error email. |
 | **Real processing error** | Evidence is marked failed and the user gets an error notification. |
 
