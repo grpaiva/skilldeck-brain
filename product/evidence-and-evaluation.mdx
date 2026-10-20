@@ -1,8 +1,8 @@
 ---
 title: "Evidence and evaluation"
-description: "What counts as evidence, how a meeting becomes one, and how Soft Skill evaluation turns it into scores and highlights."
+description: "What counts as evidence, how a meeting becomes one, and how Skill evaluation turns it into scores and highlights."
 icon: "file-search"
-updated: "2026-10-14"
+updated: "2026-10-20"
 status: "verified"
 ---
 
@@ -48,7 +48,7 @@ Evidence has **two** sources.
   <Accordion title="Slack" icon="message-square">
     A custom integration with a second step: after connecting the workspace, the user **picks the channels** to track. Channel selection keeps the scope to what the user chose to share.
 
-    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same Soft Skill evaluation as a meeting.
+    A daily sync then reads new messages in each selected channel and turns them into evidence, which goes through the same Skill evaluation as a meeting.
   </Accordion>
 </AccordionGroup>
 
@@ -71,7 +71,7 @@ Evidence has **two** sources.
     [Attendee](/overview/glossary) transcribes the meeting and maps speakers. Skill Deck receives text that already says who said what.
   </Step>
   <Step title="Processing">
-    The transcript is processed into evidence, then Soft Skill evaluation runs.
+    The transcript is processed into evidence, then Skill evaluation runs.
   </Step>
   <Step title="Subject clips">
     The transcript is split into **subject clips** — short spans that keep the evidence owner's speaking turns in focus, with enough interlocutor context to read the moment. A short meeting may pass through as a single clip. When the transcript has speaker labels, clips that leave the owner out are dropped.
@@ -82,12 +82,12 @@ Evidence has **two** sources.
     A Skill can produce **several demonstrations** from one piece of evidence when the person shows that Skill more than once. Skills with no hits stay silent — see [Silence is not a score](#silence-is-not-a-score).
   </Step>
   <Step title="Justifications and highlights">
-    Each demonstration gets a written justification tied to the clip. Each demonstration's subject-clip text is stored with the evaluation, so the justification can be written after the content cache expires. Then Soft Skill **highlights** are chosen and stored: a **Top Strength**, and a **Growth Opportunity** when more than one Skill was demonstrated. Highlight copy describes the Skill as a whole in the meeting, not a single demonstration's score.
+    Each demonstration gets a written justification tied to the clip. Each demonstration's subject-clip text is stored with the evaluation, so the justification can be written after the content cache expires. Then Skill **highlights** are chosen and stored: a **Top Strength**, and a **Growth Opportunity** when more than one Skill was demonstrated. Highlight copy describes the Skill as a whole in the meeting, not a single demonstration's score.
 
     Justifications and highlight summaries are written in the **evidence owner's language** — English, Spanish, or Brazilian Portuguese — from their account language setting. They address the subject as "you", open on the action or observation, and do not restate the Skill name — the card already shows it. When a Skill name or level title appears later in that prose, it uses the same language.
   </Step>
   <Step title="Scores update">
-    Status reaches `evaluated` only after highlights settle — or immediately when Soft Skill evaluation produced no evaluations at all. Each demonstration updates score history for that Skill. Deck impact for a Skill on this evidence is aggregated across its demonstrations.
+    Status reaches `evaluated` only after highlights settle — or immediately when Skill evaluation produced no evaluations at all. Each demonstration updates score history for that Skill. The evidence counts once toward that Skill on the Deck.
   </Step>
   <Step title="Stage check, if a Track is active">
     If the person's team has Tracks enabled and they have an **active Track**, a follow-on job settles the meeting for that Track. On meeting stages, a verifier runs a **stage check** against the stage goal. A met check advances the stage.
@@ -95,7 +95,7 @@ Evidence has **two** sources.
     If there is no active Track, this step is skipped.
   </Step>
   <Step title="Evidence Evaluated email">
-    After the Track settle finishes — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from the stage check when one exists, Soft Skill highlights, and scores.
+    After the Track settle finishes — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from the stage check when one exists, Skill highlights, and scores.
   </Step>
 </Steps>
 
@@ -112,7 +112,7 @@ Not every bot session becomes scored evidence.
 
 ## Silence is not a score
 
-This is the most important design decision in Soft Skill evaluation, and it is a strong point in a demo.
+This is the most important design decision in Skill evaluation, and it is a strong point in a demo.
 
 A Skill is scored from this evidence only when the classifier finds **clear, demonstrated behavior** for that Skill. Skills that simply did not show up produce no demonstrations and no score movement.
 
@@ -124,9 +124,9 @@ This is what stops the profile drifting toward the mean as evidence accumulates,
 
 On the evidence page that belongs to the person the evidence is about.
 
-### Soft Skill highlights
+### Skill highlights
 
-Stored for that evidence after Soft Skill evaluation.
+Stored for that evidence after Skill evaluation.
 
 | Piece | What it is |
 | --- | --- |
@@ -141,19 +141,27 @@ The evidence page has two tabs.
 
 | Tab | What it shows |
 | --- | --- |
-| **Analyses** | When a stage check has a rationale, next step, or excerpt, a **Track analysis** card appears first: a subheading with the Skill name and stage (for example Skill name · Stage N · stage title) when that context is available, badge **Stage met** or **Not yet** in the card header, then the rationale and next step, and a quoted excerpt when one exists — including an unmet check with an empty quote. A ghost **View Track** button in the card footer opens that Track. Soft Skill highlights and Skill score cards follow. |
+| **Analyses** | When a stage check has a rationale, next step, or excerpt, a **Track analysis** card appears first: a subheading with the Skill name and stage (for example Skill name · Stage N · stage title) when that context is available, badge **Stage met** or **Not yet** in the card header, then the rationale and next step, and a quoted excerpt when one exists — including an unmet check with an empty quote. A ghost **View Track** button in the card footer opens that Track. Skill highlights and Skill cards follow. |
 | **Deep Dive** | Suggested questions about the evidence. The person clicks one and Skill Deck answers it. |
 
 ### Skill cards and demonstrations
 
-Each Skill that was demonstrated gets a card on the **Analyses** tab.
+The **Analyses** tab heads the Skill cards with a count, for example "5 Skills evaluated". Each Skill that was demonstrated gets one summary card.
 
 | Piece | What it is |
 | --- | --- |
-| **Demonstration** | One scored observation of that Skill in a subject clip: level title, score, justification in the evidence owner's language (second person, no Skill-name opening), and a clip excerpt while the content cache still holds it |
-| **Scale markers** | Dots on the 0–20 scale for the distinct scores shown on this evidence; on multi-demo cards the dots are clickable to jump the carousel |
-| **Carousel** | When a Skill has more than one demonstration, slides run low → high and open on the highest score |
-| **Deck impact** | One aggregated score movement for that Skill from this evidence, shown under the card |
+| **Demonstrations observed** | How many times that Skill was scored on this evidence |
+| **Score or Average** | A score badge on the 0–20 scale. With one demonstration it is that score; with several it is the average, followed by the highest and lowest scores |
+| **Scale markers** | Dots on the 0–20 scale for the distinct scores on this evidence, in the shared score colors |
+| **Summary** | A short write-up in the evidence owner's language. With one demonstration it is that demonstration's justification |
+| **Harmful behavior** | A red badge when a demonstration recorded harmful behavior (score 0) |
+| **See score / See all scores** | Opens a side panel for that Skill |
+
+When more than one Skill was demonstrated, a sort menu orders the cards by highest average (the default), lowest average, highest score, lowest score, or most demonstrations. Ties fall back to the highest average, then the Skill name.
+
+The side panel repeats the stats and scale, then lists every score for that Skill from highest to lowest. Each entry shows the score badge, its level title when one exists, the justification in the evidence owner's language (second person, no Skill-name opening), and the Deck movement that score made.
+
+A **demonstration** is one scored observation of that Skill in a subject clip. Each demonstration writes its own score history. The Deck counts this evidence **once** for that Skill, however many demonstrations it produced. The evidence list shows how many Skills each piece of evidence evaluated.
 
 ### Stage check
 
@@ -172,7 +180,7 @@ When any of those fields has text, the **Analyses** tab shows them under **Track
 A met check advances the Track stage.
 
 <Note>
-  Soft Skill evidence cards, highlights, the Deep Dive, and the evidence page stay with the person the evidence is about. Scores reach a manager through the member's Deck. Managers read meeting-evaluated **Conversations** threads read-only. See [Privacy and data](/product/privacy-and-data).
+  Skill cards, highlights, the Deep Dive, and the evidence page stay with the person the evidence is about. Scores reach a manager through the member's Deck. Managers read meeting-evaluated **Conversations** threads read-only. See [Privacy and data](/product/privacy-and-data).
 </Note>
 
 This material also carries into the member's Evidence Evaluated email and a manager's coaching preparation.

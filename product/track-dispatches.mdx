@@ -1,7 +1,7 @@
 ---
 description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, and the other Track communications."
 title: "Track dispatches"
-updated: "2026-10-06"
+updated: "2026-10-20"
 status: "verified"
 icon: "mail"
 ---
@@ -24,7 +24,7 @@ Weekly Prep and Weekly Review still run on the working week. Evidence Evaluated 
   Dispatches and stage threads keep running at this rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook's Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still emails the member on its own schedule.
 </Note>
 
-In the app, stage mail and replies live on the Track page under **Conversations**. Soft Skill highlights stay with the member.
+In the app, stage mail and replies live on the Track page under **Conversations**. Skill highlights stay with the member.
 
 ## Stage openings and threads
 
@@ -100,9 +100,11 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   <Accordion title="Evidence Evaluated" icon="file-check">
     Sent after a meeting is evaluated. This is the "analysis after every meeting" from the pitch. Subject: `Meeting analysis for :title`.
 
-    The body is **static**, assembled from stored data. When a stage check exists for that meeting, the email includes whether the stage was met, the rationale and next step (addressing the member as "you"), and an italicized excerpt when the check has one. When the check is **Not yet**, the next step names a moment from that meeting and gives one example sentence the member could have said there, using details from the transcript — not a generic Practice checklist. When the member has an active Track, it can also show the tracked Skill score from that meeting. It then shows the stored **Top Strength** and **Growth Opportunity** Soft Skill highlights — summaries already written in the member's language.
+    The body is **static**, assembled from stored data. When a stage check exists for that meeting, the email includes whether the stage was met, the rationale and next step (addressing the member as "you"), and an italicized excerpt when the check has one. When the check is **Not yet**, the next step names a moment from that meeting and gives one example sentence the member could have said there, using details from the transcript — not a generic Practice checklist. When the member has an active Track, it can also show the tracked Skill score from that meeting. It then shows the stored **Top Strength** and **Growth Opportunity** Skill highlights — summaries already written in the member's language.
 
-    When Skill Deck can attach the meeting to a Track, the email joins that Track's Advisor thread — Advisor From and Reply-To — and appears under **Conversations**. Attachment prefers the Track from the latest stage check for that meeting, then the member's active Track. A stage check alone is enough; a written analysis is not required. Soft Skill highlights stay with the member. Managers read the meeting-evaluated Conversations thread read-only and do not reopen the member-only Journal Evidence Evaluated post.
+    When Skill Deck can attach the meeting to a Track, the email joins that Track's Advisor thread — Advisor From and Reply-To — and appears under **Conversations**. Attachment prefers the Track from the latest stage check for that meeting, then the member's active Track. A stage check alone is enough; a written analysis is not required. Skill highlights stay with the member. Managers read the meeting-evaluated Conversations thread read-only and do not reopen the member-only Journal Evidence Evaluated post.
+
+    While the global Tracks feature switch is off, Evidence Evaluated goes out as a Skill Deck system email from the default sender, with no Track thread, Advisor sender, Reply-To, or stage check.
   </Accordion>
 
   <Accordion title="Weekly Review" icon="chart-bar">
@@ -124,7 +126,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — stage progress, stage checks, the chosen Practice, cards where they still apply, and member context — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
 
-**Evidence Evaluated is never AI-composed.** It renders the stage check, Soft Skill highlights, and scores.
+**Evidence Evaluated is never AI-composed.** It renders the stage check, Skill highlights, and scores.
 
 ### The rules the coach writes under
 
