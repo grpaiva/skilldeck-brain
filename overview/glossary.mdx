@@ -2,7 +2,7 @@
 title: "Glossary"
 description: "The Skill Deck vocabulary. Use these terms exactly, in the product and in everything we write."
 icon: "book-a"
-updated: "2026-10-20"
+updated: "2026-10-21"
 status: "verified"
 ---
 
@@ -46,9 +46,23 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Level">
-    The graded position a person holds within a single Skill. There are **21 levels**, scored **0 to 20**. Each level has a written description of the behavior it represents.
+    A person's position on a single Skill, scored **0 to 20**. Five **stages** set the base, and **context bonuses** add to it. 0 means a **harmful behavior**. See [Skills and levels](/product/skills-and-levels#levels).
 
-    Always say **21 levels** or **0 to 20**. Never "20 levels". Write a score as "8/20 in Storytelling", not "a rating" and not "a grade".
+    Always say **0 to 20**. Never "20 levels". Write a score as "8/20 in Storytelling", not "a rating" and not "a grade".
+  </Accordion>
+
+  <Accordion title="Stage">
+    One of the five steps every Skill shares on the 0 to 20 scale: **Novice** (1–4), **Beginner** (5–8), **Competent** (9–12), **Proficient** (13–16), and **Specialist** (17–20). Each stage adds one thing to the stage below, the same for every Skill, so a Competent score means the same thing on every Skill. See [Skills and levels](/product/skills-and-levels#levels).
+
+    Stage names live in the methodology and the AI tools. People see scores. Track stages are a separate ladder; see [Cycles and Tracks](/product/cycles-and-tracks).
+  </Accordion>
+
+  <Accordion title="Context bonus">
+    One point added to a moment's stage base for each of **Pressure**, **Complexity**, and **Effect** present in that moment. A stage's band holds its base plus up to three bonuses.
+  </Accordion>
+
+  <Accordion title="Harmful behavior">
+    One of the four behaviors each Skill lists as harm. A moment that shows one scores **0**. It counts only when the transcript shows the behavior with certainty and leaves no doubt about who spoke. Weak performance stays on a stage.
   </Accordion>
 
   <Accordion title="Deck">
@@ -78,23 +92,17 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Skill evaluation">
-    The production pipeline that scores Skills from evidence: subject clips, behavior classification against the level rubric, demonstrations, justifications, then Skill highlights. Justifications and Skill highlight summaries are written in the evidence owner's language. Live in production.
+    The production pipeline that scores Skills from evidence. One evaluator per Skill reads the whole transcript, finds the moments where the person had a real opportunity to use that Skill, places each one on a stage with its context bonuses, and quotes the person's words. Skill Deck checks the quotes and computes every score. Then Skill highlights are chosen. Summaries are written in the evidence owner's language.
 
-    It scores the same 58 Skills listed on [Skills and levels](/product/skills-and-levels).
-  </Accordion>
-
-  <Accordion title="Subject clip">
-    A short span of evidence focused on the owner's speaking turns, with enough interlocutor context to read the moment. Skill evaluation classifies each clip; a short meeting may pass through as a single clip.
+    It scores the 58 Skills listed on [Skills and levels](/product/skills-and-levels). See [Evidence and evaluation](/product/evidence-and-evaluation).
   </Accordion>
 
   <Accordion title="Demonstration">
-    One scored observation of a Skill in a subject clip: a level title, a score on the 0–20 scale, a written justification in the evidence owner's language that addresses them as "you" and does not open with the Skill name, and a clip excerpt while content is still cached. One Skill can have several demonstrations on the same evidence.
-
-    Demonstrations are Skill evaluation rows, not a stage-check excerpt.
+    One scored moment of a Skill in a piece of evidence: a point where the meeting gave the evidence owner an opportunity to use that Skill, and what they did with it. It holds a score on the 0–20 scale and a short summary in the evidence owner's language that addresses them as "you" and does not open with the Skill name. One Skill can have several demonstrations on the same evidence. Engineering docs call a demonstration a **moment**.
   </Accordion>
 
   <Accordion title="Evaluation">
-    The scored assessment produced from a piece of evidence. Under Skill evaluation, each demonstration is stored as its own evaluation row, so one evidence can hold several evaluations for the same Skill.
+    The scored assessment produced from a piece of evidence. Each demonstration is stored as its own evaluation, so one evidence can hold several evaluations for the same Skill, and each one moves that Skill's score.
 
     Not a "test", a "review", or an "assessment result".
   </Accordion>
@@ -108,7 +116,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Growth Opportunity">
-    The Skill highlight for a different Skill worth attention next. Present when more than one Skill was demonstrated on that evidence.
+    The Skill highlight for a different Skill worth attention next. Present when more than one Skill was demonstrated on that evidence. A Skill with a harmful behavior comes first.
   </Accordion>
 
   <Accordion title="Confidence">
@@ -118,7 +126,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Stage check">
-    On meeting stages of an active Track, a verifier reads the meeting against the stage goal. It records whether the goal was met, a rationale and next step that address the member as "you", and an optional meeting excerpt (empty when the goal was not met). When the check is not met, the next step names a moment from that meeting and gives one example sentence the member could have said there, using details from the transcript — not a generic Practice checklist. A met check advances the stage. The result appears in the Evidence Evaluated email and on the evidence page under **Analyses** as **Track analysis**.
+    Part of Tracks. On meeting stages of an active Track, a verifier reads the meeting against the stage goal. It records whether the goal was met, a rationale and next step that address the member as "you", and an optional meeting excerpt (empty when the goal was not met). When the check is not met, the next step names a moment from that meeting and gives one example sentence the member could have said there, using details from the transcript — not a generic Practice checklist. A met check advances the stage. The result appears in the Evidence Evaluated email and on the evidence page under **Analyses** as **Track analysis**.
   </Accordion>
 
   <Accordion title="Track analysis">
@@ -130,7 +138,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
 <AccordionGroup>
   <Accordion title="Track">
-    A development cycle focused on a single Skill. **Tracks need about two weeks minimum** and can run longer.
+    A development cycle focused on a single Skill. **Tracks need about two weeks minimum** and can run longer. Tracks are off in production as of October 2026 while they are redesigned; see [Cycles and Tracks](/product/cycles-and-tracks).
 
     Statuses (`TrackStatus`): `pending_attribute` (shown as Pending Skill Selection), `pending_goal`, `active`, `completed`, `switched`, `expired`. On the staged ladder, completing Stage 5 marks the Track completed and starts the next Track. **End track** closes an active Track early as `switched` and starts the next Track the same way. Friday Review and the Cycle roll leave an active Track in place.
 
@@ -153,6 +161,8 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
   <Accordion title="Dispatch">
     A scheduled communication sent to a user during a Track, normally by email. Five types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, and **Wrap-Up**. On a staged Track, Prep and Review coach the current stage. Wrap-Up reviews only the Track that ended and does not name the next Skill. Stage openings and Advisor replies also travel as email threads on the Track page under **Conversations**.
+
+    While Tracks are off, Evidence Evaluated is the one dispatch that goes out, as a Skill Deck system email.
 
     In manager-facing writing, use the short names: Prep, Review, Kickoff, Wrap-Up, and stage threads. Not "notification", "alert", or "digest".
   </Accordion>
