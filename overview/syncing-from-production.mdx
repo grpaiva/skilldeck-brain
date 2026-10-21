@@ -2,11 +2,11 @@
 title: "Syncing from production"
 description: "How this brain pulls live Skill Deck data through the MCP server, and when to re-run it."
 icon: "refresh-cw"
-updated: "2026-09-30"
+updated: "2026-10-21"
 status: "verified"
 ---
 
-Some facts in this brain change without anyone editing a document. A Skill can be enabled or disabled in the Filament admin panel, a category description can be reworded, a level rubric can be rewritten. Copying those by hand guarantees drift.
+Some facts in this brain change without anyone editing a document. A Skill can be enabled or disabled in the Filament admin panel, a category description can be reworded, a Skill's methodology can be edited. Copying those by hand guarantees drift.
 
 So we pull them from production.
 
@@ -25,7 +25,6 @@ So we pull them from production.
 | Content | Source | Lives in |
 | --- | --- | --- |
 | Categories and the Skills in each | MCP `list_attributes` | Generated block in [Skills and levels](/product/skills-and-levels), plus `data/skill-taxonomy.json` |
-| Example level rubric | MCP `get_attribute_scale` | Generated block in [Skills and levels](/product/skills-and-levels), plus `data/skill-scale-storytelling.json` |
 
 Generated blocks are fenced with markers and must not be edited by hand:
 
@@ -72,7 +71,6 @@ This exits non-zero when the committed docs no longer match production, so it ca
 
 - Someone enables or disables a Skill in the Filament panel.
 - A category is added, renamed, or re-described.
-- Level rubrics are rewritten.
 - Before any work that depends on the exact Skill list — an investor deck, a sales one-pager, a customer-facing Skill catalogue.
 - Otherwise: periodically. This is cheap and read-only.
 
@@ -111,7 +109,7 @@ To give an AI tool direct access, add it to that tool's MCP configuration:
 Reference data, which is what this brain syncs:
 
 - `list_attributes` — the full taxonomy: categories and their Skills, with descriptions. No user data.
-- `get_attribute_scale` — the 0–20 rubric for one Skill.
+- `get_attribute_scale` — the 0–20 scale for one Skill: its definition, the five stages with their score bands, the context bonuses, and its harmful behaviors, quoted in Brazilian Portuguese.
 
 Personal data, scoped to the authenticated user:
 

@@ -1,13 +1,13 @@
 ---
 title: "Skills and levels"
-description: "The 58 Skills, the 8 categories they sit in, and what a level actually says."
+description: "The 58 Skills, the 8 categories they sit in, and how a score on the 0 to 20 scale is built."
 icon: "layers"
-updated: "2026-10-20"
+updated: "2026-10-21"
 status: "verified"
 ---
 
 <Info>
-  The taxonomy and level rubric on this page are **synced from live production** through the Skill Deck MCP server, last run on 2026-09-01. Terminology follows the Manager Coaching Playbook. See [Syncing from production](/overview/syncing-from-production).
+  The taxonomy on this page is **synced from live production** through the Skill Deck MCP server, last run on 2026-09-01. Terminology follows the Manager Coaching Playbook. See [Syncing from production](/overview/syncing-from-production).
 </Info>
 
 The Skill model is the product's core asset. It is what turns a transcript into something a person can act on, and it is the hardest part to copy.
@@ -21,7 +21,7 @@ The Skill model is the product's core asset. It is what turns a transcript into 
 ```text
 Category          8 of them
 └── Skill         one behavior, e.g. Storytelling — can belong to several categories
-    └── Level     0 to 20, each a named behavior with a worked example
+    └── Level     0 to 20: five stages of four points each, and 0 for a harmful behavior
 ```
 
 <Warning>
@@ -113,84 +113,77 @@ The script reads the live taxonomy from the Skill Deck MCP server, rewrites the 
 
 ## Levels
 
-Each Skill is scored on a **0 to 20 scale**, and every point on that scale is a named, observable behavior with a worked example. This granularity is what the whole pitch rests on.
+Each Skill is scored on a **0 to 20 scale**. Every Skill uses the same five stages, so a score means the same thing on every Skill: a 9 in Storytelling and a 9 in Delegation are both Competent.
 
-Each level has three parts:
+The stages follow the Dreyfus model of skill acquisition, as Benner applied it to professionals in real work. Each stage adds one thing to the stage below, and that addition is the same for every Skill.
 
-| Part | Example, at Storytelling level 9 |
+| Stage | Score band | What it adds |
+| --- | --- | --- |
+| **Novice** | 1–4 | The person acts, following a rule or a script, the same whatever the situation. The floor of every opportunity. |
+| **Beginner** | 5–8 | Reading the situation. The response changes with what happened, but gives every element the same weight. |
+| **Competent** | 9–12 | Salience and ownership. The person picks what matters most, says the reasoning out loud, and owns the move with a name and a date. |
+| **Proficient** | 13–16 | Recognition. The person sees the whole situation, answers what is behind the words, and points out what departs from the expected. |
+| **Specialist** | 17–20 | Fluid decision. The right move comes when the conversation calls for it; in a novel case the person says where the usual rule stops applying and adjusts. Rare. |
+
+A moment's score is its stage's base — 1, 5, 9, 13, or 17 — plus 1 for each **context bonus** present.
+
+| Bonus | Present when |
 | --- | --- |
-| **A name** | Narrative Pacing |
-| **A behavior** | Consciously alternates between tension and relief, using pauses to let important narrative moments sink in |
-| **An example** | The Rhythm-Keeper — "We pushed the code. We waited. (Long pause). And then, for the first time in three years... the system held." |
+| **Pressure** | The situation weighs on the person when they act: something is lost or gained, someone with power is present or many people watch, they are criticized or blamed, or the answer must come now. |
+| **Complexity** | What the person responds to is harder than the common case: it contradicts something said earlier, arrives in scattered parts, involves their own work or interest, or they lack authority, information, or decision power. |
+| **Effect** | Later in the same meeting, others build on the move, the conversation changes course, or it becomes a decision or a task with an owner. |
 
-Those names are the [resource cards](/product/cycles-and-tracks) a member holds during a Track. The name is what they see; the number stays behind it.
+**0 is a harmful behavior.** Each Skill lists four harmful behaviors. A moment scores 0 only when the transcript shows one of them with certainty and leaves no doubt about who spoke. Weak performance stays on a stage.
 
 <Note>
-  Always say **21 levels** or **0 to 20**. Never "20 levels", and never "out of 20 levels".
+  Say **0 to 20**. Never "20 levels", and never "out of 20 levels". Write a score as "8/20 in Storytelling".
 </Note>
 
-The bottom of the scale is not "not very good". It describes actively harmful behavior — level 0 of Storytelling is _Narrative Sabotage_, level 1 is _Toxic Framing_. The scale then climbs through disorganized, to competent, to behavior that changes an organization.
+### What a Skill's methodology holds
 
-### What a level looks like
+Every Skill carries the same parts:
 
-{/* BEGIN GENERATED: example-scale */}
+- **A definition** of the Skill's act, and whose move it is.
+- **When the meeting asks for it** — the situation that opens an opportunity to use the Skill.
+- **One core sentence per stage** — that stage's addition, applied to this Skill's act.
+- **Four harmful behaviors**, each scoring 0.
 
-{/* Generated from live production by scripts/sync-skills.mjs. Do not edit by hand. */}
+The methodology is authored in Brazilian Portuguese, and the evaluator reads it verbatim. The Skill Deck MCP tool `get_attribute_scale` returns a Skill's definition, stages, context bonuses, and harmful behaviors.
 
-Selected levels from the **Storytelling** scale, read from production on 2026-09-01.
+### What the stages look like
 
-<AccordionGroup>
-  <Accordion title="0/20 — Narrative Sabotage">
-    Intentionally fabricates or distorts a sequence of events to scapegoat others or hide critical systemic failures. Example: The Revisionist — "The project failed because the Marketing team ignored the brief from day one. I warned them, but they chose to fail." (The subject uses a false 'villain' narrative to hide their own lack of oversight).
-  </Accordion>
+Storytelling's stage cores, translated from its methodology entry on 2026-10-21.
 
-  <Accordion title="8/20 — Descriptive Vibrancy">
-    Uses "Mental Images" and specific details to make a story more concrete and less abstract. Example: The Painter — "The client wasn't just 'unhappy.' They were sitting in a silent office with ten broken monitors, staring at a blank screen. That is the urgency we are dealing with."
-  </Accordion>
+| Stage | Storytelling |
+| --- | --- |
+| **Novice** (1–4) | Tells the case, even out of order, without landing the point, or as a list of facts with no why. |
+| **Beginner** (5–8) | Grounds the story in the facts of this case: who, where, and when, in the order it happened, with the concrete detail that makes the case visible. |
+| **Competent** (9–12) | Builds the story around the point the conversation needs: cuts what does not serve it, marks the turn, and closes by saying what the case means for the matter at hand. |
+| **Proficient** (13–16) | Chooses and frames the case by what lies behind the conversation: names a concern someone showed, or the listener's own experience, and ties the case to it. |
+| **Specialist** (17–20) | Works on the whole group: when the conversation is split or stuck, uses the case to give the group a shared reading of the situation and says what that reading changes for the team or the company. When the usual case does not fit, says where it stops fitting and what that difference shows. |
 
-  <Accordion title="9/20 — Narrative Pacing">
-    Consciously alternates between tension and relief, using pauses to let important narrative moments "sink in." Example: The Rhythm-Keeper — "We pushed the code. We waited. (Long pause). And then, for the first time in three years... the system held."
-  </Accordion>
+One of Storytelling's four harmful behaviors is using a story to deflect responsibility for a serious error by unfairly blaming others.
 
-  <Accordion title="15/20 — The Strategic Pivot Story">
-    Translates a dry strategic plan into a compelling "Future Vision" narrative that makes change feel desirable. Example: The Vision Caster — "We aren't just 'cutting costs.' We are clearing the overgrown forest so we can finally see the path to the mountain. This is the beginning of our new chapter."
-  </Accordion>
+Every stage is an observable act tied to the Skill, not an adjective. That is what makes a score checkable against a transcript, and what makes the next stage actionable.
 
-  <Accordion title="20/20 — The Cultural Mythos (Legacy)">
-    Defines the organization's enduring purpose through a master narrative that survives the leader's presence and dictates behavior for decades. Example: The Identity Architect — The subject's story about "Why we exist" becomes the foundational "Founding Myth" that guides every strategic decision, M&A, and hire for the next generation of the company.
-  </Accordion>
-</AccordionGroup>
+## How scores reach the user
 
-{/* END GENERATED: example-scale */}
+Members see scores on the 0–20 scale on their Deck, their Skill pages, and their evidence pages. Stage names stay with the methodology and the AI tools.
 
-Every level is an observable behavior with a concrete example, not an adjective. That is what makes a score checkable against a transcript, and what makes the next level actionable.
+Pitch and demo copy may quote a score — "You scored 8/20 in Storytelling" is accurate and approved.
 
-<Check>
-  **Our pitch example is accurate.** The fundraising one-pager's Storytelling example — "you are able to use specific details to make a story more concrete", and level 9 adding "narrative pacing, alternating between tension and relief, using pauses" — matches the live level 8 and level 9 descriptors almost word for word. Use it with confidence.
-</Check>
+Track Goals are whole numbers on the same scale. Tracks are off in production as of October 2026 while they are redesigned. See [Cycles and Tracks](/product/cycles-and-tracks).
 
-<Warning>
-  Read level text from the live scale. The sync above is what brings it into this page.
-</Warning>
+## What is scored
 
-## How levels reach the user
+Each Skill lists the evidence types it can be judged on. A transcript carries no written or nonverbal record, so meetings are scored on every active Skill except Written Communication and Nonverbal Communication.
 
-Level numbers matter. They are the basis for a Track **Goal**, and managers read progress against them on the Overview and the Deck.
-
-When those same levels are presented as **resource cards**, the number is hidden. The person should use the named behavior when the opening comes, not reach for a card because it is a higher score.
-
-Pitch and demo copy may quote a numeric level — "You scored 8/20 in Storytelling" is accurate and approved. Member-facing cards and dispatch copy refer to cards by name.
-
-## What is scored, and what is not
-
-Skills carry `do_not_evaluate_on` rules that exclude them from evidence types where they cannot fairly be judged. A Skill that only makes sense in writing is not scored from a meeting transcript. Email evaluation was never implemented, so those Skills wait for a source we actually have.
-
-Skill evaluation then scores only the Skills that actually appear as **demonstrations** in the evidence. One meeting touches a handful, never all 58. See [Evidence and evaluation](/product/evidence-and-evaluation).
+Within those, a Skill is scored only at the moments where the meeting gave the person an opportunity to use it. One meeting touches some Skills and leaves the rest where they were. See [Evidence and evaluation](/product/evidence-and-evaluation).
 
 ## Why the model is the moat
 
 Worth understanding before you pitch it.
 
-The models that read the transcripts are commodity. The integration that puts a bot in a meeting is buildable. What is not quickly reproducible is 58 Skills × 21 levels of written, observable behavioral descriptors, tuned so a language model can consistently place a person on the scale from evidence.
+The models that read the transcripts are commodity. The integration that puts a bot in a meeting is buildable. What is not quickly reproducible is the methodology: for each of the 58 Skills, what opens an opportunity in a meeting, what each of the five stages adds to that Skill's act, and which behaviors are harmful — written so a language model can consistently place a moment on the scale and quote the words behind it.
 
 That is the asset. Lead with the granularity it produces, not with the AI.

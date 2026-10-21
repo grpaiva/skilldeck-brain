@@ -2,7 +2,7 @@
 title: "Confidence and scoring"
 description: "How a level is derived from evaluations, and what a confidence score does and does not mean."
 icon: "gauge"
-updated: "2026-09-03"
+updated: "2026-10-21"
 status: "verified"
 ---
 
@@ -46,7 +46,7 @@ Four factors combine.
   <Accordion title="How many evaluations exist" icon="hash">
     The base factor. Confidence climbs toward its maximum as evaluations accumulate, on a curve that rises quickly at first and then flattens.
 
-    The target for maximum base confidence is **20 evaluations** for a Skill (`CONFIDENCE_TARGET_EVALUATIONS`), with a curve steepness of 3.0 so that early evidence counts for a lot.
+    The target for maximum base confidence is **20 evaluations** for a Skill (`CONFIDENCE_TARGET_EVALUATIONS`), with a curve steepness of 3.0 so that early evidence counts for a lot. Every demonstration is one evaluation, so a meeting with several moments of a Skill adds several.
   </Accordion>
 
   <Accordion title="How recent that evidence is" icon="clock">
@@ -85,7 +85,7 @@ A person's level in a Skill is not the average of their evaluations.
 **Time-based exponential decay** is the active algorithm (`time_based_exponential_decay`). Each evaluation is weighted by its actual date on a 180-day half-life, so recent behavior dominates and older behavior fades. This is what makes the profile a picture of who someone is _now_ rather than a running total of everything they have ever done.
 
 <Note>
-  **Scores are decimals; levels are integers.** A person's score is a weighted mean carried to one decimal place, so someone can sit at 12.3 — between the level 12 and level 13 behaviors. The 21 written level descriptors are the integer rungs; the score is a position on the ladder, not a rung.
+  **Scores are decimals; each demonstration is a whole number.** A demonstration scores a whole number from its stage and context bonuses, or 0 for a harmful behavior. A person's score is a weighted mean carried to one decimal place, so someone can sit at 12.3 — between the top of Competent (12) and the start of Proficient (13). See [Skills and levels](/product/skills-and-levels#levels).
 
   Track Goals are always whole numbers, and never below level 5.
 </Note>
