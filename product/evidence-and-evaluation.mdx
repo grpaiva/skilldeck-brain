@@ -2,7 +2,7 @@
 title: "Evidence and evaluation"
 description: "What counts as evidence, how a meeting becomes one, and how Skill evaluation turns it into scores and highlights."
 icon: "file-search"
-updated: "2026-10-20"
+updated: "2026-10-21"
 status: "verified"
 ---
 
@@ -73,29 +73,31 @@ Evidence has **two** sources.
   <Step title="Processing">
     The transcript is processed into evidence, then Skill evaluation runs.
   </Step>
-  <Step title="Subject clips">
-    The transcript is split into **subject clips** — short spans that keep the evidence owner's speaking turns in focus, with enough interlocutor context to read the moment. A short meeting may pass through as a single clip. When the transcript has speaker labels, clips that leave the owner out are dropped.
+  <Step title="One evaluator per Skill">
+    Every Skill that a transcript can show gets its own evaluator, and each evaluator reads the whole meeting. Written Communication and Nonverbal Communication need a written or nonverbal record, so meetings are scored on the other Skills. See [Skills and levels](/product/skills-and-levels).
   </Step>
-  <Step title="Behavior classification">
-    Each clip is classified against the Skill level rubric. The classifier asks whether specific level behaviors appear in that clip, then aggregates hits into **demonstrations**: one scored observation of a Skill in that clip, tied to a level title on the 0–20 scale.
+  <Step title="Moments">
+    The evaluator finds each **moment** where the meeting gave the evidence owner a real opportunity to use that Skill: something they did in the meeting, or a case they told about having lived. It places each moment on one of the five [stages](/product/skills-and-levels#levels), notes which context bonuses apply, and quotes the owner's own words.
 
-    A Skill can produce **several demonstrations** from one piece of evidence when the person shows that Skill more than once. Skills with no hits stay silent — see [Silence is not a score](#silence-is-not-a-score).
+    A Skill can have **several moments** in one meeting. A Skill the meeting gave no opportunity for has none — see [No opportunity, no score](#no-opportunity-no-score).
   </Step>
-  <Step title="Justifications and highlights">
-    Each demonstration gets a written justification tied to the clip. Each demonstration's subject-clip text is stored with the evaluation, so the justification can be written after the content cache expires. Then Skill **highlights** are chosen and stored: a **Top Strength**, and a **Growth Opportunity** when more than one Skill was demonstrated. Highlight copy describes the Skill as a whole in the meeting, not a single demonstration's score.
+  <Step title="Quotes and scores">
+    Skill Deck checks each quote against the owner's speaking turns. A harmful-behavior moment counts only when the transcript names its speakers and the quote is the owner's.
 
-    Justifications and highlight summaries are written in the **evidence owner's language** — English, Spanish, or Brazilian Portuguese — from their account language setting. They address the subject as "you", open on the action or observation, and do not restate the Skill name — the card already shows it. When a Skill name or level title appears later in that prose, it uses the same language.
+    Skill Deck, not the model, computes every score: the stage's base plus 1 for each context bonus present, or 0 for a harmful behavior. Each scored moment is a **demonstration** of that Skill.
+  </Step>
+  <Step title="Summaries and highlights">
+    Each demonstration gets a short summary, and each Skill gets a summary of how it showed up across the meeting. Then Skill **highlights** are chosen and stored: a **Top Strength**, and a **Growth Opportunity** when more than one Skill was demonstrated. A Skill with a harmful behavior is the Top Strength only when it is the one Skill demonstrated, and it comes first for the Growth Opportunity.
+
+    Summaries are written in the **evidence owner's language** — English, Spanish, or Brazilian Portuguese — from their account language setting. They address the subject as "you", open on the action or observation, and describe what happened without naming a stage or a score. They do not restate the Skill name — the card already shows it.
   </Step>
   <Step title="Scores update">
-    Status reaches `evaluated` only after highlights settle — or immediately when Skill evaluation produced no evaluations at all. Each demonstration updates score history for that Skill. The evidence counts once toward that Skill on the Deck.
-  </Step>
-  <Step title="Stage check, if a Track is active">
-    If the person's team has Tracks enabled and they have an **active Track**, a follow-on job settles the meeting for that Track. On meeting stages, a verifier runs a **stage check** against the stage goal. A met check advances the stage.
-
-    If there is no active Track, this step is skipped.
+    Every demonstration moves the person's score for that Skill, in the order the moments happened, and writes its own score history. Status reaches `evaluated` once highlights are stored — or immediately when the meeting gave no Skill an opportunity. The evidence counts once toward each evaluated Skill's evidence count on the Deck.
   </Step>
   <Step title="Evidence Evaluated email">
-    After the Track settle finishes — or immediately after evaluation when there is no active Track — a meeting with evaluations sends the [Evidence Evaluated](/product/track-dispatches) dispatch. That email is assembled from the stage check when one exists, Skill highlights, and scores.
+    A meeting with demonstrations sends the [Evidence Evaluated](/product/track-dispatches) email. It is assembled from stored data: the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with that Skill's average and summary. When no highlights were stored, it shows the three Skills with the highest averages.
+
+    Tracks are off in production as of October 2026 while they are redesigned, so the email goes out as a Skill Deck system email. With Tracks on, it joins the member's Track thread and carries the stage check.
   </Step>
 </Steps>
 
@@ -106,19 +108,19 @@ Not every bot session becomes scored evidence.
 | Case | What happens |
 | --- | --- |
 | **Single-participant meeting** | Marked processed without transcription or evaluation. There is no behavior with others to observe. See [Privacy and data](/product/privacy-and-data). |
-| **Evidence owner never speaks** | The transcript names its speakers and none of them is the evidence owner, or every subject clip leaves the owner out. Marked processed with no scores, highlights, or Evidence Evaluated email. Skill Deck matches the owner by comparing each speaker label with the account's first name; a label that carries more than the first name must also contain the last name. When that check finds no match, a fast model can still map a shorter compound name, a surname, an initial, or a nickname to the owner. Labels the model invents are ignored. If that mapping step fails, evaluation retries instead of treating the owner as absent. The same resolved labels decide both owner absence and which clips are classified. A transcript without speaker labels is evaluated as usual. |
+| **Evidence owner never speaks** | The transcript names its speakers and none of them is the evidence owner. Marked processed with no scores, highlights, or Evidence Evaluated email. Skill Deck matches the owner by comparing each speaker label with the account's first name; a label that carries more than the first name must also contain the last name. When that check finds no match, a fast model can still map a shorter compound name, a surname, an initial, or a nickname to the owner. Labels the model invents are ignored. If that mapping step fails, evaluation retries instead of treating the owner as absent. The same resolved labels decide which speaking turns the quotes are checked against. A transcript without speaker labels is evaluated as usual, with quotes checked against the whole transcript. |
 | **No usable transcript** | For example the Zoom bot joined but never received external-recording permission, or Attendee ended without a transcript after retries. Evidence is marked failed. Meeting-recording quota is released. Skill Deck does **not** send an error email. |
 | **Real processing error** | Evidence is marked failed and the user gets an error notification. |
 
-## Silence is not a score
+## No opportunity, no score
 
 This is the most important design decision in Skill evaluation, and it is a strong point in a demo.
 
-A Skill is scored from this evidence only when the classifier finds **clear, demonstrated behavior** for that Skill. Skills that simply did not show up produce no demonstrations and no score movement.
+A Skill is scored from a meeting only at the moments where the meeting gave the person a real opportunity to use it. Each Skill's methodology defines what opens that opportunity. A Skill the meeting gave no opportunity for gets no score from it, and its Deck score stays where it was.
 
-A quiet meeting is not a bad score — it produces no score for the Skills that stayed silent. Genuinely poor behavior that the rubric does catch does get recorded, including a low or zero level.
+When an opportunity comes, the person's response lands on a stage. The lowest stage, Novice (1–4), is a real stage: the person acted, following a rule or a script. A harmful behavior scores 0, and only when the transcript shows one of that Skill's listed harmful behaviors with certainty. When in doubt, it is not harm.
 
-This is what stops the profile drifting toward the mean as evidence accumulates, and it is the honest answer to "does it penalize me for meetings where I just listened?"
+This is what keeps the profile tied to what the person actually did, and it is the honest answer to "does it penalize me for meetings where I just listened?" The Skills a meeting gave you no opening for stay exactly where they were.
 
 ## What an evaluated piece of evidence contains
 
@@ -141,7 +143,7 @@ The evidence page has two tabs.
 
 | Tab | What it shows |
 | --- | --- |
-| **Analyses** | When a stage check has a rationale, next step, or excerpt, a **Track analysis** card appears first: a subheading with the Skill name and stage (for example Skill name · Stage N · stage title) when that context is available, badge **Stage met** or **Not yet** in the card header, then the rationale and next step, and a quoted excerpt when one exists — including an unmet check with an empty quote. A ghost **View Track** button in the card footer opens that Track. Skill highlights and Skill cards follow. |
+| **Analyses** | Skill highlights, then the Skill cards. When the meeting has a Track stage check, a **Track analysis** card comes first — see [Stage check](#stage-check). |
 | **Deep Dive** | Suggested questions about the evidence. The person clicks one and Skill Deck answers it. |
 
 ### Skill cards and demonstrations
@@ -150,22 +152,24 @@ The **Analyses** tab heads the Skill cards with a count, for example "5 Skills e
 
 | Piece | What it is |
 | --- | --- |
-| **Demonstrations observed** | How many times that Skill was scored on this evidence |
+| **Demonstrations observed** | How many moments of that Skill were scored on this evidence |
 | **Score or Average** | A score badge on the 0–20 scale. With one demonstration it is that score; with several it is the average, followed by the highest and lowest scores |
 | **Scale markers** | Dots on the 0–20 scale for the distinct scores on this evidence, in the shared score colors |
-| **Summary** | A short write-up in the evidence owner's language. With one demonstration it is that demonstration's justification |
-| **Harmful behavior** | A red badge when a demonstration recorded harmful behavior (score 0) |
+| **Summary** | How the Skill showed up across the meeting, in the evidence owner's language |
+| **Harmful behavior** | A red badge when a demonstration recorded a harmful behavior (score 0) |
 | **See score / See all scores** | Opens a side panel for that Skill |
 
 When more than one Skill was demonstrated, a sort menu orders the cards by highest average (the default), lowest average, highest score, lowest score, or most demonstrations. Ties fall back to the highest average, then the Skill name.
 
-The side panel repeats the stats and scale, then lists every score for that Skill from highest to lowest. Each entry shows the score badge, its level title when one exists, the justification in the evidence owner's language (second person, no Skill-name opening), and the Deck movement that score made.
+The side panel repeats the stats and scale with the full Skill summary, then lists every score for that Skill from highest to lowest. Each entry shows the score badge, a harmful-behavior badge when it applies, that demonstration's summary, and the Deck movement that score made.
 
-A **demonstration** is one scored observation of that Skill in a subject clip. Each demonstration writes its own score history. The Deck counts this evidence **once** for that Skill, however many demonstrations it produced. The evidence list shows how many Skills each piece of evidence evaluated.
+Cards and panels show scores. Stage names stay with the methodology and the AI tools.
+
+A **demonstration** is one scored moment of that Skill. Each demonstration writes its own score history and counts toward that Skill's confidence. The Deck counts this evidence **once** in that Skill's evidence count, however many demonstrations it produced. The evidence list shows how many Skills each piece of evidence evaluated.
 
 ### Stage check
 
-On meeting stages of an active Track, a verifier reads the meeting through the stage goal before the Evidence Evaluated email lands.
+Stage checks are part of Tracks, which are off in production as of October 2026 while they are redesigned. With Tracks on, a verifier reads the meeting through the stage goal on meeting stages of an active Track, before the Evidence Evaluated email lands.
 
 | Piece | What it is |
 | --- | --- |
