@@ -1,10 +1,14 @@
 ---
 description: "How development is organized: quarterly Cycles, the Advisor stage ladder, Goals, Track episodes grounded in the member, and one Skill at a time."
 title: "Cycles and Tracks"
-updated: "2026-10-06"
+updated: "2026-10-21"
 status: "verified"
 icon: "route"
 ---
+
+<Info>
+  Tracks are off in production as of October 2026 while they are redesigned. This page describes Tracks with the global switch on. See [Enabling Tracks](#enabling-tracks).
+</Info>
 
 ## The idea
 
@@ -81,7 +85,7 @@ Each stage that opens a conversation gets its **own email thread**. Subjects inc
 
 In the app, the member (and a manager viewing them) opens the Track page: **Overview** for stage progress, and **Conversations** for the Advisor threads. Managers read those threads read-only; only the member can reply.
 
-A global kill-switch (`TRACKS_STAGED_V1`) gates the ladder. Production turns it on after active Tracks are onboarded onto stages. While it is on, an active Track with a stage completes through Stage 5 rather than through Friday score-Goal checks.
+A switch (`TRACKS_STAGED_V1`) gates the ladder. While it is on, an active Track with a stage completes through Stage 5 rather than through Friday score-Goal checks.
 
 ### Timing rules
 
@@ -165,9 +169,9 @@ Without an active Track, evaluation still scores the Deck — it just does not r
 
 ## Enabling Tracks
 
-Tracks are **live in production**. Teams turn them on per team (team page), along with automation settings and the whitelist. That per-team switch is step two of the Manager Coaching Playbook's six moves, and skipping it is the most common setup failure.
+Tracks are **off in production** as of October 2026 while they are redesigned. The global switch (`TRACKS_FEATURE_ENABLED`) hides Tracks and stops Track mail. Skill evaluation, scores, the Deck, and the Evidence Evaluated email run without it.
 
-Do not describe Tracks as dark-launched or globally off. A global kill-switch still exists in application config for emergencies; production has it on. The staged ladder has its own kill-switch (`TRACKS_STAGED_V1`); production turns that on with the stage ship.
+With the global switch on, teams turn Tracks on per team (team page), along with automation settings and the whitelist. That per-team switch is step two of the Manager Coaching Playbook's six moves, and skipping it is the most common setup failure. The staged ladder has its own switch (`TRACKS_STAGED_V1`).
 
 <Card title="Manager Coaching Playbook" icon="clipboard-list" href="/playbooks/manager-coaching/overview">
   Setting up the team, and running the coaching cadence on top.

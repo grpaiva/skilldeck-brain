@@ -2,7 +2,7 @@
 title: "The manager role"
 description: "What a manager sees, what they can do, and why the product is built around them."
 icon: "user-cog"
-updated: "2026-10-20"
+updated: "2026-10-21"
 status: "verified"
 ---
 
@@ -69,12 +69,14 @@ One person in depth. The playbook's standard prep order is **Overview → Tracks
       The whitelist controls **which Skills a member can start a Track on**. It is not a visibility filter — a manager still sees every scored Skill on the member's Deck, whitelisted or not.
     </Warning>
 
-    Skill evaluation scores whatever the meeting actually demonstrates among evaluatable Skills. The whitelist does not decide which Skills get scored from evidence. Evidence has to turn up on its own to count.
+    Skill evaluation scores every Skill the meeting gave the member an opportunity to use. The whitelist does not decide which Skills get scored from evidence. Evidence has to turn up on its own to count.
 
     That detail is the answer to "is it just going to tell me what I want to hear?"
   </Accordion>
 
   <Accordion title="Start, configure, edit, and end Tracks" icon="flag">
+    Tracks are off in production as of October 2026 while they are redesigned. See [Cycles and Tracks](/product/cycles-and-tracks).
+
     A manager can start a Track, configure a pending Skill or Goal, and edit an active Track.
 
     To end an active Track early, use **End track** on the member's **Tracks** tab (beside **Open track**) or in the Track flyout on the team timeline. It asks for confirmation, closes the Track as `switched`, sends Wrap-Up, and starts the next Track with its own Kickoff. Managers manage their own Tracks the same way. See [Ending a Track early](/product/cycles-and-tracks#ending-a-track-early).
@@ -125,7 +127,7 @@ It is worth understanding why this is the recurring risk. A manager who is engag
 
 A manager's access is bounded by the product's privacy model, and those bounds are a selling point rather than a limitation.
 
-- **No full transcripts.** After 7 days the meeting transcript is gone from cache. Skill demonstration clip text and stage-check excerpts stay with those conclusions in the database.
+- **No full transcripts.** After 7 days the meeting transcript is gone from cache. The owner's quotes behind Skill demonstrations and stage-check excerpts stay with those conclusions in the database.
 - **Only the member's own behavior is evaluated.** A meeting produces evidence about the Skill Deck user it came from, not about their colleagues.
 
 <Card title="Privacy and data" icon="shield" href="/product/privacy-and-data">

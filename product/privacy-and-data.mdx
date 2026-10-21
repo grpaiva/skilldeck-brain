@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-10-20"
+updated: "2026-10-21"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Skill demonstration clip persistence verified against merged [PR 238](https://github.com/grpaiva/skilldeck/pull/238) on 2026-09-24. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14.
 </Info>
 
 ## The commitments
@@ -28,7 +28,7 @@ These are the application's stated core privacy commitments, and they are the st
   </Card>
 
   <Card title="Only conclusions persist" icon="database">
-    What survives is metadata, processing state, evaluations (including the subject-clip text that backs each Skill demonstration), scores, score history, stage-check excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
+    What survives is metadata, processing state, evaluations (including the evidence owner's quote behind each Skill demonstration), scores, score history, stage-check excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
   </Card>
 
   <Card title="Only the account holder is evaluated" icon="user-check">
@@ -50,7 +50,7 @@ These are the application's stated core privacy commitments, and they are the st
 | Residual files and bot-provider data | Temporary storage | Deleted after 7 days by a daily job |
 | Evidence metadata (title, type, status, timestamps, participants) | Database | For the life of the account, then wiped on account delete |
 | Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
-| Skill demonstration clip text | Database (on the evaluation) | For the life of the account, then wiped on account delete; the subject-clip text used to score and justify that demonstration |
+| Demonstration quotes | Database (on the evaluation) | For the life of the account, then wiped on account delete; the evidence owner's own words behind each demonstration |
 | Stage-check excerpts from a Track | Database | For the life of the account, then wiped on account delete; short meeting quotes from the stage verifier |
 | Advisor thread messages (stage email and in-app replies) | Database | For the life of the account, then wiped on account delete |
 | Support correspondence | Support systems | 24 months |
@@ -58,7 +58,7 @@ These are the application's stated core privacy commitments, and they are the st
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
-The full meeting transcript is never written to a database column. Skill demonstrations store the subject-clip text used to score and justify them, and stage checks store short meeting excerpts. The evidence page still shows a Skill clip excerpt only while the content cache holds it. Notifications are explicitly forbidden from containing raw transcript or body content.
+The full meeting transcript is never written to a database column. Each Skill demonstration stores the evidence owner's own words behind it, for internal review, and stage checks store short meeting excerpts. Members and managers see summaries and scores. Notifications are explicitly forbidden from containing raw transcript or body content.
 
 ## Only your own behavior is evaluated
 
@@ -121,7 +121,7 @@ A user can share a piece of evidence with another user. This is user-initiated, 
 
 - Sharing only works while the content is still cached, so a share invitation expires no later than 7 days after processing.
 - Accepting a share copies content into the recipient's cache, not into the database.
-- The copy is re-evaluated for the recipient, with the original triage and evaluation metadata stripped, so the recipient gets their own evaluation rather than inheriting someone else's.
+- The copy is evaluated from scratch for the recipient, so the recipient gets their own evaluation rather than inheriting someone else's.
 
 ## Deleting an account
 
@@ -167,7 +167,7 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     No video and no audio, ever. The bot produces text and nothing else.
   </Step>
   <Step title="The text does not survive">
-    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. Subject-clip text that backs Skill demonstrations, and stage-check excerpts, stay with those conclusions.
+    Full meeting transcripts live in a cache for 7 days and are then gone. They are never written to the database as a full transcript. The owner's quotes behind Skill demonstrations, and stage-check excerpts, stay with those conclusions.
   </Step>
   <Step title="Only the user is evaluated">
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
