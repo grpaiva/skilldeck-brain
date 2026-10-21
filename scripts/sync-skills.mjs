@@ -23,18 +23,10 @@ const PAGE_PATH = join(ROOT, 'product', 'skills-and-levels.mdx');
 
 const BEGIN = '{/* BEGIN GENERATED: skill-taxonomy */}';
 const END = '{/* END GENERATED: skill-taxonomy */}';
-const SCALE_BEGIN = '{/* BEGIN GENERATED: example-scale */}';
-const SCALE_END = '{/* END GENERATED: example-scale */}';
 
 const MCP_URL = process.env.SKILLDECK_MCP_URL ?? 'https://skilldeck.ai/mcp/skilldeck';
 const TOKEN = process.env.SKILLDECK_MCP_TOKEN;
 const CHECK_ONLY = process.argv.includes('--check');
-
-/** The Skill whose scale is quoted on the page, and the levels shown. */
-const EXAMPLE_SKILL = process.env.SKILLDECK_EXAMPLE_SKILL ?? 'Storytelling';
-const EXAMPLE_LEVELS = [0, 8, 9, 15, 20];
-const SCALE_JSON_PATH = (skill) =>
-  join(ROOT, 'data', `skill-scale-${skill.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.json`);
 
 const CATEGORY_ICONS = {
   'Communication': 'message-circle',
@@ -165,63 +157,6 @@ function parseTaxonomy(markdown) {
   return categories;
 }
 
-function decodeEntities(text) {
-  return text
-    .replace(/&quot;/g, '"')
-    .replace(/&#0?39;/g, "'")
-    .replace(/&apos;/g, "'")
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&nbsp;/g, ' ');
-}
-
-/**
- * Parses `get_attribute_scale` output. Each level arrives as
- * `**N/20**:` followed by `Title: behaviour. Example: Persona — "quote"`.
- * Levels are not returned in order.
- */
-function parseScale(markdown) {
-  const levels = [];
-  for (const chunk of decodeEntities(markdown).split(/\n-{3,}\n/)) {
-    const match = chunk.match(/\*\*(\d+)\/20\*\*:\s*\n([\s\S]+)/);
-    if (!match) continue;
-    const score = Number(match[1]);
-    const body = match[2].trim().replace(/\s*\n\s*/g, ' ');
-    const separator = body.indexOf(': ');
-    levels.push({
-      score,
-      title: separator === -1 ? null : body.slice(0, separator).trim(),
-      body: separator === -1 ? body : body.slice(separator + 2).trim(),
-    });
-  }
-  return levels.sort((a, b) => a.score - b.score);
-}
-
-function renderScaleBlock(skill, levels, syncedAt) {
-  const chosen = EXAMPLE_LEVELS.map((score) => levels.find((l) => l.score === score)).filter(Boolean);
-  const rendered = chosen
-    .map((level) => {
-      const heading = level.title ? `${level.score}/20 — ${level.title}` : `${level.score}/20`;
-      return [`  <Accordion title="${heading.replace(/"/g, '&quot;')}">`, `    ${level.body}`, '  </Accordion>'].join('\n');
-    })
-    .join('\n');
-
-  return [
-    SCALE_BEGIN,
-    '',
-    '{/* Generated from live production by scripts/sync-skills.mjs. Do not edit by hand. */}',
-    '',
-    `Selected levels from the **${skill}** scale, read from production on ${syncedAt}.`,
-    '',
-    '<AccordionGroup>',
-    rendered,
-    '</AccordionGroup>',
-    '',
-    SCALE_END,
-  ].join('\n');
-}
-
 function summarise(categories) {
   const unique = new Map();
   for (const category of categories) {
@@ -292,12 +227,6 @@ const categories = parseTaxonomy(markdown);
 const summary = summarise(categories);
 const syncedAt = new Date().toISOString().slice(0, 10);
 
-const scaleMarkdown = await callMcp('get_attribute_scale', { attribute: EXAMPLE_SKILL });
-const scaleLevels = parseScale(scaleMarkdown);
-if (scaleLevels.length === 0) {
-  die(`Could not parse the ${EXAMPLE_SKILL} scale. The \`get_attribute_scale\` output format may have changed.`);
-}
-
 let previous = null;
 try {
   previous = JSON.parse(readFileSync(JSON_PATH, 'utf8'));
@@ -325,12 +254,10 @@ function replaceBlock(source, beginMarker, endMarker, replacement) {
 }
 
 const page = readFileSync(PAGE_PATH, 'utf8');
-let nextPage = replaceBlock(page, BEGIN, END, renderBlock(categories, summary, syncedAt));
-nextPage = replaceBlock(nextPage, SCALE_BEGIN, SCALE_END, renderScaleBlock(EXAMPLE_SKILL, scaleLevels, syncedAt));
+const nextPage = replaceBlock(page, BEGIN, END, renderBlock(categories, summary, syncedAt));
 
 console.log(`\n  ${summary.skillCount} Skills across ${summary.categoryCount} categories`);
 console.log(`  ${summary.listingCount} category listings — ${summary.multiCategorySkills.length} Skills sit in more than one category`);
-console.log(`  ${scaleLevels.length} levels on the ${EXAMPLE_SKILL} scale`);
 
 const changes = diff(previous, summary);
 if (changes) {
@@ -356,12 +283,7 @@ if (CHECK_ONLY) {
 
 mkdirSync(dirname(JSON_PATH), { recursive: true });
 writeFileSync(JSON_PATH, `${JSON.stringify(payload, null, 2)}\n`);
-writeFileSync(
-  SCALE_JSON_PATH(EXAMPLE_SKILL),
-  `${JSON.stringify({ skill: EXAMPLE_SKILL, syncedAt, source: 'Skill Deck MCP `get_attribute_scale`', levels: scaleLevels }, null, 2)}\n`
-);
 writeFileSync(PAGE_PATH, nextPage);
 
 console.log(`\n  Wrote data/skill-taxonomy.json`);
-console.log(`  Wrote ${SCALE_JSON_PATH(EXAMPLE_SKILL).replace(`${ROOT}/`, '')}`);
 console.log(`  Updated product/skills-and-levels.mdx\n`);

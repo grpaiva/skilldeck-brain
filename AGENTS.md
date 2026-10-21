@@ -55,11 +55,12 @@ Start with the shortest path to an answer. Most questions are answered by one pa
 | How does the product work end to end? | `product/how-it-works.mdx` |
 | What are the Skills, categories, and levels? | `product/skills-and-levels.mdx` |
 | What counts as evidence? How does an evaluation happen? | `product/evidence-and-evaluation.mdx` |
-| How does Soft Skill evaluation work? What is a demonstration? | `product/evidence-and-evaluation.mdx` |
-| What language are Soft Skill justifications and highlights in? | `product/evidence-and-evaluation.mdx` |
+| What are the five stages? What does a score of 0 mean? | `product/skills-and-levels.mdx` |
+| How does Skill evaluation work? What is a demonstration? | `product/evidence-and-evaluation.mdx` |
+| What language are evaluation summaries and highlights in? | `product/evidence-and-evaluation.mdx` |
 | Who transcribes meetings? Do we deduplicate them? | `product/evidence-and-evaluation.mdx` |
 | What is a confidence score? How is a level calculated? | `product/confidence-and-scoring.mdx` |
-| What is a Track? What is a Cycle? | `product/cycles-and-tracks.mdx` |
+| What is a Track? What is a Cycle? Are Tracks on in production? | `product/cycles-and-tracks.mdx` |
 | What emails does a user get, and when? | `product/track-dispatches.mdx` |
 | How do organizations, teams, and roles work? | `product/organizations-and-teams.mdx` |
 | What does a manager see and do? | `product/manager-role.mdx` |
@@ -95,14 +96,16 @@ The single most common mistake is writing "competency" where the product says "S
 | **Skill** | One of the 58 behaviors Skill Deck measures. The product term, everywhere a customer can see. | "Competency", "attribute", "trait", "metric" |
 | **Attribute** | The internal database name for a Skill. Code and engineering docs only. | Anything customer-facing |
 | **Category** | The grouping that Skills belong to. There are 8. | "Pillar", "domain", "bucket" |
-| **Level** | The graded position within a Skill. **21 levels**, scored 0 to 20. | "Rating", "grade", "20 levels", "out of 20 levels" |
+| **Level** | A person's position on a Skill, scored **0 to 20**. Five stages set the base, context bonuses add to it, and 0 means a harmful behavior. | "Rating", "grade", "20 levels", "out of 20 levels" |
+| **Stage** | One of five steps on the 0 to 20 scale: Novice 1–4, Beginner 5–8, Competent 9–12, Proficient 13–16, Specialist 17–20. | Naming a stage on a member-facing card or panel |
+| **Context bonus** | Pressure, Complexity, or Effect. Each one present adds 1 to the stage's base, up to the top of its band. | "Extra credit", "multiplier" |
 | **Evidence** | A piece of real work the product analyzes. Meetings are first-run. Slack exists but is not first-run. | "Recording", "data point", "sample", or claiming email / documents / files / calls |
-| **Evaluation** | The scored assessment produced from evidence. Under Soft Skill evaluation, each demonstration is its own evaluation row. | "Test", "assessment result", "review" |
-| **Soft Skill evaluation** | Production pipeline that scores Skills from evidence (clips → classification → demonstrations → highlights). Customer-facing copy still says Skill. | Treating Soft Skills as a second taxonomy |
-| **Demonstration** | One scored observation of a Skill in a subject clip. Justification is in the evidence owner's language, second person, no Skill-name opening. | Confusing with a Track moment |
-| **Soft Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language, addresses them as "you", and does not restate the Skill name. | Heuristic "top score" pick |
+| **Evaluation** | The scored assessment produced from evidence. Every demonstration is its own evaluation. | "Test", "assessment result", "review" |
+| **Skill evaluation** | The production pipeline that scores Skills from evidence. One evaluator per Skill reads the whole transcript, places each moment on a stage with its context bonuses and the owner's quote, and Skill Deck checks the quote and computes the score. Highlights follow. | "Soft Skill", or treating it as a second taxonomy |
+| **Demonstration** | One scored moment of a Skill in a piece of evidence. Its summary is in the evidence owner's language, second person, no Skill-name opening. Engineering docs call it a moment. | Confusing with a Track stage check |
+| **Skill highlight** | Stored Top Strength or Growth Opportunity for one evidence. Summary is in the evidence owner's language, addresses them as "you", and does not restate the Skill name. | Heuristic "top score" pick |
 | **Confidence** | How much evidence stands behind a score. | "Accuracy", "certainty", "reliability" |
-| **Track** | A development cycle on one Skill. Needs about two weeks minimum. | "Course", "program", "module", "sprint" |
+| **Track** | A development cycle on one Skill. Needs about two weeks minimum. Off in production as of October 2026 while Tracks are redesigned. | "Course", "program", "module", "sprint" |
 | **Goal** | The score a Track aims at. | "Objective", "KPI" |
 | **Cycle** | A quarter. Tracks live inside one. | — |
 | **Deck** | A person's full Skill profile. | "Dashboard", "scorecard" |
@@ -179,7 +182,7 @@ mint validate
 
 | What | Where | Note |
 | --- | --- | --- |
-| Live Skills and categories | Skill Deck MCP, `https://skilldeck.ai/mcp/skilldeck` | The only source of truth for the taxonomy and level rubrics. Synced by `npm run sync:skills`. |
+| Live Skills and categories | Skill Deck MCP, `https://skilldeck.ai/mcp/skilldeck` | The only source of truth for the taxonomy and each Skill's scale. The taxonomy is synced by `npm run sync:skills`. |
 | Manager guidance | Manager Coaching Playbook (PDF) | Synced into `playbooks/manager-coaching/`. The PDF wins if they diverge. |
 | The application | `grpaiva/skilldeck` | Private. Laravel, Livewire, Filament. |
 | Engineering docs | `grpaiva/skilldeck` → `docs/` | Deep and partly outdated. Prefer code and config over prose. |
