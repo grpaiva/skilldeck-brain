@@ -2,7 +2,7 @@
 title: "Syncing from production"
 description: "How this brain pulls live Skill Deck data through the MCP server, and when to re-run it."
 icon: "refresh-cw"
-updated: "2026-10-21"
+updated: "2026-10-28"
 status: "verified"
 ---
 
@@ -109,13 +109,13 @@ To give an AI tool direct access, add it to that tool's MCP configuration:
 Reference data, which is what this brain syncs:
 
 - `list_attributes` — the full taxonomy: categories and their Skills, with descriptions. No user data.
-- `get_attribute_scale` — the 0–20 scale for one Skill: its definition, the five stages with their score bands, the context bonuses, and its harmful behaviors, quoted in Brazilian Portuguese.
+- `get_attribute_scale` — the 0–20 scale for one Skill: its definition, the five stages with their score bands, the context bonuses, and its harmful behaviors (or a note that the Skill has none, so a moment never scores 0), quoted in Brazilian Portuguese.
 
 Personal data, scoped to the authenticated user:
 
 - `get_my_deck` — all category and Skill scores with confidence.
 - `get_attribute_evaluations` — the evaluations behind one Skill's score.
-- `list_my_evidence`, `get_evidence_detail`, `get_evidence_content` — evidence, its evaluations, and the cached transcript while it still exists.
+- `list_my_evidence`, `get_evidence_detail`, `get_evidence_content` — evidence, its evaluations and Feedback, and the cached transcript while it still exists.
 - `get_my_targets`, `get_target_progress`, `get_target_history` — Targets and quarter-over-quarter progress.
 - `list_advisor_picks`, `get_advisor_pick` — Advisor Picks episodes.
 

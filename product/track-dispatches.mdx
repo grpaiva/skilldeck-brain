@@ -1,7 +1,7 @@
 ---
-description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, and the other Track communications."
+description: "Stage email threads, Kickoff and Practice episode written versions, weekly Prep and Review, the weekly Advisor Pick, and the other Track communications."
 title: "Track dispatches"
-updated: "2026-10-21"
+updated: "2026-10-28"
 status: "verified"
 icon: "mail"
 ---
@@ -11,7 +11,7 @@ icon: "mail"
 </Info>
 
 <Note>
-  Tracks are off in production as of October 2026 while they are redesigned. Evidence Evaluated is the one dispatch that goes out, as a Skill Deck system email — see its entry below. The rest of this page describes Track mail with the global switch on.
+  Tracks are off in production as of October 2026 while they are redesigned. Evidence Evaluated and Advisor Pick are the dispatches that go out, as Skill Deck system emails — see their entries below. The rest of this page describes Track mail with the global switch on.
 </Note>
 
 Skill Deck delivers itself by email. This is the low-friction claim in practice: a user connects a calendar and then receives everything in their inbox, without logging in.
@@ -28,7 +28,7 @@ Weekly Prep and Weekly Review still run on the working week. Evidence Evaluated 
   Dispatches and stage threads keep running at this rhythm regardless of how often a manager meets their team. The Manager Coaching Playbook's Weekly, Monthly, and Quarterly levels describe the _manager's_ cadence — the product still emails the member on its own schedule.
 </Note>
 
-In the app, stage mail and replies live on the Track page under **Conversations**. Skill highlights stay with the member.
+In the app, stage mail and replies live on the Track page under **Conversations**. Every dispatch is also a post in the member's Journal, which their managers can read on the member page.
 
 ## Stage openings and threads
 
@@ -61,6 +61,7 @@ Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_AD
 | **Kickoff** | When a Track starts (including right after the previous Track's last stage, or right after **End track**) | Opens the Track and stage 1; carries that Track's instructions |
 | **Weekly Prep** | Mondays, 12:30 | Coaches the current stage from Track progress and meeting stage checks |
 | **Evidence Evaluated** | After a meeting is analyzed | The analysis of that meeting |
+| **Advisor Pick** | Mondays, once the weekly episode's audio is ready | Delivers the week's Advisor Picks episode, for people who do not get Weekly Prep |
 | **Weekly Review** | Fridays, 16:00 | Reviews the week against the current stage; does not complete the Track |
 | **Wrap-Up** | When a Track ends (last stage completed, or switched, including **End track**) | Reviews only the Track that ended; stays open for a reply |
 
@@ -96,7 +97,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
     On an active staged Track, Prep coaches the **current stage** from Track progress and meeting stage checks — stage feedback from this week's window first, earlier checks as background. When a Practice is chosen, it talks about that Practice by name. It does not organize the week as a hand of cards or as moving a score toward a Goal.
 
-    The Advisor Picks episode for the week is generated at 11:00, an hour and a half earlier, so Prep can reference the week's learning topic and link a fresh episode when the meetings actually touched it.
+    The weekly Advisor Picks episode is written at 11:00, an hour and a half earlier, so Prep can link it. A person who gets Prep receives no separate Advisor Pick email that week.
 
     Weekly comms adapt to where the user is (`WeeklyTrackCommsMode`): `active` and `pending` are Track-bound, while `unlocking` and `ready_to_start` cover people who do not have a Track yet — someone still accumulating evidence gets a different message from someone mid-Track.
   </Accordion>
@@ -104,11 +105,19 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   <Accordion title="Evidence Evaluated" icon="file-check">
     Sent after a meeting is evaluated. This is the "analysis after every meeting" from the pitch. Subject: `Meeting analysis for :title`.
 
-    The body is **static**, assembled from stored data. When a stage check exists for that meeting, the email includes whether the stage was met, the rationale and next step (addressing the member as "you"), and an italicized excerpt when the check has one. When the check is **Not yet**, the next step names a moment from that meeting and gives one example sentence the member could have said there, using details from the transcript — not a generic Practice checklist. When the member has an active Track, it can also show the tracked Skill score from that meeting. It then shows the stored **Top Strength** and **Growth Opportunity** Skill highlights — summaries already written in the member's language.
+    The body is **static**, assembled from stored data. When a stage check exists for that meeting, the email includes whether the stage was met, the rationale and next step (addressing the member as "you"), and an italicized excerpt when the check has one. When the check is **Not yet**, the next step names a moment from that meeting and gives one example sentence the member could have said there, using details from the transcript — not a generic Practice checklist. When the member has an active Track, it can also show the tracked Skill score from that meeting. It then shows the stored **Top Strength** and **Growth Opportunity** Skill highlights — summaries already written in the member's language — and, when the member has Focus Skills, the meeting's **Feedback** paragraphs.
 
-    When Skill Deck can attach the meeting to a Track, the email joins that Track's Advisor thread — Advisor From and Reply-To — and appears under **Conversations**. Attachment prefers the Track from the latest stage check for that meeting, then the member's active Track. A stage check alone is enough; a written analysis is not required. Skill highlights stay with the member. Managers read the meeting-evaluated Conversations thread read-only and do not reopen the member-only Journal Evidence Evaluated post.
+    When Skill Deck can attach the meeting to a Track, the email joins that Track's Advisor thread — Advisor From and Reply-To — and appears under **Conversations**. Attachment prefers the Track from the latest stage check for that meeting, then the member's active Track. A stage check alone is enough; a written analysis is not required. The email goes to the member alone. Managers read the meeting-evaluated Conversations thread read-only, and the Evidence Evaluated post in the member's Journal, without its link to the evidence page.
 
-    While the global Tracks feature switch is off, Evidence Evaluated goes out as a Skill Deck system email from the default sender, with no Track thread, Advisor sender, Reply-To, or stage check. It shows the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with the Skill and its summary, followed by the Best Moment and the Most Demonstrated Skill. The Journal entry shows the same content.
+    While the global Tracks feature switch is off, Evidence Evaluated goes out as a Skill Deck system email from the default sender, with no Track thread, Advisor sender, Reply-To, or stage check. It shows the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with the Skill and its summary, followed by the Best Moment and the Most Demonstrated Skill, plus the Feedback section when Feedback was written. The Journal entry shows the same content.
+  </Accordion>
+
+  <Accordion title="Advisor Pick" icon="headphones">
+    Sent once the weekly [Advisor Picks](/overview/glossary) episode's audio is ready, with an in-app notification. Subject: `Your Advisor Pick this week: :title`. The body is **static**: the Skill, the practice, the episode description, and the listen link. The same content is stored as a Journal post. Managers read that post on the member page without the listen link.
+
+    The weekly episode runs only when `ADVISOR_PICKS_WEEKLY_ENABLED` is true. It goes to people with recent evaluated meetings and enough confidence, on one of their [Focus Skills](/product/manager-role#focus-skills) when they have any, otherwise on a Skill with a live score, ranked by room to grow and confidence. Its practice comes from that Skill's practice catalog, between one point above the current score and the top of the next stage. The writer reads the person's recent meetings on the Skill, their Feedback, highlight patterns, upcoming meetings this week, recent episodes, Deep Dive answers, and active Targets, and writes in the person's language. Thresholds and episode length are on [Canonical facts](/overview/canonical-facts).
+
+    A person who gets the Monday Weekly Prep receives the episode through Prep instead. An episode generated on demand from Advisor Picks is written the same way, counts against the [quota](/company/business-model), and sends no Dispatch. Track episodes are written separately, and Kickoff and Weekly Prep link them.
   </Accordion>
 
   <Accordion title="Weekly Review" icon="chart-bar">
@@ -130,7 +139,7 @@ The design reasoning is worth repeating in a demo: a person given a single targe
 
 Kickoff, stage openings, Prep, Review, Wrap-Up, and Advisor replies are composed by AI agents from the real Track data — stage progress, stage checks, the chosen Practice, cards where they still apply, and member context — in the user's language. If AI composition is off or the call fails, scheduled dispatches fall back to static translated templates where those exist. `COMMS_AI_ENABLED` defaults to on.
 
-**Evidence Evaluated is never AI-composed.** It renders the stage check, Skill highlights, and scores.
+**Evidence Evaluated and Advisor Pick are never AI-composed.** Evidence Evaluated renders the stage check, Skill highlights, Feedback, and scores. Advisor Pick renders the episode's stored Skill, practice, and description. Both go out while Tracks are off, as Skill Deck system emails.
 
 ### The rules the coach writes under
 
