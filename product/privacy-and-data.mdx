@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-10-21"
+updated: "2026-10-28"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14.
 </Info>
 
 ## The commitments
@@ -28,7 +28,7 @@ These are the application's stated core privacy commitments, and they are the st
   </Card>
 
   <Card title="Only conclusions persist" icon="database">
-    What survives is metadata, processing state, evaluations (including the evidence owner's quote behind each Skill demonstration), scores, score history, stage-check excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
+    What survives is metadata, processing state, evaluations (including the evidence owner's quote behind each Skill demonstration), scores, score history, Feedback paragraphs, stage-check excerpts, notifications, and share records. Residual files and bot-provider data are deleted after 7 days.
   </Card>
 
   <Card title="Only the account holder is evaluated" icon="user-check">
@@ -51,6 +51,7 @@ These are the application's stated core privacy commitments, and they are the st
 | Evidence metadata (title, type, status, timestamps, participants) | Database | For the life of the account, then wiped on account delete |
 | Evaluations, scores, and score history | Database | For the life of the account, then wiped on account delete |
 | Demonstration quotes | Database (on the evaluation) | For the life of the account, then wiped on account delete; the evidence owner's own words behind each demonstration |
+| Feedback paragraphs | Database | For the life of the account, then wiped on account delete; one paragraph per Focus Skill, written to the evidence owner |
 | Stage-check excerpts from a Track | Database | For the life of the account, then wiped on account delete; short meeting quotes from the stage verifier |
 | Advisor thread messages (stage email and in-app replies) | Database | For the life of the account, then wiped on account delete |
 | Support correspondence | Support systems | 24 months |
@@ -87,8 +88,10 @@ On their team member's page, in the order the Manager Coaching Playbook has them
 - **Overview** — progress against Goal, time on the current Track, and Track history: completed, active, switched, rolled, expired. Plus the number of evaluations in the Cycle.
 - **Tracks / Conversations** — the member's Tracks, stage progress, and Advisor threads (including meeting-evaluated threads with stage-check outcomes) **read-only**. Managers never reply and never mark threads read for the member.
 - **Deck** — current scores and confidence across the member's Skills, the same aggregate view the member sees.
+- **Journal** — the member's dispatches, including each **Evidence Evaluated** post (scores, Skill highlights, and Feedback) and each **Advisor Pick** post (Skill, practice, and description). Reading a post leaves its read state unchanged for the member.
+- **Settings** — the member's Focus Skills and, with Tracks on, their Track Settings.
 
-Skill highlights and the member's evidence page stay with the member. A manager does not open them by reading Tracks or Conversations. See [Evidence and evaluation](/product/evidence-and-evaluation).
+The member's evidence page stays with the member. See [Evidence and evaluation](/product/evidence-and-evaluation).
 
 ### A manager does not see
 
@@ -98,15 +101,15 @@ This list is enforced, not aspirational:
 | --- | --- |
 | Meeting video and audio | Never captured |
 | Meeting transcripts | Never in the database; gone from cache after 7 days |
-| **Evidence Evaluated Journal dispatches** | Explicitly excluded from the manager-visible Journal dispatch list. The legacy post-meeting Journal post stays with the member. Meeting-evaluated **Conversations** threads on a Track are visible to managers read-only. |
-| Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. The Analyses tab, stage-check excerpt, Skill highlights, and Deep Dive stay there. |
+| The Evidence Evaluated and Advisor Pick emails | Sent to the member alone. The Journal post a manager reads carries no link to the evidence page or the episode audio. |
+| Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. The Feedback, Analyses, and Deep Dive tabs stay there. |
 | The full list of individual evaluations | Not exposed in any manager view |
 | The body of a member's development report | The manager sees that a report exists, with no link to open it |
 | Benchmarks the member favorited | Private, so a member can hold aspirations their manager does not see |
 | Anything through the MCP server | MCP is first-person only. There is no manager, recruiter, or org-level access path. |
 
 <Tip>
-  The clean way to say this: **a manager sees the conclusions, the Advisor stage threads, and the short excerpts behind them, never the meeting and never the raw transcript.** The member gets more detail about themselves than their manager does.
+  The clean way to say this: **a manager sees the conclusions, the post-meeting analysis, the Advisor stage threads, and the short excerpts behind them, never the meeting and never the raw transcript.** The member gets more detail about themselves than their manager does.
 </Tip>
 
 That last point is the strongest thing to say in a privacy conversation, and it happens to be true.
@@ -173,7 +176,7 @@ When someone says "this is surveillance", do not argue with the frame. Replace i
     A meeting produces evidence about the person whose calendar it came from. Not about their colleagues.
   </Step>
   <Step title="The manager gets the analysis, not the meeting">
-    Scores, Track progress, and short excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and the post-meeting analysis a member receives is private to them.
+    Scores, Track progress, the post-meeting analysis in the member's Journal, and short excerpts. They cannot open an individual evidence page — it returns a 403 to anyone but the owner — and the analysis email goes to the member alone.
   </Step>
 </Steps>
 

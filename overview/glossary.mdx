@@ -2,7 +2,7 @@
 title: "Glossary"
 description: "The Skill Deck vocabulary. Use these terms exactly, in the product and in everything we write."
 icon: "book-a"
-updated: "2026-10-21"
+updated: "2026-10-28"
 status: "verified"
 ---
 
@@ -62,7 +62,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Harmful behavior">
-    One of the four behaviors each Skill lists as harm. A moment that shows one scores **0**. It counts only when the transcript shows the behavior with certainty and leaves no doubt about who spoke. Weak performance stays on a stage.
+    One of the behaviors a Skill lists as harm: four per Skill, or none. A moment that shows one scores **0**. A Skill with none never scores 0. It counts only when the transcript shows the behavior with certainty and leaves no doubt about who spoke. Weak performance stays on a stage.
   </Accordion>
 
   <Accordion title="Deck">
@@ -92,7 +92,7 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Skill evaluation">
-    The production pipeline that scores Skills from evidence. One evaluator per Skill reads the whole transcript, finds the moments where the person had a real opportunity to use that Skill, places each one on a stage with its context bonuses, and quotes the person's words. Skill Deck checks the quotes and computes every score. Then Skill highlights are chosen. Summaries are written in the evidence owner's language.
+    The production pipeline that scores Skills from evidence. One evaluator per Skill reads the whole transcript, finds the moments where the person had a real opportunity to use that Skill, places each one on a stage with its context bonuses, and quotes the person's words. Skill Deck checks the quotes and computes every score. Then Skill highlights are chosen, and Feedback is written for the owner's Focus Skills. Summaries are written in the evidence owner's language.
 
     It scores the 58 Skills listed on [Skills and levels](/product/skills-and-levels). See [Evidence and evaluation](/product/evidence-and-evaluation).
   </Accordion>
@@ -109,6 +109,10 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
 
   <Accordion title="Skill highlight">
     A stored Top Strength or Growth Opportunity for one piece of evidence, chosen after Skill evaluation. The highlight holds the Skill, a holistic summary in the evidence owner's language that addresses them as "you" and does not restate the Skill name (the card already shows it), and an optional featured demonstration. Highlight cards do not show a score pill.
+  </Accordion>
+
+  <Accordion title="Feedback (meeting)">
+    One paragraph per Focus Skill after a meeting, written to the evidence owner as "you" in their language: what they did in one moment, one step further, and an experiment in the form "when [trigger], do [action]" with a new example sentence. It aims at the stage above the Skill's average in that meeting. It is the first tab on the evidence page and a section of the Evidence Evaluated email. Feedback is also the name of a Skill; say "meeting Feedback" when the two could be confused. See [Evidence and evaluation](/product/evidence-and-evaluation).
   </Accordion>
 
   <Accordion title="Top Strength">
@@ -160,11 +164,11 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
   </Accordion>
 
   <Accordion title="Dispatch">
-    A scheduled communication sent to a user during a Track, normally by email. Five types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, and **Wrap-Up**. On a staged Track, Prep and Review coach the current stage. Wrap-Up reviews only the Track that ended and does not name the next Skill. Stage openings and Advisor replies also travel as email threads on the Track page under **Conversations**.
+    A scheduled communication sent to a user, normally by email: the Track mail, the post-meeting analysis, and the weekly Advisor Pick. Six types exist (`DispatchType`): **Kickoff**, **Weekly Prep**, **Evidence Evaluated**, **Weekly Review**, **Wrap-Up**, and **Advisor Pick**. On a staged Track, Prep and Review coach the current stage. Wrap-Up reviews only the Track that ended and does not name the next Skill. Stage openings and Advisor replies also travel as email threads on the Track page under **Conversations**.
 
-    While Tracks are off, Evidence Evaluated is the one dispatch that goes out, as a Skill Deck system email.
+    While Tracks are off, Evidence Evaluated and Advisor Pick are the dispatches that go out, as Skill Deck system emails.
 
-    In manager-facing writing, use the short names: Prep, Review, Kickoff, Wrap-Up, and stage threads. Not "notification", "alert", or "digest".
+    In manager-facing writing, use the short names: Prep, Review, Kickoff, Wrap-Up, Advisor Pick, and stage threads. Not "notification", "alert", or "digest".
   </Accordion>
 
   <Accordion title="Conversations">
@@ -183,12 +187,10 @@ Skill Deck measures **58 Skills**. A user works a **Track** on one **Skill**. Th
     One of the named behaviors a user holds during a Track — the Goal-level behavior plus the levels above it. Each card has a name, a description, and an example. Users see card names, never the level numbers behind them. The number still sets the Track Goal; it is hidden on the card so the person uses the behavior when the opening comes, not because it is a higher score.
   </Accordion>
 
-  <Accordion title="Learning Topic">
-    A curated teaching idea linked to a Skill or to a Practice. Weekly and on-demand Advisor Picks can teach through a Learning Topic. Learning Topics are not Practices and are not tied to a point on the 0–20 scale.
-  </Accordion>
-
   <Accordion title="Advisor Picks">
-    Private audio episodes for the member during a Track (and the weekly pick linked from Prep). A Track episode runs about three to five minutes. It has a spoken script and a written version the member can read in email without playing the audio. Kickoff episodes teach the Track Skill for the member's role and recent work; Practice episodes teach the chosen Practice — explaining a tool when the Practice is one, or using one or two tools already named in the member's context. Prefer "episode" or "written version" in manager-facing copy; do not call the dispatch itself a "digest".
+    Private audio episodes for the member. A **weekly episode** teaches one Skill and one practice from that Skill's practice catalog, about six minutes long, on one of the person's Focus Skills when they have any. It arrives as the **Advisor Pick** dispatch, or through Weekly Prep for people who get Prep. An episode generated on demand is written the same way.
+
+    **Track episodes** are written for the Track. A Track episode runs about three to five minutes. It has a spoken script and a written version the member can read in email without playing the audio. Kickoff episodes teach the Track Skill for the member's role and recent work; Practice episodes teach the chosen Practice — explaining a tool when the Practice is one, or using one or two tools already named in the member's context. Prefer "episode" or "written version" in manager-facing copy; do not call the dispatch itself a "digest".
   </Accordion>
 </AccordionGroup>
 
@@ -201,11 +203,13 @@ The pages a manager and a member actually work in. Use these names in any instru
 | **Deck** | The person's full Skill profile, with scores and confidence |
 | **Overview** | Cycle progress and Track summary entry points |
 | **Tracks** | The member's current and past Tracks. Open a Track for **Overview** (stage progress) and **Conversations** (Advisor threads) |
-| **Journal** | Legacy name for the reading feed of Kickoff, Weekly Prep, Weekly Review, and Wrap-Up dispatches. Prefer **Tracks** / **Conversations** in new writing |
-| **Team page** | Cycle stats and the member Tracks timeline for a team |
-| **Member page** | One person, seen by their manager. Prep for coaching in the order Overview → Tracks / Conversations → Deck |
-| **Track Settings** | Where Skill Tracks, automation, and the whitelist are configured |
-| **Advisor Picks** | Private audio episodes for the Track, each with a written version the member can read in email |
+| **Journal** | The member's reading feed of dispatches: Evidence Evaluated, Advisor Pick, Kickoff, Weekly Prep, Weekly Review, and Wrap-Up. Managers read it on the member page. For Track mail, prefer **Tracks** / **Conversations** |
+| **Team page** | Two tabs: **Members** (the member list and sub-teams, with Cycle stats and the member Tracks timeline when Tracks are on) and **Team settings** (team Focus Skills, member opt-in, and Track Settings) |
+| **Member page** | One person, seen by their manager: Deck, Journal, and Settings, plus Overview and Tracks when Tracks are on. Prep for coaching in the order Overview → Tracks / Conversations → Deck |
+| **Company settings** | Where an Owner or Admin sets the company's Focus Skills and whether members can choose their own |
+| **Settings → Focus Skills** | Where a person sees their Focus Skills, and chooses them when allowed |
+| **Track Settings** | Where Skill Tracks and automation are configured, for a team or a member |
+| **Advisor Picks** | Private audio episodes, weekly and per Track, each with a written description the member can read in email |
 | **Currency** | Settings → Currency. A person pins USD, BRL, or automatic (location). Catalog prices and checkout follow that pin. A card issued in Brazil is charged in BRL. |
 
 ## Organizations and people
@@ -216,7 +220,7 @@ The pages a manager and a member actually work in. Use these names in any instru
   </Accordion>
 
   <Accordion title="Team">
-    A group of people inside an organization, with a manager. Skill Tracks, automation, and the whitelist are set up here.
+    A group of people inside an organization, with a manager. Team Focus Skills, Skill Tracks, and automation are set up here.
   </Accordion>
 
   <Accordion title="Organization role">
@@ -227,8 +231,8 @@ The pages a manager and a member actually work in. Use these names in any instru
     Team-level permissions (`TeamRole`): **Manager** or **Member**.
   </Accordion>
 
-  <Accordion title="Whitelist">
-    The set of Skills a manager marks as most relevant for a person or team, based on job scope, personal challenges, or organizational values. Keeps Track focus role-aligned.
+  <Accordion title="Focus Skills">
+    The Skills that matter most for a person, set for a company, a team, or the person, based on job scope, personal challenges, or organizational values. The person's own win, then their teams', then their companies'. They decide which Skills get meeting Feedback, which Skill the weekly Advisor Pick is about, and which Skills a Track can start on. Internally they are the Skill whitelist (`trackable_attributes`). See [The manager role](/product/manager-role#focus-skills).
   </Accordion>
 
   <Accordion title="Management level">

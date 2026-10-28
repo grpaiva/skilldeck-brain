@@ -2,7 +2,7 @@
 title: "The manager role"
 description: "What a manager sees, what they can do, and why the product is built around them."
 icon: "user-cog"
-updated: "2026-10-21"
+updated: "2026-10-28"
 status: "verified"
 ---
 
@@ -34,21 +34,27 @@ Two surfaces.
 
 ### Team page
 
-Cycle stats and the member Tracks timeline for the team. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline.
+Two tabs.
+
+| Tab | What it holds |
+| --- | --- |
+| **Members** | The member list (add, remove, change role) and sub-teams. With Tracks on, the current Cycle's stats and the member Tracks timeline sit above the list. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline. |
+| **Team settings** | The team's [Focus Skills](#focus-skills), with the company's shown read-only, and **Members can choose their own Focus Skills**. With Tracks on, Track Settings: enable Skill Tracks, and automation. |
 
 ### Member page
 
-One person in depth. The playbook's standard prep order is **Overview → Tracks / Conversations → Deck**:
+One person in depth. With Tracks off, the tabs are **Deck** (opened first), **Journal**, and **Settings**. With Tracks on, they are **Overview** (opened first), **Tracks** or **Journal**, **Deck**, and **Settings**. The playbook's standard prep order is **Overview → Tracks / Conversations → Deck**:
 
 | Surface | What the manager reads |
 | --- | --- |
 | **Overview** | Progress vs Goal, days or weeks on the current Track, Track history — completed, still active, switched, rolled, expired — and the Cycle's evaluation count |
 | **Tracks** | The member's current and past Tracks. Open a Track for stage progress on **Overview**, and Advisor threads on **Conversations** (read-only — managers never reply or mark threads read). Meeting-evaluated threads carry stage-check outcomes for the one-meeting deep-dive |
 | **Deck** | Current scores and confidence across the member's Skills, plus a callout that a quarterly report exists |
-| **Track Settings** | Per-member overrides and the whitelist |
+| **Journal** | The member's full Journal, including Evidence Evaluated and Advisor Pick posts. Opening a post leaves its read state unchanged for the member. Evidence Evaluated and Advisor Pick posts carry no action button, because the evidence page and the episode belong to the member |
+| **Settings** | The member's Focus Skills, with team and company ones shown read-only, and, with Tracks on, per-member Track Settings |
 
 <Warning>
-  The manager's view stops there, by design and in code. They cannot open an individual evidence page, cannot read the member's **Evidence Evaluated** Journal dispatches or Skill highlights, and cannot open the body of their report. They can read Track **Conversations** (including meeting-evaluated threads) read-only. A member still sees more about themselves than their manager does.
+  The manager's view stops there, by design and in code. They cannot open an individual evidence page or a transcript, the **Evidence Evaluated** email goes to the member alone, and they cannot open the body of the member's report. They read the member's Journal, including Evidence Evaluated posts with their Skill highlights and Feedback, and Track **Conversations** (including meeting-evaluated threads), read-only. A member still sees more about themselves than their manager does.
 
   See [Privacy and data](/product/privacy-and-data) before answering any question about this.
 </Warning>
@@ -57,21 +63,11 @@ One person in depth. The playbook's standard prep order is **Overview → Tracks
 
 <AccordionGroup>
   <Accordion title="Set up the team" icon="settings">
-    On the team page: enable Skill Tracks, and set automation and the whitelist. This is step two of the playbook's six moves, and skipping it is the most common setup failure.
+    On the team page's **Team settings** tab: choose the team's Focus Skills and, with Tracks on, enable Skill Tracks and set automation. This is step two of the playbook's six moves, and skipping it is the most common setup failure.
   </Accordion>
 
-  <Accordion title="Whitelist Skills" icon="list-filter">
-    Mark the Skills most relevant for a person or a team — matched to job scope, personal challenges, or organizational values. It keeps Track focus role-aligned without the manager choosing every Track by hand.
-
-    It resolves **most specific wins**: a member-level whitelist overrides a team one, which overrides an organization one. With no whitelist anywhere, every Skill is allowed.
-
-    <Warning>
-      The whitelist controls **which Skills a member can start a Track on**. It is not a visibility filter — a manager still sees every scored Skill on the member's Deck, whitelisted or not.
-    </Warning>
-
-    Skill evaluation scores every Skill the meeting gave the member an opportunity to use. The whitelist does not decide which Skills get scored from evidence. Evidence has to turn up on its own to count.
-
-    That detail is the answer to "is it just going to tell me what I want to hear?"
+  <Accordion title="Choose Focus Skills" icon="list-filter">
+    Pick the Skills that matter most for a person or a team. See [Focus Skills](#focus-skills).
   </Accordion>
 
   <Accordion title="Start, configure, edit, and end Tracks" icon="flag">
@@ -94,6 +90,34 @@ One person in depth. The playbook's standard prep order is **Overview → Tracks
     At the end of each Track, month, or Cycle, a manager has data to review both how the tool is being used and how the person is developing. The Cycle-end pipeline generates snapshots and reports automatically, which is what makes quarter-over-quarter comparison possible.
   </Accordion>
 </AccordionGroup>
+
+## Focus Skills
+
+**Focus Skills** are the Skills that matter most for a person, matched to job scope, personal challenges, or organizational values. They can be set at three levels.
+
+| Level | Where | Who sets them |
+| --- | --- | --- |
+| Company | **Company settings** | Organization Owner or Admin |
+| Team | The team page's **Team settings** tab | The team's managers, or an Owner or Admin |
+| Person | The member page's **Settings** tab, or the person's own **Settings → Focus Skills** | A manager, or the person when allowed |
+
+They resolve **person first**. A person's own Focus Skills win. Without them, the union of their teams' Focus Skills applies, and without those, the union of their active companies'. With none set anywhere, the person has no Focus Skills.
+
+A person with no team and no active company always chooses their own. Inside a company, a person chooses their own when the company or one of their teams turns on **Members can choose their own Focus Skills**. That setting is off by default, and a team that turns it off blocks it for that company. Everyone else sees their Focus Skills read-only, labelled with the level that set them.
+
+Focus Skills decide three things:
+
+- Which Skills get [Feedback](/product/evidence-and-evaluation) after each meeting.
+- Which Skill the weekly [Advisor Pick](/product/track-dispatches) episode is about.
+- Which Skills a Track can start on, with Tracks on.
+
+They work the same with Tracks on or off.
+
+<Warning>
+  Skill evaluation scores every Skill the meeting gave the member an opportunity to use, and the Deck shows every scored Skill. Focus Skills shape what Skill Deck coaches next. Evidence has to turn up on its own to count.
+</Warning>
+
+That detail is the answer to "is it just going to tell me what I want to hear?"
 
 ## The coaching cadence
 
@@ -145,10 +169,12 @@ There is no separate "direct report" object. Management is expressed through tea
 
 ## What the member is told
 
-The member learns the shape of manager access from the **User Guide**, opened from the sidebar and published at `/knowledge-base`. It names both halves. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history, settings, and Advisor conversations. Skill highlights, Evidence Evaluated Journal posts, the evidence page (Analyses and Deep Dive), and raw evidence content stay with the member. The disclosure ships in English, Portuguese, and Spanish.
+The member learns the shape of manager access from the **User Guide**, opened from the sidebar and published at `/knowledge-base`. The disclosure ships in English, Portuguese, and Spanish.
 
-A member reads a superset of that on their own Overview, Deck, and Tracks, so a manager holds nothing the member has not already seen.
+The product draws the line this way. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history, Focus Skills and Track Settings, Advisor conversations, and the member's Journal, including Evidence Evaluated and Advisor Pick posts. The evidence page (Feedback, Analyses, and Deep Dive), transcripts, and Advisor Picks audio stay with the member.
 
-Every dispatch and stage thread is addressed to the member alone. A manager reaches Conversations and the coaching dispatches by opening the member's Tracks on the member page.
+A member reads a superset of that on their own Overview, Deck, Journal, and Tracks, so a manager holds nothing the member has not already seen.
+
+Every dispatch and stage thread is addressed to the member alone. A manager reads dispatches in the member's Journal and Conversations on the member's Tracks, both on the member page.
 
 Access follows the roles above and applies the same way to everyone on a team. The boundary lives in the authorization layer rather than in a per-member setting, so "who can see my data" has one answer for the whole team.

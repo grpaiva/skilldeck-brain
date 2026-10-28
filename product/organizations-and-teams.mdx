@@ -2,12 +2,12 @@
 title: "Organizations and teams"
 description: "How customer accounts, teams, and roles are structured."
 icon: "building-2"
-updated: "2026-09-01"
+updated: "2026-10-28"
 status: "verified"
 ---
 
 <Info>
-  Roles on this page were read from the `OrganizationRole` and `TeamRole` enums in the application repository on 2026-09-01.
+  Roles on this page were read from the `OrganizationRole` and `TeamRole` enums in the application repository on 2026-09-01. Focus Skills settings verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28.
 </Info>
 
 ## The hierarchy
@@ -47,6 +47,18 @@ Team-level permissions, and there are only two.
 | **Member** | Belongs to the team |
 
 The manager role carries the product's most sensitive capability, because it is the one that grants any view of another person's development. See [The manager role](/product/manager-role).
+
+## Focus Skills settings
+
+Each level of the hierarchy can set [Focus Skills](/product/manager-role#focus-skills), the Skills that matter most for its people.
+
+| Level | Where | Who |
+| --- | --- | --- |
+| Organization | **Company settings** | Owner or Admin |
+| Team | The team page's **Team settings** tab | Team managers, Owner, or Admin |
+| Member | The member page's **Settings** tab, or **Settings → Focus Skills** | A manager, or the member when allowed |
+
+The member's own Focus Skills win, then their teams', then their organizations'. Company settings and Team settings also hold **Members can choose their own Focus Skills**, off by default.
 
 ## Joining
 

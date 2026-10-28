@@ -1,8 +1,8 @@
 ---
 title: "Evidence and evaluation"
-description: "What counts as evidence, how a meeting becomes one, and how Skill evaluation turns it into scores and highlights."
+description: "What counts as evidence, how a meeting becomes one, and how Skill evaluation turns it into scores, highlights, and Feedback."
 icon: "file-search"
-updated: "2026-10-21"
+updated: "2026-10-28"
 status: "verified"
 ---
 
@@ -85,17 +85,24 @@ Evidence has **two** sources.
     Skill Deck checks each quote against the owner's speaking turns. A harmful-behavior moment counts only when the transcript names its speakers and the quote is the owner's.
 
     Skill Deck, not the model, computes every score: the stage's base plus 1 for each context bonus present, or 0 for a harmful behavior. Each scored moment is a **demonstration** of that Skill.
+
+    Each Skill's methodology lists four harmful behaviors, or none. For a Skill with none, the evaluator is told the Skill has no harmful behaviors, every moment lands on a stage, and Skill Deck drops any harm moment reported for it.
   </Step>
   <Step title="Summaries and highlights">
     Each demonstration gets a short summary, and each Skill gets a summary of how it showed up across the meeting. Then Skill **highlights** are chosen and stored: a **Top Strength**, and a **Growth Opportunity** when more than one Skill was demonstrated. A Skill with a harmful behavior is the Top Strength only when it is the one Skill demonstrated, and it comes first for the Growth Opportunity.
 
     Summaries are written in the **evidence owner's language** — English, Spanish, or Brazilian Portuguese — from their account language setting. They address the subject as "you", open on the action or observation, and describe what happened without naming a stage or a score. They do not restate the Skill name — the card already shows it.
   </Step>
+  <Step title="Feedback">
+    When the evidence owner has [Focus Skills](/product/manager-role#focus-skills), each Focus Skill with at least one moment above 0 in the meeting gets one **Feedback** paragraph. It is written to the owner as "you", in their language: what they did in one moment, one step further described as a behavior, and an experiment in the form "when [trigger], do [action]" with a new example sentence they could say.
+
+    The step aims at the stage above that Skill's average in this meeting and draws on the Skill's practice catalog without naming the practice. The tone is positive. Scores can appear; stage names do not. Feedback runs after highlights, independently of the Deep Dive, and a Feedback failure never holds up the evidence. Paragraph length is on [Canonical facts](/overview/canonical-facts).
+  </Step>
   <Step title="Scores update">
-    Every demonstration moves the person's score for that Skill, in the order the moments happened, and writes its own score history. Status reaches `evaluated` once highlights are stored — or immediately when the meeting gave no Skill an opportunity. The evidence counts once toward each evaluated Skill's evidence count on the Deck.
+    Every demonstration moves the person's score for that Skill, in the order the moments happened, and writes its own score history. Status reaches `evaluated` once highlights are stored and Feedback has run — or immediately when the meeting gave no Skill an opportunity. The evidence counts once toward each evaluated Skill's evidence count on the Deck.
   </Step>
   <Step title="Evidence Evaluated email">
-    A meeting with demonstrations sends the [Evidence Evaluated](/product/track-dispatches) email. It is assembled from stored data: the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with the Skill and its summary. When no highlights were stored, it shows the three Skills with the highest averages. It then shows the Best Moment, the meeting's highest-scoring demonstration with its summary, and the Most Demonstrated Skill, the Skill with the most demonstrations when it has at least two, with the count and its average. The same content is stored as the member's Journal entry.
+    A meeting with demonstrations sends the [Evidence Evaluated](/product/track-dispatches) email. It is assembled from stored data: the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with the Skill and its summary. When no highlights were stored, it shows the three Skills with the highest averages. It then shows the Best Moment, the meeting's highest-scoring demonstration with its summary, and the Most Demonstrated Skill, the Skill with the most demonstrations when it has at least two, with the count and its average. When Feedback was written, the email carries a Feedback section with each Focus Skill's paragraph. The same content is stored as the member's Journal entry, which the member's managers can read on the member page.
 
     Tracks are off in production as of October 2026 while they are redesigned, so the email goes out as a Skill Deck system email. With Tracks on, it joins the member's Track thread and carries the stage check.
   </Step>
@@ -118,7 +125,7 @@ This is the most important design decision in Skill evaluation, and it is a stro
 
 A Skill is scored from a meeting only at the moments where the meeting gave the person a real opportunity to use it. Each Skill's methodology defines what opens that opportunity. A Skill the meeting gave no opportunity for gets no score from it, and its Deck score stays where it was.
 
-When an opportunity comes, the person's response lands on a stage. The lowest stage, Novice (1–4), is a real stage: the person acted, following a rule or a script. A harmful behavior scores 0, and only when the transcript shows one of that Skill's listed harmful behaviors with certainty. When in doubt, it is not harm.
+When an opportunity comes, the person's response lands on a stage. The lowest stage, Novice (1–4), is a real stage: the person acted, following a rule or a script. A harmful behavior scores 0, and only when the transcript shows one of that Skill's listed harmful behaviors with certainty. When in doubt, it is not harm. A Skill that lists no harmful behaviors never scores 0.
 
 This is what keeps the profile tied to what the person actually did, and it is the honest answer to "does it penalize me for meetings where I just listened?" The Skills a meeting gave you no opening for stay exactly where they were.
 
@@ -137,12 +144,13 @@ Stored for that evidence after Skill evaluation.
 
 Highlight cards show the Skill name and summary. They do not show a score pill. The summary does not restate the Skill name. When only one Skill was demonstrated, Top Strength is that Skill and Growth Opportunity is omitted.
 
-### Analyses and Deep Dive
+### Feedback, Analyses, and Deep Dive
 
-The evidence page has two tabs.
+The evidence page has up to three tabs.
 
 | Tab | What it shows |
 | --- | --- |
+| **Feedback** | One card per Focus Skill with its Feedback paragraph. Present, and opened first, when the meeting has Feedback. |
 | **Analyses** | Skill highlights, then the Skill cards. When the meeting has a Track stage check, a **Track analysis** card comes first — see [Stage check](#stage-check). |
 | **Deep Dive** | Suggested questions about the evidence. The person clicks one and Skill Deck answers it. |
 
@@ -184,7 +192,7 @@ When any of those fields has text, the **Analyses** tab shows them under **Track
 A met check advances the Track stage.
 
 <Note>
-  Skill cards, highlights, the Deep Dive, and the evidence page stay with the person the evidence is about. Scores reach a manager through the member's Deck. Managers read meeting-evaluated **Conversations** threads read-only. See [Privacy and data](/product/privacy-and-data).
+  The evidence page, with its Feedback, Skill cards, and Deep Dive, belongs to the person the evidence is about. Scores reach a manager through the member's Deck, and the Evidence Evaluated post through the member's Journal on the member page. Managers read meeting-evaluated **Conversations** threads read-only. See [Privacy and data](/product/privacy-and-data).
 </Note>
 
 This material also carries into the member's Evidence Evaluated email and a manager's coaching preparation.
