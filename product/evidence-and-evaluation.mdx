@@ -2,7 +2,7 @@
 title: "Evidence and evaluation"
 description: "What counts as evidence, how a meeting becomes one, and how Skill evaluation turns it into scores, highlights, and Feedback."
 icon: "file-search"
-updated: "2026-10-28"
+updated: "2026-10-29"
 status: "verified"
 ---
 
@@ -94,7 +94,7 @@ Evidence has **two** sources.
     Summaries are written in the **evidence owner's language** — English, Spanish, or Brazilian Portuguese — from their account language setting. They address the subject as "you", open on the action or observation, and describe what happened without naming a stage or a score. They do not restate the Skill name — the card already shows it.
   </Step>
   <Step title="Feedback">
-    When the evidence owner has [Focus Skills](/product/manager-role#focus-skills), each Focus Skill with at least one moment above 0 in the meeting gets one **Feedback** paragraph. It is written to the owner as "you", in their language: what they did in one moment, one step further described as a behavior, and an experiment in the form "when [trigger], do [action]" with a new example sentence they could say.
+    When the evidence owner has [Focus Skills](/product/manager-role#focus-skills) and at least one of them has a moment above 0 in the meeting, the meeting gets one **Feedback** paragraph. The writer reads every such Focus Skill and chooses the one where this meeting gives the clearest next step; on a tie, the Skill with more moments. A paragraph about any other Skill or moment is rejected, and the attempt is retried. The paragraph is written to the owner as "you", in their language: what they did in one moment, one step further described as a behavior, and an experiment in the form "when [trigger], do [action]" with a new example sentence they could say.
 
     The step aims at the stage above that Skill's average in this meeting and draws on the Skill's practice catalog without naming the practice. The tone is positive. Scores can appear; stage names do not. Feedback runs after highlights, independently of the Deep Dive, and a Feedback failure never holds up the evidence. Paragraph length is on [Canonical facts](/overview/canonical-facts).
   </Step>
@@ -102,7 +102,7 @@ Evidence has **two** sources.
     Every demonstration moves the person's score for that Skill, in the order the moments happened, and writes its own score history. Status reaches `evaluated` once highlights are stored and Feedback has run — or immediately when the meeting gave no Skill an opportunity. The evidence counts once toward each evaluated Skill's evidence count on the Deck.
   </Step>
   <Step title="Evidence Evaluated email">
-    A meeting with demonstrations sends the [Evidence Evaluated](/product/track-dispatches) email. It is assembled from stored data: the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with the Skill and its summary. When no highlights were stored, it shows the three Skills with the highest averages. It then shows the Best Moment, the meeting's highest-scoring demonstration with its summary, and the Most Demonstrated Skill, the Skill with the most demonstrations when it has at least two, with the count and its average. When Feedback was written, the email carries a Feedback section with each Focus Skill's paragraph. The same content is stored as the member's Journal entry, which the member's managers can read on the member page.
+    A meeting with demonstrations sends the [Evidence Evaluated](/product/track-dispatches) email. It is assembled from stored data: the meeting title and date, how many Skills were evaluated and their overall average, then the Top Strength and Growth Opportunity, each with the Skill and its summary. When no highlights were stored, it shows the three Skills with the highest averages. It then shows the Best Moment, the meeting's highest-scoring demonstration with its summary, and the Most Demonstrated Skill, the Skill with the most demonstrations when it has at least two, with the count and its average. When Feedback was written, the email carries a Feedback section with that paragraph and its Skill. The same content is stored as the member's Journal entry, which the member's managers can read on the member page.
 
     Tracks are off in production as of October 2026 while they are redesigned, so the email goes out as a Skill Deck system email. With Tracks on, it joins the member's Track thread and carries the stage check.
   </Step>
@@ -144,19 +144,18 @@ Stored for that evidence after Skill evaluation.
 
 Highlight cards show the Skill name and summary. They do not show a score pill. The summary does not restate the Skill name. When only one Skill was demonstrated, Top Strength is that Skill and Growth Opportunity is omitted.
 
-### Feedback, Analyses, and Deep Dive
+### Analyses and Scores
 
-The evidence page has up to three tabs.
+The evidence page has two tabs and opens on **Analyses**.
 
 | Tab | What it shows |
 | --- | --- |
-| **Feedback** | One card per Focus Skill with its Feedback paragraph. Present, and opened first, when the meeting has Feedback. |
-| **Analyses** | Skill highlights, then the Skill cards. When the meeting has a Track stage check, a **Track analysis** card comes first — see [Stage check](#stage-check). |
-| **Deep Dive** | Suggested questions about the evidence. The person clicks one and Skill Deck answers it. |
+| **Analyses** | In order: the **Feedback** card when the meeting has Feedback, with the Skill name and its paragraph; the **Track analysis** card when the meeting has a Track stage check (see [Stage check](#stage-check)); the Skill highlights; then **Deep Dive**, suggested questions about the meeting. The person clicks a question and Skill Deck answers it. |
+| **Scores** | The Skill cards, with their sort menu and side panel. |
 
 ### Skill cards and demonstrations
 
-The **Analyses** tab heads the Skill cards with a count, for example "5 Skills evaluated". Each Skill that was demonstrated gets one summary card.
+The **Scores** tab heads the Skill cards with a count, for example "5 Skills evaluated". Each Skill that was demonstrated gets one summary card.
 
 | Piece | What it is |
 | --- | --- |
