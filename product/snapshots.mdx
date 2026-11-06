@@ -1,0 +1,70 @@
+---
+title: "Snapshots"
+description: "Point-in-time Deck captures, inclusive São Paulo day boundaries, and noise-aware Compare."
+icon: "camera"
+updated: "2026-11-06"
+status: "verified"
+sidebarTitle: "Snapshots"
+related:
+  - "overview/glossary"
+  - "product/cycles-and-tracks"
+  - "product/confidence-and-scoring"
+  - "product/manager-role"
+---
+
+A **Snapshot** recalculates a person's Deck from their evaluation history for a chosen period, with the scoring algorithm in force at creation time. Scores, confidence, and demonstration counts are frozen to that window. Managers and members use Snapshots to see how a profile moved across a training cycle, a quarter, or any other span they care about.
+
+Skill Deck also generates Snapshots automatically at the end of each [Cycle](/product/cycles-and-tracks). Optional [Targets](/overview/glossary) that look at historical quarters use the same day rules.
+
+## Period boundaries
+
+Both picked days are **inclusive**, in **São Paulo time** (`America/Sao_Paulo`), for every user. The start is the start of the start day; the end is the end of the end day. Those bounds are stored as UTC.
+
+A meeting at 22:00 on the end day belongs to that Snapshot. A following Snapshot that starts the next day does not count it again. A Q4 Snapshot covers 1 Oct 00:00 through 31 Dec 23:59:59 São Paulo time, so the last day of the quarter is neither dropped nor shown a day early.
+
+Views and quarter lookups use those local dates. Track Snapshots still end at the moment they are taken.
+
+## Compare
+
+**Compare** puts two sides side by side: Snapshot vs Snapshot, Snapshot vs **Current Deck**, or either vs a [Benchmark](/overview/glossary). One radar and one Skills table. There is no category table.
+
+Lookups stay scoped to the viewer. Snapshot ids must belong to the signed-in user; Benchmarks must be ones they can see.
+
+### Current and Max
+
+A **Current / Max** toggle switches what the radar and table show.
+
+| Mode | What you see |
+| --- | --- |
+| **Current** | Each side's current score, with Change |
+| **Max** | Each side's `max_score`. No Change label. A callout notes that Max rises with demonstration volume and shows each side's total demonstrations |
+
+Max is only comparable between periods with similar volume.
+
+### Skills table
+
+Each Skill row shows, for both sides:
+
+- the score, with a 95% margin (`± m`) when that side has at least two demonstrations;
+- a confidence dot on the same bands as the Deck — **50%+** green, **30–49%** amber, **under 30%** red (see [Confidence and scoring](/product/confidence-and-scoring));
+- demonstration count and distinct meeting count.
+
+Skill names are translated. Columns are sortable. Skills without a score on a side are skipped on the radar — they are not drawn at 0.
+
+### Change
+
+| Label | When |
+| --- | --- |
+| **Improvement** / **Decline** | The absolute difference exceeds the combined margin `√(m_a² + m_b²)` |
+| **Within noise** | The difference stays inside that combined margin |
+| **Not enough data** | Either side has fewer than two demonstrations |
+
+When one side has no score, Change is empty.
+
+### URL state
+
+The comparison lives in the URL so a link restores the same view: `a` and `a_type`, `b` and `b_type`, `mode` (`current` or `max`), plus `sort` and `dir`.
+
+## Who creates them
+
+Members create personal Snapshots. Managers create Snapshots for people they manage. Cycle-end automation creates the quarterly ones. See [The manager role](/product/manager-role).
