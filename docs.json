@@ -71,6 +71,7 @@
             "group": "The development cycle",
             "pages": [
               "product/cycles-and-tracks",
+              "product/snapshots",
               "product/track-dispatches"
             ]
           },
