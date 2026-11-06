@@ -186,7 +186,7 @@ mint validate
 | Manager guidance | Manager Coaching Playbook (PDF) | Synced into `playbooks/manager-coaching/`. The PDF wins if they diverge. |
 | The application | `grpaiva/skilldeck` | Private. Laravel, Livewire, Filament. |
 | Engineering docs | `grpaiva/skilldeck` → `docs/` | Deep and partly outdated. Prefer code and config over prose. |
-| Pricing and plans | A founder | Confirmed 2026-09-01 and recorded on `overview/canonical-facts.mdx`. Nowhere else. |
+| Pricing and plans | A founder | Confirmed 2026-11-06 and recorded on `overview/canonical-facts.mdx`. Nowhere else. |
 | Brand accent | skilldeck.ai `theme-color` and Tailwind `purple` | `purple-600` `#9333EA`. Docs `colors` in `docs.json` use 600 / 500 / 700. |
 | Any seeder file | `grpaiva/skilldeck` → `database/seeders/**` | **Stale. Do not use as a source of truth.** Seeders are development fixtures. They have already been wrong about the Skill list, Skill level text, and plan prices. |
 | Product behavior constants | `grpaiva/skilldeck` → `config/` | `tracks.php`, `scoring.php`, `quotas.php` and neighbors are the most reliable statement of how the product actually behaves. |
