@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) on 2026-11-09.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09.
 </Info>
 
 ## The commitments
@@ -36,7 +36,7 @@ These are the application's stated core privacy commitments, and they are the st
   </Card>
 
   <Card title="No sale, ads, or tracking cookies" icon="ban">
-    Skill Deck does not sell personal data, does not run advertising trackers, and sets only necessary first-party cookies: the sign-in session and `preferred_language`, which remembers the chosen interface language. Site analytics are privacy-focused and anonymous.
+    Skill Deck does not sell personal data, does not run advertising trackers, and sets only necessary first-party cookies: the sign-in session and `preferred_language`, which remembers the chosen interface language. The blog at `/the-feedback` reads and sets the same `preferred_language` cookie, so a language chosen on the blog or in the app carries over to the other. Site analytics are privacy-focused and anonymous.
   </Card>
 </Columns>
 
@@ -199,7 +199,7 @@ The **Privacy Policy** at `/privacy-policy` is the customer-facing document. It 
 | Security measures named in §13 | TLS in transit; US East encryption at rest for managed DB/cache; Cloudflare edge; HTTP security headers; account separation; OAuth tokens encrypted at rest; no-recording / 7-day raw-delete architecture |
 | Does our AI training use their data? | Data passed to third-party AI tools is not used to train generalized models |
 
-When someone asks what the **legal document** covers, answer from this table. Product pages still describe Slack as an implemented evidence source; the published policy's evidence description is meetings-only. The app also sets a long-lived `preferred_language` cookie that holds only the chosen language code, alongside the session cookie the policy names.
+When someone asks what the **legal document** covers, answer from this table. Product pages still describe Slack as an implemented evidence source; the published policy's evidence description is meetings-only. The app also sets a long-lived `preferred_language` cookie that holds only the chosen language code (`en`, `pt_BR`, or `es`) in plain text, alongside the session cookie the policy names. The blog at `/the-feedback` shares it.
 
 A member-facing companion sits at `/knowledge-base`, which is where a member reads what their manager can open. See [The manager role](/product/manager-role).
 
