@@ -97,11 +97,11 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Minimum Track duration | ~2 weeks (14 days) | Practice window for the Track. On the staged ladder, completing Stage 5 ends the Track on any day and starts the next one |
 | Cycle length | Quarterly | Calendar quarter or custom dates |
 | Dispatches | 6 | Kickoff, Weekly Prep, Evidence Evaluated, Weekly Review, Wrap-Up, Advisor Pick |
-| Weekly Prep sent | Mondays, 12:30 | On a staged Track, coaches the current stage from progress and meeting stage checks |
+| Weekly Prep sent | Mondays, 09:30 in the person's time zone | On a staged Track, coaches the current stage from progress and meeting stage checks |
 | Weekly Review sent | Fridays, 16:00 | Stage retrospective; does not complete a staged Track |
 | Wrap-Up on Stage 5 | Completes Track + starts next | Reviews only the ended Track; stays open for a reply; does not name the next Skill. Next Track Kickoff carries instructions |
 | `tracks:roll-cycle` while staged | No-op | Active staged Tracks stay across the Cycle boundary |
-| Weekly Advisor Picks episode generated | Mondays, 11:00 | Runs when `ADVISOR_PICKS_WEEKLY_ENABLED` is true; the code default is false. At most one weekly episode per person per week, written before the Prep email so Prep can link it |
+| Weekly Advisor Picks episode generated | Mondays, 08:00 in the person's time zone | Runs when `ADVISOR_PICKS_WEEKLY_ENABLED` is true; the code default is false. At most one weekly episode per person per week, written before the Prep email so Prep can link it |
 | Weekly Advisor Picks eligibility | Average confidence 10%+ and an evaluated meeting in the last 7 days |  |
 | Weekly Advisor Picks Skill | A Focus Skill, else any Skill with a live score | Candidates with confidence of 50%+ come first, then 30%+, then any. Ranked by (20 − score) × confidence, plus 2 points per Growth Opportunity highlight in the last 14 days. Last week's Skill waits a turn when another candidate exists |
 | Weekly Advisor Picks practice | Up to 3 candidates | Unused practices from one point above the current score to the top of the next stage; the writer picks one. Then the closest unused practices, then the ones used longest ago |
@@ -132,6 +132,7 @@ Free-account allowances: 4 meeting bots per month, 1 Slack channel, 1 Advisor Pi
 | Track Goal floor | Level 5 | Auto-set Goals are never lower |
 | Confidence display bands | 50%+ green, 30–49% amber, under 30% red | The Deck can hide anything under 30% |
 | Supported languages | 6 | English, Spanish, Brazilian Portuguese, German, French, Italian. Japanese, Korean and Traditional Chinese are Planned — not shipped as of 2026-11-12 |
+| Time zone | One per person | Detected from the browser and editable in Settings → Profile. São Paulo (`America/Sao_Paulo`) when none is set. The Monday Advisor Picks episode, Weekly Prep, and Snapshot days follow it |
 | Live evidence sources | Meetings, plus Slack conversations | Meetings are first-run. Slack is implemented; do not ask new customers or test teams to connect it at the start. Slack scores tend to come in lower than meeting scores. |
 | Never-implemented evidence | Email, documents, files, calls | Do not claim them |
 | Other messaging platforms | On hold | Teams chat and similar. Slack evaluations score lower than meetings |

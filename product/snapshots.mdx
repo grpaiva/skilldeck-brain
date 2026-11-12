@@ -1,8 +1,8 @@
 ---
 title: "Snapshots"
-description: "Point-in-time Deck captures, inclusive São Paulo day boundaries, and noise-aware Compare."
+description: "Point-in-time Deck captures, inclusive day boundaries in the creator's time zone, and noise-aware Compare."
 icon: "camera"
-updated: "2026-11-06"
+updated: "2026-11-12"
 status: "verified"
 sidebarTitle: "Snapshots"
 related:
@@ -18,9 +18,9 @@ Skill Deck also generates Snapshots automatically at the end of each [Cycle](/pr
 
 ## Period boundaries
 
-Both picked days are **inclusive**, in **São Paulo time** (`America/Sao_Paulo`), for every user. The start is the start of the start day; the end is the end of the end day. Those bounds are stored as UTC.
+Both picked days are **inclusive**, in the **time zone of the person the Snapshot is created for**. That zone is detected from the browser and editable in Settings → Profile; it is São Paulo (`America/Sao_Paulo`) when none is set. Each Snapshot stores its zone. The start is the start of the start day; the end is the end of the end day. Those bounds are stored as UTC.
 
-A meeting at 22:00 on the end day belongs to that Snapshot. A following Snapshot that starts the next day does not count it again. A Q4 Snapshot covers 1 Oct 00:00 through 31 Dec 23:59:59 São Paulo time, so the last day of the quarter is neither dropped nor shown a day early.
+A meeting at 22:00 on the end day belongs to that Snapshot. A following Snapshot that starts the next day does not count it again. A Q4 Snapshot covers 1 Oct 00:00 through 31 Dec 23:59:59 in its time zone, so the last day of the quarter is neither dropped nor shown a day early.
 
 Views and quarter lookups use those local dates. Track Snapshots still end at the moment they are taken.
 
