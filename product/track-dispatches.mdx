@@ -7,7 +7,7 @@ icon: "mail"
 ---
 
 <Info>
-  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29), the Stage met / Not yet badge on that card in [PR 289](https://github.com/grpaiva/skilldeck/pull/289) (2026-09-30), the Skill/stage subheading plus **View Track** link on that card in [PR 290](https://github.com/grpaiva/skilldeck/pull/290) (2026-09-30), Advisor dialogue tools in [PR 291](https://github.com/grpaiva/skilldeck/pull/291) (2026-09-30), unmet next-step grounding in [PR 292](https://github.com/grpaiva/skilldeck/pull/292) (2026-09-30), and staged email / completion alignment in [PR 296](https://github.com/grpaiva/skilldeck/pull/296) (2026-10-01): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, `AdvisorDialogueAgent` tools, `ResolvesTrackStageContext`, `CompleteTrackAction`, `RollTracksAtCycleEnd`, weekly Prep/Review composers, Wrap-Up composer, and `config/tracks.php`.
+  Verified against the staged Track ladder on main after [PR 282](https://github.com/grpaiva/skilldeck/pull/282) through [PR 286](https://github.com/grpaiva/skilldeck/pull/286), the fuller Track analysis card in [PR 288](https://github.com/grpaiva/skilldeck/pull/288) (2026-09-29), the Stage met / Not yet badge on that card in [PR 289](https://github.com/grpaiva/skilldeck/pull/289) (2026-09-30), the Skill/stage subheading plus **View Track** link on that card in [PR 290](https://github.com/grpaiva/skilldeck/pull/290) (2026-09-30), Advisor dialogue tools in [PR 291](https://github.com/grpaiva/skilldeck/pull/291) (2026-09-30), unmet next-step grounding in [PR 292](https://github.com/grpaiva/skilldeck/pull/292) (2026-09-30), staged email / completion alignment in [PR 296](https://github.com/grpaiva/skilldeck/pull/296) (2026-10-01), and per-person Monday times in [PR 335](https://github.com/grpaiva/skilldeck/pull/335) (2026-11-12): `Evidence::trackForDispatch()`, stage-check Analyses card, `TrackEpisodeAgent`, `GenerateTrackEpisodeJob`, `DefaultTrackStages`, stage-opening / dialogue / verifier prompts, `AdvisorDialogueAgent` tools, `ResolvesTrackStageContext`, `CompleteTrackAction`, `RollTracksAtCycleEnd`, weekly Prep/Review composers, Wrap-Up composer, and `config/tracks.php`.
 </Info>
 
 <Note>
@@ -59,7 +59,7 @@ Inbound replies use a Mailgun webhook on the Advisor mailbox (`TRACKS_INBOUND_AD
 | Dispatch | When | What it does |
 | --- | --- | --- |
 | **Kickoff** | When a Track starts (including right after the previous Track's last stage, or right after **End track**) | Opens the Track and stage 1; carries that Track's instructions |
-| **Weekly Prep** | Mondays, 12:30 | Coaches the current stage from Track progress and meeting stage checks |
+| **Weekly Prep** | Mondays, 09:30 in the person's time zone | Coaches the current stage from Track progress and meeting stage checks |
 | **Evidence Evaluated** | After a meeting is analyzed | The analysis of that meeting |
 | **Advisor Pick** | Mondays, once the weekly episode's audio is ready | Delivers the week's Advisor Picks episode, for people who do not get Weekly Prep |
 | **Weekly Review** | Fridays, 16:00 | Reviews the week against the current stage; does not complete the Track |
@@ -93,11 +93,11 @@ The design reasoning is worth repeating in a demo: a person given a single targe
   </Accordion>
 
   <Accordion title="Weekly Prep" icon="calendar">
-    Mondays at 12:30, for users with an open Track.
+    Mondays at 09:30 in the person's time zone, for users with an open Track. The time zone is detected from the browser and editable in Settings → Profile; it is São Paulo when none is set.
 
     On an active staged Track, Prep coaches the **current stage** from Track progress and meeting stage checks — stage feedback from this week's window first, earlier checks as background. When a Practice is chosen, it talks about that Practice by name. It does not organize the week as a hand of cards or as moving a score toward a Goal.
 
-    The weekly Advisor Picks episode is written at 11:00, an hour and a half earlier, so Prep can link it. A person who gets Prep receives no separate Advisor Pick email that week.
+    The weekly Advisor Picks episode is written at 08:00 in the same time zone, an hour and a half earlier, so Prep can link it. A person who gets Prep receives no separate Advisor Pick email that week.
 
     Weekly comms adapt to where the user is (`WeeklyTrackCommsMode`): `active` and `pending` are Track-bound, while `unlocking` and `ready_to_start` cover people who do not have a Track yet — someone still accumulating evidence gets a different message from someone mid-Track.
   </Accordion>
