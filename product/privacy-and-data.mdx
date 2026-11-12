@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09. The saved per-user time zone, browser detection, and São Paulo fallback verified against `DetectTimezoneController`, Settings → Profile, and merged [PR 335](https://github.com/grpaiva/skilldeck/pull/335) (from [PR 333](https://github.com/grpaiva/skilldeck/pull/333)) on 2026-11-12.
 </Info>
 
 ## The commitments
@@ -54,8 +54,11 @@ These are the application's stated core privacy commitments, and they are the st
 | Feedback paragraphs | Database | For the life of the account, then wiped on account delete; one paragraph per Focus Skill, written to the evidence owner |
 | Stage-check excerpts from a Track | Database | For the life of the account, then wiped on account delete; short meeting quotes from the stage verifier |
 | Advisor thread messages (stage email and in-app replies) | Database | For the life of the account, then wiped on account delete |
+| Time zone | Database (on the user, and on each Snapshot) | For the life of the account, then wiped on account delete; an IANA zone such as `America/Sao_Paulo` |
 | Support correspondence | Support systems | 24 months |
 | Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
+
+Each signed-in person has a time zone on their account. While none is saved, the app reads the time zone from the browser and stores it. Settings → Profile has a searchable Time zone field that can change or clear it. A zone chosen there is never overwritten by detection. When none is set, schedules and Snapshot day bounds use São Paulo (`America/Sao_Paulo`). Each Snapshot also stores the zone it was created in.
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
@@ -189,7 +192,7 @@ The **Privacy Policy** at `/privacy-policy` is the customer-facing document. It 
 | Question | What the policy says |
 | --- | --- |
 | Who is the company? | **Skill Deck LTDA**, CNPJ 67.748.313/0001-01, Rua Pais Leme 215, conj. 1713, Pinheiros, São Paulo, SP, CEP 05424-150 |
-| Privacy contact / Encarregado | **Gustavo Paiva** · `privacy@skilldeck.ai` (PT / EN / ES) |
+| Privacy contact / Encarregado | **Gustavo Paiva** · `privacy@skilldeck.ai`. The policy says you may write in Portuguese, English, or Spanish. |
 | What evidence does the policy describe? | Meetings scheduled through Google or Microsoft Calendar, plus Zoom when connected. The policy states Skill Deck does not access Gmail, Outlook, Slack, documents, files, or phone calls to evaluate Skills |
 | Controller vs operator | Skill Deck is **controller** of each person's development data (Skills, scores, evidence, evaluations). When a company buys for its teams, that company is **controller** of org configuration, team structure, licenses, and manager views — Skill Deck is **operator** there |
 | Who else touches the data? | §9 discloses vendors **by category only**. §11 names recipients for international transfer: Attendee, OpenAI, Anthropic, Laravel Cloud (AWS), Neon, Stripe, Mailgun, Cloudflare, primarily in **AWS us-east-1**, with ANPD Resolução 19/2024 SCC framing |
@@ -199,7 +202,7 @@ The **Privacy Policy** at `/privacy-policy` is the customer-facing document. It 
 | Security measures named in §13 | TLS in transit; US East encryption at rest for managed DB/cache; Cloudflare edge; HTTP security headers; account separation; OAuth tokens encrypted at rest; no-recording / 7-day raw-delete architecture |
 | Does our AI training use their data? | Data passed to third-party AI tools is not used to train generalized models |
 
-When someone asks what the **legal document** covers, answer from this table. Product pages still describe Slack as an implemented evidence source; the published policy's evidence description is meetings-only. The app also sets a long-lived `preferred_language` cookie that holds only the chosen language code (`en`, `pt_BR`, `es`, `de`, `fr`, or `it`) in plain text, alongside the session cookie the policy names. The blog at `/the-feedback` shares it.
+When someone asks what the **legal document** covers, answer from this table. Product pages still describe Slack as an implemented evidence source; the published policy's evidence description is meetings-only. The app also sets a long-lived `preferred_language` cookie that holds only the chosen language code (`en`, `pt_BR`, `es`, `de`, `fr`, or `it`) in plain text, alongside the session cookie the policy names. The blog at `/the-feedback` shares it. The account also stores a time zone, detected from the browser or chosen in Settings → Profile.
 
 A member-facing companion sits at `/knowledge-base`, which is where a member reads what their manager can open. See [The manager role](/product/manager-role).
 
