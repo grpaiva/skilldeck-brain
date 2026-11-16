@@ -110,7 +110,8 @@
             "group": "Go to market",
             "pages": [
               "playbooks/messaging-and-claims",
-              "playbooks/pilot-month"
+              "playbooks/pilot-month",
+              "playbooks/entity-map"
             ]
           }
         ]
