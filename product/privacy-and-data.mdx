@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-11-13"
+updated: "2026-11-18"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09. The saved per-user time zone, browser detection, and São Paulo fallback verified against `DetectTimezoneController`, Settings → Profile, and merged [PR 335](https://github.com/grpaiva/skilldeck/pull/335) (from [PR 333](https://github.com/grpaiva/skilldeck/pull/333)) on 2026-11-12.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09. The saved per-user time zone, browser detection, and São Paulo fallback verified against `DetectTimezoneController`, Settings → Profile, and merged [PR 335](https://github.com/grpaiva/skilldeck/pull/335) (from [PR 333](https://github.com/grpaiva/skilldeck/pull/333)) on 2026-11-12. AI call metrics verified against `config/spectra.php`, the `/spectra` gates in `AuthServiceProvider`, `DeleteUserAccountAction`, and merged [PR 372](https://github.com/grpaiva/skilldeck/pull/372) on 2026-11-18.
 </Info>
 
 ## The commitments
@@ -55,10 +55,13 @@ These are the application's stated core privacy commitments, and they are the st
 | Stage-check excerpts from a Track | Database | For the life of the account, then wiped on account delete; short meeting quotes from the stage verifier |
 | Advisor thread messages (stage email and in-app replies) | Database | For the life of the account, then wiped on account delete |
 | Time zone | Database (on the user, and on each Snapshot) | For the life of the account, then wiped on account delete; an IANA zone such as `America/Sao_Paulo` |
+| AI call metrics | Database (a separate `spectra` schema on the same Postgres cluster) | No scheduled expiry; an admin can prune old records from the dashboard's Maintenance screen. The account wipe leaves them in place. One record per AI call: provider, model, token counts, cost, latency, and where the call came from (job, command, or route pattern). A call made during a web request also records the client IP address and browser user agent, plus the user when someone is signed in. Prompt and response text stay out of the record. |
 | Support correspondence | Support systems | 24 months |
 | Tax and billing records | Billing systems | Legal retention periods that apply to Skill Deck LTDA |
 
 Each signed-in person has a time zone on their account. While none is saved, the app reads the time zone from the browser and stores it. Settings → Profile has a searchable Time zone field that can change or clear it. A zone chosen there is never overwritten by detection. When none is set, schedules and Snapshot day bounds use São Paulo (`America/Sao_Paulo`). Each Snapshot also stores the zone it was created in.
+
+AI call metrics are internal. Only people who can open the Skill Deck admin panel can load the Spectra dashboard at `/spectra`. Members and managers have no view of it.
 
 The design principle is worth stating explicitly when you explain this: **Skill Deck keeps the conclusions, not the recordings.**
 
@@ -162,7 +165,7 @@ When the deleted person authored manager-side records for someone else — Snaps
 
 ### What this does not cover
 
-The wipe is Skill Deck's application-side hard delete. It does not rewrite the published Privacy Policy page, and it does not claim deletion of Stripe's own invoice history, Fathom analytics aggregates, or third-party vendor logs outside Skill Deck's control.
+The wipe is Skill Deck's application-side hard delete. It does not rewrite the published Privacy Policy page, and it does not claim deletion of Stripe's own invoice history, Fathom analytics aggregates, or third-party vendor logs outside Skill Deck's control. AI call metrics in the `spectra` schema stay after the wipe, including any user, IP address, and user agent recorded on them.
 
 ## Answering the surveillance objection
 
