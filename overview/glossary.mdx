@@ -2,7 +2,7 @@
 title: "Glossary"
 description: "The Skill Deck vocabulary. Use these terms exactly, in the product and in everything we write."
 icon: "book-a"
-updated: "2026-11-17"
+updated: "2026-11-23"
 status: "verified"
 ---
 
@@ -67,6 +67,14 @@ Each language uses the word its workplaces use most for a behavior someone can g
 
   <Accordion title="Context bonus">
     One point added to a moment's stage base for each of **Pressure**, **Complexity**, and **Effect** present in that moment. A stage's band holds its base plus up to three bonuses.
+
+    Each bonus also records its kinds. **Pressure** is the weight the situation put on the person: consequence, position, attack, or time. **Complexity** is the difficulty in what they responded to: contradiction, dispersion, own involvement, or missing resource. **Effect** is what their move caused later in the same meeting: use, direction, or decision.
+  </Accordion>
+
+  <Accordion title="Context profile">
+    The settings a person works in, read from the context bonuses of their scored moments: the share of moments with each bonus and each of its kinds. Skill Deck builds it over the person's whole history (their baseline), for the recent window against the time before, per Skill, and for one meeting against the person's other meetings. A window below the minimum sample reports not enough data instead of rates. The window and minimums are on [Canonical facts](/overview/canonical-facts).
+
+    AI agents read it as internal context: `get_my_deck` and the member-facing Track prompts, the Skill highlights writer, Deep Dive, and the weekly Advisor Picks writer. Pressure and Complexity describe the situation, never the person. The person is compared only with themselves, and a difference is a hypothesis, since it can come from a change in behavior or in the kind of meeting.
   </Accordion>
 
   <Accordion title="Harmful behavior">

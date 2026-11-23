@@ -2,7 +2,7 @@
 title: "Syncing from production"
 description: "How this brain pulls live Skill Deck data through the MCP server, and when to re-run it."
 icon: "refresh-cw"
-updated: "2026-10-28"
+updated: "2026-11-23"
 status: "verified"
 ---
 
@@ -113,9 +113,9 @@ Reference data, which is what this brain syncs:
 
 Personal data, scoped to the authenticated user:
 
-- `get_my_deck` — all category and Skill scores with confidence.
-- `get_attribute_evaluations` — the evaluations behind one Skill's score.
-- `list_my_evidence`, `get_evidence_detail`, `get_evidence_content` — evidence, its evaluations and Feedback, and the cached transcript while it still exists.
+- `get_my_deck` — all category and Skill scores with confidence, then the person's [context profile](/overview/glossary): how often their scored moments carried each kind of Pressure, Complexity, and Effect, across their history, in the recent window against the time before, and per Focus Skill, with a short guide on how to read it.
+- `get_attribute_evaluations` — the evaluations behind one Skill's score, each with the context kinds of its moment.
+- `list_my_evidence`, `get_evidence_detail`, `get_evidence_content` — evidence, its evaluations and Feedback, and the cached transcript while it still exists. `get_evidence_detail` lists each moment's context and compares the meeting's context with the person's other meetings.
 - `get_my_targets`, `get_target_progress`, `get_target_history` — Targets and quarter-over-quarter progress.
 - `list_advisor_picks`, `get_advisor_pick` — Advisor Picks episodes.
 
