@@ -77,6 +77,16 @@ Each language uses the word its workplaces use most for a behavior someone can g
     AI agents read it as internal context: `get_my_deck` and the member-facing Track prompts, the Skill highlights writer, Deep Dive, and the weekly Advisor Picks writer. Pressure and Complexity describe the situation, never the person. The person is compared only with themselves, and a difference is a hypothesis, since it can come from a change in behavior or in the kind of meeting.
   </Accordion>
 
+  <Accordion title="Team score, Member score, Organization score">
+    The share of a member's, a team's, or an organization's recent evaluations that carried each context bonus. The card shows three tiles: **Pressure**, **Complexity**, and **Effect**. Each tile is its own share, so the three do not add up to a total.
+
+    A tile shows the percentage, the change in points against the window before, and each kind of that bonus with its own share. The one or two most frequent kinds are highlighted. An info button on each tile ("What is pressure?") explains the bonus and its kinds.
+
+    A Member score marks the team's share as a reference. A Team score covers the team's direct members and marks the organization's share as a reference. An Organization score covers the organization's active members. A team or an organization averages its members with equal weight, and counts only members who meet the minimum sample. Below the minimum, the card says there are not enough evaluations yet instead of showing a rate. The window and minimums are on [Canonical facts](/overview/canonical-facts).
+
+    Managers read the Team score on the team page and the Member score on the member page's **Deck** tab. Owners and Admins also read the Organization score on the organization dashboard. See [The manager role](/product/manager-role#team-score-and-member-score).
+  </Accordion>
+
   <Accordion title="Harmful behavior">
     One of the behaviors a Skill lists as harm: any number per Skill, or none. A moment that shows one scores **0**. A Skill with none never scores 0. It counts only when the transcript shows the behavior with certainty and leaves no doubt about who spoke. Weak performance stays on a stage.
   </Accordion>
@@ -224,8 +234,9 @@ The pages a manager and a member actually work in. Use these names in any instru
 | **Overview** | Cycle progress and Track summary entry points |
 | **Tracks** | The member's current and past Tracks. Open a Track for **Overview** (stage progress) and **Conversations** (Advisor threads) |
 | **Journal** | The member's reading feed of dispatches: Evidence Evaluated, Advisor Pick, Kickoff, Weekly Prep, Weekly Review, and Wrap-Up. Managers read it on the member page. For Track mail, prefer **Tracks** / **Conversations** |
-| **Team page** | Two tabs: **Members** (the member list and sub-teams, with Cycle stats and the member Tracks timeline when Tracks are on) and **Team settings** (team Focus Skills, member opt-in, and Track Settings) |
-| **Member page** | One person, seen by their manager: Deck, Journal, and Settings, plus Overview and Tracks when Tracks are on. Prep for the monthly conversation in the order Deck → Focus Skills → Journal → Monthly Report |
+| **Team page** | Two tabs: **Members** (the Team score, the member list, and sub-teams, with Cycle stats and the member Tracks timeline when Tracks are on) and **Team settings** (team Focus Skills, member opt-in, and Track Settings) |
+| **Member page** | One person, seen by their manager: Deck, Journal, and Settings, plus Overview and Tracks when Tracks are on. The Deck tab opens with the Member score. Prep for the monthly conversation in the order Deck → Focus Skills → Journal → Monthly Report |
+| **Organization dashboard** | The organization's overview page. Owners and Admins see the Organization score there, with **Context by team**: a table of each team's Pressure, Complexity, and Effect shares, sortable by each column |
 | **Company settings** | Where an Owner or Admin sets the company's Focus Skills and whether members can choose their own |
 | **Settings → Focus Skills** | Where a person sees their Focus Skills, and chooses them when allowed |
 | **Track Settings** | Where Skill Tracks and automation are configured, for a team or a member |
