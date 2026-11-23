@@ -99,11 +99,10 @@
             "group": "Manager coaching",
             "pages": [
               "playbooks/manager-coaching/overview",
-              "playbooks/manager-coaching/weekly",
+              "playbooks/manager-coaching/focus-skills",
+              "playbooks/manager-coaching/how-to-prepare",
               "playbooks/manager-coaching/monthly",
-              "playbooks/manager-coaching/quarterly",
-              "playbooks/manager-coaching/coaching-prompts",
-              "playbooks/manager-coaching/red-flags"
+              "playbooks/manager-coaching/coaching-prompts"
             ]
           },
           {
