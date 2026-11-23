@@ -109,7 +109,7 @@
             "group": "Go to market",
             "pages": [
               "playbooks/messaging-and-claims",
-              "playbooks/pilot-month",
+              "playbooks/small-team",
               "playbooks/entity-map"
             ]
           }
@@ -135,5 +135,12 @@
   },
   "seo": {
     "indexing": "navigable"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/playbooks/pilot-month",
+      "destination": "/playbooks/small-team",
+      "permanent": true
+    }
+  ]
 }
