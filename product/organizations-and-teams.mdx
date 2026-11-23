@@ -2,12 +2,12 @@
 title: "Organizations and teams"
 description: "How customer accounts, teams, and roles are structured."
 icon: "building-2"
-updated: "2026-10-28"
+updated: "2026-11-23"
 status: "verified"
 ---
 
 <Info>
-  Roles on this page were read from the `OrganizationRole` and `TeamRole` enums in the application repository on 2026-09-01. Focus Skills settings verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28.
+  Roles on this page were read from the `OrganizationRole` and `TeamRole` enums in the application repository on 2026-09-01. Focus Skills settings verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Organization score verified against merged [PR 378](https://github.com/grpaiva/skilldeck/pull/378) on 2026-11-23.
 </Info>
 
 ## The hierarchy
@@ -47,6 +47,14 @@ Team-level permissions, and there are only two.
 | **Member** | Belongs to the team |
 
 The manager role carries the product's most sensitive capability, because it is the one that grants any view of another person's development. See [The manager role](/product/manager-role).
+
+## Organization score
+
+Owners and Admins see the **Organization score** on the organization dashboard. Billing and Member roles do not.
+
+It has the same three tiles as the [Team score](/product/manager-role#team-score-and-member-score): **Pressure**, **Complexity**, and **Effect**, each the share of the organization's evaluations in the window that carried that context bonus. It covers the organization's active members, each qualifying member counted equally.
+
+Below it, **Context by team** lists every team with its three shares and how many of its members meet the minimum sample ("3 of 8 members"). Each column sorts, and a marker on each bar shows the organization's share. A team with too few qualifying members shows a dash and sorts last on the share columns. Each team name opens its team page. The window and minimums are on [Canonical facts](/overview/canonical-facts).
 
 ## Focus Skills settings
 

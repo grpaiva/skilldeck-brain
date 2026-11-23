@@ -2,7 +2,7 @@
 title: "The manager role"
 description: "What a manager sees, what they can do, and why the product is built around them."
 icon: "user-cog"
-updated: "2026-11-17"
+updated: "2026-11-23"
 status: "verified"
 ---
 
@@ -38,7 +38,7 @@ Two tabs.
 
 | Tab | What it holds |
 | --- | --- |
-| **Members** | The member list (add, remove, change role) and sub-teams. With Tracks on, the current Cycle's stats and the member Tracks timeline sit above the list. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline. |
+| **Members** | The member list (add, remove, change role) and sub-teams. The [Team score](#team-score-and-member-score) sits above the list. With Tracks on, the current Cycle's stats sit above the Team score and the member Tracks timeline below it. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline. |
 | **Team settings** | The team's [Focus Skills](#focus-skills), with the company's shown read-only, and **Members can choose their own Focus Skills**. With Tracks on, Track Settings: enable Skill Tracks, and automation. |
 
 ### Member page
@@ -49,7 +49,7 @@ One person in depth. With Tracks off, the tabs are **Deck** (opened first), **Jo
 | --- | --- |
 | **Overview** | Progress vs Goal, days or weeks on the current Track, Track history — completed, still active, switched, rolled, expired — and the Cycle's evaluation count |
 | **Tracks** | The member's current and past Tracks. Open a Track for stage progress on **Overview**, and Advisor threads on **Conversations** (read-only — managers never reply or mark threads read). Meeting-evaluated threads carry stage-check outcomes for the one-meeting deep-dive |
-| **Deck** | Current scores and confidence across the member's Skills, plus a callout that a quarterly report exists |
+| **Deck** | The [Member score](#team-score-and-member-score) first, then current scores and confidence across the member's Skills, plus a callout that a quarterly report exists |
 | **Journal** | The member's full Journal, including Evidence Evaluated and Advisor Pick posts. Opening a post leaves its read state unchanged for the member. Evidence Evaluated and Advisor Pick posts carry no action button, because the evidence page and the episode belong to the member |
 | **Settings** | The member's Focus Skills, with team and company ones shown read-only, and, with Tracks on, per-member Track Settings |
 
@@ -58,6 +58,21 @@ One person in depth. With Tracks off, the tabs are **Deck** (opened first), **Jo
 
   See [Privacy and data](/product/privacy-and-data) before answering any question about this.
 </Warning>
+
+### Team score and Member score
+
+The Team score and the Member score show what kind of situations the evaluations came from. Each card has three tiles, **Pressure**, **Complexity**, and **Effect**. A tile gives the share of evaluations in the window that carried that [context bonus](/overview/glossary), the change in points against the window before, and the share of each kind of that bonus. Each tile stands on its own; the three are not parts of a total. An info button on each tile explains the bonus and its kinds.
+
+| Card | Where | Covers | Reference marker |
+| --- | --- | --- | --- |
+| **Team score** | Team page, **Members** tab | The team's direct members. The card says **Direct members only** when the team has sub-teams | The organization's share |
+| **Member score** | Member page, top of the **Deck** tab | One member | The team's share |
+
+A team counts each qualifying member equally, so one person with many meetings does not set the team's share alone. A member below the minimum sample stays out of the team's share. When the sample is too small, the card says there are not enough evaluations yet instead of showing a rate. The window and minimums are on [Canonical facts](/overview/canonical-facts).
+
+Pressure and Complexity describe the situation, not the person. Read a change as a change in the meetings or in the behavior, and ask before concluding which.
+
+Organization Owners and Admins also see the **Organization score** on the organization dashboard. See [Organizations and teams](/product/organizations-and-teams#organization-score).
 
 ## What a manager can do
 
@@ -169,7 +184,7 @@ The member learns the shape of manager access from the **User Guide**, opened fr
 
 The product draws the line this way. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history, Focus Skills and Track Settings, Advisor conversations, and the member's Journal, including Evidence Evaluated and Advisor Pick posts. The evidence page (its Analyses and Scores tabs, with Feedback and Deep Dive), transcripts, and Advisor Picks audio stay with the member.
 
-A member reads a superset of that on their own Overview, Deck, Journal, and Tracks, so a manager holds nothing the member has not already seen.
+A member reads a superset of that on their own Overview, Deck, Journal, and Tracks. The leader views on top of that are the Member score on the member page and the Team score on the team page. They count how often evaluations carried each context bonus, using the same evaluations that build the member's own Deck.
 
 Every dispatch and stage thread is addressed to the member alone. A manager reads dispatches in the member's Journal and Conversations on the member's Tracks, both on the member page.
 
