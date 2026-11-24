@@ -2,7 +2,7 @@
 title: "The manager role"
 description: "What a manager sees, what they can do, and why the product is built around them."
 icon: "user-cog"
-updated: "2026-11-23"
+updated: "2026-11-24"
 status: "verified"
 ---
 
@@ -38,12 +38,12 @@ Two tabs.
 
 | Tab | What it holds |
 | --- | --- |
-| **Members** | The member list (add, remove, change role) and sub-teams. The [Team score](#team-score-and-member-score) sits above the list. With Tracks on, the current Cycle's stats sit above the Team score and the member Tracks timeline below it. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline. |
+| **Members** | The member list (add, remove, change role) and sub-teams. The [Team score](#team-score-and-member-score) sits above the list. With Tracks on, the current Cycle's stats sit above the Team score and the member Tracks timeline below it. This is where stuck states show up: an empty member row, a Pending status, a member lagging peers on the timeline. A **1-on-1 ready** badge on a member's row links to their [1-on-1](#1-on-1-reports) tab when a report can be generated. |
 | **Team settings** | The team's [Focus Skills](#focus-skills), with the company's shown read-only, and **Members can choose their own Focus Skills**. With Tracks on, Track Settings: enable Skill Tracks, and automation. |
 
 ### Member page
 
-One person in depth. With Tracks off, the tabs are **Deck** (opened first), **Journal**, and **Settings**. With Tracks on, they are **Overview** (opened first), **Tracks** or **Journal**, **Deck**, and **Settings**. The playbook's standard prep order is **Deck → Focus Skills → Journal → Monthly Report**. The tabs:
+One person in depth. With Tracks off, the tabs are **Deck** (opened first), **Journal**, **1-on-1**, and **Settings**. With Tracks on, they are **Overview** (opened first), **Tracks** or **Journal**, **1-on-1**, **Deck**, and **Settings**. The **1-on-1** tab appears on the page of every member the leader manages, and never on the leader's own page. The playbook's standard prep order is **Deck → Focus Skills → Journal → Monthly Report**. The tabs:
 
 | Surface | What the manager reads |
 | --- | --- |
@@ -51,10 +51,11 @@ One person in depth. With Tracks off, the tabs are **Deck** (opened first), **Jo
 | **Tracks** | The member's current and past Tracks. Open a Track for stage progress on **Overview**, and Advisor threads on **Conversations** (read-only — managers never reply or mark threads read). Meeting-evaluated threads carry stage-check outcomes for the one-meeting deep-dive |
 | **Deck** | The [Member score](#team-score-and-member-score) first, then current scores and confidence across the member's Skills, plus a callout that a quarterly report exists |
 | **Journal** | The member's full Journal, including Evidence Evaluated and Advisor Pick posts. Opening a post leaves its read state unchanged for the member. Evidence Evaluated and Advisor Pick posts carry no action button, because the evidence page and the episode belong to the member |
+| **1-on-1** | Period reports that prepare the leader's one-to-one with the member: a summary, period highlights with their evidence, suggested questions, a PDF, and an optional audio briefing. See [1-on-1 reports](#1-on-1-reports) |
 | **Settings** | The member's Focus Skills, with team and company ones shown read-only, and, with Tracks on, per-member Track Settings |
 
 <Warning>
-  The manager's view stops there, by design and in code. They cannot open an individual evidence page or a transcript, the **Evidence Evaluated** email goes to the member alone, and they cannot open the body of the member's report. They read the member's Journal, including Evidence Evaluated posts with their Skill highlights and Feedback, and Track **Conversations** (including meeting-evaluated threads), read-only. A member still sees more about themselves than their manager does.
+  The manager's view stops there, by design and in code. They cannot open an individual evidence page or a transcript, the **Evidence Evaluated** email goes to the member alone, and they cannot open the body of the member's report. They read the member's Journal, including Evidence Evaluated posts with their Skill highlights and Feedback, and Track **Conversations** (including meeting-evaluated threads), read-only. A [1-on-1 report](#1-on-1-reports) reads scores and evaluation summaries, and its evidence links open the member's Journal. A member still sees more about themselves than their manager does.
 
   See [Privacy and data](/product/privacy-and-data) before answering any question about this.
 </Warning>
@@ -101,6 +102,10 @@ Organization Owners and Admins also see the **Organization score** on the organi
     Targets are optional in the playbook's agendas. The confidence target is the right first one for a new team, because nothing can be developed until the profiles mean something.
   </Accordion>
 
+  <Accordion title="Prepare a 1-on-1" icon="messages-square">
+    On the member page's **1-on-1** tab, generate a report for the period since the last one, read its highlights, tick the suggested questions you plan to ask, and download the one-page PDF for the meeting. See [1-on-1 reports](#1-on-1-reports).
+  </Accordion>
+
   <Accordion title="Review at the end of a period" icon="calendar-check">
     At the end of each Track, month, or Cycle, a manager has data to review both how the tool is being used and how the person is developing. The Cycle-end pipeline generates Snapshots and reports automatically. See [Snapshots](/product/snapshots).
   </Accordion>
@@ -144,13 +149,50 @@ The manager meets each person for **15 minutes, once a month**, on its own or as
 
 ## One-to-ones
 
-The coaching meeting _is_ the one-to-one, and it is where Skill Deck pays off: the manager arrives with the Deck read and the Monthly Report open, and goes through the month's findings.
+The coaching meeting _is_ the one-to-one, and it is where Skill Deck pays off. The manager arrives with the Deck read and a 1-on-1 report open, and goes through the period's findings. The playbook supplies the agenda; the product supplies the material.
 
-<Warning>
-  There is **no dedicated 1-on-1 feature**. Sessions, agendas, and notes are not product objects. The playbook supplies the agenda; the product supplies the material.
+## 1-on-1 reports
 
-  Describe the one-to-one as the use case the manager surfaces support, not as a module.
-</Warning>
+The member page's **1-on-1** tab prepares a leader for a one-to-one with that member. Anyone who can manage the member has it (see [Who counts as a manager](#who-counts-as-a-manager)), on every member except themselves. A report is generated only when a leader clicks **Generate 1-on-1 report**.
+
+### When a report can be generated
+
+| Report | When it opens | Period it covers |
+| --- | --- | --- |
+| First | 30 days after the member's first evaluated meeting, with at least one evaluated meeting in the last 30 days | The last 30 days |
+| Each next one | 30 days after the previous report's period ended, once a meeting has been evaluated since | From the day after the previous period ended to today. After more than 90 days, the last 30 days |
+
+The tab says why a report is not available yet and, while the 30-day minimum runs, the date it opens. Days count in the leader's time zone. One report generates at a time for each member. Reports belong to the team: a member on two teams has separate reports on each team's member page.
+
+### What a report holds
+
+Generating creates a [Snapshot](/product/snapshots) of the member for the period. AI then writes the report in the leader's language, usually in under a minute.
+
+| Part | What it shows |
+| --- | --- |
+| **Summary** | An opening summary of the period |
+| **Period strip** | Evaluated meetings and evaluations in the period, and the member's Focus Skills |
+| **Period highlights** | 3 to 7 blocks picked from the period's data: Focus Skill, Most evaluated, Strength, Score gain, Attention point, Activity shift, Work setting (Pressure and Complexity), Meeting traction (Effect), and Follow-up on the previous report. Each block gives an observation and a **Hypothesis & conversation angle**, and lists up to three meetings as evidence: title, date, evaluation summary, and score. Each meeting links to its Evidence Evaluated post in the member's **Journal** tab |
+| **Suggested questions** | 2 or 3 open questions to test the hypotheses. Each has a checkbox that stays ticked, and the list has a **Copy** button |
+
+A selector switches between the member's reports. Every leader who can manage the member sees the same reports on that team, including ones another leader generated, and the same ticked questions.
+
+**Download PDF** gives a one-page A4 guide laid out for the meeting, with space for next steps and notes. Japanese, Korean, and Chinese characters do not render in the PDF.
+
+**Generate audio** records a spoken briefing of three to four minutes for the leader who asked for it. The briefing is that leader's own [Advisor Pick](/overview/glossary): it sits in their Advisor Picks feed with a 1-on-1 badge and a **View report** link. The member never receives it.
+
+### What a report reads
+
+A report reads scores, context bonus statistics, Focus Skills, evaluation summaries, and the member's previous 1-on-1 reports. It never reads a transcript or the quotes behind Skill demonstrations. Its evidence links open the member's Journal, never the evidence page. See [Privacy and data](/product/privacy-and-data).
+
+### The weekly reminder
+
+On Mondays at 09:00 in the recipient's time zone, Skill Deck emails one reminder listing the members whose report can be generated, each with a link to their **1-on-1** tab.
+
+- It goes to the team's direct Managers. A team with no direct Manager sends it to the organization's Owners and Admins.
+- Only organizations with an active subscription receive it.
+- A member appears in the first two weekly reminders after a report opens, then every 28 days until a leader generates one.
+- A recipient never appears in their own reminder.
 
 ## The failure mode to design against
 
@@ -182,7 +224,7 @@ There is no separate "direct report" object. Management is expressed through tea
 
 The member learns the shape of manager access from the **User Guide**, opened from the sidebar and published at `/knowledge-base`. The disclosure ships in English, Portuguese, Spanish, German, French, Italian, Japanese, Korean, and Traditional Chinese.
 
-The product draws the line this way. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history, Focus Skills and Track Settings, Advisor conversations, and the member's Journal, including Evidence Evaluated and Advisor Pick posts. The evidence page (its Analyses and Scores tabs, with Feedback and Deep Dive), transcripts, and Advisor Picks audio stay with the member.
+The product draws the line this way. A manager can open the Deck and its confidence, Cycle progress, Tracks with their history, Focus Skills and Track Settings, Advisor conversations, and the member's Journal, including Evidence Evaluated and Advisor Pick posts. Leaders also generate 1-on-1 reports about the member, which only leaders open. The evidence page (its Analyses and Scores tabs, with Feedback and Deep Dive), transcripts, and Advisor Picks audio stay with the member.
 
 A member reads a superset of that on their own Overview, Deck, Journal, and Tracks. The leader views on top of that are the Member score on the member page and the Team score on the team page. They count how often evaluations carried each context bonus, using the same evaluations that build the member's own Deck.
 

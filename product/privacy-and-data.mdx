@@ -2,7 +2,7 @@
 title: "Privacy and data"
 description: "What Skill Deck records, what it deletes, and what a manager can and cannot see."
 icon: "shield"
-updated: "2026-11-23"
+updated: "2026-11-24"
 status: "verified"
 ---
 
@@ -11,7 +11,7 @@ status: "verified"
 </Warning>
 
 <Info>
-  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09. The saved per-user time zone, browser detection, and São Paulo fallback verified against `DetectTimezoneController`, Settings → Profile, and merged [PR 335](https://github.com/grpaiva/skilldeck/pull/335) (from [PR 333](https://github.com/grpaiva/skilldeck/pull/333)) on 2026-11-12. AI call metrics verified against `config/spectra.php`, the `/spectra` gates in `AuthServiceProvider`, `DeleteUserAccountAction`, and merged [PR 372](https://github.com/grpaiva/skilldeck/pull/372) on 2026-11-18.
+  Verified against `docs/EVIDENCE_PROCESSING_PIPELINE.md`, `routes/console.php`, and `config/ai.php` defaults, on 2026-09-01. Account hard-delete verified against `DeleteUserAccountAction`, Settings → Profile, and merged [PR 191](https://github.com/grpaiva/skilldeck/pull/191) on 2026-09-04. Published Privacy Policy verified against the LGPD-first rebuild in [PR 198](https://github.com/grpaiva/skilldeck/pull/198) on 2026-09-07. Demonstration quote storage verified against `docs/SKILL_EVALUATION_ENGINE.md` and `config/skill_evaluation.php` on 2026-10-21. Journal manager visibility verified against main after [PR 243](https://github.com/grpaiva/skilldeck/pull/243) (revert of Tracks stage ladder from PR 240) on 2026-09-24. Manager Journal access, Feedback, and Advisor Pick posts verified against merged [PR 314](https://github.com/grpaiva/skilldeck/pull/314) on 2026-10-28. Meetings where the evidence owner never speaks verified against merged [PR 303](https://github.com/grpaiva/skilldeck/pull/303) on 2026-10-13 and owner speaker matching (partial names and nicknames) against merged [PR 304](https://github.com/grpaiva/skilldeck/pull/304) on 2026-10-14. The language-preference cookie verified against merged [PR 323](https://github.com/grpaiva/skilldeck/pull/323) and its sharing with the blog against merged [PR 324](https://github.com/grpaiva/skilldeck/pull/324) on 2026-11-09. The saved per-user time zone, browser detection, and São Paulo fallback verified against `DetectTimezoneController`, Settings → Profile, and merged [PR 335](https://github.com/grpaiva/skilldeck/pull/335) (from [PR 333](https://github.com/grpaiva/skilldeck/pull/333)) on 2026-11-12. AI call metrics verified against `config/spectra.php`, the `/spectra` gates in `AuthServiceProvider`, `DeleteUserAccountAction`, and merged [PR 372](https://github.com/grpaiva/skilldeck/pull/372) on 2026-11-18. Leader 1-on-1 reports verified against `OneOnOneReportPolicy`, `OneOnOneReportContextBuilder`, `OneOnOneBlockExamples`, the `one_on_one_reports` migration, and merged [PR 379](https://github.com/grpaiva/skilldeck/pull/379) on 2026-11-24.
 </Info>
 
 ## The commitments
@@ -54,6 +54,7 @@ These are the application's stated core privacy commitments, and they are the st
 | Feedback paragraphs | Database | For the life of the account, then wiped on account delete; one paragraph per Focus Skill, written to the evidence owner |
 | Stage-check excerpts from a Track | Database | For the life of the account, then wiped on account delete; short meeting quotes from the stage verifier |
 | Advisor thread messages (stage email and in-app replies) | Database | For the life of the account, then wiped on account delete |
+| 1-on-1 reports | Database | For the life of the member's account, then deleted with it. The summary, highlights, suggested questions with their ticked state, and the period Snapshot. When the leader who generated one deletes their account, the report stays and its author is cleared |
 | Time zone | Database (on the user, and on each Snapshot) | For the life of the account, then wiped on account delete; an IANA zone such as `America/Sao_Paulo` |
 | AI call metrics | Database (a separate `spectra` schema on the same Postgres cluster) | No scheduled expiry; an admin can prune old records from the dashboard's Maintenance screen. The account wipe leaves them in place. One record per AI call: provider, model, token counts, cost, latency, and where the call came from (job, command, or route pattern). A call made during a web request also records the client IP address and browser user agent, plus the user when someone is signed in. Prompt and response text stay out of the record. |
 | Support correspondence | Support systems | 24 months |
@@ -96,6 +97,7 @@ On their team member's page:
 - **Deck** — the **Member score** first: the share of the member's evaluations from the recent window that carried Pressure, Complexity, and Effect, with the kinds of each and the team's share as a reference. Then current scores and confidence across the member's Skills, the same aggregate view the member sees.
 - **Journal** — the member's dispatches, including each **Evidence Evaluated** post (scores, Skill highlights, and Feedback) and each **Advisor Pick** post (Skill, practice, and description). Reading a post leaves its read state unchanged for the member.
 - **Settings** — the member's Focus Skills and, with Tracks on, their Track Settings.
+- **1-on-1** — period reports that leaders generate to prepare a one-to-one: a summary, highlights with up to three meetings each as evidence (title, date, evaluation summary, and score), and suggested questions. A report reads scores, context bonus statistics, Focus Skills, evaluation summaries, and earlier 1-on-1 reports, never transcripts or demonstration quotes. Each evidence link opens the meeting's Evidence Evaluated post in the member's Journal. Only leaders open these reports, and an optional audio briefing goes to the leader's own Advisor Picks. See [1-on-1 reports](/product/manager-role#1-on-1-reports).
 
 The member's evidence page stays with the member. See [Evidence and evaluation](/product/evidence-and-evaluation).
 
@@ -111,9 +113,10 @@ This list is enforced, not aspirational:
 | Meeting transcripts | Never in the database; gone from cache after 7 days |
 | The Evidence Evaluated and Advisor Pick emails | Sent to the member alone. The Journal post a manager reads carries no link to the evidence page or the episode audio. |
 | Individual evidence pages | Owner-only. The evidence page returns a 403 to anyone who is not the evidence owner, including their manager. The Analyses and Scores tabs, with Feedback and Deep Dive, stay there. |
-| The full list of individual evaluations | Not exposed in any manager view |
+| The full list of individual evaluations | No manager view lists them. A 1-on-1 report shows at most three evaluations per highlight, with meeting title, date, summary, and score |
 | The body of a member's development report | The manager sees that a report exists, with no link to open it |
 | Benchmarks the member favorited | Private, so a member can hold aspirations their manager does not see |
+| Transcripts and evidence pages from a 1-on-1 report | The report never reads a transcript or a demonstration quote, and its evidence links open the member's Journal post |
 | Anything through the MCP server | MCP is first-person only. There is no manager, recruiter, or org-level access path. |
 
 <Tip>
@@ -163,7 +166,7 @@ Personal product data owned by the user (evidence, evaluations, scores, Journal,
 
 ### What stays for other people
 
-When the deleted person authored manager-side records for someone else — Snapshots, Tracks, or Targets on another member — those records stay with the subject. Authorship is reassigned to the subject (or cleared for Targets with no subject user). Organization ownership does not cascade-delete the organization when a former owner's user row is removed.
+When the deleted person authored manager-side records for someone else — Snapshots, Tracks, Targets, or 1-on-1 reports on another member — those records stay with the subject. Authorship is reassigned to the subject (or cleared for Targets with no subject user). Organization ownership does not cascade-delete the organization when a former owner's user row is removed.
 
 ### What this does not cover
 
